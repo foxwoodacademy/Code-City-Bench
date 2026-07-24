@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>WHORL Visualizer</title>
+
+<style>
+body {
+  margin:0;
+  overflow:hidden;
+  background:black;
+  font-family:monospace;
+}
+
+#hud {
+  position:absolute;
+  top:10px;
+  left:10px;
+  color:#00ffff;
+}
+</style>
+
+</head>
+<body>
+
+<div id="hud">WHORL Runtime Visualizer</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<script>
+
+let scene = new THREE.Scene()
+
+let camera = new THREE.PerspectiveCamera(
+  60,
+  window.innerWidth/window.innerHeight,
+  0.1,
+  1000
+)
+
+camera.position.set(0,4,10)
+
+let renderer = new THREE.WebGLRenderer({antialias:true})
+renderer.setSize(window.innerWidth, window.innerHeight)
+
+document.body.appendChild(renderer.domElement)
+
+
+/* ===========================
+   LIGHTING
+=========================== */
+
+let light = new THREE.PointLight(0xffffff,1)
+light.position.set(10,10,10)
+scene.add(light)
+
+scene.add(new THREE.AmbientLight(0x404040))
+
+
+/* ===========================
+   HELIX AXIS
+=========================== */
+
+let axisGeometry = new THREE.CylinderGeometry(.02,.02,20)
+let axisMaterial = new THREE.MeshBasicMaterial({color:0x00ffff})
+let axis = new THREE.Mesh(axisGeometry,axisMaterial)
+
+scene.add(axis)
+
+
+/* ===========================
+   AGENT CLASS
+=========================== */
+
+class Agent {
+
+  constructor(color) {
+
+    this.r = Math.random()*1.2 + .2
+    this.theta = Math.random()*Math.PI*2
+    this.z = Math.random()*2 - 1
+
+    this.speed = .02 + Math.random()*0.02
+
+    let geometry = new THREE.SphereGeometry(.08,16,16)
+    let material = new THREE.MeshStandardMaterial({color})
+
+    this.mesh = new THREE.Mesh(geometry,material)
+
+    scene.add(this.mesh)
+
+  }
+
+  update(){
+
+    this.theta += this.speed
+
+    this.z += Math.sin(this.theta)*0.002
+
+    let x = this.r * Math.cos(this.theta)
+    let y = this.r * Math.sin(this.theta)
+    let z = this.z * 5
+
+    this.mesh.position.set(x,y,z)
+
+  }
+
+}
+
+
+/* ===========================
+   CREATE AGENTS
+=========================== */
+
+let agents = []
+
+let colors = [
+  0x00ff88,
+  0x0088ff,
+  0xff4444,
+  0xffcc00
+]
+
+for(let i=0;i<20;i++){
+
+  agents.push(new Agent(
+    colors[Math.floor(Math.random()*colors.length)]
+  ))
+
+}
+
+
+/* ===========================
+   HELIX TRAILS
+=========================== */
+
+function createHelix(){
+
+  let points = []
+
+  for(let i=0;i<300;i++){
+
+    let t = i * 0.1
+
+    let r = 1.5
+
+    let x = r * Math.cos(t)
+    let y = r * Math.sin(t)
+    let z = (t - 15)
+
+    points.push(new THREE.Vector3(x,y,z))
+
+  }
+
+  let geometry = new THREE.BufferGeometry().setFromPoints(points)
+
+  let material = new THREE.LineBasicMaterial({
+    color:0x4444ff
+  })
+
+  let helix = new THREE.Line(geometry,material)
+
+  scene.add(helix)
+
+}
+
+createHelix()
+
+
+/* ===========================
+   GRAVITY WELL
+=========================== */
+
+let wellGeo = new THREE.SphereGeometry(.4,32,32)
+
+let wellMat = new THREE.MeshBasicMaterial({
+  color:0xff00ff,
+  wireframe:true
+})
+
+let well = new THREE.Mesh(wellGeo,wellMat)
+
+well.position.set(2,0,0)
+
+scene.add(well)
+
+
+/* ===========================
+   ANIMATION LOOP
+=========================== */
+
+function animate(){
+
+  requestAnimationFrame(animate)
+
+  agents.forEach(a => a.update())
+
+  scene.rotation.z += 0.001
+
+  renderer.render(scene,camera)
+
+}
+
+animate()
+
+
+/* ===========================
+   RESIZE
+=========================== */
+
+window.addEventListener('resize',()=>{
+
+  camera.aspect = window.innerWidth/window.innerHeight
+  camera.updateProjectionMatrix()
+
+  renderer.setSize(window.innerWidth,window.innerHeight)
+
+})
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏙️ Code City 2.0 - Advanced Code Visualization</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-gradient: linear-gradient(90deg, #00dbde 0%, #fc00ff 100%);
+            --secondary-gradient: linear-gradient(135deg, #6e8efb 0%, #a777e3 100%);
+            --dark-bg: #1a1a2e;
+            --darker-bg: #16213e;
+            --card-bg: #1f1f33;
+            --text-primary: white;
+            --text-secondary: #a5b1c2;
+            --text-accent: #4fd1c5;
+            --success: #48bb78;
+            --warning: #ed8936;
+            --danger: #f56565;
+            --border-color: #2d3748;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h1 {
+            font-size: 3rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0, 219, 222, 0.3);
+        }
+        
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .version-badge {
+            display: inline-block;
+            background: var(--secondary-gradient);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .tab {
+            padding: 12px 24px;
+            background: var(--card-bg);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            font-weight: 500;
+        }
+        
+        .tab.active {
+            background: var(--primary-gradient);
+            border-color: #00dbde;
+            transform: translateY(-2px);
+        }
+        
+        .tab:hover:not(.active) {
+            background: #2a2a40;
+            border-color: #4a5568;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .status-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .status-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 219, 222, 0.2);
+        }
+        
+        .status-item {
+            margin-bottom: 10px;
+        }
+        
+        .status-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .status-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-accent);
+        }
+        
+        .status-value.success {
+            color: var(--success);
+        }
+        
+        .status-value.danger {
+            color: var(--danger);
+        }
+        
+        .controls {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .control-group {
+            margin-bottom: 20px;
+        }
+        
+        .control-label {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        input, select, button {
+            width: 100%;
+            padding: 14px;
+            border-radius: 10px;
+            border: none;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            font-family: inherit;
+        }
+        
+        input, select {
+            background: var(--darker-bg);
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--text-accent);
+            box-shadow: 0 0 0 3px rgba(79, 209, 197, 0.1);
+        }
+        
+        button {
+            background: var(--primary-gradient);
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 219, 222, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        button:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(0, 219, 222, 0.4);
+        }
+        
+        button:active:not(:disabled) {
+            transform: translateY(-1px);
+        }
+        
+        button:disabled {
+            background: var(--border-color);
+            cursor: not-allowed;
+            box-shadow: none;
+            opacity: 0.7;
+        }
+        
+        .button-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .stat-card {
+            background: var(--darker-bg);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background: var(--border-color);
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .buildings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+        
+        .building-card {
+            background: var(--darker-bg);
+            border-radius: 12px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+        
+        .building-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(0, 219, 222, 0.2);
+            border-color: var(--text-accent);
+        }
+        
+        .building-card.selected {
+            border-color: var(--success);
+            background: var(--card-bg);
+        }
+        
+        .building-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .building-name {
+            font-weight: 700;
+            color: white;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .building-type {
+            background: var(--border-color);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--text-accent);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .building-path {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            word-break: break-all;
+            padding: 10px;
+            background: rgba(79, 209, 197, 0.1);
+            border-radius: 8px;
+        }
+        
+        .building-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .building-stat {
+            text-align: center;
+            padding: 10px;
+        }
+        
+        .building-stat-label {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        
+        .building-stat-value {
+            color: var(--text-accent);
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+        
+        .health-bar {
+            height: 8px;
+            background: var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .health-fill {
+            height: 100%;
+            background: var(--secondary-gradient);
+            transition: width 0.8s ease;
+            position: relative;
+        }
+        
+        .health-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+        
+        .monsters-list {
+            margin-top: 20px;
+        }
+        
+        .monster-item {
+            background: rgba(239, 68, 68, 0.1);
+            padding: 12px 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 4px solid var(--danger);
+            transition: all 0.3s ease;
+        }
+        
+        .monster-item:hover {
+            background: rgba(239, 68, 68, 0.2);
+            transform: translateX(5px);
+        }
+        
+        .monster-info {
+            color: var(--danger);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        
+        .monster-severity {
+            background: var(--danger);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 60px;
+            color: var(--text-secondary);
+        }
+        
+        .spinner {
+            border: 5px solid var(--border-color);
+            border-top: 5px solid var(--text-accent);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1.2s linear infinite;
+            margin: 0 auto 25px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .error {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            display: none;
+            border-left: 5px solid var(--danger);
+            animation: shake 0.5s ease-out;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-5px); }
+            40%, 80% { transform: translateX(5px); }
+        }
+        
+        .error.visible {
+            display: block;
+        }
+        
+        .file-preview {
+            background: var(--darker-bg);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+            display: none;
+        }
+        
+        .file-preview.visible {
+            display: block;
+        }
+        
+        .file-preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .file-preview-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-accent);
+        }
+        
+        .close-preview {
+            background: var(--danger);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .close-preview:hover {
+            background: #c53030;
+            transform: scale(1.05);
+        }
+        
+        .code-line {
+            padding: 8px 12px;
+            margin-bottom: 5px;
+            border-radius: 6px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        .code-line.error-line {
+            background: rgba(239, 68, 68, 0.2);
+            border-left: 3px solid var(--danger);
+        }
+        
+        .code-line-number {
+            color: var(--text-secondary);
+            margin-right: 15px;
+            min-width: 40px;
+            display: inline-block;
+            text-align: right;
+        }
+        
+        .code-line-content {
+            color: var(--text-primary);
+        }
+        
+        .search-section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .search-input {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .search-input input {
+            flex: 1;
+        }
+        
+        .search-input button {
+            min-width: 120px;
+        }
+        
+        .search-results {
+            margin-top: 15px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .search-result-item {
+            padding: 12px;
+            background: var(--darker-bg);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .search-result-item:hover {
+            background: var(--border-color);
+            transform: translateX(5px);
+        }
+        
+        .search-result-title {
+            font-weight: 600;
+            color: var(--text-accent);
+            margin-bottom: 5px;
+        }
+        
+        .search-result-path {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            padding: 20px;
+            border-top: 2px solid var(--border-color);
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background: var(--border-color);
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: var(--primary-gradient);
+            transition: width 0.5s ease;
+        }
+        
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: var(--darker-bg);
+            color: var(--text-primary);
+            text-align: center;
+            border-radius: 8px;
+            padding: 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.85rem;
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        @media (max-width: 1024px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            }
+            
+            .buildings-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .buildings-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .button-group {
+                grid-template-columns: 1fr;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                width: 100%;
+            }
+        }
+        
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--darker-bg);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-accent);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="version-badge">🏙️ Code City 2.0</div>
+            <h1>🏙️ CODE CITY 2.0</h1>
+            <p class="subtitle">Advanced Cross-Platform Code Visualization & Analysis</p>
+        </header>
+        
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('dashboard')">📊 Dashboard</div>
+            <div class="tab" onclick="switchTab('scan')">🔍 Scanner</div>
+            <div class="tab" onclick="switchTab('search')">🔎 Search</div>
+            <div class="tab" onclick="switchTab('settings')">⚙️ Settings</div>
+        </div>
+        
+        <!-- Dashboard Tab -->
+        <div id="dashboard-tab" class="tab-content active">
+            <div class="status-grid">
+                <div class="status-card">
+                    <div class="status-item">
+                        <span class="status-label">Connection Status</span>
+                        <span class="status-value" id="connection-status">Disconnected</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Server</span>
+                        <span class="status-value" id="server-status">Not connected</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Platform</span>
+                        <span class="status-value" id="platform">Detecting...</span>
+                    </div>
+                </div>
+                
+                <div class="status-card">
+                    <div class="status-item">
+                        <span class="status-label">Last Scan</span>
+                        <span class="status-value" id="last-scan">Never</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Scan Time</span>
+                        <span class="status-value" id="scan-time">0s</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Files Scanned</span>
+                        <span class="status-value" id="files-scanned">0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="city-stats" id="city-stats">
+                <h2>📊 City Statistics</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="total-files">0</div>
+                        <div class="stat-label">Total Files</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="total-monsters">0</div>
+                        <div class="stat-label">Total Bugs</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="avg-complexity">0</div>
+                        <div class="stat-label">Avg Complexity</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="total-lines">0</div>
+                        <div class="stat-label">Total Lines</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="total-size">0</div>
+                        <div class="stat-label">Total Size</div>
+                    </div>
+                </div>
+                
+                <div class="progress-bar">
+                    <div class="progress-fill" id="scan-progress" style="width: 0%"></div>
+                </div>
+                
+                <h3 style="margin-top: 30px; color: var(--text-secondary);">🏢 Buildings</h3>
+                <div class="buildings-grid" id="buildings-grid">
+                    <!-- Buildings will be added here -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scan Tab -->
+        <div id="scan-tab" class="tab-content">
+            <div class="controls">
+                <div class="control-group">
+                    <label class="control-label">Codebase Path</label>
+                    <input type="text" id="codebase-path" 
+                           placeholder="/storage/emulated/0/projects or C:\\projects" 
+                           value=".">
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label">Scan Depth</label>
+                    <select id="scan-depth">
+                        <option value="shallow">Shallow (current directory only)</option>
+                        <option value="normal" selected>Normal (subdirectories)</option>
+                        <option value="deep">Deep (all subdirectories)</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label">File Types</label>
+                    <select id="file-types" multiple>
+                        <option value="py" selected>Python (.py)</option>
+                        <option value="js" selected>JavaScript (.js)</option>
+                        <option value="ts">TypeScript (.ts)</option>
+                        <option value="jsx">React (.jsx)</option>
+                        <option value="tsx">React TS (.tsx)</option>
+                        <option value="java">Java (.java)</option>
+                        <option value="cpp">C++ (.cpp, .h)</option>
+                        <option value="c">C (.c, .h)</option>
+                        <option value="go">Go (.go)</option>
+                        <option value="rs">Rust (.rs)</option>
+                        <option value="rb">Ruby (.rb)</option>
+                        <option value="php">PHP (.php)</option>
+                        <option value="html">HTML (.html)</option>
+                        <option value="css">CSS (.css)</option>
+                    </select>
+                </div>
+                
+                <div class="button-group">
+                    <button id="scan-button" onclick="scanCodebase()">
+                        🔍 Scan Codebase
+                    </button>
+                    <button id="connect-button" onclick="connectWebSocket()">
+                        🔗 Connect Server
+                    </button>
+                    <button id="clear-button" onclick="clearResults()">
+                        🗑️ Clear Results
+                    </button>
+                </div>
+            </div>
+            
+            <div class="error" id="error-message">
+                Error: Could not connect to server
+            </div>
+            
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Scanning codebase...</p>
+                <p id="scan-progress-text">0% complete</p>
+            </div>
+        </div>
+        
+        <!-- Search Tab -->
+        <div id="search-tab" class="tab-content">
+            <div class="search-section">
+                <h3>🔎 Search Codebase</h3>
+                <div class="search-input">
+                    <input type="text" id="search-query" placeholder="Search for files, functions, or bugs...">
+                    <button onclick="performSearch()">Search</button>
+                </div>
+                
+                <div class="search-results" id="search-results">
+                    <!-- Search results will appear here -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Settings Tab -->
+        <div id="settings-tab" class="tab-content">
+            <div class="controls">
+                <h3>⚙️ Settings</h3>
+                
+                <div class="control-group">
+                    <label class="control-label">Server Address</label>
+                    <input type="text" id="server-address" 
+                           placeholder="ws://localhost:8765" 
+                           value="ws://localhost:8765">
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label">Theme</label>
+                    <select id="theme-selector">
+                        <option value="dark">Dark Theme</option>
+                        <option value="light">Light Theme</option>
+                        <option value="system">System Default</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label">Bug Detection Level</label>
+                    <select id="bug-level">
+                        <option value="strict">Strict (find all issues)</option>
+                        <option value="normal" selected>Normal (balanced)</option>
+                        <option value="lenient">Lenient (fewer false positives)</option>
+                    </select>
+                </div>
+                
+                <button onclick="saveSettings()">💾 Save Settings</button>
+            </div>
+        </div>
+        
+        <!-- File Preview Modal -->
+        <div class="file-preview" id="file-preview">
+            <div class="file-preview-header">
+                <h3 class="file-preview-title" id="preview-title">File Preview</h3>
+                <button class="close-preview" onclick="closeFilePreview()">Close</button>
+            </div>
+            <div class="file-preview-content" id="preview-content">
+                <!-- File content will be displayed here -->
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>🏙️ Code City 2.0 - Advanced Code Visualization | Android & Windows & Web</p>
+        <p>Built with ❤️ for developers by AI | Version 2.0.0</p>
+    </footer>
+    
+    <script>
+        // WebSocket connection
+        let socket = null;
+        let currentCityData = null;
+        let selectedBuilding = null;
+        
+        // Tab management
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all tab buttons
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName + '-tab').classList.add('active');
+            
+            // Add active class to clicked tab button
+            event.target.classList.add('active');
+        }
+        
+        // Detect platform
+        function detectPlatform() {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            if (/android/i.test(userAgent)) {
+                return "Android (Termux)";
+            } else if (/win/i.test(userAgent)) {
+                return "Windows PC";
+            } else if (/mac/i.test(userAgent)) {
+                return "Mac";
+            } else if (/linux/i.test(userAgent)) {
+                return "Linux";
+            } else {
+                return "Web Browser";
+            }
+        }
+        
+        // Update platform info
+        document.getElementById('platform').textContent = detectPlatform();
+        
+        // Connect to WebSocket server
+        function connectWebSocket() {
+            const button = document.getElementById('connect-button');
+            button.disabled = true;
+            button.textContent = "🔄 Connecting...";
+            
+            const serverAddress = document.getElementById('server-address').value;
+            
+            try {
+                socket = new WebSocket(serverAddress);
+                
+                socket.onopen = function() {
+                    button.textContent = "✅ Connected";
+                    button.style.background = "var(--success)";
+                    document.getElementById('connection-status').textContent = "Connected";
+                    document.getElementById('connection-status').className = "status-value success";
+                    document.getElementById('server-status').textContent = serverAddress;
+                    
+                    // Send health check
+                    sendMessage({action: 'health'});
+                    
+                    // Switch to dashboard tab
+                    switchTab('dashboard');
+                };
+                
+                socket.onmessage = function(event) {
+                    handleMessage(event.data);
+                };
+                
+                socket.onclose = function() {
+                    button.textContent = "🔗 Connect Server";
+                    button.style.background = "";
+                    button.disabled = false;
+                    document.getElementById('connection-status').textContent = "Disconnected";
+                    document.getElementById('connection-status').className = "status-value danger";
+                    document.getElementById('server-status').textContent = "Not connected";
+                };
+                
+                socket.onerror = function(error) {
+                    console.log("WebSocket error:", error);
+                    showError("Connection error: " + error.message);
+                };
+                
+            } catch (error) {
+                console.log("Connection error:", error);
+                showError("Connection error: " + error.message);
+                button.disabled = false;
+                button.textContent = "🔗 Connect Server";
+            }
+        }
+        
+        // Send message to server
+        function sendMessage(message) {
+            if (socket && socket.readyState === WebSocket.OPEN) {
+                socket.send(JSON.stringify(message));
+            } else {
+                showError("Not connected to server");
+            }
+        }
+        
+        // Handle incoming messages
+        function handleMessage(messageData) {
+            try {
+                const data = JSON.parse(messageData);
+                
+                switch (data.type) {
+                    case 'connected':
+                        console.log("Connected to server:", data.message);
+                        break;
+                        
+                    case 'health':
+                        console.log("Server health:", data.status);
+                        break;
+                        
+                    case 'scanning':
+                        showLoading();
+                        console.log("Scanning:", data.path);
+                        break;
+                        
+                    case 'scan_progress':
+                        updateScanProgress(data.progress);
+                        break;
+                        
+                    case 'city_data':
+                        hideLoading();
+                        currentCityData = data.data;
+                        displayCityData(data.data);
+                        break;
+                        
+                    case 'file_content':
+                        showFileContent(data.data);
+                        break;
+                        
+                    case 'error':
+                        showError(data.message);
+                        break;
+                        
+                    default:
+                        console.log("Unknown message type:", data.type);
+                }
+            } catch (error) {
+                console.error("Error handling message:", error);
+                showError("Error processing server response");
+            }
+        }
+        
+        // Scan codebase
+        function scanCodebase() {
+            const path = document.getElementById('codebase-path').value;
+            const depth = document.getElementById('scan-depth').value;
+            const fileTypes = Array.from(document.getElementById('file-types').selectedOptions)
+                .map(option => option.value);
+            
+            if (!path) {
+                showError("Please enter a codebase path");
+                return;
+            }
+            
+            if (!socket || socket.readyState !== WebSocket.OPEN) {
+                showError("Please connect to server first");
+                return;
+            }
+            
+            sendMessage({
+                action: 'scan',
+                path: path,
+                depth: depth,
+                file_types: fileTypes
+            });
+            
+            // Update last scan time
+            document.getElementById('last-scan').textContent = new Date().toLocaleString();
+        }
+        
+        // Update scan progress
+        function updateScanProgress(progress) {
+            const progressBar = document.getElementById('scan-progress');
+            const progressText = document.getElementById('scan-progress-text');
+            
+            progressBar.style.width = progress + '%';
+            progressText.textContent = progress + '% complete';
+        }
+        
+        // Display city data
+        function displayCityData(data) {
+            // Show stats section
+            document.getElementById('city-stats').style.display = 'block';
+            
+            // Update statistics
+            document.getElementById('total-files').textContent = data.total_files;
+            document.getElementById('total-monsters').textContent = data.total_errors;
+            
+            // Calculate average complexity
+            let totalComplexity = 0;
+            data.buildings.forEach(building => {
+                totalComplexity += building.complexity;
+            });
+            const avgComplexity = data.buildings.length > 0 
+                ? Math.round(totalComplexity / data.buildings.length) 
+                : 0;
+            document.getElementById('avg-complexity').textContent = avgComplexity;
+            
+            // Calculate total lines
+            let totalLines = 0;
+            data.buildings.forEach(building => {
+                totalLines += building.lines;
+            });
+            document.getElementById('total-lines').textContent = totalLines.toLocaleString();
+            
+            // Calculate total size
+            let totalSize = 0;
+            data.buildings.forEach(building => {
+                totalSize += building.size;
+            });
+            document.getElementById('total-size').textContent = formatFileSize(totalSize);
+            
+            // Update scan time
+            document.getElementById('scan-time').textContent = data.scan_time || '0s';
+            document.getElementById('files-scanned').textContent = data.total_files;
+            
+            // Display buildings
+            const buildingsGrid = document.getElementById('buildings-grid');
+            buildingsGrid.innerHTML = '';
+            
+            data.buildings.forEach(building => {
+                const buildingCard = createBuildingCard(building, data.monsters);
+                buildingsGrid.appendChild(buildingCard);
+            });
+            
+            // Switch to dashboard tab
+            switchTab('dashboard');
+        }
+        
+        // Create building card
+        function createBuildingCard(building, monsters) {
+            const card = document.createElement('div');
+            card.className = 'building-card';
+            
+            // Calculate health based on monsters
+            const buildingMonsters = monsters.filter(m => m.building_id === building.id);
+            const health = Math.max(10, 100 - (buildingMonsters.length * 5));
+            
+            // Get file icon based on type
+            const fileIcons = {
+                'py': '🐍',
+                'js': '🟡',
+                'ts': '🔵',
+                'jsx': '🔵',
+                'tsx': '🔵',
+                'java': '☕',
+                'cpp': '🔵',
+                'c': '🔵',
+                'go': '🟢',
+                'rs': '🦀',
+                'rb': '🔴',
+                'php': '🟣',
+                'html': '🟠',
+                'css': '🔵'
+            };
+            
+            const icon = fileIcons[building.type] || '📄';
+            
+            card.innerHTML = `
+                <div class="building-header">
+                    <span class="building-name">${icon} ${building.name}</span>
+                    <span class="building-type">${building.type.toUpperCase()}</span>
+                </div>
+                <div class="building-path">${building.path}</div>
+                <div class="building-stats">
+                    <div class="building-stat">
+                        <div class="building-stat-label">Lines</div>
+                        <div class="building-stat-value">${building.lines}</div>
+                    </div>
+                    <div class="building-stat">
+                        <div class="building-stat-label">Complexity</div>
+                        <div class="building-stat-value">${building.complexity}</div>
+                    </div>
+                    <div class="building-stat">
+                        <div class="building-stat-label">Size</div>
+                        <div class="building-stat-value">${formatFileSize(building.size)}</div>
+                    </div>
+                    <div class="building-stat">
+                        <div class="building-stat-label">Bugs</div>
+                        <div class="building-stat-value">${buildingMonsters.length}</div>
+                    </div>
+                </div>
+                <div class="health-bar">
+                    <div class="health-fill" style="width: ${health}%" title="Health: ${health}%"></div>
+                </div>
+                ${buildingMonsters.length > 0 ? createMonstersList(buildingMonsters) : ''}
+            `;
+            
+            // Add click event to show file preview
+            card.onclick = function() {
+                showFilePreview(building);
+            };
+            
+            return card;
+        }
+        
+        // Create monsters list
+        function createMonstersList(monsters) {
+            let html = '<div class="monsters-list">';
+            
+            monsters.forEach(monster => {
+                html += `
+                    <div class="monster-item" onclick="showBugDetails('${monster.id}')">
+                        <span class="monster-info">${monster.type} at line ${monster.line}</span>
+                        <span class="monster-severity">Severity: ${monster.severity}</span>
+                    </div>
+                `;
+            });
+            
+            html += '</div>';
+            return html;
+        }
+        
+        // Show file preview
+        function showFilePreview(building) {
+            // Remove selection from all cards
+            document.querySelectorAll('.building-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Add selection to clicked card
+            event.target.closest('.building-card').classList.add('selected');
+            
+            // Show loading state
+            const preview = document.getElementById('file-preview');
+            const content = document.getElementById('preview-content');
+            const title = document.getElementById('preview-title');
+            
+            title.textContent = `${building.name} - ${building.path}`;
+            content.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">Loading file content...</p>';
+            preview.classList.add('visible');
+            
+            // Request file content from server
+            if (socket && socket.readyState === WebSocket.OPEN) {
+                sendMessage({
+                    action: 'get_file_content',
+                    file_path: building.full_path
+                });
+            } else {
+                content.innerHTML = '<p style="text-align: center; color: var(--danger);">Not connected to server</p>';
+            }
+        }
+        
+        // Show file content
+        function showFileContent(data) {
+            const content = document.getElementById('preview-content');
+            content.innerHTML = '';
+            
+            data.lines.forEach((line, index) => {
+                const lineNumber = data.start_line + index;
+                const isErrorLine = lineNumber === data.line_number;
+                
+                const lineElement = document.createElement('div');
+                lineElement.className = `code-line ${isErrorLine ? 'error-line' : ''}`;
+                lineElement.innerHTML = `
+                    <span class="code-line-number">${lineNumber}</span>
+                    <span class="code-line-content">${escapeHtml(line)}</span>
+                `;
+                
+                content.appendChild(lineElement);
+            });
+        }
+        
+        // Close file preview
+        function closeFilePreview() {
+            document.getElementById('file-preview').classList.remove('visible');
+            
+            // Remove selection from all cards
+            document.querySelectorAll('.building-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+        }
+        
+        // Show bug details
+        function showBugDetails(monsterId) {
+            console.log("Showing details for monster:", monsterId);
+            // TODO: Implement detailed bug view
+        }
+        
+        // Perform search
+        function performSearch() {
+            const query = document.getElementById('search-query').value;
+            
+            if (!query) {
+                showError("Please enter a search query");
+                return;
+            }
+            
+            if (!currentCityData) {
+                showError("No codebase scanned yet");
+                return;
+            }
+            
+            // Perform local search
+            const results = [];
+            
+            currentCityData.buildings.forEach(building => {
+                if (building.name.toLowerCase().includes(query.toLowerCase()) ||
+                    building.path.toLowerCase().includes(query.toLowerCase())) {
+                    results.push({
+                        type: 'file',
+                        name: building.name,
+                        path: building.path,
+                        fullPath: building.full_path
+                    });
+                }
+            });
+            
+            currentCityData.monsters.forEach(monster => {
+                if (monster.type.toLowerCase().includes(query.toLowerCase()) ||
+                    monster.message.toLowerCase().includes(query.toLowerCase())) {
+                    results.push({
+                        type: 'bug',
+                        name: monster.type,
+                        path: monster.file_path,
+                        message: monster.message,
+                        severity: monster.severity
+                    });
+                }
+            });
+            
+            displaySearchResults(results);
+        }
+        
+        // Display search results
+        function displaySearchResults(results) {
+            const resultsContainer = document.getElementById('search-results');
+            resultsContainer.innerHTML = '';
+            
+            if (results.length === 0) {
+                resultsContainer.innerHTML = '<p style="text-align: center; color: var(--text-secondary); padding: 20px;">No results found</p>';
+                return;
+            }
+            
+            results.forEach(result => {
+                const resultElement = document.createElement('div');
+                resultElement.className = 'search-result-item';
+                
+                const icon = result.type === 'file' ? '📄' : '🐛';
+                const color = result.type === 'file' ? 'var(--text-accent)' : 'var(--danger)';
+                
+                resultElement.innerHTML = `
+                    <div class="search-result-title" style="color: ${color}">
+                        ${icon} ${result.name}
+                    </div>
+                    <div class="search-result-path">${result.path}</div>
+                    ${result.message ? `<div style="color: var(--danger); font-size: 0.85rem; margin-top: 5px;">${result.message}</div>` : ''}
+                `;
+                
+                resultElement.onclick = function() {
+                    if (result.type === 'file') {
+                        // Show file preview
+                        showFilePreview({
+                            name: result.name,
+                            path: result.path,
+                            full_path: result.fullPath
+                        });
+                        switchTab('dashboard');
+                    }
+                };
+                
+                resultsContainer.appendChild(resultElement);
+            });
+        }
+        
+        // Clear results
+        function clearResults() {
+            document.getElementById('buildings-grid').innerHTML = '';
+            document.getElementById('city-stats').style.display = 'none';
+            document.getElementById('total-files').textContent = '0';
+            document.getElementById('total-monsters').textContent = '0';
+            document.getElementById('avg-complexity').textContent = '0';
+            document.getElementById('total-lines').textContent = '0';
+            document.getElementById('total-size').textContent = '0';
+            
+            showError("Results cleared");
+        }
+        
+        // Save settings
+        function saveSettings() {
+            const settings = {
+                serverAddress: document.getElementById('server-address').value,
+                theme: document.getElementById('theme-selector').value,
+                bugLevel: document.getElementById('bug-level').value
+            };
+            
+            localStorage.setItem('codeCitySettings', JSON.stringify(settings));
+            showError("Settings saved successfully");
+        }
+        
+        // Load settings
+        function loadSettings() {
+            const settings = localStorage.getItem('codeCitySettings');
+            
+            if (settings) {
+                try {
+                    const parsedSettings = JSON.parse(settings);
+                    
+                    if (parsedSettings.serverAddress) {
+                        document.getElementById('server-address').value = parsedSettings.serverAddress;
+                    }
+                    
+                    if (parsedSettings.theme) {
+                        document.getElementById('theme-selector').value = parsedSettings.theme;
+                    }
+                    
+                    if (parsedSettings.bugLevel) {
+                        document.getElementById('bug-level').value = parsedSettings.bugLevel;
+                    }
+                } catch (e) {
+                    console.error("Error loading settings:", e);
+                }
+            }
+        }
+        
+        // Format file size
+        function formatFileSize(bytes) {
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+            if (bytes < 1024 * 1024 * 1024) return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+            return (bytes / (1024 * 1024 * 1024)).toFixed(1) + ' GB';
+        }
+        
+        // Escape HTML
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        // Show loading
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('city-stats').style.display = 'none';
+            document.getElementById('error-message').classList.remove('visible');
+            document.getElementById('scan-progress').style.width = '0%';
+            document.getElementById('scan-progress-text').textContent = '0% complete';
+        }
+        
+        // Hide loading
+        function hideLoading() {
+            document.getElementById('loading').style.display = 'none';
+        }
+        
+        // Show error
+        function showError(message) {
+            const errorElement = document.getElementById('error-message');
+            errorElement.textContent = '⚠️ ' + message;
+            errorElement.classList.add('visible');
+            hideLoading();
+            
+            // Hide error after 5 seconds
+            setTimeout(() => {
+                errorElement.classList.remove('visible');
+            }, 5000);
+        }
+        
+        // Auto-connect on page load
+        window.addEventListener('load', function() {
+            loadSettings();
+            
+            // Auto-connect if settings exist
+            const settings = localStorage.getItem('codeCitySettings');
+            if (settings) {
+                try {
+                    const parsedSettings = JSON.parse(settings);
+                    if (parsedSettings.serverAddress) {
+                        // Don't auto-connect, let user initiate
+                    }
+                } catch (e) {
+                    console.error("Error parsing settings:", e);
+                }
+            }
+        });
+        
+        // Handle path input suggestions
+        document.getElementById('codebase-path').addEventListener('focus', function() {
+            const platform = detectPlatform();
+            if (platform.includes('Android')) {
+                this.placeholder = "/storage/emulated/0/projects or /sdcard/code";
+            } else {
+                this.placeholder = "C:\\projects or /home/user/code";
+            }
+        });
+        
+        // Add keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Ctrl/Cmd + K to focus search
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                document.getElementById('search-query').focus();
+                switchTab('search');
+            }
+            
+            // Escape to close preview
+            if (e.key === 'Escape') {
+                closeFilePreview();
+            }
+        });
+    </script>
+</body>
+</html>

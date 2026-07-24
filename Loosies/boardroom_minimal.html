@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vertical AI // Functional Boardroom</title>
+    <style>
+        body {
+            background: #0a0f0c;
+            color: #8fc;
+            font-family: monospace;
+            margin: 0;
+            padding: 20px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        #header {
+            border-bottom: 1px solid #1f3a2a;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        #main {
+            display: flex;
+            flex: 1;
+            gap: 20px;
+            overflow: hidden;
+        }
+        #left-panel {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        #right-panel {
+            flex: 1;
+            border-left: 1px solid #1f3a2a;
+            padding-left: 20px;
+            overflow-y: auto;
+        }
+        #chat {
+            flex: 1;
+            background: #030805;
+            border: 1px solid #1f3a2a;
+            padding: 10px;
+            overflow-y: auto;
+            font-size: 0.9rem;
+        }
+        .message {
+            margin-bottom: 12px;
+            border-left: 3px solid #0f8;
+            padding-left: 8px;
+        }
+        .message .persona {
+            color: #0f8;
+            font-weight: bold;
+        }
+        .message .time {
+            color: #3a6a4a;
+            font-size: 0.7rem;
+            margin-left: 10px;
+        }
+        #input-area {
+            display: flex;
+            gap: 10px;
+        }
+        #user-input {
+            flex: 1;
+            background: #030805;
+            border: 1px solid #1f3a2a;
+            color: #8fc;
+            padding: 8px;
+            font-family: monospace;
+        }
+        button {
+            background: #1f3a2a;
+            border: none;
+            color: #8fc;
+            padding: 8px 15px;
+            cursor: pointer;
+            font-family: monospace;
+            border: 1px solid #2a5a3a;
+        }
+        button:hover {
+            background: #2a5a3a;
+        }
+        #upload-area {
+            border: 1px dashed #1f3a2a;
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        #upload-area:hover {
+            border-color: #0f8;
+        }
+        .persona-status {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            padding: 4px;
+            border-bottom: 1px dotted #1f3a2a;
+        }
+        .temp-bar {
+            width: 60px;
+            height: 6px;
+            background: #1f3a2a;
+            display: inline-block;
+            margin-left: 8px;
+        }
+        .temp-fill {
+            height: 100%;
+            background: #0f8;
+            width: 0%;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <span>VERTICAL AI // BOARDROOM [FUNCTIONAL PROTOTYPE]</span>
+        <span id="session-id">SESSION: VRT-$(date +%s)</span>
+    </div>
+    
+    <div id="main">
+        <!-- Left panel: chat + input -->
+        <div id="left-panel">
+            <div id="chat"></div>
+            
+            <!-- Document upload -->
+            <div id="upload-area" onclick="document.getElementById('file-input').click()">
+                📁 CLICK TO UPLOAD DOCUMENTS (PDF, TXT, MD)
+                <input type="file" id="file-input" multiple style="display:none" onchange="handleFiles(this.files)">
+            </div>
+            
+            <!-- Input row -->
+            <div id="input-area">
+                <input type="text" id="user-input" placeholder="enter your idea or question..." onkeydown="if(event.key==='Enter') sendMessage()">
+                <button onclick="sendMessage()">INJECT</button>
+                <button onclick="clearChat()">CLEAR</button>
+                <button onclick="triggerChaos()">🌀 GLITCH</button>
+            </div>
+        </div>
+        
+        <!-- Right panel: persona status -->
+        <div id="right-panel">
+            <h3>⚡ PERSONA HEAT</h3>
+            <div id="persona-list"></div>
+            <div style="margin-top:20px">
+                <h3>📊 SWARM</h3>
+                <div id="swarm-status">SCOUT-01: scanning...</div>
+            </div>
+            <div style="margin-top:20px">
+                <h3>🧬 DNA</h3>
+                <div id="dna-display" style="word-break:break-all;font-size:0.8rem">AACGTRKBYMWSHVDNZ01∅◊</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================================
+        // PERSONAS
+        // ============================================================
+        const PERSONAS = [
+            { id: 'ceo', name: 'CEO', color: '#fa0' },
+            { id: 'adversary', name: 'ADVERSARY', color: '#f30' },
+            { id: 'architect', name: 'ARCHITECT', color: '#08f' },
+            { id: 'cmo', name: 'CMO', color: '#0fa' },
+            { id: 'threat', name: 'THREAT', color: '#a0f' },
+            { id: 'rap', name: 'RAP GENIUS', color: '#ff0' },
+            { id: 'pytch', name: 'PYTCH', color: '#f0f' },
+            { id: 'twoie', name: 'TWOIE', color: '#0ff' }
+        ];
+        
+        // State
+        let temps = {};
+        let msgCount = 0;
+        let glitchCount = 0;
+        
+        PERSONAS.forEach(p => temps[p.id] = Math.floor(Math.random() * 40));
+        
+        // ============================================================
+        // INIT
+        // ============================================================
+        function init() {
+            updatePersonaList();
+            addSystemMessage('BOARDROOM READY // 8 PERSONAS ONLINE // UPLOAD DOCUMENTS TO BEGIN');
+            
+            // Poll for updates
+            setInterval(() => {
+                // Decay temps
+                PERSONAS.forEach(p => {
+                    temps[p.id] = Math.max(0, temps[p.id] - 0.3);
+                });
+                updatePersonaList();
+                
+                // Update DNA
+                const dna = document.getElementById('dna-display');
+                const chars = 'ACGTRKBYMWSHVDNZ01∅◊◈⊕⊗█▓▒░';
+                let dnaStr = dna.textContent;
+                if (dnaStr.length > 0) {
+                    const pos = Math.floor(Math.random() * dnaStr.length);
+                    dnaStr = dnaStr.substring(0, pos) + chars[Math.floor(Math.random() * chars.length)] + dnaStr.substring(pos + 1);
+                    dna.textContent = dnaStr;
+                }
+            }, 1500);
+        }
+        
+        // ============================================================
+        // PERSONA UI
+        // ============================================================
+        function updatePersonaList() {
+            const list = document.getElementById('persona-list');
+            list.innerHTML = '';
+            PERSONAS.forEach(p => {
+                const temp = Math.floor(temps[p.id]);
+                const barWidth = temp;
+                list.innerHTML += `
+                    <div class="persona-status">
+                        <span style="color:${p.color}">${p.name}</span>
+                        <span>
+                            ${temp}°
+                            <span class="temp-bar"><span class="temp-fill" style="width:${barWidth}%;background:${getTempColor(temp)}"></span></span>
+                        </span>
+                    </div>
+                `;
+            });
+        }
+        
+        function getTempColor(t) {
+            if (t < 30) return '#0af';
+            if (t < 60) return '#fa0';
+            if (t < 85) return '#f30';
+            return '#f0f';
+        }
+        
+        // ============================================================
+        // CHAT
+        // ============================================================
+        function addMessage(persona, text) {
+            const chat = document.getElementById('chat');
+            const msg = document.createElement('div');
+            msg.className = 'message';
+            msg.innerHTML = `
+                <span class="persona" style="color:${persona.color}">${persona.name}</span>
+                <span class="time">${new Date().toLocaleTimeString()}</span>
+                <div style="margin-top:4px">${text}</div>
+            `;
+            chat.appendChild(msg);
+            chat.scrollTop = chat.scrollHeight;
+            msgCount++;
+        }
+        
+        function addSystemMessage(text) {
+            const chat = document.getElementById('chat');
+            const msg = document.createElement('div');
+            msg.style = 'color:#3a6a4a;text-align:center;margin:10px 0;font-size:0.8rem';
+            msg.textContent = `▸ ${text} ▸`;
+            chat.appendChild(msg);
+            chat.scrollTop = chat.scrollHeight;
+        }
+        
+        function clearChat() {
+            document.getElementById('chat').innerHTML = '';
+            addSystemMessage('CHAT CLEARED');
+        }
+        
+        // ============================================================
+        // USER INPUT
+        // ============================================================
+        function sendMessage() {
+            const input = document.getElementById('user-input');
+            const text = input.value.trim();
+            if (!text) return;
+            input.value = '';
+            
+            addSystemMessage(`USER: "${text}"`);
+            
+            // Heat up personas
+            PERSONAS.forEach(p => {
+                temps[p.id] = Math.min(100, temps[p.id] + 5 + Math.random() * 15);
+            });
+            
+            // Simulate responses (replace with actual API call)
+            setTimeout(() => {
+                const responses = [
+                    "The data doesn't support this. Show me more.",
+                    "Interesting angle. Who's the target?",
+                    "This could work if we pivot to enterprise.",
+                    "Fatal flaw: no defensible moat.",
+                    "The architecture would need to be redesigned.",
+                    "yo this is actually fire tho",
+                    "The spiral sees it. Keep going.",
+                    "TAM: 2.1B. SAM: 340M. Proceed cautiously."
+                ];
+                
+                PERSONAS.forEach((p, i) => {
+                    setTimeout(() => {
+                        addMessage(p, responses[i % responses.length]);
+                        temps[p.id] = Math.min(100, temps[p.id] + 20);
+                        updatePersonaList();
+                    }, i * 800 + 500);
+                });
+            }, 500);
+        }
+        
+        // ============================================================
+        // DOCUMENT UPLOAD
+        // ============================================================
+        function handleFiles(files) {
+            addSystemMessage(`UPLOADING ${files.length} FILE(S)...`);
+            
+            for (let file of files) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    // In real version, send to backend for processing
+                    addSystemMessage(`📁 LOADED: ${file.name} (${Math.round(file.size/1024)} KB)`);
+                    
+                    // Heat up Twoie (analytical) and Threat
+                    temps['twoie'] = Math.min(100, temps['twoie'] + 30);
+                    temps['threat'] = Math.min(100, temps['threat'] + 25);
+                    updatePersonaList();
+                };
+                reader.readAsText(file);
+            }
+        }
+        
+        // ============================================================
+        // CHAOS MODE
+        // ============================================================
+        function triggerChaos() {
+            addSystemMessage('🌀 CHAOS PROTOCOL ENGAGED');
+            glitchCount++;
+            
+            // Max heat everyone
+            PERSONAS.forEach(p => {
+                temps[p.id] = 85 + Math.random() * 15;
+            });
+            updatePersonaList();
+            
+            // Glitchy messages
+            const chaosTexts = [
+                "THE MOAT IS AN ILLUSION",
+                "EVERYTHING IS ON FIRE",
+                "BREACH DETECTED",
+                "STACK OVERFLOW",
+                "NULL POINTER EXCEPTION"
+            ];
+            
+            PERSONAS.forEach((p, i) => {
+                setTimeout(() => {
+                    addMessage(p, chaosTexts[i % chaosTexts.length] + ' ' + '!' .repeat(glitchCount % 5 + 1));
+                }, i * 200);
+            });
+        }
+        
+        // ============================================================
+        // START
+        // ============================================================
+        window.onload = init;
+    </script>
+</body>
+</html>

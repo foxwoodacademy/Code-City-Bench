@@ -1,0 +1,20 @@
+{
+  "meta": {
+    "name": "v1.38.2",
+    "path": "/storage/emulated/0/RootBase/v1.38.2",
+    "languages": {
+      "go": 64
+    },
+    "entrypoints": [],
+    "package_json": false,
+    "requirements": 0,
+    "readme_excerpt": "",
+    "last_modified": "2026-05-20T16:55:31.588999"
+  },
+  "runbook": {
+    "commands": [],
+    "env": [],
+    "notes": []
+  },
+  "bard_note": "No obvious entrypoint. Bold choice. (Bardildo: harsh truth incoming)"
+}

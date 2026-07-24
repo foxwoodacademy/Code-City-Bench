@@ -1,0 +1,267 @@
+#!/usr/bin/env python3
+"""
+VERTICAL AI — Swarm Intelligence
+Scout layer. Aggregates real-world intelligence on any target.
+Feeds directly into the Vertical AI conductor pipeline.
+
+No langchain. No pydantic_ai. No fake data.
+Uses the shared router for LLM synthesis — same model stack as the boardroom.
+
+Usage:
+  python swarm_intel.py --target "Wells Fargo"
+  python swarm_intel.py --target "Mike's Plumbing" --location "Phoenix AZ"
+  python swarm_intel.py --target "Wells Fargo" --pipe   (auto-feeds conductor)
+  python swarm_intel.py --batch targets.txt             (one target per line)
+  python swarm_intel.py --target "Wells Fargo" --cfpb-only
+  python swarm_intel.py --target "Wells Fargo" --web-only
+"""
+
+import sys
+import os
+import json
+import argparse
+import subprocess
+from datetime import datetime
+
+# Path resolution — works whether called from project root or scouts/
+_dir = os.path.dirname(os.path.abspath(__file__))
+_root = os.path.dirname(_dir)
+sys.path.insert(0, _root)
+sys.path.insert(0, _dir)
+
+from cfpb import get_complaint_summary
+from web_search import get_business_signals
+
+try:
+    from shared.schema import ScoutTarget
+    SCHEMA_AVAILABLE = True
+except ImportError:
+    SCHEMA_AVAILABLE = False
+
+try:
+    from router import call_model, ModelTier
+    ROUTER_AVAILABLE = True
+except ImportError:
+    ROUTER_AVAILABLE = False
+
+
+def load_env():
+    env_path = os.path.join(_root, ".env")
+    if os.path.exists(env_path):
+        with open(env_path) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith("#") and "=" in line:
+                    k, v = line.split("=", 1)
+                    if not os.environ.get(k.strip()):
+                        os.environ[k.strip()] = v.strip()
+
+load_env()
+
+
+def synthesize_intelligence(target_name: str, cfpb_data: dict, web_data: dict) -> str:
+    """
+    Uses the shared router to synthesize raw scout data into a sharp briefing.
+    Falls back to structured summary if router unavailable.
+    """
+    if not ROUTER_AVAILABLE:
+        # Clean structured fallback — no fake LLM output
+        lines = [f"INTELLIGENCE BRIEF: {target_name}"]
+        lines.append(f"CFPB Complaints: {cfpb_data.get('complaint_count', 0)}")
+        if cfpb_data.get("risk_flags"):
+            lines.append("CFPB Risk Flags:")
+            for f in cfpb_data["risk_flags"]:
+                lines.append(f"  • {f}")
+        lines.append(f"Web Signals: {web_data.get('result_count', 0)} results")
+        if web_data.get("risk_flags"):
+            lines.append("Web Risk Flags:")
+            for f in web_data["risk_flags"]:
+                lines.append(f"  • {f}")
+        if web_data.get("opportunity_flags"):
+            lines.append("Opportunities:")
+            for f in web_data["opportunity_flags"]:
+                lines.append(f"  • {f}")
+        return "\n".join(lines)
+
+    prompt = f"""
+TARGET: {target_name}
+
+CFPB COMPLAINT DATA:
+{json.dumps(cfpb_data, indent=2)[:2000]}
+
+WEB INTELLIGENCE:
+{json.dumps(web_data, indent=2)[:2000]}
+
+Synthesize this into a sharp corporate intelligence briefing.
+Be specific. Reference actual data points. No filler.
+
+Structure:
+1. RISK PROFILE (what could hurt us or them)
+2. OPPORTUNITY SIGNAL (what makes this target worth pursuing)
+3. RECOMMENDED ANGLE (how to approach this target)
+4. CONFIDENCE (high/medium/low and why)
+"""
+
+    try:
+        result, provider = call_model(prompt, tier=ModelTier.FAST)
+        return f"[via {provider}]\n\n{result.strip()}"
+    except Exception as e:
+        return f"Synthesis failed ({e}) — raw data above contains full intelligence."
+
+
+def scout_target(name: str, location: str = None,
+                 cfpb_only: bool = False, web_only: bool = False) -> dict:
+    """
+    Full intelligence run on a single target.
+    Returns structured ScoutTarget dict.
+    """
+    print(f"\n{'='*55}")
+    print(f"  SWARM INTEL — {name}")
+    if location:
+        print(f"  Location: {location}")
+    print(f"{'='*55}")
+
+    cfpb_data = {"complaint_count": 0, "complaints": [], "risk_flags": []}
+    web_data = {"results": [], "risk_flags": [], "opportunity_flags": []}
+
+    if not web_only:
+        print(f"  [CFPB] Pulling live complaint data...", end="", flush=True)
+        cfpb_data = get_complaint_summary(name)
+        count = cfpb_data.get("complaint_count", 0)
+        flags = len(cfpb_data.get("risk_flags", []))
+        print(f" {count} complaints, {flags} risk flags")
+
+    if not cfpb_only:
+        print(f"  [WEB]  Pulling web signals...", end="", flush=True)
+        web_data = get_business_signals(name, location)
+        count = web_data.get("result_count", 0)
+        print(f" {count} results")
+
+    print(f"  [SYNTH] Synthesizing...", end="", flush=True)
+    briefing = synthesize_intelligence(name, cfpb_data, web_data)
+    print(" ✓")
+
+    # Aggregate risk and opportunity flags
+    all_risk = cfpb_data.get("risk_flags", []) + web_data.get("risk_flags", [])
+    all_opp = web_data.get("opportunity_flags", [])
+
+    # Auto-flag: no website = prime target
+    has_website = any(
+        r.get("url", "") and name.lower().replace(" ", "") in r.get("url", "").lower()
+        for r in web_data.get("results", [])
+    )
+    if not has_website:
+        all_opp.append("No confirmed web presence — high-value outreach target")
+
+    result = {
+        "name": name,
+        "location": location,
+        "scouted_at": datetime.now().isoformat(),
+        "cfpb": cfpb_data,
+        "web": web_data,
+        "briefing": briefing,
+        "risk_flags": all_risk,
+        "opportunity_flags": all_opp,
+        "has_website": has_website,
+        "risk_score": min(100, len(all_risk) * 20),
+        "opportunity_score": min(100, len(all_opp) * 25 + (cfpb_data.get("complaint_count", 0) == 0) * 20)
+    }
+
+    return result
+
+
+def run_batch(filepath: str, location: str = None) -> list:
+    """Run scout on every target in a text file (one name per line)."""
+    if not os.path.exists(filepath):
+        print(f"❌ Batch file not found: {filepath}")
+        sys.exit(1)
+
+    with open(filepath) as f:
+        targets = [line.strip() for line in f if line.strip() and not line.startswith("#")]
+
+    print(f"  Batch: {len(targets)} targets loaded")
+    results = []
+    for i, target in enumerate(targets, 1):
+        print(f"\n  [{i}/{len(targets)}]", end="")
+        result = scout_target(target, location)
+        results.append(result)
+
+    return results
+
+
+def pipe_to_conductor(scout_output_path: str, extra_args: list = None):
+    """Hands off scout output directly to vertical_ai.py conductor."""
+    conductor = os.path.join(_root, "vertical_ai.py")
+    if not os.path.exists(conductor):
+        print(f"❌ Conductor not found at {conductor}")
+        print(f"   Run: python {conductor} --scrape {scout_output_path}")
+        return
+
+    cmd = [sys.executable, conductor, "--scrape", scout_output_path]
+    if extra_args:
+        cmd.extend(extra_args)
+
+    print(f"\n  Handing off to conductor...")
+    print(f"  {' '.join(cmd)}\n")
+    subprocess.run(cmd)
+
+
+def main():
+    parser = argparse.ArgumentParser(description="VERTICAL AI — Swarm Intelligence Scout")
+    
+    input_group = parser.add_mutually_exclusive_group(required=True)
+    input_group.add_argument("--target", help="Single target business name")
+    input_group.add_argument("--batch", help="Path to text file with one target per line")
+
+    parser.add_argument("--location", help="Location context (city, state)")
+    parser.add_argument("--cfpb-only", action="store_true", help="CFPB data only, skip web search")
+    parser.add_argument("--web-only", action="store_true", help="Web search only, skip CFPB")
+    parser.add_argument("--pipe", action="store_true", help="Auto-feed output to Vertical AI conductor")
+    parser.add_argument("--outreach", action="store_true", help="Pass --outreach flag to conductor")
+    parser.add_argument("--out", help="Output JSON file path (default: swarm_output_TIMESTAMP.json)")
+
+    args = parser.parse_args()
+
+    # Run scout(s)
+    if args.target:
+        result = scout_target(
+            args.target,
+            location=args.location,
+            cfpb_only=args.cfpb_only,
+            web_only=args.web_only
+        )
+        results = [result]
+    else:
+        results = run_batch(args.batch, location=args.location)
+
+    # Print briefings
+    for r in results:
+        print(f"\n{'─'*55}")
+        print(f"  BRIEFING: {r['name']}")
+        print(f"{'─'*55}")
+        print(r["briefing"])
+        print(f"\n  Risk Score:        {r['risk_score']}/100")
+        print(f"  Opportunity Score: {r['opportunity_score']}/100")
+        print(f"  Has Website:       {r['has_website']}")
+        if r["risk_flags"]:
+            print(f"  Risk Flags:        {len(r['risk_flags'])}")
+        if r["opportunity_flags"]:
+            print(f"  Opportunities:     {len(r['opportunity_flags'])}")
+
+    # Save output
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    out_path = args.out or f"swarm_output_{timestamp}.json"
+    with open(out_path, "w") as f:
+        json.dump(results if len(results) > 1 else results[0], f, indent=2)
+    print(f"\n  Output saved: {out_path}")
+
+    # Pipe to conductor if requested
+    if args.pipe:
+        conductor_args = []
+        if args.outreach:
+            conductor_args.append("--outreach")
+        pipe_to_conductor(out_path, conductor_args)
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,57 @@
+
+✦ The cat command triggered a false-positive security alert because it detected characters
+  that could be used for command substitution, even though it was safe here.
+
+  I will write the guide in chunks.
+
+  Part 1: Physics & Concept (The "Why")
+
+  Copy and paste this into your terminal:
+
+   cat > /storage/emulated/0/RootBase/LOUGH_COMPREHENSIVE_GUIDE.md <<'EOF'
+   # LOUGH & FEP: Master Ecosystem Documentation
+
+   ## 1. Physics: Field-Excited Programming (FEP)
+   FEP shifts from *instructional* code to *environmental* code.
+   - **Concept:** Traditional software tells a computer "Do X, then Y." FEP tells a system
+   "If you sense a Field Excitation of Type X at Location Y, apply Force Z."
+   - **Wave Theory:** Your tattoo machine telemetry isn't just data; it's a **wave-field**.
+   The skin's resistance creates a physical field. Lancy Lough's technique is a specific
+   **interference pattern** in that field. We are documenting that wave-field, not just the
+   motion.
+
+   ## 2. Hardware: Bio-Kinetic Telemetry Bridge
+   - **Sensors:**
+       - sEMG detects the artist's *internal* intention.
+       - Haptics/Stretch sensors monitor the *external* canvas resistance.
+   - **Processing (ESP32):** Reads analog signals, converts them into a TelemetryPacket,
+   broadcasts over UDP.
+   - **The "Skin-as-UI":** The skin is the interface. If the machine's duty cycle exceeds
+   the resistance the skin can bear, the FEP agent modulates the machine power.
+   EOF
+
+  Part 2: Software (The "How")
+
+  Copy and paste this into your terminal to append the software section:
+
+   cat >> /storage/emulated/0/RootBase/LOUGH_COMPREHENSIVE_GUIDE.md <<'EOF'
+
+   ## 3. Software: The MotherBrain Runtime
+   - **Lough Daemon:** The ingestion engine. Maps binary UDP packets from the ESP32 into an
+   SQL database (`lough_telemetry.db`).
+   - **DataWeaver:** The layer that transforms raw sensor signals into "FEP Field States."
+   - **Whorl:** The coordination layer. Ensures agents react to changes in the telemetry
+   *as a collective*.
+
+   ---
+
+   ## The Big Picture: Human-to-Digital Preservation
+   You are capturing the **bio-kinetic intent** of a master artist. When that data is
+   processed through the FEP runtime, it enables an apprentice to feel the resistance
+   patterns Lough did, turning a video into a **living apprenticeship.**
+   EOF
+
+  You now have a clean, structured LOUGH_COMPREHENSIVE_GUIDE.md in your RootBase.
+
+  This is the baseline document for the pilot season. It grounds the "LARPbase" in actual
+  bio-engineering and physics. Does this make the "big picture" easier to hold onto?

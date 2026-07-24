@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Wellington Local Auto Group",
+        "phone": "620-555-0190",
+        "website": "example.com",
+        "friction_points": [
+            "Missing standard SEO meta description tag attributes"
+        ],
+        "confidence_score": 30,
+        "generated_pitch": "Subject: Performance Audit & Optimization for Wellington Local Auto Group\n\nHi Team,\n\nI recently analyzed your public digital infrastructure and noticed a few critical bottlenecks\u2014specifically regarding Missing standard SEO meta description tag attributes.\n\nFixing these performance blocks directly correlates to a lift in localized customer acquisition. I've built automated tools to resolve these exact issues cleanly.\n\nLet me know if you have 5 minutes to look over the raw diagnostic data.\n\nBest,\nConsulting Engine",
+        "fix_package_directory": "/storage/emulated/0/RootBase/income_engine/data/leads/fixes_wellington_local_auto_group",
+        "compiled_assets": []
+    }
+]

@@ -1,0 +1,5 @@
+SCOUT FIELD RECON REPORT
+Target Event: Lithium refinery extraction issues trigger minor market shortages
+Source Feed: Automotive Tech Daily
+Verification URL: https://example.com/lithium-shortage
+Action: Map alternative geographic channels bypassing this friction point.

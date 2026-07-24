@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "name": "builder_code_tutor",
+    "path": "/storage/emulated/0/RootBase/builder_code_tutor",
+    "languages": {
+      "html": 3,
+      "typescript": 2
+    },
+    "entrypoints": [],
+    "package_json": false,
+    "requirements": 0,
+    "readme_excerpt": "",
+    "last_modified": "2026-05-20T16:55:29.896999"
+  },
+  "runbook": {
+    "commands": [],
+    "env": [],
+    "notes": []
+  },
+  "bard_note": "No obvious entrypoint. Bold choice. (Bardildo: harsh truth incoming)"
+}

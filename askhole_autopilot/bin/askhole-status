@@ -1,0 +1,7 @@
+#!/usr/bin/env python3
+import sys, json
+sys.path.insert(0, "/storage/emulated/0/RootBase/askhole_autopilot/lib")
+from state_engine import State
+
+S = State()
+print(json.dumps(S.data, indent=2))

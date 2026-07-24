@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "name": "saas",
+    "path": "/storage/emulated/0/RootBase/saas",
+    "languages": {},
+    "entrypoints": [],
+    "package_json": false,
+    "requirements": 0,
+    "readme_excerpt": "",
+    "last_modified": "2026-05-20T16:54:02.744999"
+  },
+  "runbook": {
+    "commands": [],
+    "env": [],
+    "notes": []
+  },
+  "bard_note": "No obvious entrypoint. Bold choice. (Bardildo: harsh truth incoming)"
+}

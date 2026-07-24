@@ -1,0 +1,22 @@
+ButtsCorp $ python3 agent_bootstrap.py
+Setting up intelligent agent environment...
+Created directory: _agent_state
+Created file: _agent_state/conversation_log.txt
+Created file: _agent_state/env_state.json
+Created prompt generator script: _agent_state/agent_prompt_generator.py
+
+Setup complete! You can now use 'python _agent_state/agent_prompt_generator.py' to generate your prompts.
+
+--- Initial Agent Setup Complete ---
+
+To start interacting with the AI agent:
+1. Run: `python agent_bootstrap.py` (you've already done this if you're reading this!)
+2. Now, run: `python _agent_state/agent_prompt_generator.py`
+3. When prompted, enter your first query for the AI (e.g., 'Hello agent, what can you do?').
+4. The script will output a block of text wrapped in '```'. Copy *everything* inside these '```' (including the `[CONTEXT_START]` and `[USER_QUERY_START]` tags).
+5. Paste this copied text into your AI chat window and send it.
+
+This process ensures the AI receives all necessary context for our ongoing conversation.
+After the AI responds with code, you will need to:
+   a. **Execute the AI's provided code snippets.** These will update the agent's local state files (`conversation_log.txt`, `env_state.json`).
+   b. Then, run `python _agent_state/agent_prompt_generator.py` again for your next query.

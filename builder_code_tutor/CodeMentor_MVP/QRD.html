@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeMentor QRD Protocol</title>
+    <style>
+        body { background-color: #1a1a1a; color: #00ff00; font-family: 'Consolas', 'Monospace', monospace; padding: 20px; }
+        .terminal { border: 2px solid #00ff00; padding: 15px; background-color: #000000; }
+        .prompt { color: #ffff00; }
+        .command { color: #00ffff; }
+        .success { color: #00ff00; }
+        .error { color: #ff0000; }
+        h1, h2, h3 { color: #00ffff; border-bottom: 1px dashed #00ff00; padding-bottom: 5px; margin-top: 20px; }
+        pre { white-space: pre-wrap; word-wrap: break-word; }
+        .tier-free { color: #aaa; }
+        .tier-pro { color: #fff; background-color: #383838; padding: 5px; margin: 5px 0; border-radius: 3px; }
+        .tier-enterprise { color: #ffb800; background-color: #554000; padding: 5px; margin: 5px 0; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <div class="terminal">
+        <h1>[ CodeMentor V1.0 - QUICK REFERENCE ]</h1>
+        <p class="success">SYSTEM BOOT SUCCESSFUL. MENTOR PROTOCOL ACTIVE.</p>
+        
+        <h2>// AVAILABLE COMMANDS</h2>
+        <div class="prompt">> <span class="command">mentor.explainLastBlock</span></div>
+        <pre class="tier-free">   STATUS: <span class="success">FREE TIER</span>
+   ACTION: Analyze selected code block. Returns structured Overview, Breakdown, and Mentorship Challenge.
+   FOCUS: Learning & Best Practices. (Core Value)</pre>
+
+        <div class="prompt">> <span class="command">mentor.compareCode</span></div>
+        <pre class="tier-pro">   STATUS: <span class="tier-pro">PRO TIER REQUIRED</span>
+   ACTION: Compare two code blocks (yours vs. AI/senior). Pinpoints logic, efficiency, and style differences.
+   FOCUS: Peer Review & Optimization.</pre>
+
+        <div class="prompt">> <span class="command">mentor.quizBlock</span></div>
+        <pre class="tier-pro">   STATUS: <span class="tier-pro">PRO TIER REQUIRED</span>
+   ACTION: Generate a quiz based on the selected code block's complexity. Tracks answers.
+   FOCUS: Retention & Active Learning.</pre>
+
+        <div class="prompt">> <span class="command">mentor.authEquiNex</span></div>
+        <pre class="tier-enterprise">   STATUS: <span class="tier-enterprise">ENTERPRISE HOOK</span>
+   ACTION: Initiates SSO/Identity verification with ModMind/EquiNex. Required for team reports.
+   FOCUS: Governance & Scalability.</pre>
+
+        <h2>// MONETIZATION STATUS</h2>
+        <div class="prompt">> <span class="command">upgrade.status</span></div>
+        <p>   [TIER: FREE] -> Basic Explanation + Challenge. (Access to the Learning Core)</p>
+        <p class="tier-pro">   [TIER: PRO] -> Unlocks COMPARE, QUIZ, and OFFLINE CACHING. (Access to Advanced Mentorship)</p>
+        <p class="tier-enterprise">   [TIER: ENTERPRISE] -> Unlocks Team Reporting, ModMind Auth, and Custom Heuristics. (Access to Corporate Up-Skilling)</p>
+
+        <p class="prompt">CODE: 0x4D454E544F52</p>
+    </div>
+</body>
+</html>

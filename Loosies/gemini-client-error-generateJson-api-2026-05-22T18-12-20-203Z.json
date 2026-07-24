@@ -1,0 +1,24 @@
+{
+  "error": {
+    "message": "You have exhausted your daily quota on this model.",
+    "stack": "TerminalQuotaError: You have exhausted your daily quota on this model.\n    at classifyGoogleError (file:///data/data/com.termux/files/home/.npm-global/lib/node_modules/@google/gemini-cli/bundle/chunk-U6X4OPT5.js:270113:16)\n    at retryWithBackoff (file:///data/data/com.termux/files/home/.npm-global/lib/node_modules/@google/gemini-cli/bundle/chunk-U6X4OPT5.js:270791:31)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async BaseLlmClient._generateWithRetry (file:///data/data/com.termux/files/home/.npm-global/lib/node_modules/@google/gemini-cli/bundle/chunk-U6X4OPT5.js:271034:14)\n    at async BaseLlmClient.generateJson (file:///data/data/com.termux/files/home/.npm-global/lib/node_modules/@google/gemini-cli/bundle/chunk-U6X4OPT5.js:270932:21)\n    at async NumericalClassifierStrategy.route (file:///data/data/com.termux/files/home/.npm-global/lib/node_modules/@google/gemini-cli/bundle/chunk-U6X4OPT5.js:319681:28)\n    at async CompositeStrategy.route (file:///data/data/com.termux/files/home/.npm-global/lib/node_modules/@google/gemini-cli/bundle/chunk-U6X4OPT5.js:319752:26)\n    at async ModelRouterService.route (file:///data/data/com.termux/files/home/.npm-global/lib/node_modules/@google/gemini-cli/bundle/chunk-U6X4OPT5.js:319915:18)\n    at async GeminiClient.processTurn (file:///data/data/com.termux/files/home/.npm-global/lib/node_modules/@google/gemini-cli/bundle/chunk-U6X4OPT5.js:307625:24)\n    at async GeminiClient.sendMessageStream (file:///data/data/com.termux/files/home/.npm-global/lib/node_modules/@google/gemini-cli/bundle/chunk-U6X4OPT5.js:307740:14)"
+  },
+  "context": [
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "resume"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "okay we had a terminal crash testing out Mrs Higgins interface. i clearly have a need to set my env variables in nano if you can link up the path to that filebplz plus we need to see wrf is wrong with ollama"
+        }
+      ]
+    }
+  ]
+}

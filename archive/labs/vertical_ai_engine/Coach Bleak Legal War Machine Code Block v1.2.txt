@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coach Bleak Legal AI: Infographic</title>
+    <!-- Tailwind CSS CDN - For offline use, you would download and link the CSS file locally -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Light blue-gray background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .infographic-container {
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            width: 100%;
+            padding: 40px;
+            box-sizing: border-box;
+            border: 1px solid #e2e8f0;
+        }
+        .section-title {
+            position: relative;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 4px;
+            background-color: #3b82f6; /* Blue-600 */
+            border-radius: 2px;
+        }
+        .icon-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60px;
+            height: 60px;
+            background-color: #eff6ff; /* Blue-50 */
+            border-radius: 15px;
+            margin-bottom: 15px;
+            font-size: 30px;
+            color: #2563eb; /* Blue-700 */
+            box-shadow: inset 0 0 0 1px rgba(59, 130, 246, 0.2);
+        }
+        .feature-card, .benefit-card {
+            background-color: #f8fafc; /* Gray-50 */
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .feature-card:hover, .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+        .arrow {
+            font-size: 40px;
+            color: #94a3b8; /* Slate-400 */
+            text-align: center;
+            line-height: 1;
+        }
+        @media (max-width: 768px) {
+            .infographic-container {
+                padding: 25px;
+            }
+            .grid-cols-3 {
+                grid-template-columns: 1fr;
+            }
+            .grid-cols-2 {
+                grid-template-columns: 1fr;
+            }
+            .arrow {
+                transform: rotate(90deg); /* Rotate arrows on small screens */
+                margin: 20px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="infographic-container">
+        <header class="text-center mb-12">
+            <h1 class="text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
+                ⚖️ Coach Bleak Legal AI 🤖
+            </h1>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                Your Trusted Partner in Navigating the Complexities of Law
+            </p>
+        </header>
+
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 section-title">What is Coach Bleak Legal AI?</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                Coach Bleak is an advanced artificial intelligence designed to empower legal professionals and individuals by providing intelligent assistance across various legal tasks. Leveraging cutting-edge LLM technology, it streamlines workflows, enhances accuracy, and offers insightful legal support.
+            </p>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 section-title">Key Features</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="feature-card">
+                    <div class="icon-box">📄</div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Document Analysis</h3>
+                    <p class="text-gray-600">Quickly review and summarize lengthy legal documents, contracts, and case files.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-box">🔍</div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Case Research</h3>
+                    <p class="text-gray-600">Efficiently search legal databases and precedents to find relevant information.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-box">✅</div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Compliance Checks</h3>
+                    <p class="text-gray-600">Identify potential compliance issues and regulatory risks in documents and operations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-box">📈</div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Predictive Analytics</h3>
+                    <p class="text-gray-600">Gain insights into potential case outcomes based on historical data and patterns.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-box">✍️</div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Legal Drafting Assistance</h3>
+                    <p class="text-gray-600">Generate initial drafts of legal documents, clauses, and correspondence.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-box">💬</div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Intelligent Q&A</h3>
+                    <p class="text-gray-600">Get quick, accurate answers to complex legal questions.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 section-title">How It Works (Simplified)</h2>
+            <div class="flex flex-col md:flex-row items-center justify-around text-center">
+                <div class="flex flex-col items-center p-4">
+                    <div class="icon-box">🧑‍💻</div>
+                    <p class="text-lg font-medium text-gray-700">User Input</p>
+                    <p class="text-sm text-gray-500">Query, Document, etc.</p>
+                </div>
+                <div class="arrow md:block hidden">➡️</div>
+                <div class="arrow md:hidden block">⬇️</div>
+                <div class="flex flex-col items-center p-4">
+                    <div class="icon-box">🧠</div>
+                    <p class="text-lg font-medium text-gray-700">AI Processing</p>
+                    <p class="text-sm text-gray-500">LLM Analysis & Logic</p>
+                </div>
+                <div class="arrow md:block hidden">➡️</div>
+                <div class="arrow md:hidden block">⬇️</div>
+                <div class="flex flex-col items-center p-4">
+                    <div class="icon-box">💡</div>
+                    <p class="text-lg font-medium text-gray-700">Intelligent Output</p>
+                    <p class="text-sm text-gray-500">Summaries, Drafts, Answers</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 section-title">Benefits of Coach Bleak</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="benefit-card">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">⏱️ Time Savings</h3>
+                    <p class="text-gray-600">Automate routine tasks, freeing up valuable time for strategic work.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">💰 Cost Reduction</h3>
+                    <p class="text-gray-600">Minimize manual labor and research hours, leading to significant savings.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">🎯 Enhanced Accuracy</h3>
+                    <p class="text-gray-600">Reduce human error with AI-powered precision in analysis and drafting.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">🌐 Improved Accessibility</h3>
+                    <p class="text-gray-600">Make complex legal information more understandable and accessible.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">🛡️ Risk Mitigation</h3>
+                    <p class="text-gray-600">Proactively identify potential legal risks and compliance gaps.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">🚀 Increased Productivity</h3>
+                    <p class="text-gray-600">Empower legal teams to handle more cases and tasks efficiently.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center text-gray-500 text-sm mt-12">
+            <p>&copy; 2025 Coach Bleak Legal AI. All rights reserved. Infographic concept by Gemini.</p>
+        </footer>
+    </div>
+</body>
+</html>

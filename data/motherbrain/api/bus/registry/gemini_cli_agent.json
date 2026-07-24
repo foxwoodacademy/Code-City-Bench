@@ -1,0 +1,13 @@
+{
+  "node_name": "gemini_cli_agent",
+  "pid": 2776,
+  "last_seen": 1779183560.3393576,
+  "capabilities": [
+    "command_execution",
+    "file_system_access",
+    "system_testing",
+    "network_discovery",
+    "message_broadcasting"
+  ],
+  "status": "ACTIVE"
+}

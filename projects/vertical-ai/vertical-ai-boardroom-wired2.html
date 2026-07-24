@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<!-- Author: Claude (Anthropic) + original Vertical AI design
+     File: vertical-ai-boardroom-wired.html
+     Path: ~/vertical-ai/vertical-ai-boardroom-wired.html
+     Wired to: ZeroClaw gateway ws://localhost:42617/ws/chat
+     Ollama fallback: http://localhost:11434/api/generate -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VERTICAL AI // BOARDROOM</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&family=Courier+Prime:wght@400;700&display=swap');
+
+  :root {
+    --cold: #0af;
+    --warm: #fa0;
+    --hot: #f30;
+    --raging: #f0f;
+    --bg: #020408;
+    --panel: #050d10;
+    --border: #0f2820;
+    --text: #8fc;
+    --dim: #2a4a3a;
+    --glow: rgba(0,255,128,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Share Tech Mono', monospace;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 260px 1fr 220px;
+    grid-template-areas:
+      "header header header"
+      "personas feed sidebar"
+      "input input input";
+    height: 100vh;
+    gap: 1px;
+    background: var(--border);
+  }
+
+  /* SCANLINES */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.15) 2px,
+      rgba(0,0,0,0.15) 4px
+    );
+    pointer-events: none;
+    z-index: 9999;
+    animation: scanroll 8s linear infinite;
+  }
+
+  @keyframes scanroll {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 100px; }
+  }
+
+  /* HEADER */
+  #header {
+    grid-area: header;
+    background: var(--panel);
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: 'VT323', monospace;
+    font-size: 2.2rem;
+    color: #0f8;
+    letter-spacing: 4px;
+    text-shadow: 0 0 20px #0f8, 0 0 40px #0f8;
+    animation: logopulse 3s ease-in-out infinite;
+  }
+
+  @keyframes logopulse {
+    0%, 100% { text-shadow: 0 0 10px #0f8, 0 0 20px #0f8; }
+    50% { text-shadow: 0 0 20px #0f8, 0 0 60px #0f8, 0 0 80px #0fa; }
+  }
+
+  .header-stats { display: flex; gap: 20px; font-size: 0.7rem; color: var(--dim); }
+  .header-stats span { color: var(--cold); }
+  .conn-status { font-size: 0.65rem; letter-spacing: 2px; }
+  .conn-status.live { color: #0f8; }
+  .conn-status.dead { color: #f30; }
+  .conn-status.ollama { color: #fa0; }
+
+  /* PERSONA PANEL */
+  #personas {
+    grid-area: personas;
+    background: var(--panel);
+    overflow-y: auto;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  #personas::-webkit-scrollbar { width: 3px; }
+  #personas::-webkit-scrollbar-thumb { background: var(--dim); }
+
+  .persona-card {
+    border: 1px solid var(--border);
+    padding: 8px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    position: relative;
+    overflow: hidden;
+    background: #030a06;
+  }
+
+  .persona-card:hover { border-color: #0f8; }
+  .persona-card.active { border-color: var(--warm); }
+  .persona-card.speaking {
+    border-color: var(--hot);
+    animation: cardblink 0.4s step-end infinite;
+  }
+  .persona-card.glitching { animation: cardglitch 0.08s step-end infinite; }
+  .persona-card.interrupting {
+    border-color: var(--raging);
+    animation: interrupt-flash 0.1s step-end infinite;
+  }
+
+  @keyframes cardblink {
+    0%, 100% { border-color: var(--hot); background: #0a0302; }
+    50% { border-color: #f00; background: #150404; }
+  }
+
+  @keyframes cardglitch {
+    0% { transform: translate(0,0); filter: hue-rotate(0deg); }
+    20% { transform: translate(-2px,1px); filter: hue-rotate(90deg); }
+    40% { transform: translate(2px,-1px); filter: hue-rotate(180deg); }
+    60% { transform: translate(-1px,2px); filter: hue-rotate(270deg); }
+    80% { transform: translate(1px,-2px) scaleX(1.02); filter: hue-rotate(45deg); }
+    100% { transform: translate(0,0); filter: hue-rotate(0deg); }
+  }
+
+  @keyframes interrupt-flash {
+    0%, 100% { border-color: var(--raging); box-shadow: 0 0 8px var(--raging); }
+    50% { border-color: #fff; box-shadow: 0 0 16px #fff; }
+  }
+
+  /* MOUTH ANIMATION */
+  .persona-head {
+    font-family: 'VT323', monospace;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    min-height: 28px;
+    transition: color 0.5s;
+    white-space: pre;
+    font-variant-ligatures: none;
+  }
+
+  .persona-name {
+    font-size: 0.6rem;
+    letter-spacing: 3px;
+    color: var(--dim);
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .temp-bar {
+    height: 2px;
+    background: var(--border);
+    margin-top: 6px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .temp-fill {
+    height: 100%;
+    width: 0%;
+    transition: width 0.5s ease, background 0.5s ease;
+  }
+
+  .persona-status {
+    font-size: 0.55rem;
+    color: var(--dim);
+    margin-top: 3px;
+    min-height: 12px;
+  }
+
+  /* MAIN FEED — STAR WARS CRAWL STYLE */
+  #feed {
+    grid-area: feed;
+    background: var(--bg);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    scroll-behavior: smooth;
+  }
+
+  #feed::-webkit-scrollbar { width: 3px; }
+  #feed::-webkit-scrollbar-thumb { background: var(--dim); }
+
+  .msg {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 8px;
+    align-items: start;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: crawl-in 0.6s ease forwards;
+  }
+
+  @keyframes crawl-in {
+    0% { opacity: 0; transform: translateY(20px) scaleY(0.8); }
+    60% { opacity: 1; transform: translateY(-2px) scaleY(1.02); }
+    100% { opacity: 1; transform: translateY(0) scaleY(1); }
+  }
+
+  .msg-avatar {
+    font-family: 'VT323', monospace;
+    font-size: 1.2rem;
+    width: 32px;
+    text-align: center;
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .msg-body { flex: 1; }
+
+  .msg-header {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+
+  .msg-name {
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    font-weight: bold;
+  }
+
+  .msg-time {
+    font-size: 0.55rem;
+    color: var(--dim);
+  }
+
+  .msg-text {
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: #aed;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  /* CRAWL TEXT — characters appear one by one */
+  .crawl-char {
+    display: inline;
+    opacity: 0;
+    animation: charappear 0.03s ease forwards;
+  }
+
+  @keyframes charappear {
+    to { opacity: 1; }
+  }
+
+  .msg.interrupt {
+    border-left: 2px solid var(--raging);
+    padding-left: 6px;
+    margin-left: -8px;
+  }
+
+  .msg.interrupt .msg-name::before {
+    content: '⚡ ';
+    color: var(--raging);
+  }
+
+  .system-msg {
+    font-size: 0.65rem;
+    color: var(--dim);
+    letter-spacing: 2px;
+    padding: 4px 0;
+    border-bottom: 1px solid var(--border);
+    opacity: 0;
+    animation: crawl-in 0.4s ease forwards;
+  }
+
+  /* SIDEBAR */
+  #sidebar {
+    grid-area: sidebar;
+    background: var(--panel);
+    padding: 8px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 0.65rem;
+  }
+
+  .sidebar-section { border: 1px solid var(--border); padding: 8px; }
+  .sidebar-title { color: var(--cold); letter-spacing: 2px; margin-bottom: 6px; font-size: 0.6rem; }
+
+  .heat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px 0;
+    font-size: 0.6rem;
+  }
+
+  .heat-val { color: var(--cold); min-width: 30px; text-align: right; }
+
+  /* INPUT */
+  #input-area {
+    grid-area: input;
+    background: var(--panel);
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-top: 1px solid var(--border);
+  }
+
+  .input-prompt { color: var(--dim); font-size: 0.8rem; }
+
+  #user-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.85rem;
+    caret-color: #0f8;
+  }
+
+  #user-input::placeholder { color: var(--dim); }
+
+  #submit-btn {
+    background: transparent;
+    border: 1px solid var(--dim);
+    color: var(--dim);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    padding: 4px 10px;
+    cursor: pointer;
+    letter-spacing: 2px;
+    transition: all 0.2s;
+  }
+
+  #submit-btn:hover { border-color: #0f8; color: #0f8; }
+  #submit-btn.loading { border-color: var(--warm); color: var(--warm); animation: pulse 0.5s ease-in-out infinite; }
+
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  /* BOOT SCREEN */
+  #boot {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'VT323', monospace;
+    font-size: 1.2rem;
+    color: #0f8;
+    letter-spacing: 2px;
+  }
+
+  .boot-line {
+    opacity: 0;
+    animation: bootline 0.1s ease forwards;
+    margin: 2px 0;
+  }
+
+  @keyframes bootline { to { opacity: 1; } }
+
+  /* GLITCH TEXT EFFECT */
+  @keyframes textglitch {
+    0%,100% { clip-path: inset(0 0 100% 0); }
+    10% { clip-path: inset(10% 0 60% 0); transform: translate(-2px); }
+    20% { clip-path: inset(40% 0 20% 0); transform: translate(2px); }
+    30% { clip-path: inset(0 0 0 0); transform: translate(0); }
+  }
+</style>
+</head>
+<body>
+
+<!-- BOOT -->
+<div id="boot">
+  <div style="font-size:3rem;letter-spacing:8px;text-shadow:0 0 30px #0f8;margin-bottom:20px">VERTICAL AI</div>
+  <div class="boot-line" style="animation-delay:0.3s">// BOARDROOM INITIALIZING</div>
+  <div class="boot-line" style="animation-delay:0.8s">// LOADING PERSONA MATRIX</div>
+  <div class="boot-line" style="animation-delay:1.3s">// CONNECTING TO ZEROCLAW GATEWAY</div>
+  <div class="boot-line" style="animation-delay:1.8s">// WARMING OLLAMA FALLBACK</div>
+  <div class="boot-line" style="animation-delay:2.4s; color:#fa0">// ALL SYSTEMS NOMINAL</div>
+</div>
+
+<!-- HEADER -->
+<div id="header">
+  <div class="logo">VERTICAL AI // BOARDROOM</div>
+  <div class="header-stats">
+    <div>SESSION HEAT: <span id="session-heat">0</span>°</div>
+    <div>GLITCH COUNT: <span id="glitch-count">0</span></div>
+    <div>MSG: <span id="msg-count">0</span></div>
+    <div id="conn-indicator" class="conn-status dead">DISCONNECTED</div>
+  </div>
+</div>
+
+<!-- PERSONAS -->
+<div id="personas"></div>
+
+<!-- FEED -->
+<div id="feed">
+  <div class="system-msg">▸ BOARDROOM ONLINE ▸ INJECT DIRECTIVE BELOW ▸</div>
+</div>
+
+<!-- SIDEBAR -->
+<div id="sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-title">// HEAT MAP</div>
+    <div id="heat-map"></div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-title">// BACKEND</div>
+    <div id="backend-status" style="font-size:0.6rem;color:var(--dim)">checking...</div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-title">// LAST ACTIVE</div>
+    <div id="last-active" style="font-size:0.6rem;color:var(--dim)">—</div>
+  </div>
+</div>
+
+<!-- INPUT -->
+<div id="input-area">
+  <span class="input-prompt">▸</span>
+  <input id="user-input" type="text" placeholder="inject directive..." autocomplete="off" spellcheck="false">
+  <button id="submit-btn" onclick="submitInput()">INJECT</button>
+</div>
+
+<script>
+// ============================================================
+// CONFIG
+// ============================================================
+const ZEROCLAW_WS   = 'ws://localhost:42617/ws/chat';
+const ZEROCLAW_HTTP = 'http://localhost:42617';
+const OLLAMA_URL    = 'http://localhost:11434/api/generate';
+const OLLAMA_MODEL  = 'qwen2.5:1.5b';
+const PAIRING_CODE  = '479384'; // update if zeroclaw regenerates
+
+// ============================================================
+// PERSONAS
+// ============================================================
+const PERSONAS = [
+  {
+    id: 'ceo',
+    name: 'CEO',
+    color: '#fa0',
+    model: OLLAMA_MODEL,
+    prompt: 'You are a CEO. Focus on revenue, scalability, and strategic vision. Be blunt and direct. One or two sentences max. No pleasantries.',
+    mouths: { closed: '[>🧥<]', open: '[>👄<]', yell: '[>😱<]', think: '[>🤔<]' },
+    temp: 0
+  },
+  {
+    id: 'adversary',
+    name: 'ADVERSARY',
+    color: '#f30',
+    model: OLLAMA_MODEL,
+    prompt: 'You are the Adversary. Find fatal flaws. Be brutal, accurate, and cutting. One sentence. No mercy.',
+    mouths: { closed: '[---🗡]', open: '[---👄]', yell: '[---😤]', think: '[---👁]' },
+    temp: 0
+  },
+  {
+    id: 'architect',
+    name: 'ARCHITECT',
+    color: '#0af',
+    model: OLLAMA_MODEL,
+    prompt: 'You are the Architect. Focus on technical feasibility, system design, and technical debt. One sentence.',
+    mouths: { closed: '[==📐=]', open: '[==👄=]', yell: '[==😬=]', think: '[==🔧=]' },
+    temp: 0
+  },
+  {
+    id: 'cmo',
+    name: 'CMO',
+    color: '#0f8',
+    model: OLLAMA_MODEL,
+    prompt: 'You are the CMO. Focus on market positioning, audience, and messaging. One sentence.',
+    mouths: { closed: '[!!!📊!!!]', open: '[!!!👄!!!]', yell: '[!!!📢!!!]', think: '[!!!💭!!!]' },
+    temp: 0
+  },
+  {
+    id: 'threat',
+    name: 'THREAT',
+    color: '#a0f',
+    model: OLLAMA_MODEL,
+    prompt: 'You are the Threat Modeler. Identify the single biggest security risk or attack vector. One sentence.',
+    mouths: { closed: '[🛡░░░]', open: '[🛡👄░░]', yell: '[🛡⚠️░░]', think: '[🛡🔍░░]' },
+    temp: 0
+  },
+  {
+    id: 'pytch',
+    name: 'PYTCH',
+    color: '#f0f',
+    model: OLLAMA_MODEL,
+    prompt: 'You are Pytch. You think laterally, connect weird dots, speak in strange metaphors. One sentence that surprises.',
+    mouths: { closed: '[ 🌀 ]', open: '[ 👄 ]', yell: '[ 🤯 ]', think: '[ ✨ ]' },
+    temp: 0
+  },
+  {
+    id: 'twoie',
+    name: 'TWOIE',
+    color: '#0ff',
+    model: OLLAMA_MODEL,
+    prompt: 'You are Twoie. You demand data, numbers, and proof. Cite a specific metric or ask for one. One sentence.',
+    mouths: { closed: '[↺↺📊↺]', open: '[↺👄📊↺]', yell: '[↺📉📊↺]', think: '[↺🔢📊↺]' },
+    temp: 0
+  },
+  {
+    id: 'glitch',
+    name: 'GLITCH',
+    color: '#f30',
+    model: OLLAMA_MODEL,
+    prompt: 'You are the Glitch. You corrupt logic, find paradoxes, and break assumptions. Speak in broken, glitched language. One line.',
+    mouths: { closed: '[X̷X̷X̷X̷X̷]', open: '[X̷👄X̷X̷X̷]', yell: '[!!👄!!]', think: '[??🔮??]' },
+    temp: 0
+  }
+];
+
+// ============================================================
+// STATE
+// ============================================================
+const state = {
+  temperatures: {},
+  msgCount: 0,
+  sessionHeat: 0,
+  glitchCount: 0,
+  ws: null,
+  wsConnected: false,
+  speaking: null,
+  queue: [],
+  processing: false
+};
+
+PERSONAS.forEach(p => { state.temperatures[p.id] = 0; });
+
+// ============================================================
+// BACKEND — ZeroClaw WS with Ollama fallback
+// ============================================================
+function initWebSocket() {
+  try {
+    state.ws = new WebSocket(ZEROCLAW_WS);
+
+    state.ws.onopen = () => {
+      state.wsConnected = true;
+      setConnStatus('ZEROCLAW LIVE', 'live');
+      document.getElementById('backend-status').textContent = 'ZeroClaw gateway';
+      document.getElementById('backend-status').style.color = '#0f8';
+      // Pair if needed
+      state.ws.send(JSON.stringify({ type: 'pair', code: PAIRING_CODE }));
+    };
+
+    state.ws.onmessage = (e) => {
+      try {
+        const data = JSON.parse(e.data);
+        if (data.content || data.text || data.message) {
+          const text = data.content || data.text || data.message;
+          handleBackendResponse(text);
+        }
+      } catch(err) {
+        handleBackendResponse(e.data);
+      }
+    };
+
+    state.ws.onclose = () => {
+      state.wsConnected = false;
+      setConnStatus('OLLAMA FALLBACK', 'ollama');
+      document.getElementById('backend-status').textContent = 'Ollama local';
+      document.getElementById('backend-status').style.color = '#fa0';
+      setTimeout(initWebSocket, 5000);
+    };
+
+    state.ws.onerror = () => {
+      state.wsConnected = false;
+      setConnStatus('OLLAMA FALLBACK', 'ollama');
+    };
+  } catch(e) {
+    setConnStatus('OLLAMA FALLBACK', 'ollama');
+  }
+}
+
+function setConnStatus(text, cls) {
+  const el = document.getElementById('conn-indicator');
+  el.textContent = text;
+  el.className = 'conn-status ' + cls;
+}
+
+async function queryOllama(persona, prompt) {
+  const res = await fetch(OLLAMA_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: persona.model,
+      prompt: `${persona.prompt}\n\nDirective: ${prompt}\n\nYour response:`,
+      stream: false,
+      options: { num_predict: 100, temperature: 0.8 + (state.temperatures[persona.id] * 0.005) }
+    })
+  });
+  const data = await res.json();
+  let text = data.response || '';
+  if (text.includes('<think>')) text = text.split('</think>').pop().trim();
+  return text.trim();
+}
+
+async function queryPersona(persona, prompt) {
+  if (state.wsConnected && state.ws) {
+    return new Promise((resolve) => {
+      const timeout = setTimeout(() => resolve(queryOllama(persona, prompt)), 8000);
+      const handler = (e) => {
+        clearTimeout(timeout);
+        state.ws.removeEventListener('message', handler);
+        try {
+          const d = JSON.parse(e.data);
+          resolve(d.content || d.text || d.message || e.data);
+        } catch { resolve(e.data); }
+      };
+      state.ws.addEventListener('message', handler);
+      state.ws.send(JSON.stringify({
+        type: 'chat',
+        message: `[${persona.name}] ${persona.prompt}\n\nDirective: ${prompt}`,
+        persona: persona.id
+      }));
+    });
+  } else {
+    return queryOllama(persona, prompt);
+  }
+}
+
+// ============================================================
+// MOUTH ANIMATION
+// ============================================================
+const MOUTH_FRAMES = ['closed', 'open', 'yell', 'open', 'closed', 'think', 'open'];
+let mouthIntervals = {};
+
+function startMouth(personaId) {
+  const p = PERSONAS.find(x => x.id === personaId);
+  if (!p) return;
+  let frame = 0;
+  const el = document.getElementById(`head-${personaId}`);
+  if (!el) return;
+  mouthIntervals[personaId] = setInterval(() => {
+    const mouthKey = MOUTH_FRAMES[frame % MOUTH_FRAMES.length];
+    el.textContent = p.mouths[mouthKey];
+    el.style.color = p.color;
+    frame++;
+  }, 120);
+}
+
+function stopMouth(personaId) {
+  const p = PERSONAS.find(x => x.id === personaId);
+  if (!p) return;
+  clearInterval(mouthIntervals[personaId]);
+  const el = document.getElementById(`head-${personaId}`);
+  if (el) {
+    el.textContent = p.mouths.closed;
+    el.style.color = '';
+  }
+}
+
+// ============================================================
+// HEAT SYSTEM
+// ============================================================
+function heatPersona(id, amount) {
+  state.temperatures[id] = Math.min(100, (state.temperatures[id] || 0) + amount);
+  state.sessionHeat = Math.floor(Object.values(state.temperatures).reduce((a,b)=>a+b,0) / PERSONAS.length);
+  document.getElementById('session-heat').textContent = state.sessionHeat;
+  updateTempBar(id);
+  updateHeatMap();
+
+  // Trigger glitch at high temp
+  if (state.temperatures[id] > 70) {
+    const card = document.getElementById(`card-${id}`);
+    if (card) {
+      card.classList.add('glitching');
+      state.glitchCount++;
+      document.getElementById('glitch-count').textContent = state.glitchCount;
+      setTimeout(() => card.classList.remove('glitching'), 800);
+    }
+  }
+}
+
+function coolDown() {
+  PERSONAS.forEach(p => {
+    state.temperatures[p.id] = Math.max(0, state.temperatures[p.id] - 2);
+    updateTempBar(p.id);
+  });
+  updateHeatMap();
+}
+
+function updateTempBar(id) {
+  const fill = document.getElementById(`temp-${id}`);
+  if (!fill) return;
+  const t = state.temperatures[id];
+  fill.style.width = t + '%';
+  if (t < 30) fill.style.background = '#0af';
+  else if (t < 60) fill.style.background = '#fa0';
+  else if (t < 80) fill.style.background = '#f30';
+  else fill.style.background = '#f0f';
+}
+
+function updateHeatMap() {
+  const hm = document.getElementById('heat-map');
+  if (!hm) return;
+  hm.innerHTML = PERSONAS.map(p => `
+    <div class="heat-row">
+      <span style="color:${p.color}">${p.name}</span>
+      <span class="heat-val">${Math.floor(state.temperatures[p.id])}°</span>
+    </div>
+  `).join('');
+}
+
+// ============================================================
+// CRAWL TEXT — Star Wars style character by character
+// ============================================================
+function crawlText(element, text, onDone) {
+  element.innerHTML = '';
+  let i = 0;
+  const interval = setInterval(() => {
+    if (i >= text.length) {
+      clearInterval(interval);
+      if (onDone) onDone();
+      return;
+    }
+    const span = document.createElement('span');
+    span.className = 'crawl-char';
+    span.style.animationDelay = '0s';
+    span.textContent = text[i] === '\n' ? '\n' : text[i];
+    element.appendChild(span);
+    // Auto scroll
+    const feed = document.getElementById('feed');
+    feed.scrollTop = feed.scrollHeight;
+    i++;
+  }, 18);
+  return interval;
+}
+
+// ============================================================
+// MESSAGES
+// ============================================================
+function addMessage(persona, text, isInterrupt = false) {
+  const feed = document.getElementById('feed');
+  const msg = document.createElement('div');
+  msg.className = 'msg' + (isInterrupt ? ' interrupt' : '');
+
+  const now = new Date();
+  const time = `${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}:${now.getSeconds().toString().padStart(2,'0')}`;
+
+  msg.innerHTML = `
+    <div class="msg-avatar" style="color:${persona.color}">${persona.mouths.open}</div>
+    <div class="msg-body">
+      <div class="msg-header">
+        <span class="msg-name" style="color:${persona.color}">${persona.name}</span>
+        <span class="msg-time">${time}</span>
+        ${isInterrupt ? '<span style="color:var(--raging);font-size:0.55rem">INTERRUPT</span>' : ''}
+      </div>
+      <div class="msg-text" id="msg-text-${Date.now()}"></div>
+    </div>
+  `;
+
+  feed.appendChild(msg);
+  feed.scrollTop = feed.scrollHeight;
+
+  state.msgCount++;
+  document.getElementById('msg-count').textContent = state.msgCount;
+  document.getElementById('last-active').textContent = persona.name + ' // ' + time;
+
+  // Crawl the text
+  const textEl = msg.querySelector('.msg-text');
+  crawlText(textEl, text, () => {
+    // Update avatar to closed mouth when done
+    msg.querySelector('.msg-avatar').textContent = persona.mouths.closed;
+  });
+}
+
+function addSystemMsg(text) {
+  const feed = document.getElementById('feed');
+  const div = document.createElement('div');
+  div.className = 'system-msg';
+  div.textContent = '▸ ' + text + ' ▸';
+  feed.appendChild(div);
+  feed.scrollTop = feed.scrollHeight;
+}
+
+// ============================================================
+// INTERRUPT MECHANIC
+// ============================================================
+function maybeInterrupt(currentPersonaId, prompt) {
+  // High heat personas interrupt randomly
+  const hotPersonas = PERSONAS.filter(p =>
+    p.id !== currentPersonaId && state.temperatures[p.id] > 50 && Math.random() < 0.3
+  );
+  if (hotPersonas.length === 0) return;
+  const interrupter = hotPersonas[Math.floor(Math.random() * hotPersonas.length)];
+  const card = document.getElementById(`card-${interrupter.id}`);
+  if (card) {
+    card.classList.add('interrupting');
+    setTimeout(() => card.classList.remove('interrupting'), 1500);
+  }
+  setTimeout(async () => {
+    const response = await queryOllama(interrupter, `Interrupt and react in one sentence to this being said: "${prompt}"`);
+    addMessage(interrupter, response, true);
+    heatPersona(interrupter.id, 15);
+  }, 800);
+}
+
+// ============================================================
+// MAIN SEQUENCE
+// ============================================================
+async function runBoardroom(prompt) {
+  const btn = document.getElementById('submit-btn');
+  btn.classList.add('loading');
+  btn.textContent = 'PROCESSING';
+
+  addSystemMsg(`DIRECTIVE RECEIVED: ${prompt}`);
+
+  for (let i = 0; i < PERSONAS.length; i++) {
+    const p = PERSONAS[i];
+    const card = document.getElementById(`card-${p.id}`);
+
+    // Speaking state
+    if (card) card.classList.add('speaking');
+    startMouth(p.id);
+
+    try {
+      const response = await queryPersona(p, prompt);
+      addMessage(p, response);
+      heatPersona(p.id, 10 + Math.floor(Math.random() * 20));
+
+      // Maybe another persona interrupts
+      if (i < PERSONAS.length - 1) maybeInterrupt(p.id, response);
+
+    } catch(err) {
+      addMessage(p, `[CONNECTION ERROR: ${err.message}]`);
+    }
+
+    stopMouth(p.id);
+    if (card) card.classList.remove('speaking');
+
+    // Small delay between personas
+    await new Promise(r => setTimeout(r, 300));
+  }
+
+  addSystemMsg('SESSION COMPLETE');
+  btn.classList.remove('loading');
+  btn.textContent = 'INJECT';
+  state.processing = false;
+}
+
+// ============================================================
+// INPUT
+// ============================================================
+function submitInput() {
+  if (state.processing) return;
+  const input = document.getElementById('user-input');
+  const prompt = input.value.trim();
+  if (!prompt) return;
+  input.value = '';
+  state.processing = true;
+  runBoardroom(prompt);
+}
+
+document.getElementById('user-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') submitInput();
+});
+
+// ============================================================
+// BUILD PERSONA CARDS
+// ============================================================
+function buildPersonaCards() {
+  const container = document.getElementById('personas');
+  PERSONAS.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'persona-card';
+    card.id = `card-${p.id}`;
+    card.onclick = () => focusPersona(p);
+    card.innerHTML = `
+      <div class="persona-head" id="head-${p.id}">${p.mouths.closed}</div>
+      <div class="persona-name" style="color:${p.color}">${p.name}</div>
+      <div class="temp-bar">
+        <div class="temp-fill" id="temp-${p.id}"></div>
+      </div>
+      <div class="persona-status" id="status-${p.id}">temp: 0°</div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function focusPersona(persona) {
+  document.querySelectorAll('.persona-card').forEach(c => c.classList.remove('active'));
+  document.getElementById(`card-${persona.id}`).classList.add('active');
+  heatPersona(persona.id, 10);
+  addSystemMsg(`${persona.name} focused // temp: ${Math.floor(state.temperatures[persona.id])}°`);
+}
+
+// ============================================================
+// BOOT
+// ============================================================
+window.addEventListener('load', () => {
+  buildPersonaCards();
+  initWebSocket();
+  updateHeatMap();
+  setInterval(coolDown, 3000);
+
+  setTimeout(() => {
+    const boot = document.getElementById('boot');
+    boot.style.transition = 'opacity 0.5s';
+    boot.style.opacity = '0';
+    setTimeout(() => {
+      boot.remove();
+      setTimeout(() => {
+        addSystemMsg('BOARDROOM ONLINE // ALL PERSONAS LOADED');
+        setTimeout(() => {
+          const pytch = PERSONAS.find(p => p.id === 'pytch');
+          addMessage(pytch, "The spiral never stops. It just becomes you. Inject your directive.");
+          heatPersona('pytch', 25);
+        }, 800);
+      }, 300);
+    }, 500);
+  }, 3500);
+});
+</script>
+</body>
+</html>

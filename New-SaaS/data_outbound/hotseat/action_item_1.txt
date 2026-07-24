@@ -1,0 +1,5 @@
+URGENT TASK FORCE BRIEFING
+==============================
+THREAT: Lithium refinery extraction issues trigger minor market shortages
+SUMMARY: Refinery issues in Australia cause supply drops, forcing battery cell components up 12% in spot price.
+MITIGATION MANDATE: Source backup suppliers and review safety stock limits within 4 hours.

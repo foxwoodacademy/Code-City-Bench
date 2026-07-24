@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "name": "codex_install",
+    "path": "/storage/emulated/0/RootBase/codex_install",
+    "languages": {
+      "python": 3
+    },
+    "entrypoints": [
+      "merge_engine.py"
+    ],
+    "package_json": false,
+    "requirements": 0,
+    "readme_excerpt": "",
+    "last_modified": "2026-05-20T16:53:23.772999"
+  },
+  "runbook": {
+    "commands": [
+      "python merge_engine.py"
+    ],
+    "env": [],
+    "notes": []
+  },
+  "bard_note": "Can't tell what this does \u2014 it's a mystery wrapped in a folder. (Bardildo: harsh truth incoming)"
+}

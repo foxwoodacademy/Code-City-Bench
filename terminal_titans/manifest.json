@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "name": "terminal_titans",
+    "path": "/storage/emulated/0/RootBase/terminal_titans",
+    "languages": {
+      "html": 4,
+      "python": 18,
+      "javascript": 3
+    },
+    "entrypoints": [
+      "terminal_titans.py"
+    ],
+    "package_json": false,
+    "requirements": 0,
+    "readme_excerpt": "",
+    "last_modified": "2026-05-20T16:54:00.204999"
+  },
+  "runbook": {
+    "commands": [
+      "python terminal_titans.py"
+    ],
+    "env": [],
+    "notes": []
+  },
+  "bard_note": "Polyglot chaos detected. Enjoy merging contexts. (Bardildo: harsh truth incoming)"
+}

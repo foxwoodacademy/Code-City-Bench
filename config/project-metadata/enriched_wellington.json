@@ -1,0 +1,66 @@
+[
+  {
+    "name": "Impact Bank",
+    "location": "Wellington KS",
+    "category": "bank",
+    "rating": 4.8,
+    "reviews": 4,
+    "has_website": true
+  },
+  {
+    "name": "RCB Bank",
+    "location": "Wellington KS",
+    "category": "bank",
+    "rating": 3.4,
+    "reviews": 5,
+    "has_website": true
+  },
+  {
+    "name": "Fabiola's Mexican Restaurant",
+    "location": "Wellington KS",
+    "category": "restaurant",
+    "rating": 4.4,
+    "reviews": 632,
+    "has_website": true
+  },
+  {
+    "name": "Canelo's Mexican Grill",
+    "location": "Wellington KS",
+    "category": "restaurant",
+    "rating": null,
+    "reviews": null,
+    "has_website": false
+  },
+  {
+    "name": "Penny's Diner",
+    "location": "Wellington KS",
+    "category": "restaurant",
+    "rating": 4.3,
+    "reviews": 1184,
+    "has_website": true
+  },
+  {
+    "name": "Big Cheese Pizza",
+    "location": "Wellington KS",
+    "category": "restaurant",
+    "rating": 4.4,
+    "reviews": 358,
+    "has_website": false
+  },
+  {
+    "name": "Chew Plumbing",
+    "location": "Wellington KS",
+    "category": "plumber",
+    "rating": 4.3,
+    "reviews": 42,
+    "has_website": false
+  },
+  {
+    "name": "Countryside Motors",
+    "location": "Wellington KS",
+    "category": "auto dealer",
+    "rating": 4.7,
+    "reviews": 331,
+    "has_website": true
+  }
+]

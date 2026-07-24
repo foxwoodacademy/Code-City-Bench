@@ -1,0 +1,21 @@
+{
+  "sample_rate": 44100,
+  "audio_format": "wav",
+  "default_method": "rvc",
+  "demucs": {
+    "model": "demucs",
+    "two_stems": "vocals"
+  },
+  "rvc": {
+    "epochs": 100,
+    "batch_size": 8,
+    "learning_rate": 0.0001
+  },
+  "output": {
+    "format": "wav",
+    "quality": "high"
+  },
+  "temp_dir": "temp",
+  "models_dir": "models",
+  "outputs_dir": "outputs"
+}

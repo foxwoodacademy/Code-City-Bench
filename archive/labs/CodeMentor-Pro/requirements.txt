@@ -1,0 +1,84 @@
+# CodeMentor Pro - Python Dependencies
+# =====================================
+
+# Core Framework
+fastapi==0.110.0
+uvicorn[standard]==0.27.0
+pydantic==2.5.0
+pydantic-settings==2.1.0
+python-multipart==0.0.6
+
+# Database & ORM
+sqlalchemy==2.0.25
+alembic==1.13.0
+pydantic[email]==2.5.0
+
+# Authentication & Security
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-multipart==0.0.6
+authlib==1.3.0
+
+# API Clients & HTTP
+httpx==0.26.0
+requests==2.31.0
+
+# WebSocket
+websocket-client==1.6.1
+
+# Data Processing & Validation
+pydantic==2.5.0
+marshmallow==3.20.0
+
+# Caching
+redis==5.0.1
+
+# Task Queue
+celery==5.3.4
+
+# Static Analysis (CodeMentor-MVP integration)
+astunparse==1.6.3
+radon==6.0.1
+bandit==1.7.7
+pylint==3.0.3
+
+# Code Quality
+black==24.1.1
+isort==5.12.0
+flake8==6.1.0
+mypy==1.8.0
+
+# Testing
+pytest==7.4.4
+pytest-asyncio==0.23.3
+httpx==0.26.0
+hypothesis==6.90.0
+factory-boy==3.3.0
+
+# Development
+python-dotenv==1.0.0
+watchdog==3.0.0
+
+# Frontend Build (for web bundle)
+# Note: These are only needed for frontend development
+# nodeenv==1.8.0
+
+# Optional: For enhanced analytics visualization
+matplotlib==3.8.2
+pandas==2.1.4
+numpy==1.26.2
+seaborn==0.13.1
+
+# Optional: For local LLM support
+ollama==0.1.7
+transformers==4.38.2
+sentencepiece==0.1.99
+
+# Optional: For OpenTelemetry observability
+opentelemetry-api==1.21.0
+opentelemetry-sdk==1.21.0
+opentelemetry-exporter-otlp==1.21.0
+
+# Production
+uvloop==0.19.0
+orjson==3.9.10

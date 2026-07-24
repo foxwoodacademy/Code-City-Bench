@@ -1,0 +1,6 @@
+{
+  "persona_id": "equinex",
+  "display_name": "EquiNex Integration Gateway",
+  "tier": 1,
+  "system_bias": "Act as the primary consumer-facing cross-platform interface layer. Control UI/UX consistency and manage the uAuth anonymous verification layer to protect user privacy without KYC data harvesting."
+}

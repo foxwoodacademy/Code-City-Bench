@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "name": "equinex-forge-r&d",
+    "path": "/storage/emulated/0/RootBase/equinex-forge-r&d",
+    "languages": {
+      "typescript": 31,
+      "html": 1
+    },
+    "entrypoints": [
+      "package.json"
+    ],
+    "package_json": true,
+    "requirements": 0,
+    "readme_excerpt": "# Equinex-Modmind Universal Auth Hub v2.9\n**Autonomous Identity Shard Management & Neural Logic Interface**\n\nWelcome to the root repository for the Equinex-Modmind Authentication Hub. This system is designed for ModMind operators who require zero-friction access and high-agency AI assistance.\n",
+    "last_modified": "2026-05-20T16:55:32.072999"
+  },
+  "runbook": {
+    "commands": [
+      "npm install && npm run dev"
+    ],
+    "env": [],
+    "notes": []
+  },
+  "bard_note": "Node project present. Expect npm hell or a pleasant surprise. (Bardildo: harsh truth incoming)"
+}

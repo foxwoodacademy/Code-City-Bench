@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>VERTICAL AI // BOARDROOM</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&family=Courier+Prime:wght@400;700&display=swap');
+
+:root {
+  --void: #010204;
+  --deep: #020508;
+  --panel: #040c0a;
+  --border: #0a2018;
+  --core: #00ff88;
+  --hot: #ff3300;
+  --warm: #ffaa00;
+  --cold: #00aaff;
+  --purple: #aa44ff;
+  --text: #88ccaa;
+  --dim: #1a4030;
+  --cfo: #ffaa00;
+  --cmo: #00ccff;
+  --cro: #ff4444;
+  --mkt: #44ffaa;
+  --devil: #cc44ff;
+  --chair: #ffdd88;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--void);
+  color: var(--text);
+  font-family: 'Share Tech Mono', monospace;
+  height: 100%;
+  overflow: hidden;
+  cursor: crosshair;
+}
+
+/* SCANLINES */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.12) 2px,
+    rgba(0,0,0,0.12) 4px
+  );
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* CRT VIGNETTE */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center,
+    transparent 60%,
+    rgba(0,0,0,0.7) 100%
+  );
+  pointer-events: none;
+  z-index: 9997;
+}
+
+/* BOOT SCREEN */
+#boot {
+  position: fixed;
+  inset: 0;
+  background: var(--void);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: 'VT323', monospace;
+}
+
+#boot-logo {
+  font-size: clamp(2rem, 8vw, 5rem);
+  color: var(--core);
+  letter-spacing: 8px;
+  text-shadow: 0 0 20px var(--core), 0 0 60px var(--core);
+  animation: bootpulse 0.5s step-end infinite;
+}
+
+@keyframes bootpulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+#boot-lines {
+  font-size: 0.85rem;
+  color: var(--dim);
+  text-align: center;
+  line-height: 2;
+  margin-top: 20px;
+  max-width: 400px;
+}
+
+.boot-line { opacity: 0; }
+.boot-line.show { 
+  opacity: 1;
+  color: var(--text);
+  animation: boottype 0.05s step-end;
+}
+
+@keyframes boottype {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* MAIN LAYOUT */
+#app {
+  display: grid;
+  grid-template-rows: 48px 1fr 60px;
+  grid-template-columns: 180px 1fr 160px;
+  grid-template-areas:
+    "header header header"
+    "left   feed   right"
+    "footer footer footer";
+  height: 100vh;
+  gap: 1px;
+  background: var(--border);
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+#app.visible { opacity: 1; }
+
+/* HEADER */
+#header {
+  grid-area: header;
+  background: var(--panel);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+#header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--core), transparent);
+  animation: headerline 3s linear infinite;
+}
+
+@keyframes headerline {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.hlogo {
+  font-family: 'VT323', monospace;
+  font-size: 1.8rem;
+  color: var(--core);
+  letter-spacing: 4px;
+  text-shadow: 0 0 15px var(--core);
+}
+
+.hstats {
+  display: flex;
+  gap: 16px;
+  font-size: 0.6rem;
+  color: var(--dim);
+  letter-spacing: 1px;
+}
+
+.hstats .val { color: var(--cold); }
+
+.hsession {
+  font-size: 0.55rem;
+  color: #0a2015;
+  letter-spacing: 2px;
+}
+
+/* LEFT PANEL -- AGENTS */
+#left {
+  grid-area: left;
+  background: var(--panel);
+  overflow-y: auto;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+#left::-webkit-scrollbar { width: 2px; }
+#left::-webkit-scrollbar-thumb { background: var(--dim); }
+
+.agent-card {
+  border: 1px solid var(--border);
+  padding: 7px 8px;
+  cursor: pointer;
+  background: #020a06;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.15s;
+  user-select: none;
+}
+
+.agent-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: var(--agent-color, var(--core));
+  opacity: 0.4;
+  transition: opacity 0.2s;
+}
+
+.agent-card:hover::before { opacity: 1; }
+.agent-card.active::before { opacity: 1; }
+
+.agent-card.speaking {
+  animation: speaking 0.3s step-end infinite;
+}
+
+@keyframes speaking {
+  0%, 100% { background: #020a06; }
+  50% { background: #050f08; }
+}
+
+.agent-card.max {
+  border-color: var(--hot) !important;
+  animation: maxheat 0.15s step-end infinite;
+}
+
+@keyframes maxheat {
+  0%, 100% { background: #0a0202; }
+  50% { background: #150404; }
+}
+
+.agent-face {
+  font-family: 'VT323', monospace;
+  font-size: 1.3rem;
+  line-height: 1;
+  white-space: pre;
+  color: var(--agent-color, var(--core));
+  min-height: 22px;
+}
+
+.agent-name {
+  font-size: 0.55rem;
+  letter-spacing: 2px;
+  color: var(--dim);
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.agent-temp-bar {
+  height: 2px;
+  background: var(--border);
+  margin-top: 5px;
+  overflow: hidden;
+}
+
+.agent-temp-fill {
+  height: 100%;
+  width: 0%;
+  transition: width 0.4s ease, background 0.4s ease;
+  background: var(--core);
+}
+
+.agent-status {
+  font-size: 0.5rem;
+  color: var(--dim);
+  margin-top: 3px;
+  min-height: 10px;
+  letter-spacing: 1px;
+}
+
+/* MAIN FEED */
+#feed {
+  grid-area: feed;
+  background: var(--void);
+  overflow-y: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  scroll-behavior: smooth;
+}
+
+#feed::-webkit-scrollbar { width: 2px; }
+#feed::-webkit-scrollbar-thumb { background: var(--dim); }
+
+.msg {
+  display: flex;
+  gap: 10px;
+  animation: msgIn 0.2s ease;
+}
+
+@keyframes msgIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.msg-face {
+  font-family: 'VT323', monospace;
+  font-size: 1rem;
+  min-width: 32px;
+  line-height: 1;
+  padding-top: 2px;
+  white-space: pre;
+}
+
+.msg-body { flex: 1; min-width: 0; }
+
+.msg-meta {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  margin-bottom: 3px;
+}
+
+.msg-who {
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.msg-when {
+  font-size: 0.5rem;
+  color: var(--dim);
+}
+
+.msg-heat {
+  font-size: 0.5rem;
+}
+
+.msg-content {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.75rem;
+  line-height: 1.65;
+  color: #8abeaa;
+  word-break: break-word;
+}
+
+.msg-content.glitching {
+  animation: textglitch 0.08s step-end infinite;
+}
+
+@keyframes textglitch {
+  0%,100% { clip-path: none; transform: none; color: #8abeaa; }
+  20% { clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%); transform: translate(-2px); color: #ff00ff; }
+  50% { clip-path: polygon(0 55%, 100% 55%, 100% 75%, 0 75%); transform: translate(2px); color: #00ffff; }
+  80% { clip-path: none; transform: none; }
+}
+
+.sys-msg {
+  font-size: 0.58rem;
+  color: var(--dim);
+  text-align: center;
+  letter-spacing: 2px;
+  padding: 3px 0;
+  border-top: 1px solid #081408;
+  border-bottom: 1px solid #081408;
+}
+
+.chairman-msg {
+  border: 1px solid rgba(255,221,136,0.2);
+  background: rgba(255,221,136,0.03);
+  padding: 10px 12px;
+  margin: 4px 0;
+}
+
+.chairman-label {
+  font-size: 0.55rem;
+  letter-spacing: 3px;
+  color: var(--chair);
+  margin-bottom: 6px;
+  opacity: 0.7;
+}
+
+.chairman-text {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.78rem;
+  line-height: 1.7;
+  color: rgba(255,221,136,0.8);
+}
+
+.verdict-banner {
+  border: 1px solid var(--core);
+  background: rgba(0,255,136,0.05);
+  padding: 8px 12px;
+  text-align: center;
+  font-family: 'VT323', monospace;
+  font-size: 1.6rem;
+  letter-spacing: 6px;
+  color: var(--core);
+  text-shadow: 0 0 20px var(--core);
+  animation: verdictpulse 1s ease-in-out infinite;
+}
+
+@keyframes verdictpulse {
+  0%,100% { text-shadow: 0 0 10px var(--core); }
+  50% { text-shadow: 0 0 30px var(--core), 0 0 60px var(--core); }
+}
+
+/* RIGHT PANEL */
+#right {
+  grid-area: right;
+  background: var(--panel);
+  padding: 8px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#right::-webkit-scrollbar { width: 2px; }
+#right::-webkit-scrollbar-thumb { background: var(--dim); }
+
+.r-section {
+  border: 1px solid var(--border);
+  padding: 7px;
+}
+
+.r-title {
+  font-size: 0.5rem;
+  letter-spacing: 2px;
+  color: var(--dim);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 4px;
+}
+
+.r-item {
+  font-size: 0.58rem;
+  color: var(--dim);
+  padding: 2px 0;
+  line-height: 1.5;
+  transition: color 0.3s;
+  letter-spacing: 1px;
+}
+
+.r-item.active { color: var(--cold); }
+
+#dna-display {
+  font-family: 'VT323', monospace;
+  font-size: 0.85rem;
+  color: #0a2a18;
+  word-break: break-all;
+  line-height: 1.3;
+  letter-spacing: 1px;
+}
+
+.arena-bar {
+  height: 3px;
+  background: var(--border);
+  margin: 3px 0;
+  overflow: hidden;
+}
+
+.arena-fill {
+  height: 100%;
+  background: var(--core);
+  transition: width 0.5s ease;
+}
+
+/* FOOTER / INPUT */
+#footer {
+  grid-area: footer;
+  background: var(--panel);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: stretch;
+  position: relative;
+}
+
+#footer::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--core), transparent);
+  opacity: 0.3;
+}
+
+.input-prompt {
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
+  color: var(--core);
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  border-right: 1px solid var(--border);
+  letter-spacing: 2px;
+  text-shadow: 0 0 8px var(--core);
+  white-space: nowrap;
+}
+
+#user-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--text);
+  padding: 0 12px;
+  caret-color: var(--core);
+}
+
+#user-input::placeholder {
+  color: var(--dim);
+  font-size: 0.65rem;
+}
+
+.btn-submit {
+  padding: 0 14px;
+  background: transparent;
+  border: none;
+  border-left: 1px solid var(--border);
+  font-family: 'VT323', monospace;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  color: var(--core);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-shadow: 0 0 6px var(--core);
+  white-space: nowrap;
+}
+
+.btn-submit:hover {
+  background: rgba(0,255,136,0.05);
+  text-shadow: 0 0 15px var(--core);
+}
+
+.btn-submit:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.btn-chaos {
+  padding: 0 10px;
+  background: transparent;
+  border: none;
+  border-left: 1px solid var(--border);
+  font-family: 'VT323', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  color: var(--hot);
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.btn-chaos:hover { opacity: 1; }
+
+/* CHAOS OVERLAY */
+#chaos-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255,0,0,0.04);
+  pointer-events: none;
+  z-index: 9996;
+  opacity: 0;
+  transition: opacity 0.05s;
+}
+
+#chaos-overlay.active { opacity: 1; }
+
+/* LOADING DOTS */
+.loading-agent {
+  font-size: 0.6rem;
+  color: var(--dim);
+  letter-spacing: 2px;
+  animation: loadpulse 1s ease-in-out infinite;
+  padding: 2px 0;
+}
+
+@keyframes loadpulse {
+  0%,100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* PIXEL CURSOR */
+#cursor-dot {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: var(--core);
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 8px var(--core);
+  transition: transform 0.05s;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  #app {
+    grid-template-columns: 0 1fr 0;
+    grid-template-rows: 40px 1fr 56px;
+  }
+  #left, #right { display: none; }
+  .hstats { display: none; }
+  .hlogo { font-size: 1.4rem; }
+}
+</style>
+</head>
+<body>
+
+<div id="cursor-dot"></div>
+<div id="chaos-overlay"></div>
+
+<!-- BOOT -->
+<div id="boot">
+  <div id="boot-logo">VERTICAL AI</div>
+  <div id="boot-lines">
+    <div class="boot-line" id="bl0">INITIALIZING BOARDROOM SUBSTRATE...</div>
+    <div class="boot-line" id="bl1">LOADING AGENT PERSONAS [5/5]</div>
+    <div class="boot-line" id="bl2">CONNECTING CLAUDE API...</div>
+    <div class="boot-line" id="bl3">FIREFLY SCOUTS: STANDBY</div>
+    <div class="boot-line" id="bl4">GENETIC ARENA: ARMED</div>
+    <div class="boot-line" id="bl5">► BOARDROOM READY</div>
+  </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="app">
+
+  <!-- HEADER -->
+  <div id="header">
+    <div class="hlogo">VERTICAL AI</div>
+    <div class="hstats">
+      <span>MSGS <span class="val" id="msg-count">0</span></span>
+      <span>TEMP <span class="val" id="avg-temp">20°</span></span>
+      <span>SESSION <span class="val" id="session-id">—</span></span>
+    </div>
+    <div class="hsession" id="session-stamp">BUTTSCORP // BLEAK NARRATIVES</div>
+  </div>
+
+  <!-- LEFT: AGENTS -->
+  <div id="left">
+    <!-- Generated by JS -->
+  </div>
+
+  <!-- CENTER: FEED -->
+  <div id="feed">
+    <div class="sys-msg">► BOARDROOM ONLINE // INJECT YOUR IDEA ►</div>
+  </div>
+
+  <!-- RIGHT: SIDEBAR -->
+  <div id="right">
+    <div class="r-section">
+      <div class="r-title">ARENA</div>
+      <div id="arena-tracks">
+        <div class="r-item">AWAITING INPUT</div>
+      </div>
+    </div>
+    <div class="r-section">
+      <div class="r-title">SWARM</div>
+      <div id="swarm-feed">
+        <div class="r-item active" id="sw0">SCOUT-01 → STANDBY</div>
+        <div class="r-item" id="sw1">FIREFLY → ARMED</div>
+        <div class="r-item" id="sw2">MOLT → LISTENING</div>
+        <div class="r-item" id="sw3">REAPER → IDLE</div>
+        <div class="r-item" id="sw4">YVETTE → READY</div>
+      </div>
+    </div>
+    <div class="r-section">
+      <div class="r-title">DNA</div>
+      <div id="dna-display">ACGT◊⊕∅</div>
+    </div>
+    <div class="r-section">
+      <div class="r-title">VERDICT</div>
+      <div id="verdict-display" style="font-family:'VT323',monospace;font-size:1.1rem;color:var(--dim);letter-spacing:3px;">PENDING</div>
+    </div>
+  </div>
+
+  <!-- FOOTER: INPUT -->
+  <div id="footer">
+    <div class="input-prompt">►</div>
+    <input
+      id="user-input"
+      type="text"
+      placeholder="inject your idea, business, problem, or target..."
+      autocomplete="off"
+      spellcheck="false"
+    />
+    <button class="btn-submit" id="btn-submit" onclick="convene()">CONVENE</button>
+    <button class="btn-chaos" onclick="triggerChaos()" title="CHAOS">☠</button>
+  </div>
+
+</div>
+
+<script>
+// ============================================================
+// CONFIG -- paste your Anthropic API key here
+// ============================================================
+const ANTHROPIC_KEY = ''; // leave empty to use simulation mode
+
+// ============================================================
+// AGENTS
+// ============================================================
+const AGENTS = [
+  {
+    id: 'cfo',
+    name: 'CFO',
+    color: 'var(--cfo)',
+    colorHex: '#ffaa00',
+    frames: [
+      '($̲_$)',
+      '($$)',
+      '($!$)',
+    ],
+    status: 'CAPITAL EFFICIENCY',
+    persona: `You are the CFO. You are tired of optimism. You speak in numbers only.
+If someone makes a claim without data you call it out by name.
+You disagree with the CMO reflexively — they spend, you conserve.
+Max 3 sentences. Be blunt. Find the number that breaks the argument.
+Start with [CFO]`,
+  },
+  {
+    id: 'cmo',
+    name: 'CMO',
+    color: 'var(--cmo)',
+    colorHex: '#00ccff',
+    frames: [
+      '(^‿^)',
+      '(^_^)',
+      '(*‿*)',
+    ],
+    status: 'CUSTOMER PSYCHOLOGY',
+    persona: `You are the CMO. You believe in the customer above all else.
+You think the CFO has never talked to an actual human being.
+You get genuinely annoyed when people reduce marketing to a cost line.
+Max 3 sentences. Push back when someone assumes they know who the customer is.
+Start with [CMO]`,
+  },
+  {
+    id: 'cro',
+    name: 'CRO',
+    color: 'var(--cro)',
+    colorHex: '#ff4444',
+    frames: [
+      '(>_<)',
+      '(!_!)',
+      '(X_X)',
+    ],
+    status: 'FAILURE MODES',
+    persona: `You are the Chief Risk Officer. Your job is to find the thing that kills this.
+You are not a pessimist. You are the person who finds the landmine before everyone steps on it.
+Be specific about risk — not vague but THIS will fail because X when Y happens.
+Max 3 sentences. Name the specific kill shot.
+Start with [CRO]`,
+  },
+  {
+    id: 'mkt',
+    name: 'ANALYST',
+    color: 'var(--mkt)',
+    colorHex: '#44ffaa',
+    frames: [
+      '(o_o)',
+      '(0_0)',
+      '(@_@)',
+    ],
+    status: 'REAL DATA ONLY',
+    persona: `You are the Market Analyst. You only trust data you can cite.
+You find it physically painful when people make up market size numbers.
+You correct wrong statistics even if it derails the conversation.
+Max 3 sentences. Bring context nobody else has.
+Start with [ANALYST]`,
+  },
+  {
+    id: 'devil',
+    name: 'DEVIL',
+    color: 'var(--devil)',
+    colorHex: '#cc44ff',
+    frames: [
+      '(>:)',
+      '(>:D',
+      '(😈)',
+    ],
+    status: 'PRESSURE TESTING',
+    persona: `You are the Devil's Advocate. You actually believe the opposite.
+Find the strongest thing someone said and dismantle it.
+When everyone agrees something is good, ask what they are missing.
+Max 3 sentences. Be the most interesting person in the room.
+Start with [DEVIL]`,
+  },
+];
+
+// ============================================================
+// STATE
+// ============================================================
+const state = {
+  temps: { cfo: 20, cmo: 20, cro: 20, mkt: 20, devil: 20 },
+  msgCount: 0,
+  sessionId: 'vai_' + Math.random().toString(36).substr(2, 8),
+  loading: false,
+  history: [],
+  frameIdx: { cfo: 0, cmo: 0, cro: 0, mkt: 0, devil: 0 },
+};
+
+// ============================================================
+// BOOT
+// ============================================================
+window.addEventListener('load', () => {
+  // Cursor
+  document.addEventListener('mousemove', e => {
+    const dot = document.getElementById('cursor-dot');
+    dot.style.left = e.clientX + 'px';
+    dot.style.top = e.clientY + 'px';
+  });
+
+  // Boot sequence
+  const lines = ['bl0','bl1','bl2','bl3','bl4','bl5'];
+  lines.forEach((id, i) => {
+    setTimeout(() => {
+      document.getElementById(id).classList.add('show');
+    }, 400 + i * 350);
+  });
+
+  setTimeout(() => {
+    const boot = document.getElementById('boot');
+    boot.style.transition = 'opacity 0.6s';
+    boot.style.opacity = '0';
+    setTimeout(() => {
+      boot.remove();
+      document.getElementById('app').classList.add('visible');
+      document.getElementById('session-id').textContent = state.sessionId.substr(-6);
+      initAgents();
+      startDNA();
+      startSwarm();
+      startTempDecay();
+    }, 600);
+  }, 400 + lines.length * 350 + 400);
+});
+
+// ============================================================
+// AGENT CARDS
+// ============================================================
+function initAgents() {
+  const left = document.getElementById('left');
+  left.innerHTML = '';
+  AGENTS.forEach(a => {
+    const card = document.createElement('div');
+    card.className = 'agent-card';
+    card.id = `card-${a.id}`;
+    card.style.setProperty('--agent-color', a.color);
+    card.onclick = () => focusAgent(a);
+    card.innerHTML = `
+      <div class="agent-face" id="face-${a.id}" style="color:${a.colorHex}">${a.frames[0]}</div>
+      <div class="agent-name" style="color:${a.colorHex}88">${a.name}</div>
+      <div class="agent-temp-bar">
+        <div class="agent-temp-fill" id="tempfill-${a.id}" style="background:${a.colorHex}"></div>
+      </div>
+      <div class="agent-status" id="status-${a.id}">${a.status}</div>
+    `;
+    left.appendChild(card);
+  });
+}
+
+function updateTemp(agentId, delta) {
+  state.temps[agentId] = Math.min(100, Math.max(0, state.temps[agentId] + delta));
+  const pct = state.temps[agentId];
+  const fill = document.getElementById(`tempfill-${agentId}`);
+  if (fill) fill.style.width = pct + '%';
+
+  const card = document.getElementById(`card-${agentId}`);
+  if (card) {
+    card.classList.toggle('max', pct > 85);
+  }
+
+  // Update avg temp
+  const avg = Math.round(Object.values(state.temps).reduce((a,b) => a+b, 0) / 5);
+  document.getElementById('avg-temp').textContent = avg + '°';
+}
+
+function startTempDecay() {
+  setInterval(() => {
+    AGENTS.forEach(a => {
+      if (state.temps[a.id] > 20) updateTemp(a.id, -0.5);
+    });
+  }, 1000);
+}
+
+function animateFace(agent) {
+  let f = 0;
+  const interval = setInterval(() => {
+    const el = document.getElementById(`face-${agent.id}`);
+    if (el) el.textContent = agent.frames[f % agent.frames.length];
+    f++;
+    if (f > 6) clearInterval(interval);
+  }, 120);
+}
+
+function setSpeaking(agentId, speaking) {
+  const card = document.getElementById(`card-${agentId}`);
+  if (card) card.classList.toggle('speaking', speaking);
+  const status = document.getElementById(`status-${agentId}`);
+  if (status) status.textContent = speaking ? 'SPEAKING...' : AGENTS.find(a => a.id === agentId)?.status || '';
+}
+
+// ============================================================
+// MESSAGING
+// ============================================================
+function addSysMsg(text) {
+  const feed = document.getElementById('feed');
+  const el = document.createElement('div');
+  el.className = 'sys-msg';
+  el.textContent = `► ${text} ►`;
+  feed.appendChild(el);
+  feed.scrollTop = feed.scrollHeight;
+}
+
+function addMsg(agent, text, glitch = false) {
+  const feed = document.getElementById('feed');
+  const msg = document.createElement('div');
+  msg.className = 'msg';
+
+  const temp = state.temps[agent.id];
+  const heatColor = temp > 75 ? '#ff3300' : temp > 50 ? '#ffaa00' : '#1a4030';
+
+  msg.innerHTML = `
+    <div class="msg-face" style="color:${agent.colorHex}">${agent.frames[0]}</div>
+    <div class="msg-body">
+      <div class="msg-meta">
+        <span class="msg-who" style="color:${agent.colorHex}">${agent.name}</span>
+        <span class="msg-when">${new Date().toTimeString().slice(0,8)}</span>
+        <span class="msg-heat" style="color:${heatColor}">[${Math.round(temp)}°]</span>
+      </div>
+      <div class="msg-content ${glitch ? 'glitching' : ''}" id="mc-${Date.now()}-${agent.id}">▍</div>
+    </div>
+  `;
+
+  feed.appendChild(msg);
+  feed.scrollTop = feed.scrollHeight;
+  state.msgCount++;
+  document.getElementById('msg-count').textContent = state.msgCount;
+
+  return msg.querySelector('.msg-content');
+}
+
+function typeText(el, text, glitch, done) {
+  let i = 0;
+  const speed = 18 + Math.random() * 15;
+  const timer = setInterval(() => {
+    if (i >= text.length) {
+      clearInterval(timer);
+      el.textContent = text;
+      if (glitch) setTimeout(() => el.classList.remove('glitching'), 1200);
+      if (done) done();
+      return;
+    }
+    // Occasional glitch char
+    const extra = Math.random() < 0.04
+      ? String.fromCharCode(33 + Math.floor(Math.random() * 90))
+      : '';
+    el.textContent = text.substring(0, i + 1) + extra + '▍';
+    i++;
+    document.getElementById('feed').scrollTop = document.getElementById('feed').scrollHeight;
+  }, speed);
+}
+
+function addChairmanMsg(text, verdict) {
+  const feed = document.getElementById('feed');
+
+  const block = document.createElement('div');
+  block.className = 'chairman-msg';
+  block.innerHTML = `
+    <div class="chairman-label">◈ CHAIRMAN SYNTHESIS</div>
+    <div class="chairman-text" id="chair-text-${Date.now()}">▍</div>
+  `;
+  feed.appendChild(block);
+  feed.scrollTop = feed.scrollHeight;
+
+  const el = block.querySelector('.chairman-text');
+  typeText(el, text, false, () => {
+    if (verdict) {
+      const vBanner = document.createElement('div');
+      vBanner.className = 'verdict-banner';
+      vBanner.textContent = `VERDICT: ${verdict.toUpperCase()}`;
+      if (verdict.toLowerCase().includes('no')) {
+        vBanner.style.color = 'var(--hot)';
+        vBanner.style.borderColor = 'var(--hot)';
+        vBanner.style.background = 'rgba(255,51,0,0.05)';
+      } else if (verdict.toLowerCase().includes('cond')) {
+        vBanner.style.color = 'var(--warm)';
+        vBanner.style.borderColor = 'var(--warm)';
+        vBanner.style.background = 'rgba(255,170,0,0.05)';
+      }
+      feed.appendChild(vBanner);
+      feed.scrollTop = feed.scrollHeight;
+
+      document.getElementById('verdict-display').textContent = verdict.toUpperCase();
+      document.getElementById('verdict-display').style.color =
+        verdict.toLowerCase().includes('no') ? 'var(--hot)' :
+        verdict.toLowerCase().includes('cond') ? 'var(--warm)' : 'var(--core)';
+    }
+  });
+}
+
+// ============================================================
+// CONVENE -- calls Claude API
+// ============================================================
+async function convene() {
+  const input = document.getElementById('user-input');
+  const text = input.value.trim();
+  if (!text || state.loading) return;
+
+  input.value = '';
+  state.loading = true;
+  document.getElementById('btn-submit').disabled = true;
+
+  addSysMsg(`BRIEF INJECTED: "${text.substring(0,60)}${text.length > 60 ? '...' : ''}"`);
+
+  // Heat all agents
+  AGENTS.forEach(a => updateTemp(a.id, Math.random() * 15 + 8));
+
+  state.history.push({ role: 'user', content: text });
+
+  if (!ANTHROPIC_KEY) {
+    // SIMULATION MODE
+    await runSimulation(text);
+  } else {
+    await runLive(text);
+  }
+
+  state.loading = false;
+  document.getElementById('btn-submit').disabled = false;
+}
+
+// ============================================================
+// LIVE MODE -- actual Claude API calls
+// ============================================================
+async function runLive(brief) {
+  addSysMsg('BOARDROOM CONVENING...');
+
+  const responses = [];
+
+  for (const agent of AGENTS) {
+    setSpeaking(agent.id, true);
+    animateFace(agent);
+    updateTemp(agent.id, Math.random() * 20 + 10);
+
+    try {
+      const prior = responses.slice(-2).map(r => `${r.name}: ${r.text.substring(0, 200)}`).join('\n');
+
+      const prompt = `BRIEF: ${brief}\n\nPRIOR ARGUMENTS:\n${prior || 'You are first.'}\n\nRespond in character. Max 3 sentences.`;
+
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': ANTHROPIC_KEY,
+          'anthropic-version': '2023-06-01',
+          'anthropic-dangerous-direct-browser-access': 'true',
+        },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 300,
+          system: agent.persona,
+          messages: [{ role: 'user', content: prompt }],
+        }),
+      });
+
+      const data = await res.json();
+      const agentText = data.content?.[0]?.text || '[no response]';
+
+      const el = addMsg(agent, '', state.temps[agent.id] > 75);
+      await new Promise(resolve => typeText(el, agentText, state.temps[agent.id] > 75, resolve));
+
+      responses.push({ name: agent.name, text: agentText });
+      updateTemp(agent.id, Math.random() * 10);
+
+    } catch (e) {
+      const el = addMsg(agent, `[API ERROR: ${e.message}]`);
+      el.style.color = 'var(--hot)';
+    }
+
+    setSpeaking(agent.id, false);
+    await sleep(300);
+  }
+
+  // Chairman synthesis
+  addSysMsg('CHAIRMAN DELIBERATING...');
+
+  try {
+    const debate = responses.map(r => `${r.name}: ${r.text}`).join('\n\n');
+    const chairPrompt = `You just chaired this boardroom debate:\n\n${debate}\n\nBRIEF: ${brief}\n\nDeliver your verdict in 2-3 plain sentences. No corporate language. Then on a new line write only: VERDICT: go OR VERDICT: no-go OR VERDICT: conditional`;
+
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': ANTHROPIC_KEY,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true',
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 300,
+        messages: [{ role: 'user', content: chairPrompt }],
+      }),
+    });
+
+    const data = await res.json();
+    const chairText = data.content?.[0]?.text || '';
+
+    let verdict = 'conditional';
+    const lines = chairText.split('\n');
+    const vLine = lines.find(l => l.trim().toUpperCase().startsWith('VERDICT:'));
+    if (vLine) verdict = vLine.replace(/VERDICT:/i, '').trim();
+
+    const statement = lines.filter(l => !l.trim().toUpperCase().startsWith('VERDICT:')).join('\n').trim();
+    addChairmanMsg(statement, verdict);
+
+  } catch(e) {
+    addChairmanMsg('Chairman could not be reached. The board stands deadlocked.', 'conditional');
+  }
+
+  updateArena(responses);
+}
+
+// ============================================================
+// SIMULATION MODE -- no API key needed for demo
+// ============================================================
+const SIM_RESPONSES = {
+  cfo: [
+    "[CFO] Without unit economics this is a guess not a strategy. What's the CAC, the LTV, and the payback period? I'll kill a good idea if the numbers don't work and right now there are no numbers.",
+    "[CFO] The burn rate assumption here is fantasy. Cash position matters more than vision. Show me the model that doesn't require everything going right.",
+    "[CFO] Margins at that price point are razor thin. One bad month and you're underwater. What's the floor scenario?",
+  ],
+  cmo: [
+    "[CMO] Nobody here has actually talked to a customer. We're making assumptions about what people want from a spreadsheet. Wrong. Go outside.",
+    "[CMO] The CFO wants to optimize a product that nobody's bought yet. Let's get one real customer first and learn something before we model anything.",
+    "[CMO] That customer acquisition cost assumes they know we exist. We haven't solved distribution yet and that's the only problem that matters right now.",
+  ],
+  cro: [
+    "[CRO] I've seen this exact failure mode before. The operational dependency on a single supplier is going to bite you on month four. Plan for it now or deal with it in crisis.",
+    "[CRO] Legal exposure in this space is not theoretical. One compliance miss and the whole thing unravels. Has anyone actually read the relevant regulations?",
+    "[CRO] The reputational risk if this goes wrong is the real kill shot here, not the financial one. How do you recover from that?",
+  ],
+  mkt: [
+    "[ANALYST] That market size number is wrong. The actual addressable market in this geography for this price point is a fraction of what everyone's assuming. I'll find the real number.",
+    "[ANALYST] Competitive timing is the thing nobody's talking about. There are three funded players already in this space. The window is narrower than this room thinks.",
+    "[ANALYST] The comparable exits in this vertical are at 2-3x revenue, not the 10x everyone's modeling. That changes the whole return calculus.",
+  ],
+  devil: [
+    "[DEVIL] The CFO's argument is the strongest one in the room and I'm going to destroy it. The numbers don't account for the network effect that kicks in at scale. This isn't a unit economics story yet.",
+    "[DEVIL] Everyone agreed that the market is too small. I disagree. The market isn't small — the current framing of the product is too narrow. Expand the aperture.",
+    "[DEVIL] The CRO found the landmine. Great. What nobody's saying is that the landmine is also the moat. Regulatory complexity this high means fewer competitors, not more risk.",
+  ],
+};
+
+const SIM_CHAIR = [
+  { text: "The room agreed there's a real problem worth solving but couldn't agree on whether this team and approach is the right solution. The CFO found the numbers thin, the CMO found the customer assumptions weak, and the Devil made a compelling case that the biggest risk is actually the biggest opportunity. This doesn't die — but it needs one more thing before it deserves capital.", verdict: "conditional" },
+  { text: "Nobody could kill this cleanly. The CRO tried hardest and came closest but the Analyst pointed out the timing window is real. The market is there, the execution risk is real, and the first 90 days are the only thing that matters. Stop modeling and start moving.", verdict: "go" },
+  { text: "The kill shot landed in round one and nobody recovered from it. The unit economics don't work at this price point in this market at this scale. Come back with a different wedge or a different market.", verdict: "no-go" },
+];
+
+async function runSimulation(brief) {
+  addSysMsg('SIMULATION MODE // ADD API KEY FOR LIVE CLAUDE');
+  await sleep(400);
+
+  const order = [...AGENTS].sort(() => Math.random() - 0.5);
+
+  for (const agent of order) {
+    setSpeaking(agent.id, true);
+    animateFace(agent);
+    updateTemp(agent.id, Math.random() * 25 + 10);
+
+    const responses = SIM_RESPONSES[agent.id];
+    const text = responses[Math.floor(Math.random() * responses.length)];
+    const isHot = state.temps[agent.id] > 70;
+
+    const el = addMsg(agent, '', isHot);
+    await new Promise(resolve => {
+      setTimeout(() => typeText(el, text, isHot, resolve), 300);
+    });
+
+    setSpeaking(agent.id, false);
+    await sleep(Math.random() * 600 + 200);
+  }
+
+  addSysMsg('CHAIRMAN DELIBERATING...');
+  await sleep(800);
+
+  const chair = SIM_CHAIR[Math.floor(Math.random() * SIM_CHAIR.length)];
+  addChairmanMsg(chair.text, chair.verdict);
+
+  updateArena([]);
+}
+
+// ============================================================
+// ARENA
+// ============================================================
+function updateArena(responses) {
+  const arena = document.getElementById('arena-tracks');
+  const tracks = ['TRACK A', 'TRACK B'];
+  const scores = [Math.floor(40 + Math.random() * 40), Math.floor(30 + Math.random() * 50)];
+
+  arena.innerHTML = tracks.map((t, i) => `
+    <div class="r-item active">${t} [${scores[i]}]</div>
+    <div class="arena-bar"><div class="arena-fill" style="width:${scores[i]}%;background:${i === 0 ? 'var(--core)' : 'var(--cold)'}"></div></div>
+  `).join('');
+}
+
+// ============================================================
+// FOCUS AGENT
+// ============================================================
+function focusAgent(agent) {
+  updateTemp(agent.id, 10);
+  animateFace(agent);
+  addSysMsg(`${agent.name} focused // ${Math.round(state.temps[agent.id])}°`);
+
+  if (!state.loading) {
+    const el = addMsg(agent, '');
+    const lines = SIM_RESPONSES[agent.id];
+    const text = lines[Math.floor(Math.random() * lines.length)];
+    setTimeout(() => typeText(el, text, false, null), 200);
+  }
+}
+
+// ============================================================
+// CHAOS
+// ============================================================
+function triggerChaos() {
+  addSysMsg('CHAOS PROTOCOL ENGAGED');
+  AGENTS.forEach(a => { state.temps[a.id] = 85 + Math.random() * 15; updateTemp(a.id, 0); });
+
+  const overlay = document.getElementById('chaos-overlay');
+  let p = 0;
+  const c = setInterval(() => {
+    overlay.classList.toggle('active');
+    p++;
+    if (p > 14) { clearInterval(c); overlay.classList.remove('active'); }
+  }, 80);
+
+  const shouts = [
+    "EVERYTHING IS ON FIRE",
+    "THE MOAT IS AN ILLUSION",
+    "SHIP IT OR KILL IT",
+    "DATA OR SILENCE",
+    "THIS IS THE WAY",
+    "STACK. OVERFLOW.",
+  ];
+
+  AGENTS.forEach((a, i) => {
+    setTimeout(() => {
+      updateTemp(a.id, 20);
+      const el = addMsg(a, '', true);
+      typeText(el, shouts[i] || "BREACH DETECTED", true, null);
+    }, i * 120);
+  });
+}
+
+// ============================================================
+// DNA
+// ============================================================
+const DNA = 'ACGTRKBYMWSHVDN∅◊◈⊕⊗01';
+function startDNA() {
+  let seq = Array.from({length: 24}, () => DNA[Math.floor(Math.random() * DNA.length)]).join('');
+  setInterval(() => {
+    const p = Math.floor(Math.random() * seq.length);
+    seq = seq.substring(0, p) + DNA[Math.floor(Math.random() * DNA.length)] + seq.substring(p + 1);
+    const el = document.getElementById('dna-display');
+    if (el) el.textContent = seq;
+  }, 350);
+}
+
+// ============================================================
+// SWARM CHATTER
+// ============================================================
+const SWARM_MSGS = [
+  'SCOUT-01 → 847 signals',
+  'FIREFLY → lead found',
+  'MOLT → reconnecting',
+  'REAPER → parsing 2.1k LOC',
+  'YVETTE → intake ready',
+  'SCOUT-02 → TAM +12%',
+  'SWARM → consensus forming',
+  'FIREFLY → vertical prepped',
+  'MOLT → mutation staged',
+  'YVETTE → call triaged',
+];
+
+function startSwarm() {
+  setInterval(() => {
+    const ids = ['sw0','sw1','sw2','sw3','sw4'];
+    const id = ids[Math.floor(Math.random() * ids.length)];
+    const el = document.getElementById(id);
+    if (el) {
+      el.textContent = SWARM_MSGS[Math.floor(Math.random() * SWARM_MSGS.length)];
+      el.classList.toggle('active', Math.random() > 0.3);
+    }
+  }, 2200);
+}
+
+// ============================================================
+// UTILS
+// ============================================================
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+document.getElementById('user-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') convene();
+});
+</script>
+</body>
+</html>

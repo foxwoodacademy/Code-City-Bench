@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Termux Agent Swarm LARP - Survival Edition</title>
+<style>
+body { font-family: 'Courier New', monospace; background: #000; color: #0f0; padding: 20px; }
+.swarm { background: #111; padding: 15px; margin: 10px 0; border-left: 3px solid #0f0; }
+.danger { background: #300; color: #f66; }
+.safe { background: #030; color: #0f0; }
+button { background: #0a0; color: #fff; border: none; padding: 8px 16px; cursor: pointer; }
+</style>
+</head>
+<body>
+<h1>🏭 Termux Solution Factory - QRD LARP</h1>
+
+<div class="swarm">
+<h3>🎮 Scenario: You're starving. Need $5k FastAPI project TONIGHT</h3>
+<p><b>HP:</b> 100/100 | <b>Credits:</b> $0 | <b>Crash Risk:</b> LOW</p>
+
+<button onclick="runSwarm()">🐝 SWARM MODE: Generate FastAPI Inventory API</button>
+<button onclick="runSolo()">⚔️ SOLO MODE: Single deepseek-coder shot</button>
+<button onclick="backupSD()">💾 BACKUP TO SD</button>
+
+<div id="output"></div>
+
+<h3>🐝 SWARM MODE (Multi-Agent - Risky but Powerful)</h3>
+<pre class="danger">
+cd ~/root_2026
+./run_factory.sh "FastAPI inventory API PostgreSQL JWT Docker"
+<strong>Pros:</strong> 5+ agents → tests/CI/deploy/scripts (complete project)
+<strong>Cons:</strong> 30% crash chance (Android OOM killer)
+<strong>When:</strong> Complex projects (SaaS, full-stack)
+<strong>Reward:</strong> $5k Upwork gigs
+</pre>
+
+<h3>⚔️ SOLO MODE (Single Model - Safe/Fast)</h3>
+<pre class="safe">
+cd ~/root_2026/agents
+ollama run deepseek-coder "Complete FastAPI inventory API with SQLAlchemy JWT pytest Docker"
+<strong>Pros:</strong> 95% success, 2min result
+<strong>Cons:</strong> No tests/CI (manual work needed)
+<strong>When:</strong> Quick prototypes, survival gigs
+<strong>Reward:</strong> $500-1k Upwork gigs
+</pre>
+
+<h3>💾 SD BACKUP (Always Do This)</h3>
+<pre class="safe">
+cp -r ~/root_2026 /sdcard/root_2026_$(date +%Y%m%d)
+<strong>Survives:</strong> Termux crashes, Android updates, phone wipes
+</pre>
+
+<script>
+function runSwarm() {
+  document.getElementById('output').innerHTML = `
+    <div class="swarm">
+    🐝 <b>SWARM DEPLOYED</b> (30% crash risk)<br>
+    → deepseek-coder: FastAPI core<br>
+    → llama3.2: Pytest suite<br>
+    → claude: Docker + CI/CD<br>
+    → agent_generator: Self-improving code<br>
+    <br><b>Reward:</b> ~/root_2026/agents/fastapi_* (complete $5k project)
+    </div>`;
+}
+
+function runSolo() {
+  document.getElementById('output').innerHTML = `
+    <div class="safe">
+    ⚔️ <b>SOLO SHOT FIRED</b> (95% success)<br>
+    → deepseek-coder: FastAPI + JWT + Docker (2min)<br>
+    <br><b>Reward:</b> ~/root_2026/agents/fastapi_inventory/ (deployable API)
+    </div>`;
+}
+
+function backupSD() {
+  document.getElementById('output').innerHTML = `
+    <div class="safe">
+    💾 <b>SD BACKUP COMPLETE</b><br>
+    /sdcard/root_2026_20260201/ ← Your factory lives forever<br>
+    <br><b>Status:</b> Crash-proof, wipe-proof, Android-proof
+    </div>`;
+}
+</script>
+
+<h3>🎯 SURVIVAL PATH (48hrs → $5k)</h3>
+<ol>
+<li><b>NOW:</b> ./run_factory.sh "FastAPI inventory API" → GitHub</li>
+<li><b>2hrs:</b> Deploy DigitalOcean droplet ($6/mo) → Portfolio</li>
+<li><b>Tonight:</b> 10 Upwork "FastAPI" proposals → $500 gigs</li>
+<li><b>Week:</b> 3 projects → $5k → Eat/shelter</li>
+</ol>
+
+<p><b>Current HP:</b> <span id="hp">100</span> | <b>Next crash risk:</b> <span id="risk">LOW</span></p>
+
+</body>
+</html>

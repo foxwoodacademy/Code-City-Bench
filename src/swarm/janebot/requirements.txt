@@ -1,0 +1,2 @@
+websockets==16.0
+# Add other dependencies as they are integrated

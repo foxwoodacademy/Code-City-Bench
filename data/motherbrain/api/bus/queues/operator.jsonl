@@ -1,0 +1,1 @@
+{"sender": "gemini_cli_agent", "timestamp": 1779183560.3555548, "event": "SYSTEM_TEST_SWEEP", "payload": {"command": "execute_system_test_sweep", "initiator": "gemini_cli_agent", "timestamp": 1779183560.3554904}}

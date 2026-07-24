@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModMind | Celestial Map</title>
+    <style>
+        :root {
+            --bg-color: #0a0a0f;
+            --core-color: #ffd700;
+            --inner-color: #4a90e2;
+            --outer-color: #9b59b6;
+            --archive-color: #444;
+            --text-color: #e0e0e0;
+            --accent-color: #f39c12;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #ui-layer {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--core-color);
+            margin: 0;
+            text-shadow: 0 0 10px var(--core-color);
+        }
+
+        .status-bar {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        #canvas-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            cursor: grab;
+        }
+
+        #canvas-container:active {
+            cursor: grabbing;
+        }
+
+        canvas {
+            display: block;
+        }
+
+        #info-panel {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            width: 300px;
+            background: rgba(20, 20, 30, 0.8);
+            border: 1px solid var(--outer-color);
+            border-radius: 8px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            display: none;
+            z-index: 10;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        #info-panel h2 {
+            margin-top: 0;
+            color: var(--core-color);
+            font-size: 1.2rem;
+        }
+
+        #info-panel p {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: #ccc;
+        }
+
+        .legend {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 0.8rem;
+            background: rgba(0,0,0,0.5);
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #333;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="ui-layer">
+        <h1>ModMind Celestial Map</h1>
+        <div class="status-bar">ModMind Order: <span id="status-val" style="color: #0f0;">STABLE</span> | Telemetry: <span id="telemetry-status" style="color: #ffd700;">CONNECTING</span></div>
+    </div>
+
+    <div id="info-panel">
+        <h2 id="node-name">Node Name</h2>
+        <p id="node-desc">Select a celestial body to view its properties.</p>
+        <div id="node-meta" style="font-family: monospace; font-size: 0.8rem; color: var(--accent-color);"></div>
+    </div>
+
+    <div class="legend">
+        <div class="legend-item"><div class="dot" style="background: var(--core-color);"></div> Nucleus (Thoth)</div>
+        <div class="legend-item"><div class="dot" style="background: var(--inner-color);"></div> ModMind Stack</div>
+        <div class="legend-item"><div class="dot" style="background: var(--outer-color);"></div> Dynamic Telemetry</div>
+        <div class="legend-item"><div class="dot" style="background: var(--archive-color);"></div> The Archive</div>
+    </div>
+
+    <div id="canvas-container">
+        <canvas id="saturnCanvas"></canvas>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('saturnCanvas');
+        const ctx = canvas.getContext('2d');
+        const infoPanel = document.getElementById('info-panel');
+        const nodeName = document.getElementById('node-name');
+        const nodeDesc = document.getElementById('node-desc');
+        const nodeMeta = document.getElementById('node-meta');
+        const telemetryStatus = document.getElementById('telemetry-status');
+
+        let width, height;
+        let nodes = [];
+        let animationFrame;
+        let time = 0;
+
+        const BASE_DATA = {
+            core: {
+                name: "Thoth Orchestrator",
+                desc: "The singularity of command. Coordinates the revenue funnel and triggers system-wide deployments.",
+                color: "#ffd700",
+                meta: "ROLE: CEO | STATUS: ACTIVE"
+            },
+            inner: [
+                { name: "Mrs. Higgins", desc: "The Front Office. Handles SaaS packages, lead closing, and invoicing.", color: "#4a90e2", meta: "ROLE: SALES" },
+                { name: "ZeroClaw Broker", desc: "The Labor Market. Bridges paid orders to worker execution.", color: "#4a90e2", meta: "ROLE: BROKER" },
+                { name: "Lough System", desc: "The Event Spine. Immutable audit log for payment reconciliation.", color: "#4a90e2", meta: "ROLE: AUDIT" },
+                { name: "DataCampus", desc: "The Curriculum. Manages labs and student records.", color: "#4a90e2", meta: "ROLE: EDUCATION" },
+                { name: "OpenClaw", desc: "The Engine. Underlying agentic logic and process supervision.", color: "#4a90e2", meta: "ROLE: FRAMEWORK" },
+                { name: "ModMind Dash", desc: "The Visualizer. Real-time monitoring of the event spine.", color: "#4a90e2", meta: "ROLE: UI" }
+            ],
+            outer: [
+                { name: "CodeMentor", desc: "AI Tutoring system with progressive skill trees.", color: "#9b59b6", meta: "TYPE: LAB" },
+                { name: "Kimi-Code", desc: "Specialized coding assistant with progression engines.", color: "#9b59b6", meta: "TYPE: LAB" },
+                { name: "Code-City", desc: "Emergent architectural experiment in agentic building.", color: "#9b59b6", meta: "TYPE: LAB" },
+                { name: "Veritas", desc: "Truth-verification and logical auditing engine.", color: "#9b59b6", meta: "TYPE: VERIFICATION" },
+                { name: "Vertical Radar", desc: "Deep-dive niche analysis and industry intelligence.", color: "#9b59b6", meta: "TYPE: ANALYTICS" },
+                { name: "Whorl", desc: "Recursive pattern analysis and structural validation.", color: "#9b59b6", meta: "TYPE: VERIFICATION" },
+                { name: "ActionAgent", desc: "Task-oriented deployment and execution logic.", color: "#9b59b6", meta: "TYPE: TOOL" },
+                { name: "Negotiator", desc: "Strategic communication and agreement agents.", color: "#9b59b6", meta: "TYPE: TOOL" }
+            ],
+            void: {
+                name: "The Archive",
+                desc: "Where entropy is neutralized. Preserves the history of failure and deprecated versions.",
+                color: "#444",
+                meta: "STATE: COLD STORAGE"
+            }
+        };
+
+        function resize() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+
+        async function fetchTelemetry() {
+            try {
+                const response = await fetch('http://localhost:8000/telemetry');
+                if (response.ok) {
+                    const data = await response.json();
+                    telemetryStatus.innerText = "ACTIVE";
+                    telemetryStatus.style.color = "#0f0";
+                    
+                    // Re-initialize with BASE_DATA to ensure all rings exist
+                    initNodes();
+
+                    // Inject dynamic telemetry agents into the outer ring or as new entities
+                    if (data.agents && data.agents.length > 0) {
+                        data.agents.forEach((agent, i) => {
+                            nodes.push({
+                                name: agent.agent_id || "Unknown Agent",
+                                desc: `Ecosystem activity detected: ${JSON.stringify(agent.insight_data || agent)}`,
+                                color: "#f39c12", // Accent gold for active telemetry
+                                meta: `TELEMETRY | EVENT: ${agent.event_type || 'GENERIC'}`,
+                                x: 0, y: 0, radius: 8,
+                                orbit: 350 + (i * 15), // Offset orbits so they don't overlap static nodes
+                                speed: 0.003 + (i * 0.0005),
+                                angle: (i / data.agents.length) * Math.PI * 2
+                            });
+                        });
+                    }
+                }
+            } catch (err) {
+                telemetryStatus.innerText = "OFFLINE (USING LOCAL CACHE)";
+                telemetryStatus.style.color = "#f00";
+                initNodes();
+            }
+        }
+
+        function initNodes() {
+            nodes = [];
+            
+            // Core
+            nodes.push({ ...BASE_DATA.core, x: 0, y: 0, radius: 15, orbit: 0, speed: 0, angle: 0 });
+
+            // Inner Ring
+            BASE_DATA.inner.forEach((d, i) => {
+                nodes.push({ 
+                    ...d, 
+                    x: 0, y: 0, radius: 8, 
+                    orbit: 180, 
+                    speed: 0.005 + (i * 0.001), 
+                    angle: (i / BASE_DATA.inner.length) * Math.PI * 2 
+                });
+            });
+
+            // Outer Ring
+            BASE_DATA.outer.forEach((d, i) => {
+                nodes.push({ 
+                    ...d, 
+                    x: 0, y: 0, radius: 6, 
+                    orbit: 350, 
+                    speed: 0.002 + (i * 0.0005), 
+                    angle: (i / BASE_DATA.outer.length) * Math.PI * 2 
+                });
+            });
+
+            // The Void (Fixed distant point)
+            nodes.push({ 
+                ...BASE_DATA.void, 
+                x: 0, y: 0, radius: 12, 
+                orbit: 500, 
+                speed: 0, 
+                angle: Math.PI 
+            });
+        }
+
+        function draw() {
+            ctx.fillStyle = '#0a0a0f';
+            ctx.fillRect(0, 0, width, height);
+
+            const centerX = width / 2;
+            const centerY = height / 2;
+
+            // Draw Orbit Paths
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+            ctx.lineWidth = 1;
+            [180, 350, 500].forEach(r => {
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, r, 0, Math.PI * 2);
+                ctx.stroke();
+            });
+
+            time += 1;
+
+            nodes.forEach(node => {
+                node.angle += node.speed;
+                node.x = centerX + Math.cos(node.angle) * node.orbit;
+                node.y = centerY + Math.sin(node.angle) * node.orbit;
+
+                // Glow effect
+                const gradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, node.radius * 3);
+                gradient.addColorStop(0, node.color);
+                gradient.addColorStop(1, 'transparent');
+                
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(node.x, node.y, node.radius * 3, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = '#fff';
+                ctx.beginPath();
+                ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = '#888';
+                ctx.font = '10px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText(node.name, node.x, node.y + node.radius + 15);
+            });
+
+            animationFrame = requestAnimationFrame(draw);
+        }
+
+        canvas.addEventListener('click', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const mx = e.clientX - rect.left;
+            const my = e.clientY - rect.top;
+
+            let found = false;
+            nodes.forEach(node => {
+                const dist = Math.hypot(node.x - mx, node.y - my);
+                if (dist < node.radius * 4) {
+                    nodeName.innerText = node.name;
+                    nodeDesc.innerText = node.desc;
+                    nodeMeta.innerText = node.meta;
+                    infoPanel.style.display = 'block';
+                    found = true;
+                }
+            });
+
+            if (!found) infoPanel.style.display = 'none';
+        });
+
+        // Initialize and begin loops
+        initNodes();
+        draw();
+
+        // Dynamic Polling (Every 3 seconds)
+        fetchTelemetry();
+        setInterval(fetchTelemetry, 3000);
+    </script>
+</body>
+</html>

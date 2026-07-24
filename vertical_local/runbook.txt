@@ -1,0 +1,7 @@
+./run.sh
+python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt && python main.py
+python app.py
+python app.py
+
+# Bardilio Note:
+Has Python deps. Hope they pinned versions. Polyglot chaos detected. Enjoy merging contexts. (Bardildo: harsh truth incoming)

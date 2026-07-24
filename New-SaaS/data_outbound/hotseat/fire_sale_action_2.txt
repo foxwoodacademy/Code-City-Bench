@@ -1,0 +1,5 @@
+LIQUIDITY ALERT
+====================
+SECTOR/REGION: Regional bank sector (Southwest)
+SIGNAL: Default rates and liquidity concerns are increasing.
+PLAYBOOK: Review liquidity reserves and counterparty limits.

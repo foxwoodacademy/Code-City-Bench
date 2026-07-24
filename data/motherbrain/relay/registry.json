@@ -1,0 +1,30 @@
+{
+    "subsystems": {
+        "CodeCity": {
+            "status": "online",
+            "endpoint": "labs/Code-City-Claude",
+            "type": "visualizer"
+        },
+        "VerticalAI": {
+            "status": "online",
+            "endpoint": "labs/vertical_ai",
+            "type": "analytics"
+        },
+        "aFiREfly": {
+            "status": "offline",
+            "endpoint": "labs/aFIREFLY",
+            "type": "scout"
+        },
+        "MoltEngine": {
+            "status": "online",
+            "endpoint": "molt_engine/src/core/molt.py",
+            "type": "optimizer"
+        },
+        "KimiMentor": {
+            "status": "online",
+            "endpoint": "labs/Kimi-CodeMentor-MVP",
+            "type": "mentor"
+        }
+    },
+    "last_sync": 1779182180.325816
+}

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="node_modules/xterm/css/xterm.css" />
+    <script src="node_modules/xterm/lib/xterm.js"></script>
+  </head>
+  <body>
+    <div id="terminal"></div>
+    <script>
+      var term = new Terminal();
+      term.open(document.getElementById('terminal'));
+      term.write('Welcome to CodeMentor SaaS Demo!\r\n');
+      term.write('This is a web-based preview of the CLI.\r\n');
+    </script>
+  </body>
+</html>

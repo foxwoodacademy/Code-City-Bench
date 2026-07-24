@@ -1,0 +1,94 @@
+~ $ python vertical_ai.py --text "analyze your own architecture and identify the three most important improvements needed"
+  Checking providers... Gemini✓ | Groq✓ | Ollama✓ (6 models)
+
+  Input: [text] analyze your own architecture and identify the three most im...
+  Session: vai_e5f40e28e719
+
+
+============================================================
+  VERTICAL AI — BOARDROOM IN SESSION
+============================================================
+  Target: analyze your own architecture and identify the three most im...                                               Input type: text
+============================================================
+
+── ROUND 1 ──────────────────────────────────────────
+  [CFO] thinking... (ollama/deepseek-r1:1.5b)
+  To improve the financial model's effectiveness, consider implementing:
+
+1. **Advanced Predictive Analytics**: Use AI to predict expenses and revenue trends beyond current budgets, allowing for better cost management.
+2. **Market-Driven Adjustments**: Incorporate market analysis tools to refine revenue projections, ensuring confidence in sales targets and cash flow optimization.
+3. **Integrated Financial Model**: Combine predictions with actual performance metrics, such as variance analysis, to optimize cash flows without overcommitting.
+
+These improvements will enhance accuracy while considering ROI timelines.
+
+  [CMO] thinking... (ollama/deepseek-r1:1.5b)
+  To enhance the financial model's effectiveness, we propose three targeted improvements:
+
+1. **Advanced Predictive Analytics with Data Validation**: Implement AI for predictive analytics while ensuring data originates from diverse sources and validated for consistency and accuracy.
+
+2. **Market-Driven Adjustments with External Insights**: Update the model to incorporate macroeconomic trends and consumer behavior changes by integrating historical performance against current trends, allowing real-time adjustments based on evolving market conditions.
+3. **Integrated Model with Scenario Analysis**: Develop an integrated financial model that combines predictions with actual metrics, using scenario analysis to prepare for various economic outcomes, ensuring robust contingency planning before proceeding with market expansion or product launches.
+
+  [CRO] thinking...
+  ❌ CRO failed: All model providers failed:
+Claude: name '_call_claude' is not defined
+Gemini: 429 Client Error: Too Many Requests for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyCQhbJ-Ver16Zva5GBM_CGIKInMdF-gvqo
+Groq: 400 Client Error: Bad Request for url: https://api.groq.com/openai/v1/chat/completions
+Ollama: HTTPConnectionPool(host='127.0.0.1', port=11434): Read timed out. (read timeout=120)
+  [MARKET_ANALYST] thinking...
+  ❌ MARKET_ANALYST failed: All model providers failed:
+Claude: name '_call_claude' is not defined
+Gemini: 429 Client Error: Too Many Requests for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyCQhbJ-Ver16Zva5GBM_CGIKInMdF-gvqo
+Groq: 400 Client Error: Bad Request for url: https://api.groq.com/openai/v1/chat/completions
+Ollama: HTTPConnectionPool(host='127.0.0.1', port=11434): Read timed out. (read timeout=120)
+  [DEVIL] thinking... (ollama/deepseek-r1:1.5b)
+  To improve the financial model's effectiveness, consider implementing:
+
+1. **Machine Learning Integration**: Leverage advanced machine learning algorithms to predict expenses and revenue trends with real-time adjustments, ensuring accurate forecasting without relying solely on historical data.
+
+2. **Dynamic Optimization Framework**: Use dynamic optimization techniques to monitor performance metrics in real time and automatically adjust predictions based on evolving market conditions or external factors, providing actionable insights quickly.
+
+3. **Iterative Improvement Loop**: Establish a loop where the model continuously learns from new data, refining its predictions over time while maintaining computational efficiency and ensuring quick decision-making capabilities.
+
+These improvements aim to enhance accuracy while considering ROI timelines, addressing the limitations of static approaches and offering a proactive, adaptive solution that is both theoretically sound and practically implementable.
+
+── ROUND 2 ──────────────────────────────────────────
+  [CFO] thinking... (ollama/deepseek-r1:1.5b)
+  To enhance the financial model's effectiveness, consider implementing:
+
+1. **AI for Predictive Analytics**: Use advanced AI to predict trends beyond current budgets, ensuring accurate forecasting without solely relying on historical data.
+
+2. **External Insights Integration**: Incorporate external market insights and economic data into the model to provide real-time adjustments based on evolving conditions.       
+3. **Integrated Model with Scenario Analysis and Dynamic Optimization**: Develop a comprehensive model that combines predictions with actual metrics, using scenario analysis for various outcomes and dynamic optimization for real-time adjustments.
+These improvements balance accuracy with adaptability, offering both theoretical soundness and practical implementability.
+
+  [CMO] thinking... (ollama/deepseek-r1:1.5b)
+  Your analysis highlights several key areas where the financial model's architecture could benefit from improvement. To enhance accuracy while considering ROI timelines, implement:
+                                                           1. **Data Integration**: Ensure all models and data sources are unified to avoid inconsistencies and improve data quality.
+2. **API Consistency**: Standardize API requests across providers to maintain reliability and reduce errors in model outputs.
+
+3. **Scalability Enhancements**: Improve system resources (CPU, memory) and implement load balancing or caching mechanisms to prevent timeouts and optimize performance under heavy usage.
+
+  [CRO] thinking...
+  ❌ CRO failed: All model providers failed:
+Claude: name '_call_claude' is not defined
+Gemini: 429 Client Error: Too Many Requests for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyCQhbJ-Ver16Zva5GBM_CGIKInMdF-gvqo Groq: 400 Client Error: Bad Request for url: https://api.groq.com/openai/v1/chat/completions
+Ollama: HTTPConnectionPool(host='127.0.0.1', port=11434): Read timed out. (read timeout=120)                                  [MARKET_ANALYST] thinking...9                                 ❌ MARKET_ANALYST failed: All model providers failed:       Claude: name '_call_claude' is not defined
+Gemini: 429 Client Error: Too Many Requests for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyCQhbJ-Ver16Zva5GBM_CGIKInMdF-gvqo                                                   Groq: 400 Client Error: Bad Request for url: https://api.groq.com/openai/v1/chat/completions
+Ollama: HTTPConnectionPool(host='127.0.0.1', port=11434): Read timed out. (read timeout=120)
+  [DEVIL] thinking...                                        ❌ DEVIL failed: All model providers failed:
+Claude: name '_call_claude' is not defined                 Gemini: 429 Client Error: Too Many Requests for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyCQhbJ-Ver16Zva5GBM_CGIKInMdF-gvqo
+Groq: 400 Client Error: Bad Request for url: https://api.groq.com/openai/v1/chat/completions                          Ollama: HTTPConnectionPool(host='127.0.0.1', port=11434): Read timed out. (read timeout=120)
+
+── SYNTHESIS ────────────────────────────────────────────
+  Synthesizing boardroom positions... (ollama/llama3.2:1b)
+
+============================================================                                                            VERTICAL AI — FRACTAL SIMULATION
+  3 tracks × 4 iterations each
+============================================================
+
+  Generating strategic tracks...
+  ❌ Track generation failed: All model providers failed:
+Claude: name '_call_claude' is not defined
+Gemini: 429 Client Error: Too Many Requests for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyCQhbJ-Ver16Zva5GBM_CGIKInMdF-gvqo                                                   Groq: 400 Client Error: Bad Request for url: https://api.groq.com/openai/v1/chat/completions                          Ollama: HTTPConnectionPool(host='127.0.0.1', port=11434): Read timed out. (read timeout=120)                          ❌ Simulation produced no tracks. Exiting.
+~ $ 9

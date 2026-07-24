@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "name": "CodeMentor-CityBridge",
+    "path": "/storage/emulated/0/RootBase/CodeMentor-CityBridge",
+    "languages": {
+      "python": 1
+    },
+    "entrypoints": [
+      "start.sh",
+      "bridge.py"
+    ],
+    "package_json": false,
+    "requirements": 0,
+    "readme_excerpt": "# CodeMentor-CityBridge\n\nConnects your VS Code extension (CodeMentor-MVP) to your gamified debugger (Code City).\n\n## Start",
+    "last_modified": "2026-05-20T16:54:01.844999"
+  },
+  "runbook": {
+    "commands": [
+      "python bridge.py"
+    ],
+    "env": [],
+    "notes": []
+  },
+  "bard_note": "Can't tell what this does \u2014 it's a mystery wrapped in a folder. (Bardildo: harsh truth incoming)"
+}

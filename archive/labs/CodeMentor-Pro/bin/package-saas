@@ -1,0 +1,30 @@
+#!/bin/bash
+# Package CodeMentor for SaaS distribution
+# Creates: tarball + Docker stub + install script
+
+BASE="/storage/emulated/0/RootBase/CodeMentor-MVP"
+DIST="$BASE/dist"
+VERSION="$(date +%Y.%m.%d)-$(git rev-parse --short HEAD 2>/dev/null || echo 'mvp')"
+
+mkdir -p "$DIST"
+echo "[+] Packaging CodeMentor v$VERSION"
+
+# Create install script for customers
+cat > "$DIST/install.sh" << EOF
+#!/bin/bash
+# CodeMentor SaaS Installer
+INSTALL_DIR="\${1:-\$HOME/.codementor}"
+echo "Installing to \$INSTALL_DIR..."
+mkdir -p "\$INSTALL_DIR"
+cp -r bin lib config analytics "\$INSTALL_DIR/"
+echo 'export PATH="\$INSTALL_DIR/bin:\$PATH"' >> ~/.bashrc
+echo "[+] Installed. Run: mentor --setup"
+EOF
+chmod +x "$DIST/install.sh"
+
+# Create tarball
+tar czf "$DIST/codementor-$VERSION.tar.gz" -C "$BASE" bin lib config analytics README.md 2>/dev/null || echo "tar failed, zipping instead"
+cd "$BASE" && zip -r "$DIST/codementor-$VERSION.zip" bin lib config analytics README.md 2>/dev/null || true
+
+echo "[+] Distribution ready in $DIST"
+ls -la "$DIST"

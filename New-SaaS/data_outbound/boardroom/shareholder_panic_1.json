@@ -1,0 +1,5 @@
+{
+  "alert": "Exposure review: Commercial REIT sector",
+  "panic_trigger": "Heavy outflows and elevated put volume.",
+  "action_mandate": "Review risk and hedge assumptions immediately."
+}

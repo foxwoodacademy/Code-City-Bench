@@ -1,0 +1,41 @@
+Coach_Bleak_Project_Markdown_Summary
+
+PART 2: Markdown Summary Template (Use in LLM Prompts)
+This is your ready-to-copy compressed boot prompt in Markdown. You can paste this into any LLM:
+
+🗃️ Nightmare Engine Context: Boot Summary
+Project: Coach Bleak Legal War Machine
+Codename(s): Nightmare Engine / Accountability Weapon
+Purpose: Government watchdog tool with document parsing, legal red flag detection, and tactical auto-action
+
+✅ Completed Modules:
+Module A: Apache Tika ingestion → PostgreSQL → spaCy entity tagging
+
+Module B: Entity parser → Red flag ruleset (bias, misconduct, 241/242)
+
+Module C: FOIA Micro-Agent → Generates request letter from user fields
+
+Aura (WIP): Interactive assistant micro-agent with context hooks + tool suggestor
+
+🔄 In Progress:
+Module D: Pattern Matcher for judicial misconduct & RICO behavior
+
+Checklist-to-Diagram Sync
+
+User-selectable Initiative Modes
+
+Auto-sim Pathing (Edge of Tomorrow-style outcomes)
+
+🎯 Next Objective:
+Pick one:
+
+“Continue Module D”
+
+“Diagram System Tree”
+
+“Build Local Test UI”
+
+“Upgrade Aura into Active NPC”
+
+“Create GitHub layout and dump”
+

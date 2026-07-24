@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kimi-Code Progress Report</title>
+    <style>
+        :root {
+            --bg-primary: #0a0a1a;
+            --bg-secondary: #1a1a2e;
+            --text-primary: #e0e0e0;
+            --accent-green: #00ff88;
+            --accent-blue: #60a5fa;
+            --accent-yellow: #fbbf24;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            padding: 40px;
+        }
+
+        .report-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid var(--accent-green);
+        }
+
+        .report-title {
+            font-size: 2.5em;
+            color: var(--accent-green);
+            margin-bottom: 10px;
+        }
+
+        .report-date {
+            color: #888;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .summary-card {
+            background: var(--bg-secondary);
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .summary-value {
+            font-size: 2em;
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+
+        .summary-label {
+            color: #888;
+            margin-top: 5px;
+        }
+
+        .section {
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            color: var(--accent-blue);
+            margin-bottom: 20px;
+            font-size: 1.3em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+
+        th {
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+
+        .progress-bar {
+            height: 20px;
+            background: #333;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-green), var(--accent-blue));
+            border-radius: 10px;
+        }
+
+        .achievement {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0,255,136,0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin: 5px;
+            border: 1px solid var(--accent-green);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="report-header">
+        <h1 class="report-title">🧠 Kimi-Code Progress Report</h1>
+        <p class="report-date">Generated: {{date}}</p>
+    </div>
+
+    <div class="summary-grid">
+        <div class="summary-card">
+            <div class="summary-value">{{global.level}}</div>
+            <div class="summary-label">Current Level</div>
+        </div>
+        <div class="summary-card">
+            <div class="summary-value">{{global.xp}}</div>
+            <div class="summary-label">Total XP</div>
+        </div>
+        <div class="summary-card">
+            <div class="summary-value">{{global.streak}}</div>
+            <div class="summary-label">Day Streak</div>
+        </div>
+        <div class="summary-card">
+            <div class="summary-value">{{total_challenges}}</div>
+            <div class="summary-label">Challenges Completed</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">🎓 Skill Progression</h2>
+        <table>
+            <tr><th>Skill</th><th>Level</th><th>Progress</th></tr>
+            {% for skill, level in skills.items() %}
+            <tr>
+                <td>{{skill.replace('_', ' ').title()}}</td>
+                <td>{{level|round(1)}}/100</td>
+                <td>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: {{level}}%"></div>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">🎩 Hat Mastery</h2>
+        <table>
+            <tr><th>Hat</th><th>Level</th><th>XP</th><th>Challenges</th></tr>
+            {% for hat, data in hats.items() %}
+            <tr>
+                <td>{{hat.title()}} {{ {'white':'📊','red':'🔥','black':'⚠️','yellow':'✨','green':'🌱','blue':'🧠'}[hat] }}</td>
+                <td>{{data.level}}</td>
+                <td>{{data.xp}}</td>
+                <td>{{data.challenges}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">🏆 Achievements</h2>
+        {% for achievement in achievements %}
+        <span class="achievement">🏅 {{achievement}}</span>
+        {% endfor %}
+    </div>
+
+    <div class="footer">
+        <p>Kimi-Code v1.0.0 • Training the next generation of developers</p>
+        <p>Keep coding. Keep growing. 🚀</p>
+    </div>
+</body>
+</html>

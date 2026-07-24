@@ -1,0 +1,442 @@
+[🛡️] SHIELD ACTIVE. You are the only one in the City.
+
+  ______              _____ _
+ |___  /             / ____| |
+    / / ___ _ __ ___| |    | | __ ___      __
+   / / / _ \ '__/ _ \ |    | |/ _` \ \ /\ / /
+  / /_|  __/ | | (_) | |____| | (_| |\ V  V /
+ /_____\___|_|  \___/ \_____|_|\__,_| \_/\_/
+
+[SYSTEM]: Unindexed Status ACTIVE
+[MISSION]: Vanish. Build. Secure the 4 Walls.
+[PENDING]: Check email for 'Upwork API Approval'
+----------------------------------------------------
+~/Clawses/zeroclaw-bridge $ molt
+No command molt found, did you mean:
+ Command melt in package mlt
+ Command mold in package mold
+ Command most in package most
+~/Clawses/zeroclaw-bridge $ # 1. Find the exact path and set the alias
+~/Clawses/zeroclaw-bridge $ MB_PATH=$(find ~ -name "*MoltBleak*" -type d -limit 1)/molt_engine.py
+find: unknown predicate `-limit'
+~/Clawses/zeroclaw-bridge $
+~/Clawses/zeroclaw-bridge $ # 2. Add it to your shell config
+~/Clawses/zeroclaw-bridge $ echo "alias molt='python3 $MB_PATH'" >> ~/.zshrc
+~/Clawses/zeroclaw-bridge $ echo "alias mb='python3 $MB_PATH'" >> ~/.zshrc
+
+~/Clawses/zeroclaw-bridge $
+~/Clawses/zeroclaw-bridge $ # 3. Refresh the shell
+~/Clawses/zeroclaw-bridge $ source ~/.zshrc
+~/Clawses/zeroclaw-bridge $
+~/Clawses/zeroclaw-bridge $ echo "🚀 [MOLTBLEAK] Engine Primed. Use 'molt' or 'mb' to propel."🚀 [MOLTBLEAK] Engine Primed. Use 'molt' or 'mb' to propel.
+~/Clawses/zeroclaw-bridge $
+~/Clawses/zeroclaw-bridge $ molt --input=datacamp/extracted_emails.json --task="Format for Revenue Form" --output=final_submission.aug
+python3: can't open file '/molt_engine.py': [Errno 2] No such file or directory
+~/Clawses/zeroclaw-bridge $
+~/Clawses/zeroclaw-bridge $ # 1. Clear the broken alias
+~/Clawses/zeroclaw-bridge $ unalias molt 2>/dev/null
+~/Clawses/zeroclaw-bridge $
+~/Clawses/zeroclaw-bridge $ # 2. Find the REAL path and set it (Handling the 'MoltBleak' folder)
+~/Clawses/zeroclaw-bridge $ REAL_MOLT=$(find ~ -name "molt_engine.py" | head -n 1)
+find: ‘/data/data/com.termux/files/home/.ollama/models/manifests/registry.ollama.ai’: Permission denied
+~/Clawses/zeroclaw-bridge $
+~/Clawses/zeroclaw-bridge $ # 3. Create a functional alias that works from any directory
+~/Clawses/zeroclaw-bridge $ alias molt="python3 $REAL_MOLT"
+~/Clawses/zeroclaw-bridge $
+~/Clawses/zeroclaw-bridge $ # 4. Test the propulsion again
+~/Clawses/zeroclaw-bridge $ molt --input=datacamp/extracted_emails.json --task="Format for Revenue Form" --output=final_submission.aug
+unknown option --input=datacamp/extracted_emails.json
+usage: python3 [option] ... [-c cmd | -m mod | file | -] [arg] ...
+Try `python -h' for more information.
+~/Clawses/zeroclaw-bridge $ # 1. Find the file specifically in your home folders, ignoring the errors
+~/Clawses/zeroclaw-bridge $ REAL_MOLT=$(find ~ -name "molt_engine.py" 2>/dev/null | head -n 1)
+~/Clawses/zeroclaw-bridge $
+~/Clawses/zeroclaw-bridge $ # 2. Set the alias (This works even if the find command was slow)
+~/Clawses/zeroclaw-bridge $ alias molt="python3 $REAL_MOLT"
+~/Clawses/zeroclaw-bridge $
+~/Clawses/zeroclaw-bridge $ # 3. Check if we found it
+~/Clawses/zeroclaw-bridge $ if [ -z "$REAL_MOLT" ]; then
+>     echo "❌ Still can't find 'molt_engine.py'. Let's check the folder directly:"
+>     ls -R ~/Clawses | grep -i "molt"
+> else
+>     echo "✅ Found it at: $REAL_MOLT"
+>     echo "🚀 Triggering Propulsion..."
+>     molt --input=datacamp/extracted_emails.json --task="Format for Revenue Form" --output=final_submission.aug
+> fi
+❌ Still can't find 'molt_engine.py'. Let's check the folder directly:
+moltbot
+/data/data/com.termux/files/home/Clawses/openclaw/openclaw-main/packages/moltbot:
+/data/data/com.termux/files/home/Clawses/openclaw/openclaw-main/packages/moltbot/scripts:
+moltbot
+/data/data/com.termux/files/home/Clawses/zeroclaw-android/openclaw/openclaw-main/packages/moltbot:
+/data/data/com.termux/files/home/Clawses/zeroclaw-android/openclaw/openclaw-main/packages/moltbot/scripts:
+~/Clawses/zeroclaw-bridge $
+~/Clawses/zeroclaw-bridge $ # 1. Set the correct path to the moltbot script we found
+~/Clawses/zeroclaw-bridge $ MOLT_EXEC=$(find ~/Clawses -name "moltbot" -type f | head -n 1)
+~/Clawses/zeroclaw-bridge $
+~/Clawses/zeroclaw-bridge $ # 2. Set the alias (making it executable just in case)
+~/Clawses/zeroclaw-bridge $ chmod +x "$MOLT_EXEC"
+chmod: cannot access '': No such file or directory
+~/Clawses/zeroclaw-bridge $ alias molt="$MOLT_EXEC"
+
+~/Clawses/zeroclaw-bridge $
+~/Clawses/zeroclaw-bridge $ # 3. RUN THE PROPULSION
+~/Clawses/zeroclaw-bridge $ echo "🚀 [MOLT] Propulsion Engine: IGNITION."
+🚀 [MOLT] Propulsion Engine: IGNITION.
+~/Clawses/zeroclaw-bridge $ molt --input=datacamp/extracted_emails.json --task="Format for Revenue Form" --output=final_submission.aug
+bash: --input=datacamp/extracted_emails.json: No such file or directory
+~/Clawses/zeroclaw-bridge $
+~/Clawses/zeroclaw-bridge $ # 1. Hard-code the absolute path we saw in your previous ls
+~/Clawses/zeroclaw-bridge $ MOLT_EXEC="/data/data/com.termux/files/home/Clawses/openclaw/openclaw-main/packages/moltbot/scripts/moltbot"
+~/Clawses/zeroclaw-bridge $
+~/Clawses/zeroclaw-bridge $ # 2. Force permissions and set the alias correctly
+~/Clawses/zeroclaw-bridge $ chmod +x "$MOLT_EXEC"
+chmod: cannot access '/data/data/com.termux/files/home/Clawses/openclaw/openclaw-main/packages/moltbot/scripts/moltbot': No such file or directory
+~/Clawses/zeroclaw-bridge $ alias molt="$MOLT_EXEC"
+~/Clawses/zeroclaw-bridge $
+~/Clawses/zeroclaw-bridge $ # 3. RUN THE PROPULSION (Ensuring the input file exists)
+~/Clawses/zeroclaw-bridge $ if [ -f "datacamp/extracted_emails.json" ]; then
+>     echo "🚀 [MOLT] Propulsion Engine: IGNITION."
+>     molt --input=datacamp/extracted_emails.json --task="Format for Revenue Form" --output=final_submission.aug
+> else
+>     echo "⚠️ [ERROR] Still can't see the input file. Checking directory..."
+>     ls -R datacamp
+> fi
+⚠️ [ERROR] Still can't see the input file. Checking directory...
+ls: cannot access 'datacamp': No such file or directory
+~/Clawses/zeroclaw-bridge $ ~/Clawses/zeroclaw-bridge $ # 1. Hard-code the absolute path we saw in your previous ls
+bash: /data/data/com.termux/files/home/Clawses/zeroclaw-bridge: Is a directory
+~/Clawses/zeroclaw-bridge $ ~/Clawses/zeroclaw-bridge $ MOLT_EXEC="/data/data/com.termux/files/home/Clawses/openclaw/openclaw-main/packages/moltbot/scripts/moltbot"
+bash: /data/data/com.termux/files/home/Clawses/zeroclaw-bridge: Is a directory
+~/Clawses/zeroclaw-bridge $ ~/Clawses/zeroclaw-bridge $
+bash: /data/data/com.termux/files/home/Clawses/zeroclaw-bridge: Is a directory
+~/Clawses/zeroclaw-bridge $ ~/Clawses/zeroclaw-bridge $ # 2. Force permissions and set the alias correctly
+bash: /data/data/com.termux/files/home/Clawses/zeroclaw-bridge: Is a directory
+~/Clawses/zeroclaw-bridge $ ~/Clawses/zeroclaw-bridge $ chmod +x "$MOLT_EXEC"
+bash: /data/data/com.termux/files/home/Clawses/zeroclaw-bridge: Is a directory
+~/Clawses/zeroclaw-bridge $ chmod: cannot access '/data/data/com.termux/files/home/Clawses/openclaw/openclaw-main/packages/moltbot/scripts/moltbot': No such file or directory
+No command chmod: found, did you mean:
+ Command chmod in package coreutils
+~/Clawses/zeroclaw-bridge $ ~/Clawses/zeroclaw-bridge $ alias molt="$MOLT_EXEC"
+bash: /data/data/com.termux/files/home/Clawses/zeroclaw-bridge: Is a directory
+~/Clawses/zeroclaw-bridge $ ~/Clawses/zeroclaw-bridge $
+bash: /data/data/com.termux/files/home/Clawses/zeroclaw-bridge: Is a directory
+~/Clawses/zeroclaw-bridge $ ~/Clawses/zeroclaw-bridge $ # 3. RUN THE PROPULSION (Ensuring the input file exists)
+bash: /data/data/com.termux/files/home/Clawses/zeroclaw-bridge: Is a directory
+~/Clawses/zeroclaw-bridge $ ~/Clawses/zeroclaw-bridge $ if [ -f "datacamp/extracted_emails.json" ]; then
+bash: syntax error near unexpected token `then'
+~/Clawses/zeroclaw-bridge $ >     echo "🚀 [MOLT] Propulsion Engine: IGNITION."
+🚀 [MOLT] Propulsion Engine: IGNITION.: command not found
+~/Clawses/zeroclaw-bridge $ >     molt --input=datacamp/extracted_emails.json --task="Format for Revenue Form" --output=final_submission.aug
+bash: --input=datacamp/extracted_emails.json: No such file or directory
+~/Clawses/zeroclaw-bridge $ > else
+~/Clawses/zeroclaw-bridge $ >     echo "⚠️ [ERROR] Still can't see the input file. Checking directory..."
+⚠️ [ERROR] Still can't see the input file. Checking directory...: command not found
+~/Clawses/zeroclaw-bridge $ >     ls -R datacamp
+No command -R found, did you mean:
+ Command ab in package apache2
+ Command at in package at
+ Command bc in package bc
+ Command as in package binutils
+ Command bk in package bk
+ Command nc in package busybox
+ Command cc in package clang
+ Command [ in package coreutils
+ Command lp in package cups
+ Command d8 in package d8
+ Command sh in package dash
+ Command dx in package dx
+ Command ed in package ed
+ Command ef in package electric-fence
+ Command et in package et
+ Command fd in package fd
+ Command fm in package fm
+ Command fx in package fx
+ Command dl in package gatling
+ Command gh in package gh
+ Command gs in package ghostscript
+ Command gn in package gn
+ Command go in package golang
+ Command gm in package graphicsmagick
+ Command gc in package graphviz
+ Command gw in package gw
+ Command hx in package helix
+ Command hh in package hstr
+ Command hz in package hz
+ Command i3 in package i3
+ Command ip in package iproute2
+ Command iw in package iw from the root-repo repository
+ Command jo in package jo
+ Command jq in package jq
+ Command k in package kona
+ Command lf in package lf
+ Command pl in package libgnustep-base
+ Command h3 in package libuber-h3
+ Command ld in package lld
+ Command ar in package llvm
+ Command lr in package lr
+ Command lx in package lux-cli
+ Command m4 in package m4
+ Command mc in package mc
+ Command ml in package mercury
+ Command mg in package mg
+ Command al in package mono
+ Command ts in package moreutils
+ Command lz in package mtools
+ Command mu in package mu
+ Command mr in package myrepos
+ Command sc in package n-t-roff-sc
+ Command ne in package ne
+ Command ex in package neovim,neovim-nightly
+ Command nc in package netcat-openbsd
+ Command nc in package nmap
+ Command pp in package nss-utils
+ Command nu in package nushell
+ Command nx in package nxengine
+ Command ol in package ol
+ Command iv in package openimageio
+ Command o in package orbiton
+ Command 7z in package p7zip
+ Command gp in package pari
+ Command pb in package pb
+ Command ps in package procps
+ Command pd in package proot-distro
+ Command pv in package pv
+ Command q in package q-dns-client
+ Command r2 in package radare2
+ Command rc in package rc
+ Command ci in package rcs
+ Command rg in package ripgrep
+ Command rq in package rq
+ Command ri in package ruby-ri
+ Command sv in package runit
+ Command sd in package sd
+ Command ag in package silversearcher-ag
+ Command sl in package sl
+ Command st in package st
+ Command sr in package surfraw
+ Command pt in package tcllib
+ Command am in package termux-am
+ Command df in package termux-tools
+ Command ht in package texlive-bin
+ Command sn in package tin-summer
+ Command tf in package tinyfugue
+ Command ug in package ugrep
+ Command up in package up
+ Command ul in package util-linux
+ Command cu in package uucp
+ Command uv in package uv
+ Command ex in package vim
+ Command ex in package vim-gtk
+ Command vt in package virustotal-cli
+ Command vi in package vis
+ Command wg in package wireguard-tools
+ Command xh in package xh
+ Command X in package xorg-server
+ Command xz in package xz-utils
+ Command ya in package yazi
+ Command yq in package yq
+ Command z3 in package z3
+ Command zk in package zk
+~/Clawses/zeroclaw-bridge $ > fi
+~/Clawses/zeroclaw-bridge $ ⚠️ [ERROR] Still can't see the input file. Checking directory...
+> ls: cannot access 'datacamp': No such file or directory^C
+~/Clawses/zeroclaw-bridge $ cd ~ && export PYTHONPATH=$PYTHONPATH:.
+~ $
+~ $ # 1. Find the REAL moltbot path automatically
+~ $ MOLT_EXEC=$(find . -name "moltbot" -type f | grep "scripts/moltbot" | head -n 1)
+find: ‘./.ollama/models/manifests/registry.ollama.ai’: Permission denied
+~ $
+~ $ # 2. Find the REAL datacamp path
+~ $ DATA_PATH=$(find . -name "extracted_emails.json" | head -n 1)
+find: ‘./.ollama/models/manifests/registry.ollama.ai’: Permission denied
+~ $
+~ $ # 3. If both exist, we fire. No aliases, just direct execution.
+~ $ if [ -z "$MOLT_EXEC" ] || [ -z "$DATA_PATH" ]; then
+>     echo "❌ Missing parts. Molt: [$MOLT_EXEC] Data: [$DATA_PATH]"
+>     echo "Let's look at your current home structure:"
+>     ls -d */
+> else
+>     echo "✅ Found Engine and Fuel. Launching..."
+>     chmod +x "$MOLT_EXEC"
+>     $MOLT_EXEC --input="$DATA_PATH" --task="Format for Revenue Form" --output="final_revenue_bullets.aug"
+>     echo "🏁 Propulsion Finished. Check for final_revenue_bullets.aug"
+> fi
+❌ Missing parts. Molt: [] Data: []
+Let's look at your current home structure:
+ 4ward-backend/
+ 4ward/
+ BenchPrep/
+ BeneFinder/
+ Butt-Fix/
+ Clawses/
+ Code-City-Claude/
+ Code_City_Unified/
+ Decompiler/
+ Docs/
+ Documents/
+ Fin/
+ FoxDashboard/
+ FoxSwarm/
+ Fractal/
+ Goose-Mobile-Fork/
+ HTML-Creep/
+ HolyClapper/
+ Local-Maybe/
+ Logs/
+ MRD/
+ Mail/
+ Meta-Leer/
+ MindCom/
+ MoltBleak/
+ NatHub/
+ OPERATION-MVP/
+ Ollama-Termux/
+ OpenMAIC/
+ OpenScribe/
+ Organization/
+ Persona/
+ Pro-B/
+ Pytch/
+ QPanda-lite/
+ Recap-Gemini/
+ Repugnant/
+ State/
+ Swarm/
+ Tasks-Tasker-Project/
+ Termux-Ai/
+ Termux-Autopilot/
+ Tools/
+ Unfinished-Projects/
+ Version-Ctrl/
+ Vortex_Sanctuary/
+ Wrapper-Jig/
+ Wrappers/
+ __pycache__/
+ ai-daw/
+ ai_arena/
+ airforge/
+ android-sdk/
+ android-swarm-termux/
+ apex_core/
+ askhole_too/
+ autonomous/
+ bL00sE-portfolio/
+ bin/
+ bleaknarratives/
+ bloose-dev/
+ bloose_core/
+ calvin_clean/
+ chad_city_backup/
+ claude-live-wrapper/
+ code-city-reorg/
+ code-city/
+ code/
+ code_city/
+ code_city_emergent/
+ code_repo/
+ code_tool/
+ context_system/
+ context_trail/
+ contrailer/
+ conversations/
+ copilot-live-wrapper/
+ core/
+ dark_pie_thong/
+ data/
+ data_camp/
+ design/
+ dj_song_cataloger/
+ downloads/
+ equilex-core/
+ extracted_scripts/
+ fep_runtime/
+ fix_error/
+ forge/
+ fractal_ai/
+ gemini-live-wrapper/
+ gemini_archive/
+ gemini_conductor_shim/
+ gemini_sync/
+ glassforge-dev/
+ go/
+ goose-android-fixed-new/
+ goose-android-fixed/
+ healing_journey/
+ hooks/
+ hotseat/
+ incumbent-lib/
+ intercom-mvp/
+ ironclad/
+ knose/
+ live_ai_wrappers/
+ llama.cpp/
+ llama_internal/
+ logs/
+ manifests_backup/
+ memory/
+ mistral_summarizer_pro/
+ mkdir/
+ mobile_package/
+ models/
+ modmind/
+ modmind_engine/
+ modmind_unified/
+ my-site/
+ natdump/
+ neural-lock/
+ node_modules/
+ nova_accord/
+ ollama_models/
+ open-skills/
+ operation_first_light_tool/
+ personas/
+ probey/
+ process-miner/
+ programming_language_images/
+ projects/
+ prompts/
+ qrd_factory/
+ ralphy-2/
+ red_team/
+ restore-kit/
+ root_202/
+ root_2025/
+ root_2026/
+ rowland_bench/
+ rvc-tts-pipeline/
+ saas/
+ scrapers/
+ scripts/
+ sermons/
+ session_2026-02-02/
+ silent_hub/
+ sin6_v2/
+ sinister_six/
+ skin-deep/
+ smell_scan/
+ static/
+ storage/
+ summarizer_tool/
+ syntax_main/
+ syntaxai-weaponized/
+ syntaxai_weaponized/
+ tech_guru_fastapi_project/
+ telegram_media/
+ terminal_monitor/
+ time_man_pro/
+ truthsleuth/
+ ui/
+ ui_forge/
+ venv/
+ vertical-ai/
+ vertical-phase-1/
+ vertical_ai/
+ vertical_ai_sessions/
+ visualizers/
+ vtouch_bridge/
+ white_paper_2026/
+ workspace/
+ zeroclaw-android/
+'~/'
+~ $

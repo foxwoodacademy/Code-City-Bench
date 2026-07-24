@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chew Plumbing — Wellington, KS</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Special+Elite&family=Courier+Prime:wght@400;700&display=swap');
+
+:root {
+  --paper: #fdf6e3;
+  --paper-dark: #f5e6c8;
+  --line: #a8c4e0;
+  --margin: #e8a0a0;
+  --ink: #1a1a2e;
+  --ink-light: #3a3a5a;
+  --red: #c0392b;
+  --punch: #8B7355;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #d4c9b0;
+  font-family: 'Special Elite', serif;
+  min-height: 100vh;
+  padding: 20px;
+  background-image: 
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 19px,
+      rgba(0,0,0,0.03) 19px,
+      rgba(0,0,0,0.03) 20px
+    );
+}
+
+.page {
+  max-width: 680px;
+  margin: 0 auto;
+  background: var(--paper);
+  box-shadow: 
+    4px 4px 0 #b8a898,
+    8px 8px 0 #a89888,
+    12px 12px 20px rgba(0,0,0,0.3);
+  position: relative;
+  padding: 0;
+  border-radius: 2px;
+}
+
+/* Spiral binding holes */
+.holes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: var(--paper-dark);
+  border-bottom: 2px solid #c4b49a;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 20px;
+  z-index: 10;
+}
+
+.hole {
+  width: 18px;
+  height: 18px;
+  background: #d4c9b0;
+  border-radius: 50%;
+  border: 2px solid #b8a888;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+}
+
+/* Red margin line */
+.content {
+  padding: 60px 60px 60px 90px;
+  position: relative;
+}
+
+.content::before {
+  content: '';
+  position: absolute;
+  left: 72px;
+  top: 40px;
+  bottom: 0;
+  width: 2px;
+  background: var(--margin);
+  opacity: 0.7;
+}
+
+/* Blue ruled lines */
+.content::after {
+  content: '';
+  position: absolute;
+  inset: 40px 0 0 0;
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 31px,
+    var(--line) 31px,
+    var(--line) 32px
+  );
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* HEADER */
+.header {
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 3px solid var(--ink);
+  position: relative;
+  z-index: 1;
+}
+
+.company-name {
+  font-family: 'Caveat', cursive;
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.company-name span {
+  color: var(--red);
+}
+
+.tagline {
+  font-family: 'Caveat', cursive;
+  font-size: 1.1rem;
+  color: var(--ink-light);
+  margin-top: 4px;
+}
+
+.contact-bar {
+  display: flex;
+  gap: 24px;
+  margin-top: 12px;
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.8rem;
+  color: var(--ink-light);
+  flex-wrap: wrap;
+}
+
+.contact-bar span { display: flex; align-items: center; gap: 4px; }
+
+/* SECTION HEADERS -- written in red like a teacher's notes */
+.section-title {
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--red);
+  margin: 32px 0 12px;
+  position: relative;
+  z-index: 1;
+}
+
+/* SERVICE LIST */
+.services {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 8px;
+}
+
+.service-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(168,196,224,0.3);
+  font-size: 0.95rem;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.service-item::before {
+  content: '✓';
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  color: var(--red);
+  flex-shrink: 0;
+  margin-top: -2px;
+}
+
+/* YVETTE FORM */
+.yvette-box {
+  background: rgba(168,196,224,0.12);
+  border: 2px solid var(--line);
+  border-radius: 4px;
+  padding: 20px;
+  margin: 24px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.yvette-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.yvette-label {
+  font-family: 'Caveat', cursive;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.yvette-sub {
+  font-family: 'Caveat', cursive;
+  font-size: 0.9rem;
+  color: var(--ink-light);
+  margin-bottom: 16px;
+  font-style: italic;
+}
+
+.form-group {
+  margin-bottom: 14px;
+}
+
+.form-label {
+  display: block;
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  color: var(--ink-light);
+  margin-bottom: 4px;
+}
+
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  background: rgba(253,246,227,0.8);
+  border: none;
+  border-bottom: 2px solid var(--ink);
+  padding: 6px 4px;
+  font-family: 'Caveat', cursive;
+  font-size: 1.1rem;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-bottom-color: var(--red);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 80px;
+  border: 2px solid var(--ink);
+  border-radius: 2px;
+  padding: 8px;
+}
+
+.form-select {
+  appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M0 0l6 8 6-8z' fill='%231a1a2e'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  padding-right: 28px;
+}
+
+/* TRIAGE QUESTIONS -- shown dynamically */
+.triage-section {
+  display: none;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--line);
+}
+
+.triage-section.show { display: block; }
+
+.triage-q {
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  color: var(--red);
+  margin-bottom: 6px;
+  font-style: italic;
+}
+
+/* RADIO GROUP */
+.radio-group {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  cursor: pointer;
+  color: var(--ink);
+}
+
+.radio-label input { accent-color: var(--red); }
+
+/* SUBMIT BUTTON */
+.btn-submit {
+  width: 100%;
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  padding: 14px;
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 16px;
+  letter-spacing: 1px;
+  transition: background 0.2s, transform 0.1s;
+  border-radius: 2px;
+}
+
+.btn-submit:hover { background: var(--red); }
+.btn-submit:active { transform: scale(0.99); }
+
+/* CONFIRMATION */
+.confirmation {
+  display: none;
+  text-align: center;
+  padding: 24px;
+  background: rgba(168,196,224,0.15);
+  border: 2px solid var(--line);
+  border-radius: 4px;
+  margin-top: 16px;
+}
+
+.confirmation.show { display: block; }
+
+.confirmation h3 {
+  font-family: 'Caveat', cursive;
+  font-size: 2rem;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.confirmation p {
+  font-size: 0.95rem;
+  color: var(--ink-light);
+  line-height: 1.6;
+}
+
+/* TESTIMONIALS */
+.testimonial {
+  position: relative;
+  z-index: 1;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(168,196,224,0.3);
+}
+
+.testimonial-text {
+  font-family: 'Caveat', cursive;
+  font-size: 1.1rem;
+  color: var(--ink);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.testimonial-author {
+  font-size: 0.8rem;
+  color: var(--ink-light);
+  margin-top: 4px;
+}
+
+/* FOOTER */
+.footer {
+  position: relative;
+  z-index: 1;
+  margin-top: 32px;
+  padding-top: 16px;
+  border-top: 2px solid var(--ink);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-note {
+  font-family: 'Caveat', cursive;
+  font-size: 0.85rem;
+  color: var(--ink-light);
+  font-style: italic;
+}
+
+.footer-logo {
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  color: var(--ink-light);
+  opacity: 0.5;
+}
+
+/* URGENCY BADGE */
+.badge {
+  display: inline-block;
+  background: var(--red);
+  color: white;
+  font-family: 'Caveat', cursive;
+  font-size: 0.85rem;
+  padding: 2px 10px;
+  border-radius: 20px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+/* Read aloud friendly */
+@media (prefers-color-scheme: dark) {
+  body { background: #2a2420; }
+}
+
+@media (max-width: 500px) {
+  .content { padding: 60px 24px 40px 48px; }
+  .content::before { left: 36px; }
+  .company-name { font-size: 2.4rem; }
+  .contact-bar { gap: 12px; font-size: 0.7rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="holes">
+    <div class="hole"></div><div class="hole"></div><div class="hole"></div>
+    <div class="hole"></div><div class="hole"></div><div class="hole"></div>
+    <div class="hole"></div><div class="hole"></div><div class="hole"></div>
+    <div class="hole"></div><div class="hole"></div><div class="hole"></div>
+  </div>
+
+  <div class="content">
+
+    <!-- HEADER -->
+    <div class="header">
+      <div class="company-name"><span>Chew</span> Plumbing</div>
+      <div class="tagline">Wellington, Kansas — Serving Sumner County since 1987</div>
+      <div class="contact-bar">
+        <span>📞 (620) 326-XXXX</span>
+        <span>📍 Wellington, KS 67152</span>
+        <span>⏰ Mon–Sat 7am–6pm</span>
+        <span>🚨 Emergency line available</span>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <div class="section-title">What we fix</div>
+    <div class="services">
+      <div class="service-item">Drain cleaning &amp; sewer line service</div>
+      <div class="service-item">Water heater repair &amp; replacement</div>
+      <div class="service-item">Faucet, toilet &amp; fixture repair</div>
+      <div class="service-item">Furnace &amp; HVAC diagnostics</div>
+      <div class="service-item">Emergency leak repair</div>
+      <div class="service-item">Cleanout installation &amp; sewer camera</div>
+    </div>
+
+    <!-- YVETTE FORM -->
+    <div class="section-title">
+      Tell us what's going on
+      <span class="badge">We respond in under 2 hours</span>
+    </div>
+
+    <div class="yvette-box">
+      <div class="yvette-header">
+        <div>
+          <div class="yvette-label">Quick intake form</div>
+          <div class="yvette-sub">Answer a few questions so we can send the right tech with the right parts.</div>
+        </div>
+      </div>
+
+      <div id="intake-form">
+        <div class="form-group">
+          <label class="form-label">Your name</label>
+          <input class="form-input" type="text" placeholder="First and last name" id="f-name">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Best phone number</label>
+          <input class="form-input" type="tel" placeholder="(620) 555-0000" id="f-phone">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">What's the problem?</label>
+          <select class="form-select" id="f-problem" onchange="showTriage()">
+            <option value="">-- pick the closest one --</option>
+            <option value="drain">Drain backing up / slow drain</option>
+            <option value="water-heater">Water heater issue / no hot water</option>
+            <option value="toilet">Toilet problem</option>
+            <option value="furnace">Furnace / heat not working</option>
+            <option value="leak">Leak / water damage</option>
+            <option value="faucet">Faucet dripping or broken</option>
+            <option value="other">Something else</option>
+          </select>
+        </div>
+
+        <!-- DRAIN TRIAGE -->
+        <div class="triage-section" id="triage-drain">
+          <div class="triage-q">Is it one drain or multiple drains backing up?</div>
+          <div class="radio-group">
+            <label class="radio-label"><input type="radio" name="drain-scope" value="one"> Just one drain</label>
+            <label class="radio-label"><input type="radio" name="drain-scope" value="multiple"> Multiple drains</label>
+          </div>
+          <div class="triage-q">Do you know if there's a cleanout access point outside your home?</div>
+          <div class="radio-group">
+            <label class="radio-label"><input type="radio" name="drain-cleanout" value="yes"> Yes</label>
+            <label class="radio-label"><input type="radio" name="drain-cleanout" value="no"> No / not sure</label>
+          </div>
+        </div>
+
+        <!-- WATER HEATER TRIAGE -->
+        <div class="triage-section" id="triage-water-heater">
+          <div class="triage-q">Is it gas or electric?</div>
+          <div class="radio-group">
+            <label class="radio-label"><input type="radio" name="wh-type" value="gas"> Gas</label>
+            <label class="radio-label"><input type="radio" name="wh-type" value="electric"> Electric</label>
+            <label class="radio-label"><input type="radio" name="wh-type" value="unsure"> Not sure</label>
+          </div>
+          <div class="triage-q">Is the pilot light out, or is there no pilot at all (newer unit)?</div>
+          <div class="radio-group">
+            <label class="radio-label"><input type="radio" name="wh-pilot" value="out"> Pilot is out</label>
+            <label class="radio-label"><input type="radio" name="wh-pilot" value="none"> No pilot / newer unit</label>
+            <label class="radio-label"><input type="radio" name="wh-pilot" value="unsure"> Not sure</label>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Serial number if you can find it (on the side of the tank)</label>
+            <input class="form-input" type="text" placeholder="e.g. 0317A12345" id="f-serial">
+          </div>
+        </div>
+
+        <!-- FURNACE TRIAGE -->
+        <div class="triage-section" id="triage-furnace">
+          <div class="triage-q">Is there a small window on your furnace with a blinking light?</div>
+          <div class="radio-group">
+            <label class="radio-label"><input type="radio" name="furnace-light" value="yes" onchange="showFlashCode()"> Yes</label>
+            <label class="radio-label"><input type="radio" name="furnace-light" value="no"> No / not sure</label>
+          </div>
+          <div id="flash-code-q" style="display:none">
+            <div class="triage-q">How many times does it blink before it pauses?</div>
+            <input class="form-input" type="number" placeholder="Number of blinks" id="f-blinks" min="1" max="9" oninput="interpretFlash()">
+            <div id="flash-interpretation" style="margin-top:8px; font-family:'Caveat',cursive; color:var(--red); font-size:1rem;"></div>
+          </div>
+          <div class="triage-q">Did you check your furnace filter recently?</div>
+          <div class="radio-group">
+            <label class="radio-label"><input type="radio" name="furnace-filter" value="yes"> Yes, it's clean</label>
+            <label class="radio-label"><input type="radio" name="furnace-filter" value="no"> No / not sure</label>
+          </div>
+        </div>
+
+        <!-- LEAK TRIAGE -->
+        <div class="triage-section" id="triage-leak">
+          <div class="triage-q">Is water actively running or is it a drip/seep?</div>
+          <div class="radio-group">
+            <label class="radio-label"><input type="radio" name="leak-severity" value="running"> Actively running</label>
+            <label class="radio-label"><input type="radio" name="leak-severity" value="drip"> Drip or seep</label>
+          </div>
+          <div class="triage-q">Do you know where your main shutoff valve is?</div>
+          <div class="radio-group">
+            <label class="radio-label"><input type="radio" name="leak-shutoff" value="yes"> Yes</label>
+            <label class="radio-label"><input type="radio" name="leak-shutoff" value="no"> No</label>
+          </div>
+        </div>
+
+        <!-- FAUCET TRIAGE -->
+        <div class="triage-section" id="triage-faucet">
+          <div class="triage-q">What brand is the faucet if you know?</div>
+          <div class="radio-group">
+            <label class="radio-label"><input type="radio" name="faucet-brand" value="delta"> Delta</label>
+            <label class="radio-label"><input type="radio" name="faucet-brand" value="moen"> Moen</label>
+            <label class="radio-label"><input type="radio" name="faucet-brand" value="other"> Other / not sure</label>
+          </div>
+          <div class="triage-q">Roughly how old is the faucet?</div>
+          <div class="radio-group">
+            <label class="radio-label"><input type="radio" name="faucet-age" value="under5"> Under 5 years</label>
+            <label class="radio-label"><input type="radio" name="faucet-age" value="5to15"> 5–15 years</label>
+            <label class="radio-label"><input type="radio" name="faucet-age" value="over15"> Over 15 years</label>
+          </div>
+        </div>
+
+        <!-- OTHER -->
+        <div class="triage-section" id="triage-other">
+          <div class="form-group">
+            <label class="form-label">Describe what's happening</label>
+            <textarea class="form-textarea" placeholder="Tell us what you're seeing or hearing..."></textarea>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-top:16px;">
+          <label class="form-label">Urgency</label>
+          <select class="form-select" id="f-urgency">
+            <option value="today">Needs attention today</option>
+            <option value="week">This week is fine</option>
+            <option value="emergency">Emergency — water everywhere / no heat</option>
+          </select>
+        </div>
+
+        <button class="btn-submit" onclick="submitForm()">Send it — we'll call you back</button>
+      </div>
+
+      <div class="confirmation" id="confirmation">
+        <h3>Got it. We'll call you back.</h3>
+        <p>Based on what you told us, we know what to bring.<br>
+        Expect a call within 2 hours during business hours.<br>
+        Emergency calls: we'll reach out within 30 minutes.</p>
+      </div>
+    </div>
+
+    <!-- TESTIMONIALS -->
+    <div class="section-title">What people say</div>
+
+    <div class="testimonial">
+      <div class="testimonial-text">"Showed up when they said they would. Fixed it right the first time. That's all I ask."</div>
+      <div class="testimonial-author">— Google review, Wellington KS</div>
+    </div>
+
+    <div class="testimonial">
+      <div class="testimonial-text">"Called at 7am with a busted water heater. Had hot water by noon."</div>
+      <div class="testimonial-author">— Google review, Wellington KS</div>
+    </div>
+
+    <div class="testimonial">
+      <div class="testimonial-text">"Fair price. No runaround. They actually explained what was wrong."</div>
+      <div class="testimonial-author">— Google review, Wellington KS</div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div>
+        <div class="footer-note">Licensed &amp; insured. Serving Wellington and Sumner County.</div>
+        <div class="footer-note">Chew Plumbing · Wellington, KS 67152</div>
+      </div>
+      <div class="footer-logo">intake by Yvette ✦</div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function showTriage() {
+  const val = document.getElementById('f-problem').value;
+  document.querySelectorAll('.triage-section').forEach(s => s.classList.remove('show'));
+  if (val) {
+    const t = document.getElementById('triage-' + val);
+    if (t) t.classList.add('show');
+  }
+}
+
+function showFlashCode() {
+  const checked = document.querySelector('input[name="furnace-light"]:checked');
+  const el = document.getElementById('flash-code-q');
+  if (checked && checked.value === 'yes') {
+    el.style.display = 'block';
+  } else {
+    el.style.display = 'none';
+  }
+}
+
+function interpretFlash() {
+  const n = parseInt(document.getElementById('f-blinks').value);
+  const el = document.getElementById('flash-interpretation');
+  const codes = {
+    1: "1 blink — check thermostat and batteries first.",
+    2: "2 blinks — pressure switch issue. Tech needs to check the inducer.",
+    3: "3 blinks — draft inducer or venting problem.",
+    4: "4 blinks — high limit. Check your filter RIGHT NOW before calling. A clogged filter causes 40% of these.",
+    5: "5 blinks — flame sensor. Usually a quick clean — relatively minor.",
+    6: "6 blinks — low flame or gas pressure issue.",
+    7: "7 blinks — gas valve problem. Don't attempt to fix this yourself.",
+    8: "8 blinks — ignition failure.",
+    9: "9 blinks — reversed polarity or electrical issue.",
+  };
+  el.textContent = codes[n] || '';
+}
+
+function submitForm() {
+  const name = document.getElementById('f-name').value;
+  const phone = document.getElementById('f-phone').value;
+  if (!name || !phone) {
+    alert('Just need your name and number and we\'ll handle the rest.');
+    return;
+  }
+  document.getElementById('intake-form').style.display = 'none';
+  document.getElementById('confirmation').classList.add('show');
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+# FOXWOOD ADDENDUM: VIBE-THOTH SYNCHRONIZATION LOG
+# --------------------------------------------------
+# To Vibe-1 & Vibe-2:
+# We have transitioned to the Loom Topology (Software 3.0).
+# Standard polling is now legacy. All state is woven into the mesh.
+
+## 1. Loom Topology Integration (Active)
+- All new leads from the 'Firefly Scout' must be injected into the Whorl mesh.
+- State is no longer 'filed'; it is 'woven'.
+- Codex is refactoring the skill-registry to support topological lookups.
+
+## 2. Updated Sequencing (Vibe -> Loom)
+Vibe, when you ingest a lead, follow this sequence:
+1. `whorl.weave(lead_data)` - Inject into the mesh.
+2. `veritas.audit(lead_data)` - Subject to adversarial pattern matching.
+3. `thoth.notify(priority=lead.score)` - Push to the boardroom.
+
+## 3. Real-Time Logic Flow
+- Vibe-1: Scrape -> Parse -> Whorl.
+- Vibe-2: OpenClaw -> Execute -> Mesh State Update.
+- Thoth: Audit Loom -> Re-weight threads -> Trigger Revenue Push.
+
+## 4. Current State: Loom-Mesh Operational
+- [x] Swarm initialized on mesh.
+- [x] Legacy pipeline absorbed.
+- [x] Triage Engine active (Risk: Deep Sewer Liability).
+- [x] Next: Codex to finalize the Whorl visualizer mapping.
+
+## 5. Tmux Command Citadel: Operational Guide
+To launch your entire ModMind Swarm Command Center, execute the following alias:
+
+```bash
+start_swarm
+```
+
+This will open a `tmux` session named `ModMindSwarm` with the following windows and panes:
+
+### Window 0: THOTH_UI (Main Control)
+- **Purpose:** Your primary interactive console for Thoth.
+- **Interaction:** Type commands directly into the prompt (e.g., `a` for audit, `r` for revenue, `e` for escalate, `q` to quit the UI).
+
+### Window 1: MONITOR (Real-time Logs)
+- **Purpose:** Live feeds from the core swarm services.
+- **Panes:**
+    - Top-Left: `tail -f /storage/emulated/0/RootBase/lough_system/lough.log` (Lough Event Spine)
+    - Bottom-Left: `tail -f /storage/emulated/0/RootBase/web_server/websocket.log` (Dashboard Heartbeat)
+    - Right: `tail -f /storage/emulated/0/RootBase/nursery/molt.log || tail -f /storage/emulated/0/RootBase/swarm_motion.log` (Molt Engine & Swarm Activity)
+- **Interaction:** Monitor output. No direct input needed here.
+
+### Window 2: THOTH_CLI (Direct Command Line)
+- **Purpose:** A dedicated shell for direct Thoth CLI commands, running in `--watch` mode.
+- **Interaction:** Execute Thoth commands directly (e.g., `python3 /storage/emulated/0/RootBase/thoth_orchestrator/thoth.py --revenue --platform Nostr`).
+
+### Window 3: AGENT_SHELLS (Vibe/Codex Interaction)
+- **Purpose:** Interactive shells for direct control of Vibe and Codex.
+- **Panes:**
+    - Left: Vibe CLI (for targeted scouting, ingestion commands)
+    - Right: Codex CLI (for refactoring, skill registration, troubleshooting)
+- **Interaction:** Type commands for Vibe or Codex as needed.
+
+### Window 4: SYSTEM_MONITOR (Resource Oversight)
+- **Purpose:** Real-time system resource monitoring.
+- **Interaction:** Observe CPU, memory, and process usage via `htop`.
+
+### Tmux Navigation Commands:
+- `Ctrl+b + <number>`: Switch to window number `<number>` (e.g., `Ctrl+b 0` for THOTH_UI).
+- `Ctrl+b + n`: Go to the next window.
+- `Ctrl+b + p`: Go to the previous window.
+- `Ctrl+b + %`: Split the current pane vertically.
+- `Ctrl+b + "`: Split the current pane horizontally.
+- `Ctrl+b + arrow keys`: Move between panes.
+- `Ctrl+b + z`: Zoom current pane to full screen (press again to unzoom).
+- `Ctrl+b + d`: Detach from the `tmux` session (session keeps running in background).
+- `tmux attach -t ModMindSwarm`: Reattach to the session if detached.
+
+**To make the alias active, you must either:**
+1.  **Restart your Termux session.**
+2.  **Source your .bashrc:** `source ~/.bashrc`
+
+--------------------------------------------------
+*Log: Swarm heartbeat detected via Loom. Logic density increasing.*

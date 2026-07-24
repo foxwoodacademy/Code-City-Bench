@@ -1,0 +1,41 @@
+<!-- FILE: terminal_fighter/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TERMINAL FIGHTER - QRD Arena</title>
+    <style>
+        body {
+            margin: 0;
+            background: #000;
+            font-family: 'Press Start 2P', monospace;
+            overflow: hidden;
+        }
+        #gameCanvas {
+            display: block;
+            margin: 0 auto;
+            background: linear-gradient(180deg, #1a1a2e 0%, #0f0f1e 100%);
+            image-rendering: pixelated;
+        }
+        #commandInput {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            padding: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            background: rgba(0,0,0,0.8);
+            color: #0f0;
+            border: 2px solid #0f0;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <input type="text" id="commandInput" placeholder="Type command here..." autofocus>
+    
+    <script src="game.js"></script>
+</body>
+</html>

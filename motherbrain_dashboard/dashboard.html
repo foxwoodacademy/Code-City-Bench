@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MotherBrain Dashboard</title>
+    <style>
+        body { 
+            font-family: monospace; 
+            background-color: #121212; 
+            color: #e0e0e0; 
+            padding: 20px; 
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        h2 { color: #ff79c6; margin-bottom: 5px; }
+        .subtitle { color: #6272a4; margin-bottom: 20px; font-size: 0.9em; }
+        .input-group { 
+            display: flex; 
+            gap: 10px; 
+            margin-bottom: 20px;
+        }
+        input[type="text"] { 
+            flex-grow: 1; 
+            padding: 12px; 
+            background: #1e1e1e; 
+            border: 1px solid #444; 
+            color: #fff; 
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        button { 
+            padding: 12px 24px; 
+            background: #ff5555; 
+            border: 1px solid rgba(240, 246, 252, 0.1); 
+            color: white; 
+            cursor: pointer; 
+            border-radius: 4px;
+            font-weight: bold;
+            font-family: monospace;
+        }
+        button:hover { background: #ff6e67; }
+        #log-area { 
+            width: 100%; 
+            height: 500px; 
+            background-color: #0d1117; 
+            color: #50fa7b; 
+            overflow-y: auto; 
+            padding: 15px; 
+            border: 1px solid #30363d; 
+            border-radius: 4px;
+            box-sizing: border-box;
+            word-wrap: break-word;
+            font-size: 0.95em;
+            line-height: 1.4;
+        }
+        .log-entry { margin-bottom: 6px; border-left: 3px solid #50fa7b; padding-left: 8px; }
+        .log-time { color: #6272a4; margin-right: 10px; }
+        .log-error { border-left-color: #ff5555; color: #ff5555; }
+        .log-sys { border-left-color: #8be9fd; color: #8be9fd; }
+    </style>
+</head>
+<body>
+    <h2>MotherBrain Tactical Interface</h2>
+    <div class="subtitle">ButtsCorp Operations // Logs: 7084 // Tasks: 7083</div>
+    
+    <div class="input-group">
+        <input type="text" id="taskInput" placeholder='Enter task JSON (e.g., {"task": "run audit"})' onkeypress="handleKeyPress(event)">
+        <button onclick="sendTask()">Transmit</button>
+    </div>
+
+    <div id="log-area"></div>
+
+    <script>
+        const logArea = document.getElementById('log-area');
+        const wsUrl = 'ws://127.0.0.1:7084'; 
+        const postUrl = 'http://127.0.0.1:7083/tasks';
+        let ws;
+
+        function appendLog(message, type = 'info') {
+            const time = new Date().toLocaleTimeString();
+            let colorClass = '';
+            if (type === 'error') colorClass = 'log-error';
+            if (type === 'sys') colorClass = 'log-sys';
+            
+            logArea.innerHTML += `<div class="log-entry ${colorClass}"><span class="log-time">[${time}]</span>${message}</div>`;
+            logArea.scrollTop = logArea.scrollHeight;
+        }
+
+        function initWebSocket() {
+            ws = new WebSocket(wsUrl);
+            ws.onopen = () => appendLog('Connected to MotherBrain log stream on port 7084.', 'sys');
+            ws.onmessage = (event) => appendLog(event.data, 'info');
+            ws.onerror = (error) => appendLog('WebSocket connection failure. Verify bridge status.', 'error');
+            ws.onclose = () => {
+                appendLog('Connection dropped. Retrying link in 5s...', 'error');
+                setTimeout(initWebSocket, 5000);
+            };
+        }
+
+        async function sendTask() {
+            const input = document.getElementById('taskInput');
+            const rawValue = input.value.trim();
+            if (!rawValue) return;
+
+            appendLog(`Preparing transmission: ${rawValue}`, 'sys');
+            
+            let payload;
+            try {
+                // Try parsing as JSON first, if it's raw text wrap it nicely
+                payload = JSON.parse(rawValue);
+            } catch (e) {
+                payload = { task: rawValue };
+            }
+
+            input.value = ''; 
+
+            try {
+                const response = await fetch(postUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                const result = await response.text();
+                if (response.ok) {
+                    appendLog(`Gateway accepted packet. Status: ${response.status}. Response: ${result}`, 'sys');
+                } else {
+                    appendLog(`Transmission rejected. Status: ${response.status}. Msg: ${result}`, 'error');
+                }
+            } catch (err) {
+                appendLog(`Network failure executing fetch: ${err.message}`, 'error');
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendTask();
+            }
+        }
+
+        initWebSocket();
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "name": "coach_bleak",
+    "path": "/storage/emulated/0/RootBase/coach_bleak",
+    "languages": {
+      "python": 1,
+      "html": 6
+    },
+    "entrypoints": [],
+    "package_json": false,
+    "requirements": 0,
+    "readme_excerpt": "",
+    "last_modified": "2026-05-20T16:53:59.992999"
+  },
+  "runbook": {
+    "commands": [],
+    "env": [],
+    "notes": []
+  },
+  "bard_note": "No obvious entrypoint. Bold choice. (Bardildo: harsh truth incoming)"
+}

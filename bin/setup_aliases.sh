@@ -1,0 +1,2 @@
+echo "alias start_swarm='source /storage/emulated/0/RootBase/bin/start_swarm_tmux.sh'" >> /data/data/com.termux/files/home/.bashrc
+echo "[ALIAS] Alias 'start_swarm' created. Source your .bashrc or restart your shell to activate." >> /storage/emulated/0/RootBase/codex_setup.log

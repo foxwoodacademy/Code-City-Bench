@@ -1,0 +1,26 @@
+# MEATSUIT RUNDOWN: IMPLORE PRODUCTION READINESS
+
+## 1. Credentials & Configuration (URGENT)
+- [ ] **API Key Setup**: Securely set your production API keys in your environment variables.
+    - `export OPENAI_API_KEY='your-key-here'`
+    - `export ANTHROPIC_API_KEY='your-key-here'`
+- [ ] **Data Storage**: Configure your production database (PostgreSQL recommended for persistence). Update connection strings in `Implore/config.json` (you will need to create this file).
+
+## 2. Infrastructure & Environment
+- [ ] **Production Deployment**: Prepare your target environment (Docker/VPS/Cloud).
+- [ ] **Ecosystem Hookup**: Ensure the shared broadcast directory (`/storage/emulated/0/RootBase/ecosystem_bridge`) is accessible by other agents in your RootBase swarm.
+
+## 3. Operations & Auditing
+- [ ] **Human Reviewer**: Finalize the HITL approval process. Determine who (or which agent) is the designated approver for the 'Review Node' pause in the LangGraph workflow.
+- [ ] **Outcome Logging**: Define the mechanism to capture win/loss signals from federal grant portals for the `VerificationAuditor`'s historical learning engine.
+
+## 4. Compliance & Legal
+- [ ] **Terms of Service**: If making this public, draft Terms of Service to manage liability, especially regarding grant application accuracy and federal compliance.
+- [ ] **Audit Logs**: Ensure all generated logs and audit trails comply with local data retention policies.
+
+[TASK LIST: DUAL-ENTITY KANSAS DEPLOYMENT]
+1. Formalize Entity Names (LLC vs. Foundation).
+2. Draft Foundation Bylaws (Board-based trust structure).
+3. Draft Kansas Articles of Organization (Commercial LLC).
+4. Draft Kansas Articles of Incorporation (Non-Profit Foundation).
+5. Prepare IRS Form 1023 Application Package.

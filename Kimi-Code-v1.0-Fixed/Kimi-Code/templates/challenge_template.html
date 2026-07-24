@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kimi-Code Challenge</title>
+    <style>
+        :root {
+            --bg-primary: #0a0a1a;
+            --bg-secondary: #1a1a2e;
+            --bg-tertiary: #16213e;
+            --text-primary: #e0e0e0;
+            --text-secondary: #888;
+            --accent-green: #00ff88;
+            --accent-blue: #60a5fa;
+            --accent-yellow: #fbbf24;
+            --accent-red: #f87171;
+            --accent-purple: #a78bfa;
+            --border-color: #333;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', 'SF Mono', system-ui, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .challenge-header {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .challenge-title {
+            font-size: 2em;
+            color: var(--accent-green);
+            margin-bottom: 10px;
+        }
+
+        .challenge-meta {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .meta-item {
+            background: var(--bg-tertiary);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+
+        .difficulty-stars {
+            color: var(--accent-yellow);
+        }
+
+        .hat-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+
+        .hat-white { background: #fff; color: #333; }
+        .hat-red { background: #ff4444; color: white; }
+        .hat-black { background: #333; color: #ff6b6b; }
+        .hat-yellow { background: #ffd700; color: #333; }
+        .hat-green { background: #00ff88; color: #333; }
+        .hat-blue { background: #0066ff; color: white; }
+
+        .description {
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--accent-blue);
+        }
+
+        .code-editor {
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .editor-header {
+            background: var(--bg-tertiary);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .editor-title {
+            color: var(--accent-green);
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .editor-actions button {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 6px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 8px;
+            font-size: 0.85em;
+        }
+
+        .editor-actions button:hover {
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        textarea.code-input {
+            width: 100%;
+            min-height: 300px;
+            background: #0f0f1e;
+            color: var(--text-primary);
+            border: none;
+            padding: 20px;
+            font-family: 'Fira Code', 'SF Mono', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            resize: vertical;
+        }
+
+        textarea.code-input:focus {
+            outline: none;
+        }
+
+        .hints-panel {
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .hint-item {
+            background: var(--bg-tertiary);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 3px solid var(--accent-yellow);
+            opacity: 0.3;
+            transition: opacity 0.3s;
+        }
+
+        .hint-item.revealed {
+            opacity: 1;
+        }
+
+        .hint-number {
+            color: var(--accent-yellow);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .test-cases {
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .test-case {
+            background: var(--bg-tertiary);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .test-input, .test-expected {
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+
+        .test-status {
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+
+        .status-pending { background: #333; color: #888; }
+        .status-pass { background: rgba(0,255,136,0.2); color: var(--accent-green); }
+        .status-fail { background: rgba(248,113,113,0.2); color: var(--accent-red); }
+
+        .action-bar {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 8px;
+            border: none;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--accent-green);
+            color: var(--bg-primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0,255,136,0.3);
+        }
+
+        .btn-secondary {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .timer {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--bg-secondary);
+            padding: 15px 25px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            font-size: 1.2em;
+            font-family: monospace;
+        }
+
+        .timer.warning {
+            border-color: var(--accent-yellow);
+            color: var(--accent-yellow);
+        }
+
+        .timer.danger {
+            border-color: var(--accent-red);
+            color: var(--accent-red);
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @media (max-width: 768px) {
+            .challenge-meta { flex-direction: column; }
+            .test-case { grid-template-columns: 1fr; }
+            .timer { position: static; margin-bottom: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="timer" id="timer">15:00</div>
+
+    <div class="container">
+        <div class="challenge-header">
+            <h1 class="challenge-title">{{challenge.title}}</h1>
+            <p>{{challenge.description}}</p>
+            <div class="challenge-meta">
+                <span class="meta-item">Language: {{challenge.language}}</span>
+                <span class="meta-item">Track: {{challenge.track}}</span>
+                <span class="meta-item difficulty-stars">
+                    {{'★' * challenge.difficulty}}{{'☆' * (15 - challenge.difficulty)}}
+                </span>
+                <span class="meta-item">XP: {{challenge.xp_reward}}</span>
+                {% if challenge.hat_focus %}
+                <span class="hat-badge hat-{{challenge.hat_focus}}">
+                    {{ {'white':'📊','red':'🔥','black':'⚠️','yellow':'✨','green':'🌱','blue':'🧠'}[challenge.hat_focus] }}
+                    {{challenge.hat_focus.title()}} Hat
+                </span>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="description">
+            <h3>📝 Instructions</h3>
+            <p>{{challenge.instructions}}</p>
+        </div>
+
+        <div class="code-editor">
+            <div class="editor-header">
+                <span class="editor-title">Your Solution</span>
+                <div class="editor-actions">
+                    <button onclick="resetCode()">↺ Reset</button>
+                    <button onclick="formatCode()">✨ Format</button>
+                </div>
+            </div>
+            <textarea class="code-input" id="codeInput" spellcheck="false">{{challenge.starter_code}}</textarea>
+        </div>
+
+        <div class="hints-panel">
+            <h3>💡 Hints Available: <span id="hintsLeft">{{challenge.hints|length}}</span></h3>
+            {% for i, hint in enumerate(challenge.hints) %}
+            <div class="hint-item" id="hint{{i}}">
+                <span class="hint-number">{{i+1}}</span>
+                <span class="hint-text">{{hint}}</span>
+            </div>
+            {% endfor %}
+            <button class="btn btn-secondary" onclick="revealHint()">Reveal Hint (-5% score)</button>
+        </div>
+
+        <div class="test-cases">
+            <h3>🧪 Test Cases</h3>
+            {% for test in challenge.test_cases %}
+            <div class="test-case" id="test{{loop.index}}">
+                <div class="test-input">Input: {{test.input}}</div>
+                <div class="test-expected">Expected: {{test.expected}}</div>
+                <div class="test-status status-pending">Pending</div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="action-bar">
+            <button class="btn btn-secondary" onclick="runTests()">▶ Run Tests</button>
+            <button class="btn btn-primary" onclick="submitSolution()">✓ Submit Solution</button>
+        </div>
+    </div>
+
+    <script>
+        let timeLeft = {{challenge.time_limit}};
+        let hintsRevealed = 0;
+        const totalHints = {{challenge.hints|length}};
+
+        function updateTimer() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            const timerEl = document.getElementById('timer');
+            timerEl.textContent = `${String(minutes).padStart(2,'0')}:${String(seconds).padStart(2,'0')}`;
+
+            if (timeLeft <= 60) timerEl.classList.add('danger');
+            else if (timeLeft <= 180) timerEl.classList.add('warning');
+
+            if (timeLeft > 0) {
+                timeLeft--;
+                setTimeout(updateTimer, 1000);
+            } else {
+                submitSolution();
+            }
+        }
+
+        function revealHint() {
+            if (hintsRevealed < totalHints) {
+                document.getElementById(`hint${hintsRevealed}`).classList.add('revealed');
+                hintsRevealed++;
+                document.getElementById('hintsLeft').textContent = totalHints - hintsRevealed;
+            }
+        }
+
+        function runTests() {
+            // Would send code to backend for execution
+            console.log('Running tests...');
+        }
+
+        function submitSolution() {
+            const code = document.getElementById('codeInput').value;
+            // Would send to backend for evaluation
+            console.log('Submitting...', code.length, 'chars');
+        }
+
+        function resetCode() {
+            document.getElementById('codeInput').value = `{{challenge.starter_code}}`;
+        }
+
+        function formatCode() {
+            // Basic formatting - would use prettier/black in production
+            const textarea = document.getElementById('codeInput');
+            textarea.value = textarea.value.replace(/\n\s*\n/g, '\n').trim();
+        }
+
+        updateTimer();
+    </script>
+</body>
+</html>

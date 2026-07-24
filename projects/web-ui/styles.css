@@ -1,0 +1,7 @@
+body { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0; padding:0; }
+.app-shell { display:flex; min-height:100vh; }
+.main { flex:1; padding:24px; }
+.aside { width:360px; border-left:1px solid #eee; padding:18px; }
+.btn { background:#111827; color:white; padding:8px 12px; border-radius:6px; }
+.btn-outline { background:transparent; border:1px solid #111827; padding:8px 12px; border-radius:6px; }
+.input { padding:8px; border:1px solid #ddd; border-radius:6px; width:100%; }

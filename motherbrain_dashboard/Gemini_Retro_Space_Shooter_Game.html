@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro Space Shooter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        body {
+            background-color: #0d0d1e;
+            color: #ffffff;
+            font-family: 'Press Start 2P', cursive;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+        }
+        .game-container {
+            position: relative;
+            background-color: #000;
+            border: 4px solid #fff;
+            box-shadow: 0 0 20px #0ff, 0 0 40px #0ff;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            max-width: 90vw;
+            max-height: 90vh;
+            aspect-ratio: 16 / 9;
+        }
+        #gameCanvas {
+            background-color: #000;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        .ui-panel {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0.5rem;
+            box-sizing: border-box;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-bottom: 2px solid #0ff;
+            text-shadow: 0 0 5px #fff;
+            margin-bottom: 0.5rem;
+        }
+        .message-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #fff;
+            box-shadow: 0 0 10px #0ff;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 8px;
+        }
+        .btn {
+            background-color: #0ff;
+            color: #000;
+            font-family: 'Press Start 2P', cursive;
+            border: none;
+            border-radius: 6px;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 0 8px #0ff;
+            transition: all 0.2s ease-in-out;
+            margin-top: 1rem;
+        }
+        .btn:hover {
+            background-color: #fff;
+            color: #000;
+            box-shadow: 0 0 15px #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="ui-panel">
+            <span>Score: <span id="scoreDisplay">0</span></span>
+        </div>
+        <canvas id="gameCanvas"></canvas>
+        
+        <!-- Game over message box -->
+        <div id="gameOverBox" class="message-box" style="display: none;">
+            <h2 class="text-2xl mb-4">Game Over</h2>
+            <p>Final Score: <span id="finalScore">0</span></p>
+            <button id="restartBtn" class="btn">Restart</button>
+        </div>
+
+        <!-- Start Game message box -->
+        <div id="startBox" class="message-box">
+            <h2 class="text-2xl mb-4">Space Shooter</h2>
+            <p>Use ← → to move and Space to fire.</p>
+            <button id="startBtn" class="btn">Start Game</button>
+        </div>
+
+    </div>
+
+    <script>
+        window.onload = function() {
+            // Get the canvas and its 2D context
+            const canvas = document.getElementById('gameCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Get UI elements
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            const gameOverBox = document.getElementById('gameOverBox');
+            const startBox = document.getElementById('startBox');
+            const finalScoreDisplay = document.getElementById('finalScore');
+            const restartBtn = document.getElementById('restartBtn');
+            const startBtn = document.getElementById('startBtn');
+
+            // Game variables
+            let gameStarted = false;
+            let gameOver = false;
+            let score = 0;
+            let player;
+            let enemies = [];
+            let bullets = [];
+            let keys = {};
+            let lastShotTime = 0;
+            const shotDelay = 200; // milliseconds between shots
+            const enemySpawnRate = 1000; // milliseconds
+            let lastEnemySpawn = 0;
+
+            // Player object
+            const Player = function() {
+                this.width = 50;
+                this.height = 50;
+                this.x = canvas.width / 2 - this.width / 2;
+                this.y = canvas.height - this.height - 20;
+                this.speed = 5;
+            };
+
+            // Enemy object
+            const Enemy = function(x, y) {
+                this.width = 40;
+                this.height = 40;
+                this.x = x;
+                this.y = y;
+                this.speed = Math.random() * 2 + 1; // Random speed
+            };
+
+            // Bullet object
+            const Bullet = function(x, y) {
+                this.width = 5;
+                this.height = 15;
+                this.x = x;
+                this.y = y;
+                this.speed = 7;
+            };
+
+            // Draw functions using inline SVG and Canvas API
+            function drawPlayer() {
+                const playerSVG = `
+                    <svg width="${player.width}" height="${player.height}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <polygon points="50,0 0,100 100,100" fill="#0ff" stroke="#fff" stroke-width="4" />
+                    </svg>
+                `;
+                const img = new Image();
+                img.src = 'data:image/svg+xml;base64,' + btoa(playerSVG);
+                ctx.drawImage(img, player.x, player.y, player.width, player.height);
+            }
+
+            function drawEnemy(enemy) {
+                const enemySVG = `
+                    <svg width="${enemy.width}" height="${enemy.height}" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="40" fill="#f00" stroke="#fff" stroke-width="4" />
+                        <rect x="20" y="40" width="60" height="20" fill="#fff" />
+                    </svg>
+                `;
+                const img = new Image();
+                img.src = 'data:image/svg+xml;base64,' + btoa(enemySVG);
+                ctx.drawImage(img, enemy.x, enemy.y, enemy.width, enemy.height);
+            }
+
+            function drawBullet(bullet) {
+                ctx.fillStyle = '#fff';
+                ctx.shadowColor = '#fff';
+                ctx.shadowBlur = 10;
+                ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
+                ctx.shadowBlur = 0; // Reset shadow
+            }
+
+            // Game logic functions
+            function updatePlayer() {
+                if (keys['ArrowLeft'] && player.x > 0) {
+                    player.x -= player.speed;
+                }
+                if (keys['ArrowRight'] && player.x < canvas.width - player.width) {
+                    player.x += player.speed;
+                }
+                if (keys[' ']) {
+                    const currentTime = Date.now();
+                    if (currentTime - lastShotTime > shotDelay) {
+                        bullets.push(new Bullet(player.x + player.width / 2 - 2, player.y));
+                        lastShotTime = currentTime;
+                    }
+                }
+            }
+
+            function updateEnemies() {
+                enemies.forEach((enemy, index) => {
+                    enemy.y += enemy.speed;
+                    // Remove enemies that go off screen
+                    if (enemy.y > canvas.height) {
+                        enemies.splice(index, 1);
+                    }
+                    // Check for collision with player
+                    if (
+                        player.x < enemy.x + enemy.width &&
+                        player.x + player.width > enemy.x &&
+                        player.y < enemy.y + enemy.height &&
+                        player.y + player.height > enemy.y
+                    ) {
+                        endGame();
+                    }
+                });
+            }
+
+            function updateBullets() {
+                bullets.forEach((bullet, index) => {
+                    bullet.y -= bullet.speed;
+                    // Remove bullets that go off screen
+                    if (bullet.y < 0) {
+                        bullets.splice(index, 1);
+                    }
+                });
+            }
+
+            function checkCollisions() {
+                for (let i = bullets.length - 1; i >= 0; i--) {
+                    for (let j = enemies.length - 1; j >= 0; j--) {
+                        const bullet = bullets[i];
+                        const enemy = enemies[j];
+                        if (
+                            bullet.x < enemy.x + enemy.width &&
+                            bullet.x + bullet.width > enemy.x &&
+                            bullet.y < enemy.y + enemy.height &&
+                            bullet.y + bullet.height > enemy.y
+                        ) {
+                            // Collision detected
+                            bullets.splice(i, 1);
+                            enemies.splice(j, 1);
+                            score += 10;
+                            scoreDisplay.textContent = score;
+                            break;
+                        }
+                    }
+                }
+            }
+            
+            function spawnEnemy() {
+                const currentTime = Date.now();
+                if (currentTime - lastEnemySpawn > enemySpawnRate) {
+                    const x = Math.random() * (canvas.width - 40);
+                    enemies.push(new Enemy(x, -40));
+                    lastEnemySpawn = currentTime;
+                }
+            }
+
+            function endGame() {
+                gameOver = true;
+                finalScoreDisplay.textContent = score;
+                gameOverBox.style.display = 'block';
+            }
+
+            function resizeCanvas() {
+                const container = canvas.parentElement;
+                canvas.width = container.clientWidth;
+                canvas.height = container.clientHeight;
+                if (player) {
+                    player.x = canvas.width / 2 - player.width / 2;
+                    player.y = canvas.height - player.height - 20;
+                }
+            }
+
+            function resetGame() {
+                gameOver = false;
+                score = 0;
+                player = new Player();
+                enemies = [];
+                bullets = [];
+                scoreDisplay.textContent = score;
+                gameOverBox.style.display = 'none';
+                startBox.style.display = 'none';
+                gameStarted = true;
+                lastShotTime = 0;
+                lastEnemySpawn = 0;
+                gameLoop();
+            }
+
+            // Main game loop
+            function gameLoop() {
+                if (gameOver) {
+                    return;
+                }
+                
+                // Clear the canvas
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Update game objects
+                updatePlayer();
+                updateEnemies();
+                updateBullets();
+                checkCollisions();
+                spawnEnemy();
+                
+                // Draw game objects
+                drawPlayer();
+                enemies.forEach(drawEnemy);
+                bullets.forEach(drawBullet);
+                
+                requestAnimationFrame(gameLoop);
+            }
+
+            // Event listeners for user input
+            document.addEventListener('keydown', (e) => {
+                keys[e.key] = true;
+            });
+            document.addEventListener('keyup', (e) => {
+                keys[e.key] = false;
+            });
+
+            // Button listeners
+            startBtn.addEventListener('click', resetGame);
+            restartBtn.addEventListener('click', resetGame);
+
+            // Initial setup
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+        };
+    </script>
+</body>
+</html>

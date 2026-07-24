@@ -1,0 +1,202 @@
+# ============================================================================
+# CONFIG JUICER — Universal AI Model Configuration
+# Cross-platform (PowerShell + Termux) | Model-agnostic | Free-tier optimized
+# ============================================================================
+
+vault:
+  source: github
+  repo: "foxwoodacademy/api-keys-vault"
+  rotation_interval: 3600
+  fallback: env
+
+# ============================================================================
+# TOOL PROFILES
+# ============================================================================
+
+tools:
+  askhole:
+    description: "Business scouting + lead analysis"
+    primary_model: cerebras
+    fallback: openrouter
+    temperature: 0.3
+    max_tokens: 800
+    thinking_level: deep
+    providers:
+      - cerebras
+      - openrouter
+      - gemini
+
+  vertical_ai:
+    description: "Multi-model orchestration"
+    primary_model: groq
+    fallback: gemini
+    temperature: 0.7
+    max_tokens: 2000
+    thinking_level: standard
+    providers:
+      - groq
+      - gemini
+      - openai
+      - mistral
+
+  syntax_ai:
+    description: "Code analysis + explanation"
+    primary_model: cerebras
+    fallback: openrouter
+    temperature: 0.2
+    max_tokens: 1500
+    thinking_level: deep
+    providers:
+      - cerebras
+      - openrouter
+
+# ============================================================================
+# PROVIDER CONFIGURATIONS
+# ============================================================================
+
+providers:
+  cerebras:
+    name: "Cerebras"
+    model: "gpt-oss-120b"
+    free_tier: true
+    rate_limit: 100
+    priority: 1
+    cost_per_million: 0
+    best_for:
+      - reasoning
+      - code_analysis
+      - deep_thinking
+
+  openrouter:
+    name: "OpenRouter"
+    model: "nvidia/nemotron-3-super-120b-a12b:free"
+    free_tier: true
+    rate_limit: 50
+    priority: 2
+    cost_per_million: 0
+    best_for:
+      - reasoning
+      - fallback
+      - long_context
+
+  groq:
+    name: "Groq"
+    model: "llama-3.3-70b-versatile"
+    free_tier: true
+    rate_limit: 30
+    priority: 1
+    cost_per_million: 0
+    best_for:
+      - speed
+      - real_time
+      - streaming
+
+  gemini:
+    name: "Google Gemini"
+    model: "gemini-2.0-flash"
+    free_tier: true
+    rate_limit: 15
+    priority: 3
+    cost_per_million: 0
+    best_for:
+      - vision
+      - multimodal
+      - explanation
+
+  mistral:
+    name: "Mistral"
+    model: "mistral-7b"
+    free_tier: true
+    rate_limit: 20
+    priority: 4
+    cost_per_million: 0
+    best_for:
+      - efficiency
+      - fast_response
+      - fallback
+
+  openai:
+    name: "OpenAI"
+    model: "gpt-4o-mini"
+    free_tier: false
+    rate_limit: 100
+    priority: 5
+    cost_per_million: 150
+    best_for:
+      - premium
+      - complex_tasks
+      - backup
+
+# ============================================================================
+# THINKING LEVELS
+# ============================================================================
+
+thinking_levels:
+  fast:
+    enabled: false
+    timeout: 5
+    use_case: "real-time, speed-critical"
+  
+  standard:
+    enabled: true
+    timeout: 15
+    budget_tokens: 5000
+    use_case: "balanced reasoning"
+  
+  deep:
+    enabled: true
+    timeout: 30
+    budget_tokens: 15000
+    use_case: "complex reasoning, analysis"
+
+# ============================================================================
+# TEMPERATURE PRESETS
+# ============================================================================
+
+temperature_presets:
+  precise:
+    value: 0.2
+    use_case: "fact retrieval, code, analysis"
+  
+  balanced:
+    value: 0.5
+    use_case: "general chat, mixed tasks"
+  
+  creative:
+    value: 0.8
+    use_case: "brainstorming, content, ideas"
+
+# ============================================================================
+# PLATFORM OVERRIDES
+# ============================================================================
+
+platforms:
+  windows_powershell:
+    timeout: 30
+    retry_attempts: 3
+    cache_dir: "APPDATA/RootBase/cache"
+  
+  termux_android:
+    timeout: 20
+    retry_attempts: 2
+    cache_dir: "/storage/emulated/0/RootBase/cache"
+
+# ============================================================================
+# FALLBACK STRATEGY
+# ============================================================================
+
+fallback:
+  strategy: "cascade"
+  max_retries: 3
+  backoff_multiplier: 2
+  timeout_escalation: true
+
+# ============================================================================
+# LOGGING
+# ============================================================================
+
+logging:
+  level: INFO
+  file: logs/config_juicer.log
+  track_costs: true
+  track_latency: true

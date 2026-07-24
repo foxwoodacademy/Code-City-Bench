@@ -1,0 +1,56 @@
+#!/usr/bin/env python3
+import sys, os, time, json, signal
+sys.path.insert(0, "/storage/emulated/0/RootBase/askhole_autopilot/lib")
+from pipeline import pipeline, bookkeeper, copywriter, scout
+from state_engine import State
+
+PIDFILE = "/storage/emulated/0/RootBase/askhole_autopilot/state/daemon.pid"
+
+def daemonize():
+    # Termux-safe double-fork
+    if os.fork(): sys.exit(0)
+    os.setsid()
+    if os.fork(): sys.exit(0)
+    with open(PIDFILE, 'w') as f:
+        f.write(str(os.getpid()))
+
+def handle(sig, frame):
+    State().trigger("shutdown", {"signal": sig})
+    if os.path.exists(PIDFILE):
+        os.remove(PIDFILE)
+    sys.exit(0)
+
+signal.signal(signal.SIGTERM, handle)
+signal.signal(signal.SIGINT,  handle)
+
+def main():
+    daemonize()
+    S = State()
+    S.trigger("boot")
+    while True:
+        S.load()  # re-read state each tick so external triggers take effect
+        mode = S.data.get("mode", "IDLE")
+
+        if mode == "SHIP":
+            S.trigger("pipeline_start")
+            pipeline(dry=False)
+            bookkeeper()
+            S.data["mode"] = "MONITOR"
+            S.save()
+
+        elif mode == "GENERATE":
+            for p in ["Fiverr", "Upwork", "Nostr", "Reddit", "ProductHunt"]:
+                copywriter("askhole.json", p)
+            S.data["copy"] += 5
+            S.data["mode"] = "IDLE"
+            S.save()
+
+        elif mode == "SCOUT":
+            scout("askhole")
+            S.data["mode"] = "IDLE"
+            S.save()
+
+        time.sleep(30)
+
+if __name__ == "__main__":
+    main()

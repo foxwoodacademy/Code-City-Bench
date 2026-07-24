@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<!-- Author: Claude (Anthropic)
+     File: brainbleed.html
+     Path: ~/vertical-ai/brainbleed.html
+     Backend: Ollama http://localhost:11434/api/generate
+     Model: qwen2.5:1.5b -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>BRAINBLEED</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Special+Elite&family=Share+Tech+Mono&display=swap');
+
+:root {
+  --blood: #8b0000;
+  --bright-blood: #cc0000;
+  --bile: #4a5c00;
+  --bone: #e8d5b0;
+  --void: #030203;
+  --meat: #3d1515;
+  --nerve: #00ff41;
+  --static: #1a0a0a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { height: 100%; overflow: hidden; }
+
+body {
+  background: var(--void);
+  color: var(--bone);
+  font-family: 'Share Tech Mono', monospace;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+/* NOISE OVERLAY */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.4;
+  mix-blend-mode: overlay;
+}
+
+/* SCANLINES */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(0,0,0,0.25) 3px,
+    rgba(0,0,0,0.25) 4px
+  );
+  pointer-events: none;
+  z-index: 99;
+  animation: scanroll 12s linear infinite;
+}
+
+@keyframes scanroll {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 200px; }
+}
+
+/* HEADER */
+#header {
+  flex-shrink: 0;
+  padding: 8px 12px 4px;
+  border-bottom: 1px solid var(--blood);
+  background: linear-gradient(180deg, #0a0203 0%, var(--void) 100%);
+  position: relative;
+}
+
+#header::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--bright-blood), transparent);
+  animation: bleed 3s ease-in-out infinite;
+}
+
+@keyframes bleed {
+  0%,100% { opacity: 0.3; transform: scaleX(0.8); }
+  50% { opacity: 1; transform: scaleX(1); }
+}
+
+.title {
+  font-family: 'Creepster', cursive;
+  font-size: 1.6rem;
+  color: var(--bright-blood);
+  letter-spacing: 6px;
+  text-shadow: 0 0 10px var(--blood), 0 0 30px var(--blood);
+  animation: titledrip 4s ease-in-out infinite;
+  line-height: 1;
+}
+
+@keyframes titledrip {
+  0%,100% { text-shadow: 0 0 10px var(--blood), 0 0 30px var(--blood); }
+  50% { text-shadow: 0 0 20px var(--bright-blood), 0 0 60px var(--bright-blood), 0 2px 0 var(--bright-blood); }
+}
+
+.subtitle {
+  font-size: 0.5rem;
+  color: #440000;
+  letter-spacing: 4px;
+  margin-top: 2px;
+}
+
+.hstats {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 0.55rem;
+  color: #440000;
+  text-align: right;
+  line-height: 1.6;
+}
+
+.hstats .val { color: var(--bright-blood); }
+
+/* ROUND TABLE — personas in a circle */
+#table-container {
+  flex-shrink: 0;
+  position: relative;
+  width: 100%;
+  height: 200px;
+  margin: 4px 0;
+}
+
+#table-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 1px solid #2a0000;
+  box-shadow: 0 0 20px rgba(139,0,0,0.3), inset 0 0 30px rgba(0,0,0,0.8);
+  background: radial-gradient(circle, #0d0203 0%, #030203 70%);
+}
+
+#table-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Creepster', cursive;
+  font-size: 0.7rem;
+  color: #2a0000;
+  letter-spacing: 2px;
+  text-align: center;
+  pointer-events: none;
+}
+
+.seat {
+  position: absolute;
+  width: 52px;
+  text-align: center;
+  cursor: pointer;
+  transform-origin: center;
+  transition: transform 0.2s;
+}
+
+.seat:active { transform: scale(0.95); }
+
+.face {
+  font-size: 1.8rem;
+  line-height: 1;
+  display: block;
+  filter: grayscale(30%) contrast(120%);
+  transition: filter 0.3s, transform 0.1s;
+  animation: facebreath 3s ease-in-out infinite;
+}
+
+.seat.speaking .face {
+  filter: grayscale(0%) contrast(150%) drop-shadow(0 0 6px var(--bright-blood));
+  animation: facespeak 0.15s step-end infinite;
+}
+
+.seat.glitching .face {
+  animation: faceglitch 0.05s step-end infinite;
+}
+
+.seat.hot .face {
+  filter: grayscale(0%) contrast(180%) sepia(50%) hue-rotate(-20deg);
+}
+
+@keyframes facebreath {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+@keyframes facespeak {
+  0% { transform: scale(1.1) translateY(-1px); filter: brightness(1.5) drop-shadow(0 0 8px var(--bright-blood)); }
+  25% { transform: scale(0.95) translateY(1px); }
+  50% { transform: scale(1.15) translateY(-2px); filter: brightness(2) drop-shadow(0 0 12px var(--bright-blood)); }
+  75% { transform: scale(1) translateY(0); }
+  100% { transform: scale(1.08) translateY(-1px); }
+}
+
+@keyframes faceglitch {
+  0% { transform: translate(0,0) skewX(0); filter: hue-rotate(0deg); }
+  20% { transform: translate(-3px,1px) skewX(2deg); filter: hue-rotate(90deg) brightness(2); }
+  40% { transform: translate(3px,-1px) skewX(-1deg); filter: hue-rotate(180deg); }
+  60% { transform: translate(-1px,2px) skewX(0); filter: hue-rotate(270deg); }
+  80% { transform: translate(2px,-2px) scaleX(1.05); filter: hue-rotate(45deg); }
+  100% { transform: translate(0,0) skewX(0); filter: hue-rotate(0deg); }
+}
+
+@keyframes faceglitch2 {
+  0%,100% { transform: translate(0,0); }
+  33% { transform: translate(2px,-1px); }
+  66% { transform: translate(-2px,1px); }
+}
+
+.seatname {
+  font-size: 0.42rem;
+  letter-spacing: 2px;
+  color: #550000;
+  display: block;
+  margin-top: 1px;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+.seat.speaking .seatname { color: var(--bright-blood); }
+
+.tempbar {
+  height: 2px;
+  background: #1a0000;
+  margin-top: 2px;
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.tempfill {
+  height: 100%;
+  width: 0%;
+  transition: width 0.5s, background 0.5s;
+  background: var(--blood);
+}
+
+/* FEED */
+#feed {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  min-height: 0;
+}
+
+#feed::-webkit-scrollbar { width: 2px; }
+#feed::-webkit-scrollbar-thumb { background: var(--blood); }
+
+.msg {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  opacity: 0;
+  animation: msgappear 0.4s ease forwards;
+}
+
+@keyframes msgappear {
+  0% { opacity: 0; transform: translateX(-8px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+.msg.interrupt {
+  animation: interruptappear 0.2s step-end forwards;
+  border-left: 2px solid var(--bright-blood);
+  padding-left: 6px;
+  margin-left: -8px;
+  background: linear-gradient(90deg, rgba(139,0,0,0.05), transparent);
+}
+
+@keyframes interruptappear {
+  0% { opacity: 0; transform: translateX(-20px) skewX(-5deg); }
+  50% { opacity: 1; transform: translateX(4px) skewX(2deg); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+.msg-face {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  width: 28px;
+  text-align: center;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+.msg-content { flex: 1; min-width: 0; }
+
+.msg-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 3px;
+}
+
+.msg-who {
+  font-family: 'Creepster', cursive;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+}
+
+.msg-when { font-size: 0.5rem; color: #330000; }
+
+.msg-int { font-size: 0.45rem; color: var(--bright-blood); letter-spacing: 2px; }
+
+.msg-text {
+  font-family: 'Special Elite', cursive;
+  font-size: 0.75rem;
+  line-height: 1.55;
+  color: #c8a8a0;
+  word-break: break-word;
+}
+
+.sysmsg {
+  font-size: 0.55rem;
+  color: #330000;
+  letter-spacing: 3px;
+  padding: 3px 0;
+  border-bottom: 1px solid #1a0000;
+  opacity: 0;
+  animation: msgappear 0.3s ease forwards;
+}
+
+.sysmsg::before { content: '▸ '; color: var(--blood); }
+
+/* INPUT — fixed at bottom, always visible */
+#input-zone {
+  flex-shrink: 0;
+  background: #080003;
+  border-top: 1px solid var(--blood);
+  padding: 8px 10px;
+  padding-bottom: max(8px, env(safe-area-inset-bottom));
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  z-index: 50;
+}
+
+#input-zone::before {
+  content: '▸';
+  color: var(--blood);
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  animation: cursor-blink 1s step-end infinite;
+}
+
+@keyframes cursor-blink {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+#directive {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--bone);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.85rem;
+  caret-color: var(--bright-blood);
+  min-width: 0;
+}
+
+#directive::placeholder { color: #330000; }
+
+#go-btn {
+  background: var(--blood);
+  border: none;
+  color: var(--bone);
+  font-family: 'Creepster', cursive;
+  font-size: 0.9rem;
+  letter-spacing: 3px;
+  padding: 6px 14px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.2s, transform 0.1s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#go-btn:active { background: var(--bright-blood); transform: scale(0.96); }
+#go-btn.loading { background: #2a0000; color: #550000; animation: loadpulse 0.4s step-end infinite; }
+
+@keyframes loadpulse {
+  0%,100% { background: #2a0000; }
+  50% { background: #3a0000; }
+}
+
+/* BOOT */
+#boot {
+  position: fixed;
+  inset: 0;
+  background: var(--void);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.boot-t {
+  font-family: 'Creepster', cursive;
+  font-size: 3rem;
+  color: var(--bright-blood);
+  letter-spacing: 8px;
+  text-shadow: 0 0 40px var(--blood);
+  opacity: 0;
+  animation: bootfade 0.5s ease forwards;
+}
+
+.boot-l {
+  font-size: 0.6rem;
+  color: #330000;
+  letter-spacing: 4px;
+  opacity: 0;
+  animation: bootfade 0.3s ease forwards;
+}
+
+@keyframes bootfade { to { opacity: 1; } }
+</style>
+</head>
+<body>
+
+<div id="boot">
+  <div class="boot-t" style="animation-delay:0.1s">BRAINBLEED</div>
+  <div class="boot-l" style="animation-delay:0.6s">// VERTICAL AI BOARDROOM</div>
+  <div class="boot-l" style="animation-delay:1.0s">// LOADING PERSONAS</div>
+  <div class="boot-l" style="animation-delay:1.4s">// CONNECTING OLLAMA</div>
+  <div class="boot-l" style="animation-delay:1.9s; color:#550000">// THEY ARE AWAKE</div>
+</div>
+
+<div id="header">
+  <div class="title">BRAINBLEED</div>
+  <div class="subtitle">VERTICAL AI // BOARDROOM</div>
+  <div class="hstats">
+    HEAT <span class="val" id="s-heat">0</span>° &nbsp;
+    GLITCH <span class="val" id="s-glitch">0</span> &nbsp;
+    MSG <span class="val" id="s-msg">0</span>
+  </div>
+</div>
+
+<div id="table-container">
+  <div id="table-ring"></div>
+  <div id="table-label">INJECT<br>DIRECTIVE</div>
+  <div id="seats"></div>
+</div>
+
+<div id="feed">
+  <div class="sysmsg">BOARDROOM ONLINE — THEY ARE LISTENING</div>
+</div>
+
+<div id="input-zone">
+  <input id="directive" type="text" placeholder="speak your directive..." autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="send">
+  <button id="go-btn" onclick="submit()">SPEAK</button>
+</div>
+
+<script>
+const OLLAMA = 'http://localhost:11434/api/generate';
+const MODEL  = 'gemma3:1b';
+
+const PERSONAS = [
+  { id:'ceo',      name:'CEO',      face:'>:-|', color:'#fa6000',
+    prompt:'You are a CEO. Revenue and strategy only. Blunt. One sentence.' },
+  { id:'adv',      name:'ADVERSARY',face:'}:->', color:'#cc0000',
+    prompt:'You are the Adversary. Find the fatal flaw. Brutal. One sentence.' },
+  { id:'arch',     name:'ARCHITECT',face:'[=_=]', color:'#0088cc',
+    prompt:'You are the Architect. Technical feasibility only. One sentence.' },
+  { id:'cmo',      name:'CMO',      face:':D-->', color:'#00aa44',
+    prompt:'You are the CMO. Market and messaging only. One sentence.' },
+  { id:'threat',   name:'THREAT',   face:'>_<',  color:'#8800cc',
+    prompt:'You are the Threat Modeler. Biggest risk only. One sentence.' },
+  { id:'pytch',    name:'PYTCH',    face:'@_@', color:'#cc00cc',
+    prompt:'You are Pytch. Think sideways. One strange sentence.' },
+  { id:'twoie',    name:'TWOIE',    face:'-_-#', color:'#00cccc',
+    prompt:'You are Twoie. Demand a specific number or metric. One sentence.' },
+  { id:'glitch',   name:'GLITCH',   face:'X_X', color:'#ff0044',
+    prompt:'You are the Glitch. Break the logic. Speak in corrupted fragments. One line.' },
+];
+
+const state = {
+  temps: {},
+  heat: 0,
+  glitches: 0,
+  msgs: 0,
+  busy: false
+};
+PERSONAS.forEach(p => state.temps[p.id] = 0);
+
+// ── Layout seats in a circle ─────────────────────────────────
+function layoutSeats() {
+  const container = document.getElementById('table-container');
+  const W = container.offsetWidth;
+  const H = 200;
+  const cx = W / 2;
+  const cy = H / 2;
+  const rx = Math.min(cx - 34, 130);
+  const ry = Math.min(cy - 30, 80);
+  const seats = document.getElementById('seats');
+  seats.innerHTML = '';
+
+  PERSONAS.forEach((p, i) => {
+    const angle = (i / PERSONAS.length) * 2 * Math.PI - Math.PI / 2;
+    const x = cx + rx * Math.cos(angle);
+    const y = cy + ry * Math.sin(angle);
+
+    const seat = document.createElement('div');
+    seat.className = 'seat';
+    seat.id = `seat-${p.id}`;
+    seat.style.left = (x - 26) + 'px';
+    seat.style.top  = (y - 28) + 'px';
+    seat.style.position = 'absolute';
+    seat.onclick = () => focusSeat(p);
+    seat.innerHTML = `
+      <span class="face" id="face-${p.id}">${p.face}</span>
+      <span class="seatname" style="color:${p.color}">${p.name}</span>
+      <div class="tempbar"><div class="tempfill" id="tf-${p.id}"></div></div>
+    `;
+    seats.appendChild(seat);
+  });
+}
+
+// ── Heat ────────────────────────────────────────────────────
+function heat(id, amt) {
+  state.temps[id] = Math.min(100, state.temps[id] + amt);
+  const tf = document.getElementById(`tf-${id}`);
+  if (tf) {
+    tf.style.width = state.temps[id] + '%';
+    const t = state.temps[id];
+    tf.style.background = t < 40 ? '#8b0000' : t < 70 ? '#cc4400' : '#ff0000';
+  }
+  const seat = document.getElementById(`seat-${id}`);
+  if (seat && state.temps[id] > 65) seat.classList.add('hot');
+
+  // Global heat
+  state.heat = Math.floor(Object.values(state.temps).reduce((a,b)=>a+b,0) / PERSONAS.length);
+  document.getElementById('s-heat').textContent = state.heat;
+
+  // Glitch at high temp
+  if (state.temps[id] > 75 && Math.random() < 0.4) {
+    triggerGlitch(id);
+  }
+}
+
+function triggerGlitch(id) {
+  const seat = document.getElementById(`seat-${id}`);
+  if (!seat) return;
+  seat.classList.add('glitching');
+  state.glitches++;
+  document.getElementById('s-glitch').textContent = state.glitches;
+  setTimeout(() => seat.classList.remove('glitching'), 400 + Math.random() * 600);
+}
+
+function coolAll() {
+  PERSONAS.forEach(p => {
+    state.temps[p.id] = Math.max(0, state.temps[p.id] - 1.5);
+    const tf = document.getElementById(`tf-${p.id}`);
+    if (tf) tf.style.width = state.temps[p.id] + '%';
+  });
+}
+
+// ── Speaking state ───────────────────────────────────────────
+function setSpeaking(id, on) {
+  const seat = document.getElementById(`seat-${id}`);
+  if (!seat) return;
+  if (on) seat.classList.add('speaking');
+  else seat.classList.remove('speaking');
+}
+
+// ── Feed ─────────────────────────────────────────────────────
+function sysmsg(txt) {
+  const feed = document.getElementById('feed');
+  const d = document.createElement('div');
+  d.className = 'sysmsg';
+  d.textContent = txt;
+  feed.appendChild(d);
+  feed.scrollTop = feed.scrollHeight;
+}
+
+function addMsg(persona, text, isInterrupt) {
+  const feed = document.getElementById('feed');
+  const d = document.createElement('div');
+  d.className = 'msg' + (isInterrupt ? ' interrupt' : '');
+
+  const now = new Date();
+  const t = `${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}:${now.getSeconds().toString().padStart(2,'0')}`;
+
+  d.innerHTML = `
+    <div class="msg-face">${persona.face}</div>
+    <div class="msg-content">
+      <div class="msg-meta">
+        <span class="msg-who" style="color:${persona.color}">${persona.name}</span>
+        <span class="msg-when">${t}</span>
+        ${isInterrupt ? '<span class="msg-int">⚡INTERRUPT</span>' : ''}
+      </div>
+      <div class="msg-text"></div>
+    </div>
+  `;
+
+  feed.appendChild(d);
+  state.msgs++;
+  document.getElementById('s-msg').textContent = state.msgs;
+
+  // Crawl text
+  const textEl = d.querySelector('.msg-text');
+  let i = 0;
+  const crawl = setInterval(() => {
+    if (i >= text.length) { clearInterval(crawl); return; }
+    textEl.textContent += text[i++];
+    feed.scrollTop = feed.scrollHeight;
+  }, 16);
+}
+
+// ── Ollama call ──────────────────────────────────────────────
+async function ask(persona, directive) {
+  const res = await fetch(OLLAMA, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: MODEL,
+      prompt: `${persona.prompt}\n\nDirective from the table: "${directive}"\n\nYour response (one sentence, stay in character):`,
+      stream: false,
+      options: { num_predict: 90, temperature: 0.75 + state.temps[persona.id] * 0.003 }
+    })
+  });
+  const data = await res.json();
+  let txt = (data.response || '').trim();
+  if (txt.includes('<think>')) txt = txt.split('</think>').pop().trim();
+  return txt;
+}
+
+// ── Interrupt mechanic ───────────────────────────────────────
+function maybeInterrupt(currentId, directive) {
+  const hot = PERSONAS.filter(p =>
+    p.id !== currentId &&
+    state.temps[p.id] > 45 &&
+    Math.random() < 0.28
+  );
+  if (!hot.length) return;
+  const intruder = hot[Math.floor(Math.random() * hot.length)];
+  setSpeaking(intruder.id, true);
+  setTimeout(async () => {
+    try {
+      const r = await ask(intruder, `React to this in one sentence: "${directive}"`);
+      addMsg(intruder, r, true);
+      heat(intruder.id, 12);
+    } catch(e) {}
+    setSpeaking(intruder.id, false);
+  }, 600 + Math.random() * 800);
+}
+
+// ── Focus seat ───────────────────────────────────────────────
+function focusSeat(persona) {
+  sysmsg(`${persona.name} focused — ${Math.floor(state.temps[persona.id])}°`);
+  heat(persona.id, 8);
+}
+
+// ── Main sequence ────────────────────────────────────────────
+async function runSequence(directive) {
+  sysmsg(`DIRECTIVE: ${directive}`);
+
+  for (let i = 0; i < PERSONAS.length; i++) {
+    const p = PERSONAS[i];
+    setSpeaking(p.id, true);
+    heat(p.id, 8);
+
+    try {
+      const response = await ask(p, directive);
+      addMsg(p, response, false);
+      heat(p.id, 10 + Math.floor(Math.random() * 15));
+      if (i < PERSONAS.length - 1) maybeInterrupt(p.id, response);
+    } catch(e) {
+      addMsg(p, `[${p.name} offline — ${e.message}]`, false);
+    }
+
+    setSpeaking(p.id, false);
+    await new Promise(r => setTimeout(r, 200));
+  }
+
+  sysmsg('SESSION COMPLETE');
+  const btn = document.getElementById('go-btn');
+  btn.classList.remove('loading');
+  btn.textContent = 'SPEAK';
+  state.busy = false;
+}
+
+// ── Submit ───────────────────────────────────────────────────
+function submit() {
+  if (state.busy) return;
+  const input = document.getElementById('directive');
+  const val = input.value.trim();
+  if (!val) return;
+  input.value = '';
+  input.blur();
+  state.busy = true;
+  const btn = document.getElementById('go-btn');
+  btn.classList.add('loading');
+  btn.textContent = '...';
+  runSequence(val);
+}
+
+document.getElementById('directive').addEventListener('keydown', e => {
+  if (e.key === 'Enter') { e.preventDefault(); submit(); }
+});
+
+// ── Boot ─────────────────────────────────────────────────────
+window.addEventListener('load', () => {
+  layoutSeats();
+  setInterval(coolAll, 2500);
+  window.addEventListener('resize', layoutSeats);
+
+  setTimeout(() => {
+    const boot = document.getElementById('boot');
+    boot.style.transition = 'opacity 0.6s';
+    boot.style.opacity = '0';
+    setTimeout(() => {
+      boot.remove();
+      setTimeout(() => {
+        const pytch = PERSONAS.find(p => p.id === 'pytch');
+        addMsg(pytch, "The table hungers. Feed it a directive.", false);
+        heat('pytch', 20);
+      }, 600);
+    }, 600);
+  }, 3000);
+});
+</script>
+</body>
+</html>

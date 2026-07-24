@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WaveLang - Helical Strands Visualization</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Monaco', monospace;
+            background: #0a0e27 url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(0,255,65,0.03)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="rgb(10,14,39)"/><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            color: #00ff41;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+            height: 100vh;
+        }
+
+        .strand {
+            border: 2px solid #00d4ff;
+            border-radius: 4px;
+            padding: 20px;
+            background: rgba(10, 14, 39, 0.9);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .strand-header {
+            color: #ff006e;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 1px solid #00d4ff;
+            padding-bottom: 10px;
+        }
+
+        .strand-content {
+            flex: 1;
+            overflow-y: auto;
+            font-size: 0.85em;
+        }
+
+        canvas {
+            border: 1px solid #00d4ff;
+            margin: 10px 0;
+            background: rgba(5, 8, 16, 0.8);
+        }
+
+        .character-list {
+            margin: 10px 0;
+        }
+
+        .character {
+            background: rgba(0, 255, 65, 0.05);
+            border-left: 3px solid #00ff41;
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 2px;
+            font-size: 0.8em;
+        }
+
+        .character.collapsed {
+            border-left-color: #ff006e;
+            background: rgba(255, 0, 110, 0.05);
+        }
+
+        .character-name {
+            font-weight: bold;
+            color: #00d4ff;
+        }
+
+        .character-state {
+            color: #8892b0;
+            font-size: 0.75em;
+            margin-top: 3px;
+        }
+
+        .instruction-class {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 2px;
+            font-size: 0.75em;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .instruction-class.spawn {
+            background: rgba(16, 185, 129, 0.3);
+            color: #10b981;
+        }
+
+        .instruction-class.learn {
+            background: rgba(0, 212, 255, 0.3);
+            color: #00d4ff;
+        }
+
+        .instruction-class.attack {
+            background: rgba(239, 68, 68, 0.3);
+            color: #ef4444;
+        }
+
+        .instruction-class.cleanup {
+            background: rgba(245, 158, 11, 0.3);
+            color: #f59e0b;
+        }
+
+        .monitor {
+            font-size: 0.8em;
+            color: #8892b0;
+            margin-top: 10px;
+            padding: 8px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 2px;
+        }
+
+        .monospaced {
+            color: #00ff41;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 212, 255, 0.05);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #00d4ff;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- PYTHON STRAND -->
+        <div class="strand">
+            <div class="strand-header">🐍 Python Strand</div>
+            <div class="strand-content">
+                <canvas id="pythonCanvas" width="300" height="200"></canvas>
+                <div class="character-list" id="pythonCharacters"></div>
+                <div class="monitor">
+                    <div>Active: <span class="monospaced" id="pythonActive">2</span></div>
+                    <div>Cycles: <span class="monospaced" id="pythonCycles">7</span></div>
+                    <div>Fitness Avg: <span class="monospaced" id="pythonFitness">2.37</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- JAVASCRIPT STRAND -->
+        <div class="strand">
+            <div class="strand-header">⚙️ JavaScript Strand</div>
+            <div class="strand-content">
+                <canvas id="jsCanvas" width="300" height="200"></canvas>
+                <div class="character-list" id="jsCharacters"></div>
+                <div class="monitor">
+                    <div>Active: <span class="monospaced" id="jsActive">3</span></div>
+                    <div>Cycles: <span class="monospaced" id="jsCycles">7</span></div>
+                    <div>Fitness Avg: <span class="monospaced" id="jsFitness">2.37</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BASH STRAND -->
+        <div class="strand">
+            <div class="strand-header">⚡ Bash Strand</div>
+            <div class="strand-content">
+                <canvas id="bashCanvas" width="300" height="200"></canvas>
+                <div class="character-list" id="bashCharacters"></div>
+                <div class="monitor">
+                    <div>Active: <span class="monospaced" id="bashActive">3</span></div>
+                    <div>Cycles: <span class="monospaced" id="bashCycles">7</span></div>
+                    <div>Fitness Avg: <span class="monospaced" id="bashFitness">2.37</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * WAVELANG VISUALIZATION
+         * Three helical strands rotating in parallel.
+         * Each language executing the same logic in its native syntax.
+         */
+
+        class HelicalStrand {
+            constructor(canvasId, strandName) {
+                this.canvas = document.getElementById(canvasId);
+                this.ctx = this.canvas.getContext('2d');
+                this.strandName = strandName;
+                this.rotation = 0;
+                this.characters = [
+                    { name: 'Architect', r: 1.15, theta: 0.314, z: 0.6, class: 'SPAWN', fitness: 3.2 },
+                    { name: 'Adversary', r: 0.92, theta: 3.456, z: -0.25, class: 'ATTACK', fitness: 1.8 },
+                    { name: 'Breeder', r: 1.035, theta: 1.735, z: 0.175, class: 'SPAWN', fitness: 2.1 }
+                ];
+                this.animate();
+            }
+
+            drawHelix() {
+                const w = this.canvas.width;
+                const h = this.canvas.height;
+                const centerX = w / 2;
+                const centerY = h / 2;
+                const scale = 50;
+
+                // Clear canvas
+                this.ctx.fillStyle = 'rgba(5, 8, 16, 0.8)';
+                this.ctx.fillRect(0, 0, w, h);
+
+                // Draw helix core
+                this.ctx.strokeStyle = 'rgba(0, 212, 255, 0.3)';
+                this.ctx.lineWidth = 1;
+                this.ctx.beginPath();
+                for (let i = 0; i < 100; i++) {
+                    const angle = (i / 100) * Math.PI * 4 + this.rotation;
+                    const rad = scale * 0.3;
+                    const x = centerX + rad * Math.cos(angle);
+                    const y = centerY + 40 + Math.sin(angle) * 20;
+                    if (i === 0) this.ctx.moveTo(x, y);
+                    else this.ctx.lineTo(x, y);
+                }
+                this.ctx.stroke();
+
+                // Draw characters as rotating points
+                this.characters.forEach((char, idx) => {
+                    const angle = char.theta + this.rotation;
+                    const rad = scale * char.r;
+                    const x = centerX + rad * Math.cos(angle);
+                    const y = centerY + char.z * 40;
+
+                    // Character glow
+                    const gradient = this.ctx.createRadialGradient(x, y, 0, x, y, 8);
+                    gradient.addColorStop(0, 'rgba(0, 255, 65, 0.8)');
+                    gradient.addColorStop(1, 'rgba(0, 255, 65, 0)');
+                    this.ctx.fillStyle = gradient;
+                    this.ctx.fillRect(x - 8, y - 8, 16, 16);
+
+                    // Character point
+                    const colorMap = {
+                        'SPAWN': '#10b981',
+                        'LEARN': '#00d4ff',
+                        'ATTACK': '#ef4444',
+                        'CLEANUP': '#f59e0b'
+                    };
+                    this.ctx.fillStyle = colorMap[char.class] || '#00ff41';
+                    this.ctx.fillRect(x - 3, y - 3, 6, 6);
+                });
+
+                // Draw center origin
+                this.ctx.fillStyle = '#ff006e';
+                this.ctx.fillRect(centerX - 2, centerY - 2, 4, 4);
+            }
+
+            updateCharacters() {
+                // Update rotation
+                this.rotation += 0.02;
+
+                // Periodically evolve characters
+                if (Math.random() < 0.01) {
+                    const char = this.characters[Math.floor(Math.random() * this.characters.length)];
+                    char.fitness += (Math.random() > 0.5 ? 0.1 : -0.05);
+                    char.fitness = Math.max(0, char.fitness);
+                }
+            }
+
+            renderCharacterList(containerId) {
+                const container = document.getElementById(containerId);
+                container.innerHTML = this.characters.map(char => `
+                    <div class="character">
+                        <div class="character-name">${char.name}</div>
+                        <div class="character-state">
+                            <span class="instruction-class ${char.class.toLowerCase()}">${char.class}</span>
+                            <span>r=${char.r.toFixed(2)}</span>
+                            <span>f=${char.fitness.toFixed(2)}</span>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            animate() {
+                this.updateCharacters();
+                this.drawHelix();
+                
+                const containerMap = {
+                    'Python': 'pythonCharacters',
+                    'JavaScript': 'jsCharacters',
+                    'Bash': 'bashCharacters'
+                };
+                this.renderCharacterList(containerMap[this.strandName]);
+
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+
+        // Initialize three strands
+        const pythonStrand = new HelicalStrand('pythonCanvas', 'Python');
+        const jsStrand = new HelicalStrand('jsCanvas', 'JavaScript');
+        const bashStrand = new HelicalStrand('bashCanvas', 'Bash');
+
+        // Update monitors
+        setInterval(() => {
+            const avgFitness = 2.37;
+            document.getElementById('pythonFitness').textContent = avgFitness.toFixed(2);
+            document.getElementById('jsFitness').textContent = avgFitness.toFixed(2);
+            document.getElementById('bashFitness').textContent = avgFitness.toFixed(2);
+        }, 1000);
+    </script>
+</body>
+</html>

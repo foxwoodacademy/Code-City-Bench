@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "name": "project_incubator",
+    "path": "/storage/emulated/0/RootBase/project_incubator",
+    "languages": {
+      "python": 1
+    },
+    "entrypoints": [
+      "voltron_incubator.py"
+    ],
+    "package_json": false,
+    "requirements": 0,
+    "readme_excerpt": "",
+    "last_modified": "2026-05-20T16:53:23.904999"
+  },
+  "runbook": {
+    "commands": [
+      "python voltron_incubator.py"
+    ],
+    "env": [],
+    "notes": []
+  },
+  "bard_note": "Can't tell what this does \u2014 it's a mystery wrapped in a folder. (Bardildo: harsh truth incoming)"
+}

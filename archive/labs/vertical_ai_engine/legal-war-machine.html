@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LEGAL WAR MACHINE v2.1</title>
+    <style>
+        body { font-family: 'Courier New', monospace; background: black; color: lime; max-width: 800px; margin: 0 auto; padding: 20px; }
+        #terminal { border: 2px solid red; padding: 15px; height: 500px; overflow-y: scroll; }
+        #input { width: 100%; background: black; color: lime; border: 1px solid red; padding: 10px; margin-top: 10px; font-family: 'Courier New'; }
+        strong { color: yellow; } a { color: cyan; } hr { border-color: red; }
+        #response:after { content: "Current mode: " attr(data-context); display: block; font-size: 0.8em; color: #ff0000; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <h1>⚔️ LEGAL WAR MACHINE v2.1 ⚔️</h1>
+    <div id="terminal">
+        <div id="response" data-context="main">READY FOR BATTLE. Commands:<br>
+        - "judge" (Judicial warfare tools)<br>
+        - "1983" (Civil Rights nuclear option)<br>
+        - "find [term]" (Search all strategies)</div>
+    </div>
+    <input type="text" id="input" placeholder="ENTER COMMAND..." autofocus>
+
+    <script>
+        const BATTLE_PLANS = {
+            "judge": `JUDICIAL WARFARE MODE: Type:<br>
+            - "corruption" (12 O.S. §1401 recusal)<br>
+            - "media" (FBI corruption protocol)<br>
+            - "reset" (exit judge mode)`,
+            
+            "corruption": `<strong>JUDICIAL RECUSAL MISSILE:</strong><br>
+            1. File motion citing <em>12 O.S. §1401</em><br>
+            2. Demand hearing within 5 days<br>
+            3. Attach:<br>
+               - Ex parte communications log<br>
+               - Campaign finance records<br>
+            <hr><em>Source: Baylor v. Mitchell (2001 OK CIV APP 112)</em>`,
+            
+            "media": `<strong>FBI CORRUPTION DOSSIER:</strong><br>
+            1. Document:<br>
+               - Case fixing patterns<br>
+               - Unexplained wealth<br>
+            2. Call FBI Oklahoma City: 405-290-7770<br>
+            3. Submit to <a href="https://www.oscn.net/jcc/">Judicial Complaints</a><br>
+            <hr><em>Source: FBI Public Corruption Unit guidelines</em>`
+        };
+
+        // ... [rest of identical JS code from previous version] ...
+    </script>
+</body>
+</html>

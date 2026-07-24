@@ -1,0 +1,30 @@
+#include <iostream>
+#include <cstdint>
+
+struct __attribute__((__packed__)) TelemetryPacket {
+    uint8_t  needle_id;          // 1 Byte
+    float    left_hand_stretch;  // 4 Bytes
+    float    counter_emf;        // 4 Bytes
+    float    client_masseter;    // 4 Bytes
+    float    artist_forearm;     // 4 Bytes
+    uint16_t client_pulse;       // 2 Bytes
+};
+
+int main() {
+    std::cout << "========================================\n";
+    std::cout << " SYSTEM DATA PARITY CHECK               \n";
+    std::cout << "========================================\n";
+    std::cout << "[*] Target Memory Signature: 19-Byte Packed Struct\n";
+    std::cout << "[*] Compiled Binary Struct:  " << sizeof(TelemetryPacket) << " Bytes\n";
+
+    if (sizeof(TelemetryPacket) == 19) {
+        std::cout << " -> STATUS: CRITICAL SUCCESS. Memory footprints match perfectly.\n";
+    } else {
+        std::cout << " -> ERROR: Structural compilation drift remaining!\n";
+        return 1;
+    }
+
+    TelemetryPacket mock_frame = {0x02, 8.5f, 145.2f, 45.0f, 110.5f, 72};
+    std::cout << " Verification Frame Dump -> Needle ID: 0x" << std::hex << (int)mock_frame.needle_id << " | Stretch: " << std::dec << mock_frame.left_hand_stretch << " kPa\n";
+    return 0;
+}

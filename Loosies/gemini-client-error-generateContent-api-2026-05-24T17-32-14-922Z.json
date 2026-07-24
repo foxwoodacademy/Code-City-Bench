@@ -1,0 +1,27 @@
+{
+  "error": {
+    "message": "exception TypeError: fetch failed sending request",
+    "stack": "Error: exception TypeError: fetch failed sending request\n    at file:///data/data/com.termux/files/home/.npm-global/lib/node_modules/@google/gemini-cli/bundle/chunk-UJ26GAE5.js:36023:13\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async Models.generateContent (file:///data/data/com.termux/files/home/.npm-global/lib/node_modules/@google/gemini-cli/bundle/chunk-UJ26GAE5.js:36995:16)\n    at async file:///data/data/com.termux/files/home/.npm-global/lib/node_modules/@google/gemini-cli/bundle/chunk-U6X4OPT5.js:273694:26\n    at async file:///data/data/com.termux/files/home/.npm-global/lib/node_modules/@google/gemini-cli/bundle/chunk-U6X4OPT5.js:250482:23\n    at async retryWithBackoff (file:///data/data/com.termux/files/home/.npm-global/lib/node_modules/@google/gemini-cli/bundle/chunk-U6X4OPT5.js:270768:23)\n    at async GeminiClient.generateContent (file:///data/data/com.termux/files/home/.npm-global/lib/node_modules/@google/gemini-cli/bundle/chunk-U6X4OPT5.js:307855:23)\n    at async WebSearchToolInvocation.execute (file:///data/data/com.termux/files/home/.npm-global/lib/node_modules/@google/gemini-cli/bundle/chunk-U6X4OPT5.js:292783:24)\n    at async executeToolWithHooks (file:///data/data/com.termux/files/home/.npm-global/lib/node_modules/@google/gemini-cli/bundle/chunk-U6X4OPT5.js:303133:22)\n    at async file:///data/data/com.termux/files/home/.npm-global/lib/node_modules/@google/gemini-cli/bundle/chunk-U6X4OPT5.js:308139:28"
+  },
+  "context": {
+    "requestContents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "python voice cloning libraries"
+          }
+        ]
+      }
+    ],
+    "requestConfig": {
+      "temperature": 0,
+      "topP": 1,
+      "tools": [
+        {
+          "googleSearch": {}
+        }
+      ]
+    }
+  }
+}

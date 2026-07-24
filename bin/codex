@@ -1,0 +1,2 @@
+#!/bin/bash
+node /storage/emulated/0/RootBase/codex_install/node_modules/codex-agent/bin/cli.js "$@"

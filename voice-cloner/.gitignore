@@ -1,0 +1,66 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Voice Cloner specific
+temp/
+*.wav
+*.mp3
+*.flac
+*.ogg
+*.m4a
+*.pth
+*.npy
+*.pt
+
+# Logs
+*.log
+logs/
+
+# Models (optional - can be large)
+# Uncomment to exclude models from git
+# models/
+
+# Tools (auto-cloned)
+# Uncomment to exclude auto-cloned tools
+# tools/
+
+# Outputs
+# Uncomment to exclude outputs from git
+# outputs/

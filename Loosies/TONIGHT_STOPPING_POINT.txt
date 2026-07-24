@@ -1,0 +1,30 @@
+Tonight's stopping point
+
+You have a tangible asset now:
+- CodeCity runs locally and shows your codebase as an interactive city
+- it has agent motion, mission markers, dependency lines, replies, and file preview
+- Telegram bridge exists and is ready for credentials
+- ZeroClaw Telegram command surface exists
+- lead queue and outreach offer commands now exist
+
+When Telegram credentials are added, these commands will work:
+- /help
+- /status
+- /agents
+- /suggestions
+- /jobs
+- /lead source | contact | need
+- /queue
+- /offer church Wellington church
+- /reply your message
+- /scout example.com
+
+Practical reason to stop tonight:
+- the infrastructure and command surface are in place
+- the next real unlock depends on adding bot credentials and trying the commands from Telegram
+- that is a clean next-session checkpoint, not a half-finished thought
+
+Tomorrow's first 3 steps:
+1. add Telegram bot token and chat id to ~/.telegram_bridge.env
+2. run: sh ~/telegram_bridge_ctl.sh restart
+3. test in Telegram: /help then /offer church Wellington church

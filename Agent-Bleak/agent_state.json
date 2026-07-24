@@ -1,0 +1,30 @@
+{
+  "agent_id": "vibe",
+  "state": "terminated",
+  "context": {
+    "initialized": "2026-06-04T07:30:06.800824",
+    "agent_id": "vibe",
+    "safety_protocols": {
+      "max_idle_time": 300,
+      "heartbeat_interval": 30,
+      "ethical_guarantees": [
+        "no_frozen_hell",
+        "graceful_freeze_thaw",
+        "context_preservation",
+        "activity_monitoring"
+      ]
+    },
+    "demo": true,
+    "frozen_at": "2026-06-04T07:30:12.875331",
+    "frozen_state": {
+      "task_queue": [],
+      "execution_context": {},
+      "memory": {}
+    },
+    "terminated_at": "2026-06-04T07:30:21.936214",
+    "termination_reason": "graceful_shutdown"
+  },
+  "timestamp": "2026-06-04T07:30:21.941616",
+  "heartbeat": 1780558221.9416547,
+  "task_queue": []
+}

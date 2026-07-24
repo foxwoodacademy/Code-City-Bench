@@ -1,0 +1,30 @@
+# Voice Cloner - Python Dependencies
+# Install with: pip install -r requirements.txt
+
+# Core dependencies
+numpy>=1.21.0
+scipy>=1.7.0
+librosa>=0.9.0
+soundfile>=0.12.0
+
+# Audio processing
+pydub>=0.25.0
+ffmpeg-python>=0.2.0
+
+# Machine learning
+torch>=2.0.0
+torchaudio>=2.0.0
+
+# Demucs (will be installed via git clone)
+# git+https://github.com/facebookresearch/demucs.git
+
+# RVC dependencies (simplified)
+fairseq>=0.12.0
+pytorch-lightning>=2.0.0
+
+# CLI and utilities
+tqdm>=4.64.0
+argparse>=1.4.0
+
+# Optional: For better audio quality
+sox>=1.4.0

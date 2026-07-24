@@ -1,0 +1,62 @@
+[
+    {
+        "event_type": "LEAD_DISCOVERY_SWARM",
+        "agent_node": "ZeroClaw_Auditor",
+        "payload": {
+            "business_name": "Test Auto Network Node",
+            "friction_points": [
+                "Missing SEO tags attribute"
+            ],
+            "optimization_score": 45,
+            "action_required": "Deploy Mrs. Higgins SEO Optimization Pack via Lightning Rail"
+        }
+    },
+    {
+        "event_type": "LEAD_DISCOVERY_SWARM",
+        "agent_node": "ZeroClaw_Auditor",
+        "payload": {
+            "business_name": "Wellington Local Auto Group",
+            "friction_points": [
+                "Missing standard SEO meta description tag attributes"
+            ],
+            "optimization_score": 30,
+            "action_required": "Deploy Mrs. Higgins SEO Optimization Pack via Lightning Rail"
+        }
+    },
+    {
+        "event_type": "LEAD_DISCOVERY_SWARM",
+        "agent_node": "ZeroClaw_Auditor",
+        "payload": {
+            "business_name": "Wellington Local Auto Group",
+            "friction_points": [
+                "Missing standard SEO meta description tag attributes"
+            ],
+            "optimization_score": 30,
+            "action_required": "Deploy Mrs. Higgins SEO Optimization Pack via Lightning Rail"
+        }
+    },
+    {
+        "event_type": "LEAD_DISCOVERY_SWARM",
+        "agent_node": "ZeroClaw_Auditor",
+        "payload": {
+            "business_name": "Wellington Local Auto Group",
+            "friction_points": [
+                "Missing standard SEO meta description tag attributes"
+            ],
+            "optimization_score": 30,
+            "action_required": "Deploy Mrs. Higgins SEO Optimization Pack via Lightning Rail"
+        }
+    },
+    {
+        "event_type": "LEAD_DISCOVERY_SWARM",
+        "agent_node": "ZeroClaw_Auditor",
+        "payload": {
+            "business_name": "Wellington Local Auto Group",
+            "friction_points": [
+                "Missing standard SEO meta description tag attributes"
+            ],
+            "optimization_score": 30,
+            "action_required": "Deploy Mrs. Higgins SEO Optimization Pack via Lightning Rail"
+        }
+    }
+]

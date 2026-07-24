@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LEGAL WAR MACHINE</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: black;
+            color: lime;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        #terminal {
+            border: 2px solid red;
+            padding: 15px;
+            height: 500px;
+            overflow-y: scroll;
+        }
+        #input {
+            width: 100%;
+            background: black;
+            color: lime;
+            border: 1px solid red;
+            padding: 10px;
+            margin-top: 10px;
+            font-family: 'Courier New', monospace;
+        }
+        strong {
+            color: yellow;
+        }
+        a {
+            color: cyan;
+        }
+        hr {
+            border-color: red;
+        }
+        #response:after {
+            content: "Current mode: " attr(data-context);
+            display: block;
+            font-size: 0.8em;
+            color: #ff0000;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>⚔️ LEGAL WAR MACHINE v2.0 ⚔️</h1>
+    <div id="terminal">
+        <div id="response" data-context="main">READY FOR BATTLE. Commands:<br>
+        - "1983" (Civil Rights lawsuit)<br>
+        - "judge" (Judicial warfare)<br>
+        - "cps" (Child recovery)<br>
+        - "find [term]" (Search strategies)<br>
+        - "reset" (Clear context)</div>
+    </div>
+    <input type="text" id="input" placeholder="ENTER COMMAND..." autofocus>
+
+    <script>
+        const BATTLE_PLANS = {
+            "1983": `
+            <strong>42 U.S.C. §1983 NUCLEAR OPTION:</strong><br>
+            1. File complaint alleging constitutional violations<br>
+            2. Demand jury trial (always)<br>
+            3. Cite <em>Monell v. Dept of Social Services</em> (municipal liability)<br>
+            4. Attach exhibits showing:<br>
+               - Pattern of misconduct<br>
+               - Deliberate indifference<br>
+               - Actual injury`,
+            
+            "cps": `
+            <strong>CHILD RECOVERY PROTOCOL:</strong><br>
+            1. Immediate writ of habeas corpus (cite <em>In re Guardianship of S.A.H.</em>)<br>
+            2. FOIA all case records within 24hrs<br>
+            3. File motion to:<br>
+               - Compel reunification<br>
+               - Disqualify GAL<br>
+               - Sanction perjury`,
+            
+            "replevin": `
+            <strong>KIDNAPPED CHILD REPLEVIN:</strong><br>
+            1. File "Writ of Replevin" (Oklahoma Statute 12-1571)<br>
+            2. Sworn affidavit of parental rights<br>
+            3. Ex parte emergency hearing<br>
+            4. Serve ALL parties including CPS`
+        };
+
+        let currentContext = null;
+        const ALL_PLANS = Object.values(BATTLE_PLANS).join(" ").toLowerCase();
+
+        function searchPlans(keyword) {
+            const results = [];
+            for (const [name, plan] of Object.entries(BATTLE_PLANS)) {
+                if (plan.toLowerCase().includes(keyword.toLowerCase())) {
+                    results.push(`<strong>${name}:</strong> ${plan}`);
+                }
+            }
+            return results.length ? results.join("<hr>") : "No battle plans found";
+        }
+
+        function executeCommand(command) {
+            let response = "";
+            command = command.trim().toLowerCase();
+
+            // Judge context handler
+            if (currentContext === "judge") {
+                if (command === "media dossier") {
+                    response = `
+                    <strong>JUDICIAL CORRUPTION DOSSIER:</strong><br>
+                    1. FOIA all case assignments (Oklahoma Open Records Act)<br>
+                    2. Cross-reference campaign donations (<a href="https://www.ethics.ok.gov">ethics.ok.gov</a>)<br>
+                    3. Document ex parte communications<br>
+                    4. File complaints with:<br>
+                       - <a href="https://www.oscn.net/jcc/">Oklahoma Judicial Complaints</a><br>
+                       - FBI Public Corruption (405-290-7770)`;
+                    currentContext = null;
+                } else if (command === "recusal motion") {
+                    response = `
+                    <strong>JUDICIAL RECUSAL MISSILE:</strong><br>
+                    1. File motion citing 12 O.S. §1401<br>
+                    2. Attach evidence of:<br>
+                       - Personal bias (ex parte contacts)<br>
+                       - Financial conflicts<br>
+                       - Pattern of rulings<br>
+                    3. Demand hearing within 5 days`;
+                    currentContext = null;
+                } else {
+                    response = "Invalid judge command. Try:<br>- 'media dossier'<br>- 'recusal motion'<br>- 'reset' to exit";
+                }
+                document.getElementById('response').innerHTML = response;
+                document.getElementById('response').setAttribute('data-context', currentContext || 'main');
+                return;
+            }
+
+            // Main commands
+            switch(command) {
+                case "1983":
+                    response = BATTLE_PLANS["1983"];
+                    break;
+                case "cps":
+                    response = BATTLE_PLANS["cps"];
+                    break;
+                case "judge":
+                    currentContext = "judge";
+                    response = "JUDICIAL WARFARE MODE:<br>Choose:<br>- 'media dossier' (corruption proof)<br>- 'recusal motion'<br>- 'misconduct filing'";
+                    break;
+                case "reset":
+                    currentContext = null;
+                    response = "System reset. Main menu restored.";
+                    break;
+                default:
+                    if (command.startsWith("find ")) {
+                        const keyword = command.substring(5);
+                        response = searchPlans(keyword);
+                    } else {
+                        response = "Command not recognized. Try '1983', 'judge', 'cps', or 'find [term]'";
+                    }
+            }
+
+            document.getElementById('response').innerHTML = response;
+            document.getElementById('response').setAttribute('data-context', currentContext || 'main');
+        }
+
+        // Handle user input
+        document.getElementById('input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const command = this.value;
+                this.value = '';
+                executeCommand(command);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+# Implore GitHub Action
+# Trigger on release to automatically scan and check for new grants
+
+name: Implore Grant Check
+on:
+  release:
+    types: [published]
+
+jobs:
+  check-grants:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+      - name: Install Implore
+        run: pip install implore-cli # Assuming packaged
+      - name: Run Scan & Match
+        run: implore scan . --match-only --json > new_grants.json
+      - name: Notify
+        run: echo "New grants found: $(cat new_grants.json)"

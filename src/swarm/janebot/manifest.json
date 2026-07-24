@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "name": "janebot-motherbrain",
+    "path": "/storage/emulated/0/RootBase/janebot-motherbrain",
+    "languages": {
+      "python": 20,
+      "html": 1
+    },
+    "entrypoints": [
+      "package.json"
+    ],
+    "package_json": true,
+    "requirements": 1,
+    "readme_excerpt": "# \ud83e\udde0 JaneBot MotherBrain\n\nThe central orchestration hub for the MkdMind AI agent swarm. Designed to run on a tablet as a command-and-control center.\n\n## \ud83d\ude80 Quick Start",
+    "last_modified": "2026-05-20T16:54:35.504999"
+  },
+  "runbook": {
+    "commands": [
+      "npm install && npm run dev",
+      "python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt && python main.py"
+    ],
+    "env": [],
+    "notes": []
+  },
+  "bard_note": "Node project present. Expect npm hell or a pleasant surprise. Has Python deps. Hope they pinned versions. (Bardildo: harsh truth incoming)"
+}

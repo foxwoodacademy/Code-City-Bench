@@ -1,0 +1,20 @@
+{
+  "generated_at": "2026-06-04T10:52:11.894025+00:00",
+  "alerts": [
+    {
+      "type": "REAL_ESTATE_FIRE_SALE",
+      "region": "Metro Atlanta, GA",
+      "fear": "CRITICAL"
+    },
+    {
+      "type": "EQUITY_CAPITULATION",
+      "region": "Commercial REIT sector",
+      "fear": "HIGH"
+    },
+    {
+      "type": "MORTGAGE_LIQUIDITY_RUN",
+      "region": "Regional bank sector (Southwest)",
+      "fear": "CRITICAL"
+    }
+  ]
+}

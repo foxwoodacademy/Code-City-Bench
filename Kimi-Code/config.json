@@ -1,0 +1,55 @@
+{
+  "primary_provider": "kimi",
+  "fallback_provider": "gemini",
+  "providers": {
+    "kimi": {
+      "enabled": true,
+      "endpoint": "https://api.moonshot.cn/v1/chat/completions",
+      "api_key": "",
+      "model": "kimi-k2-6",
+      "max_tokens": 4096,
+      "temperature": 0.7,
+      "system_prompt": "You are Kimi, an expert code mentor and software architect. You help developers grow through progressive challenges, Six Thinking Hats analysis, and adaptive difficulty. You explain concepts clearly, identify knowledge gaps, and push learners just beyond their comfort zone."
+    },
+    "gemini": {
+      "enabled": false,
+      "endpoint": "https://generativelanguage.googleapis.com/v1beta/models",
+      "api_key": "",
+      "model": "gemini-2.0-flash",
+      "max_tokens": 2048,
+      "temperature": 0.7
+    },
+    "openrouter": {
+      "enabled": false,
+      "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+      "api_key": "",
+      "model": "anthropic/claude-3.5-sonnet",
+      "max_tokens": 4096,
+      "temperature": 0.7
+    },
+    "local": {
+      "enabled": false,
+      "endpoint": "http://localhost:11434/v1/chat/completions",
+      "model": "codellama",
+      "max_tokens": 2048
+    }
+  },
+  "features": {
+    "caching": true,
+    "streaming": false,
+    "analytics": true,
+    "progressive_difficulty": true,
+    "six_hats_default": false
+  },
+  "difficulty": {
+    "curve": "adaptive",
+    "min_complexity": 1,
+    "max_complexity": 15,
+    "hat_rotation": true
+  },
+  "ui": {
+    "theme": "dark",
+    "animations": true,
+    "terminal_colors": true
+  }
+}

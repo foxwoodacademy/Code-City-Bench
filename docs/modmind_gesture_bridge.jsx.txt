@@ -1,0 +1,583 @@
+/**
+ * Author: BleakNarratives / Whorl
+ * File: modmind_gesture_bridge.jsx
+ * Path: ~/airforge/modmind_gesture_bridge.jsx
+ *
+ * ModMind Gesture Integration Layer
+ * Vortex Forensics → SummonRing → TiltNavigation
+ * Connects Whirl logic to ModMind Dashboard UI
+ */
+
+import { useState, useEffect, useRef, useCallback } from "react";
+
+// ─── TYPES ───────────────────────────────────────────────────────────────────
+
+const EXPRESSIONS = ['Neutral', 'Focus', 'Social', 'Alert'];
+
+const EXPRESSION_MAP = {
+  Neutral: { color: '#a0aec0', accent: '#718096', label: 'Standby',    mode: 'idle'   },
+  Focus:   { color: '#63b3ed', accent: '#3182ce', label: 'Code/Work',  mode: 'tilt'   },
+  Social:  { color: '#f6ad55', accent: '#ed8936', label: 'Social',     mode: 'chat'   },
+  Alert:   { color: '#fc8181', accent: '#e53e3e', label: 'Alert',      mode: 'urgent' },
+};
+
+const RING_TOOLS = {
+  idle:   ['Standby', 'Settings', 'History',  'Close'],
+  tilt:   ['Editor',  'Terminal', 'Debugger', 'Docs'],
+  chat:   ['DM',      'Feed',     'Groups',   'Post'],
+  urgent: ['Alert',   'Override', 'Escape',   'Log'],
+};
+
+// ─── EQUILEX INTEGRITY CHECK ──────────────────────────────────────────────────
+
+const EquiLex = {
+  _log: [],
+  check(orientation, expression) {
+    const { alpha, beta, gamma } = orientation;
+    const inRange = (
+      alpha >= 0 && alpha <= 360 &&
+      beta >= -180 && beta <= 180 &&
+      gamma >= -90 && gamma <= 90
+    );
+    const sustained = expression !== 'Neutral';
+    const valid = inRange && sustained;
+    this._log.push({ ts: Date.now(), valid, expression });
+    if (this._log.length > 50) this._log.shift();
+    return valid;
+  },
+  integrityScore() {
+    if (!this._log.length) return 0;
+    const recent = this._log.slice(-10);
+    return Math.round((recent.filter(e => e.valid).length / recent.length) * 100);
+  }
+};
+
+// ─── GESTURE FORENSICS ────────────────────────────────────────────────────────
+
+class GestureForensics {
+  static _snapBuffer = [];
+  static _lastSnap = 0;
+
+  static parse(data) {
+    const expression = data.expression ?? 'Neutral';
+    const orientation = {
+      alpha: data.orientation?.alpha ?? 0,
+      beta:  data.orientation?.beta  ?? 0,
+      gamma: data.orientation?.gamma ?? 0,
+    };
+
+    // Debounce snap/whistle/swipe (300ms cooldown)
+    const now = Date.now();
+    if (now - this._lastSnap < 300) return null;
+
+    let type = data.type;
+    if (!['Snap', 'Whistle', 'CornerSwipe'].includes(type)) return null;
+
+    this._lastSnap = now;
+
+    return { type, expression, orientation };
+  }
+
+  // Map raw amplitude → whistle confidence [0–1]
+  static detectWhistle(amplitude) {
+    return Math.min(1, amplitude / 128);
+  }
+
+  // Map touch velocity → corner swipe
+  static detectCornerSwipe(touch) {
+    const { x, y, vx, vy, screenW, screenH } = touch;
+    const inCorner = (x < screenW * 0.15 || x > screenW * 0.85) &&
+                     (y < screenH * 0.15 || y > screenH * 0.85);
+    const fast = Math.sqrt(vx * vx + vy * vy) > 0.8;
+    return inCorner && fast;
+  }
+}
+
+// ─── CALCULATE VORTEX SHIFT ───────────────────────────────────────────────────
+
+function calculateVortexShift(orientation) {
+  const { beta, gamma } = orientation;
+
+  // Dead zone ±5°
+  const deadZone = 5;
+  const bNorm = Math.abs(beta)  > deadZone ? (beta  / 90)  : 0;
+  const gNorm = Math.abs(gamma) > deadZone ? (gamma / 45)  : 0;
+
+  // Quadratic ease for natural feel
+  const ease = v => Math.sign(v) * v * v;
+
+  // Map to viewport-relative offset (max ±40px)
+  const MAX = 40;
+  return {
+    x: ease(gNorm) * MAX,
+    y: ease(bNorm) * MAX,
+    magnitude: Math.sqrt(gNorm * gNorm + bNorm * bNorm),
+    sector: deriveSector(gNorm, bNorm),
+  };
+}
+
+function deriveSector(x, y) {
+  if (Math.abs(x) < 0.1 && Math.abs(y) < 0.1) return -1; // center
+  const angle = Math.atan2(y, x) * (180 / Math.PI);
+  return Math.floor(((angle + 360) % 360) / 90); // 0=E, 1=S, 2=W, 3=N
+}
+
+// ─── SUMMON RING COMPONENT ────────────────────────────────────────────────────
+
+function SummonRing({ expression, vortexShift, onSelect, onDismiss }) {
+  const config = EXPRESSION_MAP[expression];
+  const tools  = RING_TOOLS[config.mode];
+  const [hoveredIdx, setHoveredIdx] = useState(-1);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setMounted(true), 20);
+    return () => clearTimeout(t);
+  }, []);
+
+  // Highlight sector from tilt
+  const activeSector = vortexShift.sector;
+
+  const RADIUS = 90;
+
+  return (
+    <div style={{
+      position: 'fixed', inset: 0,
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      zIndex: 999,
+      background: 'rgba(0,0,0,0.55)',
+      backdropFilter: 'blur(4px)',
+      opacity: mounted ? 1 : 0,
+      transition: 'opacity 0.18s ease',
+    }}
+    onClick={onDismiss}
+    >
+      <div
+        style={{
+          position: 'relative',
+          width: 240, height: 240,
+          transform: `translate(${vortexShift.x * 0.4}px, ${vortexShift.y * 0.4}px)`,
+          transition: 'transform 0.12s ease-out',
+        }}
+        onClick={e => e.stopPropagation()}
+      >
+        {/* Outer ring */}
+        <svg style={{ position: 'absolute', inset: 0 }} width={240} height={240}>
+          <circle
+            cx={120} cy={120} r={108}
+            fill="none"
+            stroke={config.color}
+            strokeWidth={1}
+            strokeDasharray="4 6"
+            opacity={0.4}
+          />
+          <circle
+            cx={120} cy={120} r={RADIUS}
+            fill="none"
+            stroke={config.color}
+            strokeWidth={1.5}
+            opacity={0.7}
+          />
+          {/* Sector highlight arcs */}
+          {tools.map((_, i) => {
+            const startAngle = i * 90 - 45;
+            const isActive = i === activeSector || i === hoveredIdx;
+            const r = RADIUS;
+            const cx = 120, cy = 120;
+            const toRad = d => d * Math.PI / 180;
+            const x1 = cx + r * Math.cos(toRad(startAngle));
+            const y1 = cy + r * Math.sin(toRad(startAngle));
+            const x2 = cx + r * Math.cos(toRad(startAngle + 90));
+            const y2 = cy + r * Math.sin(toRad(startAngle + 90));
+            return (
+              <path
+                key={i}
+                d={`M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 0 1 ${x2} ${y2} Z`}
+                fill={isActive ? config.color : 'transparent'}
+                opacity={isActive ? 0.15 : 0}
+                style={{ transition: 'opacity 0.1s' }}
+              />
+            );
+          })}
+        </svg>
+
+        {/* Tool nodes at ring positions */}
+        {tools.map((tool, i) => {
+          const angle = (i * 90 - 90) * (Math.PI / 180);
+          const x = 120 + RADIUS * Math.cos(angle);
+          const y = 120 + RADIUS * Math.sin(angle);
+          const isActive = i === activeSector || i === hoveredIdx;
+          return (
+            <button
+              key={tool}
+              onMouseEnter={() => setHoveredIdx(i)}
+              onMouseLeave={() => setHoveredIdx(-1)}
+              onClick={() => onSelect(tool, config.mode)}
+              style={{
+                position: 'absolute',
+                left: x - 28, top: y - 14,
+                width: 56, height: 28,
+                background: isActive ? config.color : 'rgba(0,0,0,0.8)',
+                border: `1px solid ${isActive ? config.accent : config.color}`,
+                color: isActive ? '#000' : config.color,
+                fontSize: 10,
+                fontFamily: '"Courier New", monospace',
+                letterSpacing: '0.08em',
+                fontWeight: isActive ? 700 : 400,
+                cursor: 'pointer',
+                borderRadius: 2,
+                transition: 'all 0.1s',
+                whiteSpace: 'nowrap',
+                padding: 0,
+              }}
+            >
+              {tool.toUpperCase()}
+            </button>
+          );
+        })}
+
+        {/* Center node */}
+        <div style={{
+          position: 'absolute',
+          left: '50%', top: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: 52, height: 52,
+          border: `1.5px solid ${config.color}`,
+          borderRadius: '50%',
+          display: 'flex', flexDirection: 'column',
+          alignItems: 'center', justifyContent: 'center',
+          background: 'rgba(0,0,0,0.9)',
+        }}>
+          <div style={{ fontSize: 8, color: config.color, fontFamily: 'monospace', letterSpacing: '0.1em' }}>
+            {expression.toUpperCase()}
+          </div>
+          <div style={{ fontSize: 7, color: config.accent, fontFamily: 'monospace', opacity: 0.7 }}>
+            {config.label}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── TILT NAVIGATOR ───────────────────────────────────────────────────────────
+
+function TiltNavigator({ orientation, active, integrityScore, vortexShift }) {
+  if (!active) return null;
+  const { alpha, beta, gamma } = orientation;
+  const bar = v => Math.round(((v + 180) / 360) * 100);
+
+  return (
+    <div style={{
+      position: 'fixed', bottom: 24, left: '50%',
+      transform: 'translateX(-50%)',
+      background: 'rgba(0,0,0,0.85)',
+      border: '1px solid #3182ce',
+      borderRadius: 4,
+      padding: '8px 16px',
+      fontFamily: 'monospace',
+      fontSize: 10,
+      color: '#63b3ed',
+      letterSpacing: '0.1em',
+      display: 'flex', gap: 20,
+      zIndex: 998,
+    }}>
+      <span>α {Math.round(alpha)}°</span>
+      <span>β {Math.round(beta)}°</span>
+      <span>γ {Math.round(gamma)}°</span>
+      <span style={{ color: '#a0aec0' }}>|</span>
+      <span>SHIFT ({Math.round(vortexShift.x)}, {Math.round(vortexShift.y)})</span>
+      <span style={{ color: '#a0aec0' }}>|</span>
+      <span style={{ color: integrityScore > 60 ? '#63b3ed' : '#fc8181' }}>
+        EQL {integrityScore}%
+      </span>
+    </div>
+  );
+}
+
+// ─── MAIN APP ─────────────────────────────────────────────────────────────────
+
+export default function ModMindGestureBridge() {
+  const [ringVisible, setRingVisible]     = useState(false);
+  const [expression, setExpression]       = useState('Neutral');
+  const [orientation, setOrientation]     = useState({ alpha: 0, beta: 0, gamma: 0 });
+  const [tiltActive, setTiltActive]       = useState(false);
+  const [vortexShift, setVortexShift]     = useState({ x: 0, y: 0, magnitude: 0, sector: -1 });
+  const [integrityScore, setIntegrityScore] = useState(0);
+  const [eventLog, setEventLog]           = useState([]);
+  const [lastSelected, setLastSelected]   = useState(null);
+  const orientRef = useRef(orientation);
+  const exprRef   = useRef(expression);
+  orientRef.current = orientation;
+  exprRef.current   = expression;
+
+  const log = useCallback((msg) => {
+    setEventLog(prev => [`[${new Date().toLocaleTimeString()}] ${msg}`, ...prev].slice(0, 8));
+  }, []);
+
+  // DeviceOrientation listener (real device)
+  useEffect(() => {
+    const handler = e => {
+      const o = { alpha: e.alpha ?? 0, beta: e.beta ?? 0, gamma: e.gamma ?? 0 };
+      setOrientation(o);
+      const shift = calculateVortexShift(o);
+      setVortexShift(shift);
+      if (tiltActive) {
+        const valid = EquiLex.check(o, exprRef.current);
+        setIntegrityScore(EquiLex.integrityScore());
+        if (!valid) setTiltActive(false);
+      }
+    };
+    window.addEventListener('deviceorientation', handler, true);
+    return () => window.removeEventListener('deviceorientation', handler, true);
+  }, [tiltActive]);
+
+  // Simulate orientation via mouse for desktop demo
+  useEffect(() => {
+    const handler = e => {
+      const gamma = ((e.clientX / window.innerWidth) - 0.5) * 90;
+      const beta  = ((e.clientY / window.innerHeight) - 0.5) * 90;
+      const o = { alpha: 0, beta, gamma };
+      setOrientation(o);
+      const shift = calculateVortexShift(o);
+      setVortexShift(shift);
+    };
+    window.addEventListener('mousemove', handler);
+    return () => window.removeEventListener('mousemove', handler);
+  }, []);
+
+  // Summon handler
+  const handleSummon = useCallback((type) => {
+    const raw = { type, expression: exprRef.current, orientation: orientRef.current };
+    const evt = GestureForensics.parse(raw);
+    if (!evt) return;
+
+    log(`SUMMON: ${evt.type} | expr=${evt.expression}`);
+
+    // EquiLex gate for tilt
+    if (evt.expression === 'Focus') {
+      const valid = EquiLex.check(evt.orientation, evt.expression);
+      setIntegrityScore(EquiLex.integrityScore());
+      setTiltActive(valid);
+      if (valid) log('EQUILEX: tilt-nav ARMED');
+    } else {
+      setTiltActive(false);
+    }
+
+    setRingVisible(true);
+  }, [log]);
+
+  const handleSelect = useCallback((tool, mode) => {
+    setLastSelected({ tool, mode });
+    log(`SELECT: ${tool} (${mode})`);
+    setRingVisible(false);
+    setTiltActive(false);
+  }, [log]);
+
+  const handleDismiss = useCallback(() => {
+    setRingVisible(false);
+    setTiltActive(false);
+    log('DISMISS');
+  }, [log]);
+
+  const exprConfig = EXPRESSION_MAP[expression];
+
+  return (
+    <div style={{
+      minHeight: '100vh',
+      background: '#050508',
+      color: '#a0aec0',
+      fontFamily: '"Courier New", monospace',
+      position: 'relative',
+      overflow: 'hidden',
+    }}>
+      {/* Scanline overlay */}
+      <div style={{
+        position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 1,
+        backgroundImage: 'repeating-linear-gradient(0deg, rgba(0,0,0,0.15) 0px, rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px)',
+        backgroundSize: '100% 2px',
+      }} />
+
+      {/* Header */}
+      <div style={{
+        borderBottom: '1px solid #1a202c',
+        padding: '10px 20px',
+        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+        fontSize: 10, letterSpacing: '0.15em', color: '#4a5568',
+      }}>
+        <span>MODMIND // GESTURE INTEGRATION LAYER</span>
+        <span style={{ color: exprConfig.color }}>{expression.toUpperCase()} — {exprConfig.label}</span>
+        <span>EQUILEX {integrityScore}%</span>
+      </div>
+
+      <div style={{ display: 'flex', gap: 0, height: 'calc(100vh - 41px)' }}>
+        {/* Left: Controls */}
+        <div style={{
+          width: 220, borderRight: '1px solid #1a202c',
+          padding: 16, display: 'flex', flexDirection: 'column', gap: 12,
+        }}>
+          <div style={{ fontSize: 9, color: '#4a5568', letterSpacing: '0.15em', marginBottom: 4 }}>
+            EXPRESSION OVERRIDE
+          </div>
+          {EXPRESSIONS.map(e => {
+            const cfg = EXPRESSION_MAP[e];
+            const active = expression === e;
+            return (
+              <button key={e} onClick={() => setExpression(e)} style={{
+                background: active ? cfg.color : 'transparent',
+                border: `1px solid ${active ? cfg.color : '#2d3748'}`,
+                color: active ? '#000' : cfg.color,
+                padding: '6px 10px', fontSize: 10,
+                fontFamily: 'monospace', letterSpacing: '0.1em',
+                cursor: 'pointer', borderRadius: 2,
+                textAlign: 'left',
+                transition: 'all 0.12s',
+              }}>
+                {active ? '▶ ' : '  '}{e.toUpperCase()}
+              </button>
+            );
+          })}
+
+          <div style={{ borderTop: '1px solid #1a202c', paddingTop: 12, marginTop: 4 }}>
+            <div style={{ fontSize: 9, color: '#4a5568', letterSpacing: '0.15em', marginBottom: 8 }}>
+              SUMMON GESTURE
+            </div>
+            {['Snap', 'Whistle', 'CornerSwipe'].map(g => (
+              <button key={g} onClick={() => handleSummon(g)} style={{
+                display: 'block', width: '100%',
+                background: 'transparent',
+                border: `1px solid #2d3748`,
+                color: '#718096',
+                padding: '6px 10px', fontSize: 10, marginBottom: 6,
+                fontFamily: 'monospace', letterSpacing: '0.1em',
+                cursor: 'pointer', borderRadius: 2,
+                textAlign: 'left',
+                transition: 'border-color 0.1s, color 0.1s',
+              }}
+              onMouseEnter={e => { e.target.style.borderColor = exprConfig.color; e.target.style.color = exprConfig.color; }}
+              onMouseLeave={e => { e.target.style.borderColor = '#2d3748'; e.target.style.color = '#718096'; }}
+              >
+                {g.toUpperCase()}
+              </button>
+            ))}
+          </div>
+
+          {lastSelected && (
+            <div style={{
+              marginTop: 'auto', borderTop: '1px solid #1a202c', paddingTop: 10,
+              fontSize: 9, color: '#4a5568',
+            }}>
+              <div style={{ color: exprConfig.color, marginBottom: 4 }}>LAST SELECT</div>
+              <div>{lastSelected.tool}</div>
+              <div style={{ opacity: 0.6 }}>{lastSelected.mode}</div>
+            </div>
+          )}
+        </div>
+
+        {/* Center: Field visualization */}
+        <div style={{
+          flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center',
+          position: 'relative',
+        }}>
+          {/* Crosshair grid */}
+          <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.06 }}>
+            <line x1="50%" y1="0" x2="50%" y2="100%" stroke="#a0aec0" strokeWidth="1" />
+            <line x1="0" y1="50%" x2="100%" y2="50%" stroke="#a0aec0" strokeWidth="1" />
+            {[20, 40, 60, 80].map(p => (
+              <g key={p}>
+                <circle cx="50%" cy="50%" r={`${p * 0.45}%`} fill="none" stroke="#a0aec0" strokeWidth="0.5" strokeDasharray="2 8" />
+              </g>
+            ))}
+          </svg>
+
+          {/* Vortex cursor */}
+          <div style={{
+            position: 'absolute',
+            left: '50%', top: '50%',
+            transform: `translate(calc(-50% + ${vortexShift.x}px), calc(-50% + ${vortexShift.y}px))`,
+            transition: 'transform 0.08s ease-out',
+            width: 16, height: 16,
+            border: `1.5px solid ${exprConfig.color}`,
+            borderRadius: '50%',
+            opacity: 0.9,
+          }}>
+            <div style={{
+              position: 'absolute', inset: 3,
+              background: exprConfig.color,
+              borderRadius: '50%',
+              opacity: 0.6,
+            }} />
+          </div>
+
+          {/* Idle label */}
+          {!ringVisible && (
+            <div style={{
+              textAlign: 'center', opacity: 0.15, userSelect: 'none',
+              position: 'absolute',
+            }}>
+              <div style={{ fontSize: 11, letterSpacing: '0.3em' }}>MOVE MOUSE TO SHIFT FIELD</div>
+              <div style={{ fontSize: 9, marginTop: 6, letterSpacing: '0.2em' }}>TRIGGER GESTURE TO SUMMON RING</div>
+            </div>
+          )}
+        </div>
+
+        {/* Right: Event log */}
+        <div style={{
+          width: 240, borderLeft: '1px solid #1a202c',
+          padding: 16,
+        }}>
+          <div style={{ fontSize: 9, color: '#4a5568', letterSpacing: '0.15em', marginBottom: 8 }}>
+            FORENSICS LOG
+          </div>
+          {eventLog.map((line, i) => (
+            <div key={i} style={{
+              fontSize: 9, color: i === 0 ? '#a0aec0' : '#4a5568',
+              marginBottom: 4, lineHeight: 1.4,
+              borderLeft: i === 0 ? `2px solid ${exprConfig.color}` : '2px solid transparent',
+              paddingLeft: 6,
+              transition: 'color 0.3s',
+            }}>
+              {line}
+            </div>
+          ))}
+
+          <div style={{ marginTop: 'auto', borderTop: '1px solid #1a202c', paddingTop: 12, marginTop: 16 }}>
+            <div style={{ fontSize: 9, color: '#4a5568', letterSpacing: '0.1em', marginBottom: 6 }}>
+              ORIENTATION
+            </div>
+            {[['α', orientation.alpha], ['β', orientation.beta], ['γ', orientation.gamma]].map(([label, val]) => (
+              <div key={label} style={{ display: 'flex', justifyContent: 'space-between', fontSize: 9, marginBottom: 4 }}>
+                <span style={{ color: '#4a5568' }}>{label}</span>
+                <span style={{ color: '#718096' }}>{Math.round(val)}°</span>
+              </div>
+            ))}
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 9, marginTop: 8 }}>
+              <span style={{ color: '#4a5568' }}>TILT-NAV</span>
+              <span style={{ color: tiltActive ? '#63b3ed' : '#4a5568' }}>
+                {tiltActive ? 'ARMED' : 'IDLE'}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* SummonRing overlay */}
+      {ringVisible && (
+        <SummonRing
+          expression={expression}
+          vortexShift={vortexShift}
+          onSelect={handleSelect}
+          onDismiss={handleDismiss}
+        />
+      )}
+
+      {/* TiltNavigator HUD */}
+      <TiltNavigator
+        orientation={orientation}
+        active={tiltActive}
+        integrityScore={integrityScore}
+        vortexShift={vortexShift}
+      />
+    </div>
+  );
+}

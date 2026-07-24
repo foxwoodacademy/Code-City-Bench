@@ -1,0 +1,10 @@
+{
+  "node_name": "operator",
+  "pid": 14401,
+  "last_seen": 1779181886.9441576,
+  "capabilities": [
+    "manual_approval",
+    "executive_override"
+  ],
+  "status": "ACTIVE"
+}

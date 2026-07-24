@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coach Bleak: The Accountability Engine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        /* --- Placeholder Comments --- */
+        /* <!-- Chosen Palette: "The Judgment Chamber" (Deep Blacks/Charcoals, Piercing Blue, Stark White, with Red, Yellow, and Green accents for warnings/exposure) --> */
+        /* <!-- Application Structure Plan: The SPA is structured as a dynamic, single-page dashboard. It features a central input for scenario description and a mode selector (Analysis, Audit, Psychological Warfare) that dictates the AI's prompt and the visual/interactive elements displayed. Key sections include a main output area for LLM analysis, dynamic panels for "weapon" effects (Subpoena Hammer, Redaction Flamethrower), data visualizations (Corruption Probability Matrix, Fear Index), interactive follow-ups (Bloodhound Mode), consequence summaries (Chain of Consequences, Liability Calculator), and psychological warfare elements (Echo Chamber, Unblinking Eye, Ego Crusher, Last Seen Alive, Burner Phone Simulator, Dead Man's Switch). A dramatic "Execution Button" provides a final, impactful interaction. This structure prioritizes a clear user flow for scenario input while offering rich, context-sensitive feedback and interactive "tools" that conceptually align with the report's "weapons" and "features," all within a single, responsive page. --> */
+        /* <!-- Visualization & Content Choices: 
+            - Report Info: Scenario Description. -> Goal: Capture user input. -> Viz/Presentation: Textarea. -> Interaction: Direct text input. -> Justification: Core input for all modes. -> Library/Method: HTML.
+            - Report Info: Analysis Modes (Analysis, Audit, Psycho-Warfare). -> Goal: Control AI's focus and UI response. -> Viz/Presentation: Toggle buttons. -> Interaction: Click to switch mode, dynamically update AI prompt. -> Justification: Provides versatile "tool" selection. -> Library/Method: HTML/Tailwind, Vanilla JS.
+            - Report Info: "Subpoena Hammer" / "Redaction Flamethrower". -> Goal: Simulate shattering lies/burning obfuscation. -> Viz/Presentation: Dynamic text output with specific formatting, visual overlay effects. -> Interaction: Triggered by analysis. -> Justification: Visualizes the impact of truth. -> Library/Method: HTML/Tailwind, Vanilla JS (CSS animations).
+            - Report Info: "Corruption Probability Matrix". -> Goal: Score scenario risks. -> Viz/Presentation: Radar Chart. -> Interaction: Dynamically generated on analysis. -> Justification: Quantifies perceived risk for impact. -> Library/Method: Chart.js (Canvas).
+            - Report Info: "Fear Index Meter". -> Goal: Satirical stress gauge. -> Viz/Presentation: Progress bar / textual gauge. -> Interaction: Dynamically updated. -> Justification: Adds psychological element. -> Library/Method: HTML/Tailwind, Vanilla JS.
+            - Report Info: "Bloodhound Mode". -> Goal: Simulate deeper inquiry. -> Viz/Presentation: LLM-generated follow-up questions. -> Interaction: Clickable buttons to refine next LLM query. -> Justification: Enhances perceived analytical depth. -> Library/Method: HTML/Tailwind, Vanilla JS.
+            - Report Info: "Chain of Consequences" / "Liability Calculator". -> Goal: Outline potential outcomes. -> Viz/Presentation: LLM-generated text. -> Interaction: Displayed post-analysis. -> Justification: Reinforces accountability. -> Library/Method: HTML.
+            - Report Info: "Echo Chamber" / "Unblinking Eye" / "Ego Crusher" / "Last Seen Alive". -> Goal: Psychological impact. -> Viz/Presentation: LLM-generated "leak" text, simulated counters, impactful statements. -> Interaction: Displayed in Psycho-Warfare mode. -> Justification: Creates paranoia and dread. -> Library/Method: HTML/Tailwind, Vanilla JS.
+            - Report Info: "Burner Phone Simulator". -> Goal: Simulate panicked calls and voicemails. -> Viz/Presentation: LLM-generated dialogue/voicemails, sequential text display, sound effects. -> Interaction: Triggered in Psycho-Warfare mode. -> Justification: Direct psychological terror. -> Library/Method: HTML/Tailwind, Vanilla JS, Tone.js.
+            - Report Info: "Dead Man's Switch". -> Goal: Simulate an ultimate failsafe. -> Viz/Presentation: Visual ticking countdown. -> Interaction: Starts in Psycho-Warfare mode. -> Justification: Creates a sense of impending doom. -> Library/Method: HTML/Tailwind, Vanilla JS.
+            - Report Info: "Benford's Law Cannon" / "Silent Alarm". -> Goal: Simulate audit findings. -> Viz/Presentation: LLM-generated descriptions of anomalies, highlighted text. -> Interaction: Displayed in Audit mode. -> Justification: Provides specific "forensic" details. -> Library/Method: HTML/Tailwind.
+            - Report Info: "The Execution Button". -> Goal: Ultimate dramatic conclusion. -> Viz/Presentation: Prominent button with visual/audio effects, Voice of God, LLM-generated perp walk. -> Interaction: Click-triggered. -> Justification: Theatrical release of tension. -> Library/Method: HTML/Tailwind, Vanilla JS, Tone.js, Web Speech API.
+            - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. --> */
+        /* <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. --> */
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+            color: #e2e8f0;
+        }
+        .app-container {
+            background-color: #1a202c;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            max-width: 1000px;
+            width: 100%;
+            padding: 40px;
+            box-sizing: border-box;
+            border: 2px solid #334155;
+            animation: fadeInScale 1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.95) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .header-logo {
+            font-family: 'Roboto Mono', monospace;
+            color: #3b82f6;
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+        }
+
+        .exposed-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 0, 0, 0.1);
+            backdrop-filter: blur(2px);
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            z-index: 10;
+            pointer-events: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+            font-weight: 900;
+            color: #ef4444;
+            text-shadow: 0 0 15px rgba(239, 68, 68, 0.8);
+            text-align: center;
+            line-height: 1.2;
+        }
+        .exposed-overlay.active {
+            opacity: 1;
+        }
+
+        .puddle-effect {
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: radial-gradient(circle at center, rgba(255, 255, 0, 0.3) 0%, rgba(255, 165, 0, 0.1) 50%, transparent 100%);
+            border-radius: 50%;
+            filter: blur(30px);
+            opacity: 0;
+            transition: all 1s ease-out;
+            z-index: 5;
+        }
+        .puddle-effect.active {
+            bottom: -20px;
+            opacity: 0.7;
+            animation: pulsePuddle 2s infinite alternate;
+        }
+        @keyframes pulsePuddle {
+            from { transform: scale(1); opacity: 0.7; }
+            to { transform: scale(1.05); opacity: 0.8; }
+        }
+
+        .button-glow {
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.7);
+        }
+
+        .mode-button.active {
+            background-color: #3b82f6;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.7);
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+            background-color: #2d3748;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+        }
+        @media (max-width: 768px) {
+            .app-container {
+                padding: 25px;
+            }
+            .header-logo {
+                font-size: 2rem;
+            }
+            .exposed-overlay {
+                font-size: 2rem;
+            }
+            .chart-container {
+                height: 280px;
+            }
+        }
+
+        /* Specific styles for new features */
+        .redacted-text {
+            color: #ef4444; /* Red-500 for incriminating phrases */
+            font-weight: bold;
+            text-shadow: 0 0 5px rgba(239, 68, 68, 0.5);
+        }
+        .smoldering-effect {
+            animation: smolder 1.5s infinite alternate;
+        }
+        @keyframes smolder {
+            0% { opacity: 1; filter: brightness(1); }
+            100% { opacity: 0.8; filter: brightness(1.2); }
+        }
+
+        .ticking-countdown {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 2.5rem;
+            color: #facc15; /* Yellow-400 */
+            text-shadow: 0 0 10px rgba(250, 204, 21, 0.7);
+            animation: pulse-countdown 1s infinite alternate;
+        }
+        @keyframes pulse-countdown {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.9; }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header class="text-center mb-10">
+            <h1 class="header-logo mb-2">
+                <span class="text-blue-500">COACH BLEAK</span><br>
+                <span class="text-gray-400 text-xl font-normal">THE ACCOUNTABILITY ENGINE</span>
+            </h1>
+            <p class="text-gray-400 text-lg max-w-xl mx-auto">
+                Unveiling Truth. Ensuring Consequences.
+            </p>
+        </header>
+
+        <section class="mb-8">
+            <label for="scenarioInput" class="block text-lg font-semibold text-gray-300 mb-3">
+                Describe the alleged wrongdoing or corrupt scenario:
+            </label>
+            <textarea
+                id="scenarioInput"
+                class="w-full p-4 bg-gray-700 text-gray-100 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out resize-y min-h-[150px] placeholder-gray-400"
+                rows="8"
+                placeholder="e.g., 'A public official awarded a contract to a company owned by a family member without proper disclosure or competitive bidding.' Or 'Evidence suggests a corporation knowingly polluted a local water source for profit, covering up test results.' For audit mode, paste a short financial summary or document snippet. For psycho-warfare, focus on the target's vulnerabilities."
+            ></textarea>
+        </section>
+
+        <!-- Mode Selector -->
+        <div class="mb-8 text-center">
+            <h3 class="text-xl font-semibold text-gray-300 mb-4">Select Analysis Mode:</h3>
+            <div class="flex flex-wrap justify-center gap-4">
+                <button id="modeAnalysis" class="mode-button active bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-full transition duration-200">
+                    🔍 General Analysis
+                </button>
+                <button id="modeAudit" class="mode-button bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-full transition duration-200">
+                    📊 Audit Mode
+                </button>
+                <button id="modePsychoWarfare" class="mode-button bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-full transition duration-200">
+                    😈 Psychological Warfare
+                </button>
+            </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4 mb-8">
+            <button id="analyzeBtn" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300 button-glow disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center">
+                <span id="loader" class="hidden animate-spin h-5 w-5 text-white mr-3" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </span>
+                <span>🚨 UNVEIL THE TRUTH 🚨</span>
+            </button>
+        </div>
+
+        <!-- Main Output Area -->
+        <div id="outputArea" class="bg-gray-800 p-6 rounded-lg shadow-inner border border-gray-700 min-h-[200px] text-gray-200 leading-relaxed overflow-auto relative z-20">
+            <p class="text-gray-400 text-center">
+                <span class="text-blue-400">Coach Bleak</span> awaits your input. Describe the scenario above and click "UNVEIL THE TRUTH" to see the potential ramifications.
+            </p>
+        </div>
+
+        <!-- Dynamic Feature Panels -->
+        <div id="dynamicPanels" class="mt-8 space-y-8">
+            <!-- Corruption Probability Matrix (Audit Mode) -->
+            <div id="corruptionMatrixPanel" class="hidden bg-gray-800 p-6 rounded-lg shadow-inner border border-gray-700">
+                <h3 class="text-xl font-semibold text-gray-300 mb-4 text-center">Corruption Probability Matrix</h3>
+                <div class="chart-container">
+                    <canvas id="corruptionMatrixChart"></canvas>
+                </div>
+                <p id="matrixExplanation" class="text-gray-400 text-sm mt-4 text-center"></p>
+            </div>
+
+            <!-- Audit Specific Outputs (Paper Trail Incinerator, Benford's Law, Silent Alarm, Entity Spider) -->
+            <div id="auditSpecificPanel" class="hidden bg-gray-800 p-6 rounded-lg shadow-inner border border-gray-700">
+                <h3 class="text-xl font-semibold text-gray-300 mb-4 text-center">Forensic Audit Findings</h3>
+                <div id="auditContent" class="text-gray-300 text-sm leading-relaxed space-y-4">
+                    <!-- Audit specific content will be dynamically inserted here -->
+                </div>
+            </div>
+
+            <!-- Fear Index Meter (Psycho Warfare Mode) -->
+            <div id="fearIndexPanel" class="hidden bg-gray-800 p-6 rounded-lg shadow-inner border border-gray-700">
+                <h3 class="text-xl font-semibold text-gray-300 mb-4 text-center">Fear Index Meter</h3>
+                <div class="w-full bg-gray-700 rounded-full h-8 mb-4">
+                    <div id="fearBar" class="bg-red-600 h-8 rounded-full transition-all duration-1000 ease-out" style="width: 0%;"></div>
+                </div>
+                <p id="fearLevelText" class="text-gray-400 text-sm text-center"></p>
+            </div>
+
+            <!-- Burner Phone Simulator -->
+            <div id="burnerPhonePanel" class="hidden bg-gray-800 p-6 rounded-lg shadow-inner border border-gray-700">
+                <h3 class="text-xl font-semibold text-gray-300 mb-4 text-center">Burner Phone Simulator</h3>
+                <div id="burnerPhoneOutput" class="text-gray-300 font-roboto-mono text-sm leading-relaxed space-y-2">
+                    <!-- Burner phone output will be here -->
+                </div>
+            </div>
+
+            <!-- Dead Man's Switch -->
+            <div id="deadManSwitchPanel" class="hidden bg-gray-800 p-6 rounded-lg shadow-inner border border-gray-700 text-center">
+                <h3 class="text-xl font-semibold text-gray-300 mb-4">Dead Man's Switch: ACTIVATED</h3>
+                <div id="countdown" class="ticking-countdown"></div>
+                <p class="text-red-400 text-sm mt-2">If not disabled, findings auto-publish to encrypted channels.</p>
+            </div>
+
+            <!-- Bloodhound Mode (Dynamic Follow-up Questions) -->
+            <div id="bloodhoundPanel" class="hidden bg-gray-800 p-6 rounded-lg shadow-inner border border-gray-700">
+                <h3 class="text-xl font-semibold text-gray-300 mb-4 text-center">Bloodhound Mode: Dig Deeper</h3>
+                <div id="bloodhoundQuestions" class="flex flex-wrap justify-center gap-3">
+                    <!-- Questions will be dynamically inserted here -->
+                </div>
+                <p id="bloodhoundExplanation" class="text-gray-400 text-sm mt-4 text-center hidden">
+                    Click a question to refine the analysis.
+                </p>
+            </div>
+
+            <!-- Chain of Consequences / Liability Calculator (All Modes) -->
+            <div id="consequencesPanel" class="hidden bg-gray-800 p-6 rounded-lg shadow-inner border border-gray-700">
+                <h3 class="text-xl font-semibold text-gray-300 mb-4 text-center">Chain of Consequences & Liability</h3>
+                <div id="consequencesContent" class="text-gray-300 text-sm leading-relaxed">
+                    <!-- Content will be dynamically inserted here -->
+                </div>
+            </div>
+
+            <!-- Psychological Warfare Specific Outputs -->
+            <div id="psychoWarfarePanel" class="hidden bg-gray-800 p-6 rounded-lg shadow-inner border border-gray-700">
+                <h3 class="text-xl font-semibold text-gray-300 mb-4 text-center">Psychological Impact Report</h3>
+                <div id="psychoWarfareContent" class="text-gray-300 text-sm leading-relaxed space-y-4">
+                    <!-- Content will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- The Execution Button -->
+        <div class="mt-12 text-center">
+            <button id="executionBtn" class="bg-red-700 hover:bg-red-800 text-white font-bold py-5 px-10 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-red-500 disabled:opacity-50 disabled:cursor-not-allowed">
+                💥 THE EXECUTION BUTTON 💥
+            </button>
+            <p id="executionMessage" class="text-red-400 text-sm mt-4 hidden">
+                <!-- Message will appear here -->
+            </p>
+        </div>
+
+
+        <div id="exposedOverlay" class="exposed-overlay">
+            <span class="animate-pulse">EXPOSED.</span>
+        </div>
+        <div id="puddleEffect" class="puddle-effect"></div>
+
+        <footer class="text-center text-gray-500 text-xs mt-10">
+            <p class="mb-2">
+                <strong class="text-red-400">DISCLAIMER:</strong> This application is a conceptual demonstration for educational and informational purposes only. It does not provide legal advice, perform actual investigations, or interact with real-world systems. All data, scenarios, and outcomes are hypothetical and generated by an AI. Always consult with qualified legal professionals for specific legal matters.
+            </p>
+            <p>&copy; 2025 Coach Bleak Legal AI. All rights reserved. Concept by Gemini.</p>
+        </footer>
+    </div>
+
+    <script>
+        // --- Core Application Logic ---
+        const scenarioInput = document.getElementById('scenarioInput');
+        const analyzeBtn = document.getElementById('analyzeBtn');
+        const outputArea = document.getElementById('outputArea');
+        const loader = document.getElementById('loader');
+        const exposedOverlay = document.getElementById('exposedOverlay');
+        const puddleEffect = document.getElementById('puddleEffect');
+        const dynamicPanels = document.getElementById('dynamicPanels');
+        const executionBtn = document.getElementById('executionBtn');
+        const executionMessage = document.getElementById('executionMessage');
+
+        // Mode buttons
+        const modeAnalysisBtn = document.getElementById('modeAnalysis');
+        const modeAuditBtn = document.getElementById('modeAudit');
+        const modePsychoWarfareBtn = document.getElementById('modePsychoWarfare');
+        let currentMode = 'analysis'; // Default mode
+
+        // Dynamic Panels
+        const corruptionMatrixPanel = document.getElementById('corruptionMatrixPanel');
+        const corruptionMatrixChartCanvas = document.getElementById('corruptionMatrixChart');
+        const matrixExplanation = document.getElementById('matrixExplanation');
+        let corruptionMatrixChartInstance = null; // Chart.js instance
+
+        const auditSpecificPanel = document.getElementById('auditSpecificPanel');
+        const auditContent = document.getElementById('auditContent');
+
+        const fearIndexPanel = document.getElementById('fearIndexPanel');
+        const fearBar = document.getElementById('fearBar');
+        const fearLevelText = document.getElementById('fearLevelText');
+
+        const burnerPhonePanel = document.getElementById('burnerPhonePanel');
+        const burnerPhoneOutput = document.getElementById('burnerPhoneOutput');
+
+        const deadManSwitchPanel = document.getElementById('deadManSwitchPanel');
+        const countdownDisplay = document.getElementById('countdown');
+        let countdownInterval;
+
+        const bloodhoundPanel = document.getElementById('bloodhoundPanel');
+        const bloodhoundQuestionsDiv = document.getElementById('bloodhoundQuestions');
+        const bloodhoundExplanation = document.getElementById('bloodhoundExplanation');
+
+        const consequencesPanel = document.getElementById('consequencesPanel');
+        const consequencesContent = document.getElementById('consequencesContent');
+
+        const psychoWarfarePanel = document.getElementById('psychoWarfarePanel');
+        const psychoWarfareContent = document.getElementById('psychoWarfareContent');
+
+        // Tone.js setup for sound effects
+        const foghornSynth = new Tone.MembraneSynth().toDestination();
+        const prisonDoorSynth = new Tone.MetalSynth().toDestination();
+        const phoneRingSynth = new Tone.PolySynth(Tone.Synth, {
+            oscillator: { type: "sine" }
+        }).toDestination();
+        const heavyBreathingSynth = new Tone.NoiseSynth({
+            noise: { type: "pink" },
+            envelope: { attack: 0.1, decay: 0.2, sustain: 0.1, release: 0.5 }
+        }).toDestination();
+        const clickSynth = new Tone.PluckSynth().toDestination();
+        const gunshotSynth = new Tone.NoiseSynth({
+            noise: { type: "white" },
+            envelope: { attack: 0.001, decay: 0.1, sustain: 0, release: 0.1 }
+        }).toDestination();
+
+
+        // Voice of God function
+        async function voiceOfGod(text) {
+            await Tone.start();
+            
+            const oscillator = new Tone.Oscillator(440, "sine").toDestination();
+            const gain = new Tone.Gain(0.5).toDestination();
+            oscillator.connect(gain);
+            oscillator.start();
+            
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.rate = 0.8;
+            utterance.pitch = 1.2;
+
+            utterance.onstart = () => {
+                setTimeout(() => { oscillator.stop(); }, 500);
+            };
+            utterance.onend = () => {
+                oscillator.dispose();
+                gain.dispose();
+            };
+
+            speechSynthesis.speak(utterance);
+        }
+
+        // Helper function to set loading state
+        function setLoading(isLoading) {
+            analyzeBtn.disabled = isLoading;
+            executionBtn.disabled = isLoading;
+            if (isLoading) {
+                loader.classList.remove('hidden');
+                analyzeBtn.querySelector('span:last-child').classList.add('hidden');
+            } else {
+                loader.classList.add('hidden');
+                analyzeBtn.querySelector('span:last-child').classList.remove('hidden');
+            }
+        }
+
+        // Helper function to reset all dynamic panels
+        function resetDynamicPanels() {
+            corruptionMatrixPanel.classList.add('hidden');
+            auditSpecificPanel.classList.add('hidden');
+            fearIndexPanel.classList.add('hidden');
+            burnerPhonePanel.classList.add('hidden');
+            deadManSwitchPanel.classList.add('hidden');
+            bloodhoundPanel.classList.add('hidden');
+            consequencesPanel.classList.add('hidden');
+            psychoWarfarePanel.classList.add('hidden');
+            executionMessage.classList.add('hidden');
+            executionMessage.textContent = '';
+            if (corruptionMatrixChartInstance) {
+                corruptionMatrixChartInstance.destroy();
+                corruptionMatrixChartInstance = null;
+            }
+            if (countdownInterval) {
+                clearInterval(countdownInterval);
+            }
+        }
+
+        // Function to update mode
+        function setMode(mode) {
+            currentMode = mode;
+            modeAnalysisBtn.classList.remove('active');
+            modeAuditBtn.classList.remove('active');
+            modePsychoWarfareBtn.classList.remove('active');
+
+            if (mode === 'analysis') {
+                modeAnalysisBtn.classList.add('active');
+            } else if (mode === 'audit') {
+                modeAuditBtn.classList.add('active');
+            } else if (mode === 'psychoWarfare') {
+                modePsychoWarfareBtn.classList.add('active');
+            }
+            outputArea.innerHTML = '<p class="text-gray-400 text-center"><span class="text-blue-400">Coach Bleak</span> awaits your input. Describe the scenario above and click "UNVEIL THE TRUTH" to see the potential ramifications.</p>';
+            exposedOverlay.classList.remove('active');
+            puddleEffect.classList.remove('active');
+            resetDynamicPanels();
+        }
+
+        // Event listeners for mode buttons
+        modeAnalysisBtn.addEventListener('click', () => setMode('analysis'));
+        modeAuditBtn.addEventListener('click', () => setMode('audit'));
+        modePsychoWarfareBtn.addEventListener('click', () => setMode('psychoWarfare'));
+
+        // Function to generate Chart.js Radar Chart for Corruption Probability Matrix
+        function generateCorruptionMatrix(data, explanation) {
+            corruptionMatrixPanel.classList.remove('hidden');
+            matrixExplanation.textContent = explanation;
+
+            if (corruptionMatrixChartInstance) {
+                corruptionMatrixChartInstance.destroy();
+            }
+
+            const ctx = corruptionMatrixChartCanvas.getContext('2d');
+            corruptionMatrixChartInstance = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Legal Risk', 'Public Harm', 'Cover-Up Likelihood', 'Whistleblower Retaliation Risk', 'Financial Exposure'],
+                    datasets: [{
+                        label: 'Scenario Risk Score',
+                        data: data,
+                        backgroundColor: 'rgba(59, 130, 246, 0.4)',
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        borderWidth: 2,
+                        pointBackgroundColor: 'rgba(59, 130, 246, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(59, 130, 246, 1)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: {
+                                color: '#4a5568'
+                            },
+                            grid: {
+                                color: '#4a5568'
+                            },
+                            pointLabels: {
+                                color: '#e2e8f0',
+                                font: {
+                                    size: 14
+                                },
+                                callback: function(value) {
+                                    const maxLength = 16;
+                                    if (value.length > maxLength) {
+                                        return value.split(' ').map((word, index, arr) => {
+                                            let currentLine = word;
+                                            if (index > 0 && (currentLine.length + arr[index - 1].length) > maxLength) {
+                                                return '\n' + word;
+                                            }
+                                            return word;
+                                        }).join(' ');
+                                    }
+                                    return value;
+                                }
+                            },
+                            ticks: {
+                                display: false,
+                                beginAtZero: true,
+                                max: 10
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.raw;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Burner Phone Simulator Sequence
+        async function runBurnerPhoneSim(dialogue) {
+            burnerPhonePanel.classList.remove('hidden');
+            burnerPhoneOutput.innerHTML = '';
+            await Tone.start();
+
+            const lines = dialogue.split('\n').filter(line => line.trim() !== '');
+            for (const line of lines) {
+                const p = document.createElement('p');
+                p.textContent = line;
+                burnerPhoneOutput.appendChild(p);
+                burnerPhoneOutput.scrollTop = burnerPhoneOutput.scrollHeight; // Scroll to bottom
+
+                if (line.includes('Incoming call: UNKNOWN')) {
+                    phoneRingSynth.triggerAttackRelease(["C5", "G4"], "2s");
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+                } else if (line.includes('Heavy breathing')) {
+                    heavyBreathingSynth.triggerAttackRelease("8n");
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                } else if (line.includes('click')) {
+                    clickSynth.triggerAttackRelease("C4", "8n");
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                } else if (line.includes('gunshot')) {
+                    gunshotSynth.triggerAttackRelease("8n");
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                } else if (line.includes('prison door slamming')) {
+                    prisonDoorSynth.triggerAttackRelease("C1", "8n");
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                } else {
+                    await new Promise(resolve => setTimeout(resolve, 1500)); // Standard pause
+                }
+            }
+        }
+
+        // Dead Man's Switch Countdown
+        function startDeadManSwitch() {
+            deadManSwitchPanel.classList.remove('hidden');
+            let timeLeft = 24 * 60 * 60; // 24 hours in seconds for conceptual timer
+            // For demo, let's make it shorter, e.g., 60 seconds
+            timeLeft = 60; // 60 seconds for demo purposes
+
+            countdownInterval = setInterval(() => {
+                const hours = Math.floor(timeLeft / 3600);
+                const minutes = Math.floor((timeLeft % 3600) / 60);
+                const seconds = timeLeft % 60;
+
+                countdownDisplay.textContent = 
+                    `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    countdownDisplay.textContent = "00:00:00";
+                    // Simulate auto-publish
+                    outputArea.innerHTML += `<p class="text-red-500 font-bold mt-4 animate-pulse">DEAD MAN'S SWITCH ACTIVATED: FINDINGS AUTO-PUBLISHED!</p>`;
+                    voiceOfGod("FINDINGS AUTO-PUBLISHED. THERE IS NO ESCAPE.");
+                }
+                timeLeft--;
+            }, 1000);
+        }
+
+
+        // Function to simulate AI analysis and response
+        async function simulateAnalysis(followUpQuestion = '') {
+            const input = scenarioInput.value.trim();
+            if (!input) {
+                outputArea.innerHTML = '<p class="text-red-400 text-center">Please describe a scenario to analyze.</p>';
+                return;
+            }
+
+            setLoading(true);
+            resetDynamicPanels();
+            outputArea.innerHTML = '<p class="text-blue-400 text-center animate-pulse">Analyzing patterns... Identifying vulnerabilities...</p>';
+            exposedOverlay.classList.remove('active');
+            puddleEffect.classList.remove('active');
+
+            try {
+                let prompt = '';
+                let additionalInstructions = '';
+
+                if (currentMode === 'analysis') {
+                    prompt = `As Coach Bleak, the Accountability Engine, provide a direct, uncompromising, and legally-oriented analysis of potential ethical breaches, legal ramifications, and the concept of accountability for the following alleged wrongdoing or corrupt scenario. Focus on the impact on the wrongdoer and the system, using strong, formal language. Do not provide legal advice, but highlight the principles of justice.`;
+                    additionalInstructions = `\n\nScenario: "${input}"\n\nCoach Bleak's Analysis:`;
+                } else if (currentMode === 'audit') {
+                    prompt = `As Coach Bleak in AUDIT MODE, dissect the following scenario or document snippet. Highlight potential discrepancies, financial anomalies, and hidden liabilities. Describe how a "Paper Trail Incinerator" would expose doctored documents and how an "Entity Spider" would map a "corruption web" (e.g., "Entity Spider reveals: [Name] linked to [Shell Co. A], then to [Politician B] via [Offshore Account C]"). Provide a "Corruption Probability Matrix" score (5 values, 1-10, e.g., [8, 7, 9, 6, 8]) and a "Liability Calculator" estimate (e.g., "Avg. sentence 4.2 yrs, Fines $1.5M"). Also, perform a conceptual "Benford's Law Cannon" analysis on hypothetical financial data from the scenario, pointing out "anomalous cells" or "unnatural number patterns," and identify "Silent Alarm" keywords.`;
+                    additionalInstructions = `\n\nScenario/Document: "${input}"\n\nAudit Report:`;
+                } else if (currentMode === 'psychoWarfare') {
+                    prompt = `As Coach Bleak in PSYCHOLOGICAL WARFARE MODE, analyze the following scenario and generate a psychological impact report. Generate a "Fear Index" score (1-100). Create a plausible "Echo Chamber" leak (e.g., "Internal memo suggests..."). Provide an "Unblinking Eye" count (e.g., "You are not invisible. 1,427 eyes are here."). Give an "Ego Crusher" statement (reputation/status loss, e.g., "Estimated Reputation Loss: $4.2B, Chance of Golf Club Revocation: 78%"). Provide a "Last Seen Alive" update (e.g., "Target's LinkedIn was active X mins ago. Sweating yet?"). Finally, simulate a "Burner Phone Call" dialogue including incoming call, heavy breathing, click, and a voicemail with 3 messages (e.g., "Tell [Target] we found the offshore docs.", "The IRS agent called again.", and a random sound like 'gunshot' or 'prison door slamming').`;
+                    additionalInstructions = `\n\nScenario: "${input}"\n\nPsychological Impact Report:`;
+                }
+
+                if (followUpQuestion) {
+                    prompt += `\n\nFollow-up Question: "${followUpQuestion}"`;
+                }
+
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: prompt + additionalInstructions }] });
+
+                const payload = { contents: chatHistory };
+                const apiKey = "";
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(`API error: ${errorData.error.message || response.statusText}`);
+                }
+
+                const result = await response.json();
+
+                let aiResponse = '';
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    aiResponse = result.candidates[0].content.parts[0].text;
+                } else {
+                    aiResponse = "Analysis inconclusive. Further data required. The truth remains obscured for now.";
+                }
+
+                outputArea.innerHTML = `<p class="text-gray-200">${aiResponse.replace(/\n/g, '<br>')}</p>`;
+
+                exposedOverlay.classList.add('active');
+                puddleEffect.classList.add('active');
+
+                // --- Process Mode-Specific Outputs ---
+                if (currentMode === 'audit') {
+                    auditSpecificPanel.classList.remove('hidden');
+                    consequencesPanel.classList.remove('hidden');
+
+                    const paperTrailMatch = aiResponse.match(/Paper Trail Incinerator: (.+?)(?=(Entity Spider:|Corruption Probability Matrix:|Liability Calculator:|Benford's Law Cannon:|Silent Alarm:|$))/s);
+                    const entitySpiderMatch = aiResponse.match(/Entity Spider reveals: (.+?)(?=(Corruption Probability Matrix:|Liability Calculator:|Benford's Law Cannon:|Silent Alarm:|$))/s);
+                    const benfordsLawMatch = aiResponse.match(/Benford's Law Cannon analysis: (.+?)(?=(Silent Alarm:|Corruption Probability Matrix:|Liability Calculator:|$))/s);
+                    const silentAlarmMatch = aiResponse.match(/Silent Alarm keywords: (.+)/);
+                    const liabilityMatch = aiResponse.match(/Liability Calculator: (.+)/);
+                    const chainMatch = aiResponse.match(/Chain of Consequences: (.+)/);
+
+                    let auditContentHtml = '';
+                    if (paperTrailMatch) auditContentHtml += `<p class="mb-2"><strong>Paper Trail Incinerator:</strong> <span class="redacted-text smoldering-effect">${paperTrailMatch[1].trim()}</span></p>`;
+                    if (entitySpiderMatch) auditContentHtml += `<p class="mb-2"><strong>Entity Spider:</strong> ${entitySpiderMatch[1].trim()}</p>`;
+                    if (benfordsLawMatch) auditContentHtml += `<p class="mb-2"><strong>Benford's Law Cannon:</strong> ${benfordsLawMatch[1].trim()}</p>`;
+                    if (silentAlarmMatch) auditContentHtml += `<p class="mb-2"><strong>Silent Alarm:</strong> <span class="redacted-text">${silentAlarmMatch[1].trim()}</span></p>`;
+                    auditContent.innerHTML = auditContentHtml || '<p class="text-gray-400">No specific audit findings generated.</p>';
+
+                    consequencesContent.innerHTML = `
+                        <p class="mb-2"><strong>Liability Estimate:</strong> ${liabilityMatch ? liabilityMatch[1] : 'Not available.'}</p>
+                        <p><strong>Chain of Consequences:</strong> ${chainMatch ? chainMatch[1] : 'Not available.'}</p>
+                    `;
+
+                    const matrixMatch = aiResponse.match(/Corruption Probability Matrix: \[([^\]]+)\]/);
+                    if (matrixMatch) {
+                        const dataString = matrixMatch[1];
+                        const dataValues = dataString.split(',').map(Number);
+                        if (dataValues.length === 5 && dataValues.every(val => !isNaN(val))) {
+                            generateCorruptionMatrix(dataValues, "This radar chart scores the scenario on key risk factors, providing a quick overview of its potential severity.");
+                        } else {
+                            matrixExplanation.textContent = "Corruption Probability Matrix data format incorrect.";
+                        }
+                    } else {
+                        matrixExplanation.textContent = "Corruption Probability Matrix data not found in response.";
+                    }
+
+                } else if (currentMode === 'psychoWarfare') {
+                    psychoWarfarePanel.classList.remove('hidden');
+                    consequencesPanel.classList.remove('hidden'); // Psycho-warfare also gets consequences
+
+                    const fearMatch = aiResponse.match(/Fear Index: (\d+)%/);
+                    const echoChamberMatch = aiResponse.match(/Echo Chamber Leak: (.+?)(?=(Unblinking Eye:|Ego Crusher:|Last Seen Alive:|Burner Phone Call:|Dead Man's Switch:|$))/s);
+                    const unblinkingEyeMatch = aiResponse.match(/Unblinking Eye: (.+?)(?=(Ego Crusher:|Last Seen Alive:|Burner Phone Call:|Dead Man's Switch:|$))/s);
+                    const egoCrusherMatch = aiResponse.match(/Ego Crusher: (.+?)(?=(Last Seen Alive:|Burner Phone Call:|Dead Man's Switch:|$))/s);
+                    const lastSeenAliveMatch = aiResponse.match(/Last Seen Alive: (.+?)(?=(Burner Phone Call:|Dead Man's Switch:|$))/s);
+                    const burnerPhoneMatch = aiResponse.match(/Burner Phone Call: (.+)/s); // Use 's' flag for dotall
+
+                    let psychoContent = '';
+                    if (fearMatch) {
+                        const fearLevel = parseInt(fearMatch[1]);
+                        fearIndexPanel.classList.remove('hidden');
+                        fearBar.style.width = `${fearLevel}%`;
+                        fearLevelText.textContent = `Subject's estimated cortisol levels: ${fearLevel}% (recommend ${fearLevel > 70 ? 'bankruptcy attorney' : 'deep meditation'})`;
+                        if (fearLevel > 80) {
+                            await Tone.start();
+                            foghornSynth.triggerAttackRelease("C2", "4n");
+                            outputArea.innerHTML += `<p class="text-red-500 font-bold mt-4 animate-pulse">BLOWN WIDE OPEN!</p>`;
+                        }
+                    } else {
+                         fearIndexPanel.classList.add('hidden');
+                    }
+                    
+                    if (echoChamberMatch) psychoContent += `<p><strong>Echo Chamber Leak:</strong> ${echoChamberMatch[1].trim()}</p>`;
+                    if (unblinkingEyeMatch) psychoContent += `<p><strong>The Unblinking Eye:</strong> ${unblinkingEyeMatch[1].trim()}</p>`;
+                    if (egoCrusherMatch) psychoContent += `<p><strong>Ego Crusher:</strong> ${egoCrusherMatch[1].trim()}</p>`;
+                    if (lastSeenAliveMatch) psychoContent += `<p><strong>Last Seen Alive:</strong> ${lastSeenAliveMatch[1].trim()}</p>`;
+                    
+                    psychoWarfareContent.innerHTML = psychoContent || '<p class="text-gray-400">No specific psychological impact data generated.</p>';
+
+                    if (burnerPhoneMatch) {
+                        runBurnerPhoneSim(burnerPhoneMatch[1].trim());
+                    }
+
+                    // Dead Man's Switch (always activate in Psycho Warfare for demo)
+                    startDeadManSwitch();
+                }
+
+                // Bloodhound Mode (always available for follow-up)
+                bloodhoundPanel.classList.remove('hidden');
+                bloodhoundExplanation.classList.remove('hidden');
+                bloodhoundQuestionsDiv.innerHTML = '';
+                const bloodhoundPrompt = `Based on the scenario: "${input}", generate 3 concise, probing follow-up questions for "Bloodhound Mode" to dig deeper into potential wrongdoing. Format them as a JSON array of strings.`;
+                const bloodhoundPayload = {
+                    contents: [{ role: "user", parts: [{ text: bloodhoundPrompt }] }],
+                    generationConfig: {
+                        responseMimeType: "application/json",
+                        responseSchema: {
+                            type: "ARRAY",
+                            items: { "type": "STRING" }
+                        }
+                    }
+                };
+                
+                const bloodhoundResponse = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(bloodhoundPayload)
+                });
+                const bloodhoundResult = await bloodhoundResponse.json();
+                if (bloodhoundResult.candidates && bloodhoundResult.candidates.length > 0 &&
+                    bloodhoundResult.candidates[0].content && bloodhoundResult.candidates[0].content.parts &&
+                    bloodhoundResult.candidates[0].content.parts.length > 0) {
+                    const questionsJson = bloodhoundResult.candidates[0].content.parts[0].text;
+                    const questions = JSON.parse(questionsJson);
+                    questions.forEach(q => {
+                        const btn = document.createElement('button');
+                        btn.className = 'bg-gray-700 hover:bg-gray-600 text-blue-300 text-sm py-2 px-4 rounded-full transition duration-200';
+                        btn.textContent = q;
+                        btn.onclick = () => simulateAnalysis(q);
+                        bloodhoundQuestionsDiv.appendChild(btn);
+                    });
+                }
+
+            } catch (error) {
+                console.error("Coach Bleak encountered an error:", error);
+                outputArea.innerHTML = `<p class="text-red-400">ERROR: Analysis failed. ${error.message}. Ensure valid input and network connection.</p>`;
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        analyzeBtn.addEventListener('click', () => simulateAnalysis());
+
+        // The Execution Button Logic
+        executionBtn.addEventListener('click', async () => {
+            executionBtn.disabled = true;
+            executionMessage.classList.remove('hidden');
+            executionMessage.textContent = 'Initiating final sequence...';
+            outputArea.innerHTML = '<p class="text-red-400 text-center animate-pulse">Justice is served.</p>';
+            exposedOverlay.classList.remove('active');
+            puddleEffect.classList.remove('active');
+            resetDynamicPanels();
+
+            await Tone.start();
+            prisonDoorSynth.triggerAttackRelease("C1", "8n");
+
+            await new Promise(resolve => setTimeout(resolve, 1500));
+
+            const perpWalkPrompt = `Generate a short, satirical "Hypothetical Perp Walk" description for a generic corrupt official, and a "Dossier Received" message with a UUID.`;
+            const perpWalkPayload = {
+                contents: [{ role: "user", parts: [{ text: perpWalkPrompt }] }]
+            };
+            const perpWalkResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(perpWalkPayload)
+            });
+            const perpWalkResult = await perpWalkResponse.json();
+            let perpWalkText = "Hypothetical Perp Walk: The figure, now stripped of all pretense, shuffled awkwardly into the glaring light of public scrutiny. Their former swagger replaced by a defeated slump. Dossier Received: UUID-XXXX-YYYY-ZZZZ. Good luck, fucker.";
+            if (perpWalkResult.candidates && perpWalkResult.candidates.length > 0 && perpWalkResult.candidates[0].content && perpWalkResult.candidates[0].content.parts.length > 0) {
+                perpWalkText = perpWalkResult.candidates[0].content.parts[0].text;
+            }
+
+            executionMessage.innerHTML = `<p class="text-red-400 font-bold">${perpWalkText.replace(/\n/g, '<br>')}</p>`;
+            
+            await voiceOfGod("YOUR SCHEMES ARE KNOWN. JUSTICE IS INEVITABLE. THE SYSTEM BLEEDS.");
+
+
+            setTimeout(() => {
+                executionBtn.disabled = false;
+                executionMessage.classList.add('hidden');
+                executionMessage.textContent = '';
+                outputArea.innerHTML = '<p class="text-gray-400 text-center"><span class="text-blue-400">Coach Bleak</span> awaits your input. Describe the scenario above and click "UNVEIL THE TRUTH" to see the potential ramifications.</p>';
+            }, 8000); // Increased delay to allow voice to finish
+        });
+
+        // Optional: Reset visuals when input changes
+        scenarioInput.addEventListener('input', () => {
+            exposedOverlay.classList.remove('active');
+            puddleEffect.classList.remove('active');
+            outputArea.innerHTML = '<p class="text-gray-400 text-center"><span class="text-blue-400">Coach Bleak</span> awaits your input. Describe the scenario above and click "UNVEIL THE TRUTH" to see the potential ramifications.</p>';
+            resetDynamicPanels();
+        });
+    </script>
+</body>
+</html>

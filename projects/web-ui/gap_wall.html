@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&display=swap');
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: #0a0a0a;
+  color: #fff;
+  font-family: 'Share Tech Mono', monospace;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px;
+  letter-spacing: 8px;
+  color: #ff2244;
+  text-shadow: 0 0 30px #ff224488;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 32px;
+}
+
+.gap {
+  border-left: 4px solid #ff2244;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  background: rgba(255,34,68,0.05);
+  position: relative;
+}
+
+.gap-number {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 64px;
+  color: rgba(255,34,68,0.15);
+  position: absolute;
+  right: 16px;
+  top: 8px;
+  line-height: 1;
+}
+
+.gap-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 4px;
+  color: #ff2244;
+  margin-bottom: 8px;
+}
+
+.gap-body {
+  font-size: 13px;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.7);
+}
+
+.gap-body strong {
+  color: #ffaa00;
+}
+
+.gap.solved {
+  border-color: #00ffcc;
+  background: rgba(0,255,204,0.05);
+}
+.gap.solved .gap-title { color: #00ffcc; }
+.gap.solved .gap-number { color: rgba(0,255,204,0.15); }
+
+.footer {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  font-size: 11px;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.pin {
+  display: inline-block;
+  font-size: 9px;
+  letter-spacing: 2px;
+  padding: 3px 8px;
+  background: rgba(255,34,68,0.2);
+  border: 1px solid #ff2244;
+  color: #ff2244;
+  margin-bottom: 8px;
+}
+</style>
+</head>
+<body>
+
+<h1>WHAT I DON'T KNOW YET</h1>
+<div class="subtitle">PIN THIS WHERE YOU CANNOT AVOID IT — BATHROOM DOOR. EVERY PASS IS PROGRESS.</div>
+
+<div class="gap">
+  <div class="gap-number">01</div>
+  <div class="pin">WAVELANG</div>
+  <div class="gap-title">THE BENCHMARK DOESN'T EXIST</div>
+  <div class="gap-body">
+    The claim: Fibonacci scaling is more stable than linear allocation on sub-4GB devices.<br><br>
+    <strong>Current evidence: zero.</strong><br><br>
+    It feels true. It probably is true. Feelings aren't papers.
+    Need: actual RAM profiling, actual numbers, actual comparison.
+  </div>
+</div>
+
+<div class="gap">
+  <div class="gap-number">02</div>
+  <div class="pin">ZEROCLAW</div>
+  <div class="gap-title">"FIRST KNOWN" IS NOT PROVEN</div>
+  <div class="gap-body">
+    The claim: first native aarch64 Android Termux build of zeroclaw.<br><br>
+    <strong>Current evidence: nobody contradicted it.</strong><br><br>
+    That's not the same as verified. Need independent reproduction.
+    Need someone else to try it and either fail or succeed.
+  </div>
+</div>
+
+<div class="gap">
+  <div class="gap-number">03</div>
+  <div class="pin">BOARDROOM</div>
+  <div class="gap-title">CONSISTENCY HAS NO DEFINITION</div>
+  <div class="gap-body">
+    The claim: DNA logging improves persona consistency across generations.<br><br>
+    <strong>Current problem: "consistency" is undefined.</strong><br><br>
+    Can't measure what you haven't defined.
+    Need: a rubric. What does a consistent Chairman look like vs. an inconsistent one?
+  </div>
+</div>
+
+<div class="gap">
+  <div class="gap-number">04</div>
+  <div class="pin">GLASS RING</div>
+  <div class="gap-title">ONE USER IS NOT A STUDY</div>
+  <div class="gap-body">
+    The claim: tilt-based control reduces cognitive load.<br><br>
+    <strong>Current sample size: 1. You.</strong><br><br>
+    You built it. You understand it instinctively.
+    That's not data. That's expertise bias.
+    Need: someone who's never seen it to pick it up cold.
+  </div>
+</div>
+
+<div class="gap">
+  <div class="gap-number">05</div>
+  <div class="pin">THOROUGHBREDDING</div>
+  <div class="gap-title">IT'S NOT A GENETIC ALGORITHM YET</div>
+  <div class="gap-body">
+    The claim: agent DNA crossbreeding via the forge.<br><br>
+    <strong>Current reality: asking an LLM to pretend to crossbreed.</strong><br><br>
+    evolution_engine.py doesn't exist. When it does,
+    and when it does real crossover math, then it's a genetic algorithm.
+    Until then it's a very good metaphor.
+  </div>
+</div>
+
+<div class="gap">
+  <div class="gap-number">06</div>
+  <div class="pin">BSaaS</div>
+  <div class="gap-title">THE 80% NUMBER IS INVENTED</div>
+  <div class="gap-body">
+    The claim: greenroom brief reduces re-orientation time by 80%.<br><br>
+    <strong>Current source: sounded right.</strong><br><br>
+    Time the actual thing. Before greenroom. After greenroom.
+    Real sessions. Real clock. Real number.
+  </div>
+</div>
+
+<div class="gap">
+  <div class="gap-number">07</div>
+  <div class="pin">KILLSWITCH</div>
+  <div class="gap-title">SCORCHED EARTH MAY NOT WORK</div>
+  <div class="gap-body">
+    The claim: 3-pass /dev/urandom overwrite = irrecoverable.<br><br>
+    <strong>Current problem: Android uses flash storage with wear leveling.</strong><br><br>
+    Wear leveling means the OS writes to different physical blocks
+    to extend drive life. Your overwrite may not hit the original block.
+    A forensics lab might still recover it.
+    This needs actual testing or a different approach.
+  </div>
+</div>
+
+<div class="gap">
+  <div class="gap-number">08</div>
+  <div class="pin">ALL PAPERS</div>
+  <div class="gap-title">ONE OPERATOR. ONE DEVICE. NOT SCIENCE.</div>
+  <div class="gap-body">
+    Every result in every paper comes from one person,
+    one phone, one environment, one perspective.<br><br>
+    <strong>That's a case study. Not a study.</strong><br><br>
+    The work is real. The results are real.
+    But science requires reproduction by people
+    who didn't build the thing and don't want it to work.
+  </div>
+</div>
+
+<div class="footer">
+  THESE ARE NOT FAILURES. THESE ARE THE NEXT MOVES.<br>
+  WALK PAST THIS ENOUGH TIMES AND YOUR BRAIN SOLVES IT WITHOUT YOU.<br><br>
+  — K.M. TALBERT / BLEAK NARRATIVES / 2026
+</div>
+
+</body>
+</html>

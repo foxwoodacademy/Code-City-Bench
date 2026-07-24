@@ -1,0 +1,220 @@
+~ $ cat vai_output_vai_281bf68f4155.json
+{
+  "session_id": "vai_281bf68f4155",
+  "context": {
+    "timestamp": "2026-05-17T12:19:51.404409",
+    "raw": "test",
+    "type": "text",
+    "label": "test",
+    "data": {
+      "content": "test"
+    },
+    "session_id": "vai_281bf68f4155"
+  },
+  "boardroom": {
+    "debate": [
+      {
+        "round": 1,
+        "agent": "CFO",
+        "argument": "As a CFO, I would emphasize unit economics by ensuring each component of a product or service adds value before moving forward. Burn rate analysis would be crucial to assess if costs can be reduced without affecting profitability. Validation of the revenue model is essential to confirm its effectiveness. Calculating and presenting margin targets will show if current operations meet expectations. Planning the ROI timeline ensures projects have good return on investment. A strong cash position is critical for maintaining liquidity, which supports long-term capital efficiency.",
+        "provider": "ollama/deepseek-r1:1.5b"
+      },
+      {
+        "round": 1,
+        "agent": "CMO",
+        "argument": "FAILED: All model providers failed:\nGemini: 429 Client Error: Too Many Requests for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyCNa1vglvs8OQfQX8pWaIuKu1xh9GLV1Q4\nGroq: GROQ_API_KEY not set\nOllama: HTTPConnectionPool(host='127.0.0.1', port=11434): Read timed out. (read timeout=120)",
+        "provider": "none"
+      },
+      {
+        "round": 1,
+        "agent": "CRO",
+        "argument": "**CRAze Analysis Report**\n\n1. **Legal Failure**: If data integrity rules are not enforced, unauthorized access to sensitive information could lead to misuse, affecting compliance and legal adherence.\n\n2. **Regulatory Failure**: Poor data governance may violate existing regulations, causing performance issues or financial penalties by non-compliance with standards.\n\n3. **Reputational Failure**: Misleading practices in reporting on regulatory compliance could damage the organization's reputation, leading to lost customers and legal consequences.\n\n4. **Operational Failure**: Supply chain disruptions due to security breaches might delay projects, hindering growth and operational efficiency.\n\n5. **Competitive Failure**: Failing to adapt strategies against emerging threats can undermine market share, affecting long-term profitability.",
+        "provider": "ollama/deepseek-r1:1.5b"
+      },
+      {
+        "round": 1,
+        "agent": "MARKET_ANALYST",
+        "argument": "FAILED: All model providers failed:\nGemini: 429 Client Error: Too Many Requests for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyCNa1vglvs8OQfQX8pWaIuKu1xh9GLV1Q4\nGroq: GROQ_API_KEY not set\nOllama: HTTPConnectionPool(host='127.0.0.1', port=11434): Read timed out. (read timeout=120)",
+        "provider": "none"
+      },
+      {
+        "round": 1,
+        "agent": "DEVIL",
+        "argument": "FAILED: All model providers failed:\nGemini: 429 Client Error: Too Many Requests for url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyCNa1vglvs8OQfQX8pWaIuKu1xh9GLV1Q4\nGroq: GROQ_API_KEY not set\nOllama: HTTPConnectionPool(host='127.0.0.1', port=11434): Read timed out. (read timeout=120)",
+        "provider": "none"
+      }
+    ],
+    "synthesis": {
+      "consensus": "what the room actually agreed on",
+      "primary_risk": "the single biggest risk identified",
+      "primary_opportunity": "the single biggest opportunity identified",
+      "contested": null,
+      "verdict": "go",
+      "verdict_condition": null
+    }
+  },
+  "tracks": [
+    {
+      "track_meta": {
+        "name": "Conservative Approach",
+        "thesis": "The most successful strategy involves developing a clear, structured plan with well-defined goals.",
+        "first_action": "Develop a detailed project outline to establish the foundation for success.",
+        "target_outcome": "Achieve early milestones that demonstrate the feasibility and importance of each goal."
+      },
+      "chain": [
+        {
+          "iteration": 1,
+          "action": "Develop a detailed project outline to establish the foundation for success.",
+          "market_response": {
+            "timestamp": "2026-05-17T12:19:51.404409",
+            "raw": "test",
+            "type": "text",
+            "label": "test",
+            "data": {
+              "content": "Develop a detailed project outline to establish the foundation for success."
+            },
+            "session_id": "vai_281bf68f4155"
+          },
+          "business_counter": {
+            "counter_action": "Develop a detailed project outline to establish the foundation for success.",
+            "rationale": "This is the right move because it aligns with market expectations and provides a clear direction for future development. By establishing a solid foundation, the business can create a roadmap for its growth and innovation, which will be crucial in driving long-term success.",
+            "resource_required": "0-2 weeks of dedicated project time",
+            "risk": "The risk is that without a clear direction, the business may struggle to prioritize projects effectively or allocate resources efficiently."
+          },
+          "providers": [
+            "ollama/llama3.2:1b",
+            "ollama/llama3.2:1b"
+          ]
+        },
+        {
+          "iteration": 2,
+          "action": "Develop a detailed project outline to establish the foundation for success.",
+          "market_response": {
+            "market_response": "SIMULATION ERROR: Extra data: line 1 column 284 (char 283)",
+            "sentiment": "unknown"
+          },
+          "business_counter": {
+            "counter_action": "Review and Refine Simulation Models",
+            "rationale": "Given the unexpected market response, refining simulation models to ensure accuracy is critical. This allows for better decision-making in future scenarios.",
+            "resource_required": "1-2 weeks of time and effort",
+            "risk": "Delays in model refinement may lead to continued uncertainty, affecting business decisions."
+          },
+          "providers": [
+            "ollama/llama3.2:1b",
+            "ollama/llama3.2:1b"
+          ]
+        }
+      ],
+      "chain_length": 2,
+      "scores": {
+        "market_adaptability": 20,
+        "resource_efficiency": 50,
+        "competitive_defensibility": 40,
+        "execution_realism": 60,
+        "upside_potential": 80,
+        "overall_fitness": 70,
+        "fatal_flaw": null,
+        "strongest_gene": "Develop a detailed project outline to establish the foundation for success.",
+        "provider": "ollama/llama3.2:1b"
+      }
+    },
+    {
+      "track_meta": {
+        "name": "Aggressive Push",
+        "thesis": "Taking calculated risks now will lead to significant breakthroughs in years to come.",
+        "first_action": "Identify key areas within your organization that require radical changes or reorientations.",
+        "target_outcome": "Build momentum and drive towards broader, long-term vision."
+      },
+      "chain": [
+        {
+          "iteration": 1,
+          "action": "Identify key areas within your organization that require radical changes or reorientations.",
+          "market_response": {
+            "timestamp": "2026-05-17T12:19:51.404409",
+            "raw": "test",
+            "type": "text",
+            "label": "test",
+            "data": {
+              "content": "market responds with a mix of skepticism and acceptance, initially fueled by concerns about radical changes",
+              "timestamp": "2026-05-17T12:19:51.404409"
+            },
+            "session_id": "vai_281bf68f4155"
+          },
+          "business_counter": {
+            "counter_action": "SIMULATION ERROR: Expecting ',' delimiter: line 5 column 117 (char 561)"
+          },
+          "providers": [
+            "ollama/llama3.2:1b",
+            "ollama/llama3.2:1b"
+          ]
+        },
+        {
+          "iteration": 2,
+          "action": "SIMULATION ERROR: Expecting ',' delimiter: line 5 column 117 (char 561)",
+          "market_response": {
+            "market_response": "SIMULATION ERROR: Extra data: line 1 column 206 (char 205)",
+            "sentiment": "unknown"
+          },
+          "business_counter": {
+            "counter_action": "update product features to improve user experience",
+            "rationale": "By improving user experience, we can increase average order value and reduce churn rate.",
+            "resource_required": "additional development team for 2 weeks",
+            "risk": "if this counter move is not effective, it could lead to a significant loss of customer retention."
+          },
+          "providers": [
+            "ollama/llama3.2:1b",
+            "ollama/llama3.2:1b"
+          ]
+        }
+      ],
+      "chain_length": 2,
+      "scores": {
+        "market_adaptability": 20,
+        "resource_efficiency": 30,
+        "competitive_defensibility": 40,
+        "execution_realism": 10,
+        "upside_potential": 90,
+        "overall_fitness": 50,
+        "fatal_flaw": "The single thing that could kill this strategy or null if none",
+        "strongest_gene": "The ability to pivot and adapt quickly in response to changing market conditions.",
+        "provider": "ollama/llama3.2:1b"
+      }
+    }
+  ],
+  "arena": {
+    "champion": {
+      "name": "A & B Bition",
+      "thesis": "The offspring strategy emphasizes a clear structured plan with well-defined goals (A's approach) while incorporating adaptability and risk-taking (B's approach). This balanced combination aims to achieve both stability and spontaneity.",
+      "first_action": "test some initial strategies (test strategy)",
+      "inherited_from_a": "a detailed project outline to establish a foundation for success",
+      "inherited_from_b": "the ability to pivot quickly in response to changing market conditions",
+      "mutation": "integrating risk into the structured plan with some adaptability",
+      "target_outcome": "achieve success within 90 days",
+      "provider": "ollama/deepseek-r1:1.5b"
+    },
+    "finalists": [
+      {
+        "name": "Conservative Approach",
+        "thesis": "The most successful strategy involves developing a clear, structured plan with well-defined goals.",
+        "first_action": "Develop a detailed project outline to establish the foundation for success.",
+        "target_outcome": "Achieve early milestones that demonstrate the feasibility and importance of each goal."
+      },
+      {
+        "name": "Aggressive Push",
+        "thesis": "Taking calculated risks now will lead to significant breakthroughs in years to come.",
+        "first_action": "Identify key areas within your organization that require radical changes or reorientations.",
+        "target_outcome": "Build momentum and drive towards broader, long-term vision."
+      }
+    ],
+    "generations_run": 1
+  },
+  "champion": {
+    "name": "A & B Bition",
+    "thesis": "The offspring strategy emphasizes a clear structured plan with well-defined goals (A's approach) while incorporating adaptability and risk-taking (B's approach). This balanced combination aims to achieve both stability and spontaneity.",
+    "first_action": "test some initial strategies (test strategy)",
+    "inherited_from_a": "a detailed project outline to establish a foundation for success",
+    "inherited_from_b": "the ability to pivot quickly in response to changing market conditions",
+    "mutation": "integrating risk into the structured plan with some adaptability",
+    "target_outcome": "achieve success within 90 days",
+    "provider": "ollama/deepseek-r1:1.5b"
+  }

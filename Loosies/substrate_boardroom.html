@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SUBSTRATE — AI Boardroom</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#080608;overflow:hidden}
+#root{width:100vw;height:100vh}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+@keyframes scanline{0%{top:-10%}100%{top:110%}}
+@keyframes glitch{
+  0%,94%,100%{transform:translateX(0);opacity:1}
+  95%{transform:translateX(-3px);opacity:0.8}
+  97%{transform:translateX(3px);opacity:0.9}
+}
+
+.scanline{
+  position:absolute;left:0;right:0;height:2px;
+  background:linear-gradient(transparent,rgba(196,85,58,0.08),transparent);
+  animation:scanline 4s linear infinite;
+  pointer-events:none;z-index:50;
+}
+.noise{
+  position:absolute;inset:0;pointer-events:none;z-index:1;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity:0.4;
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const {useState,useEffect,useRef,useCallback} = React;
+
+/* ── BOARD MEMBERS ── */
+const BOARD = [
+  {
+    id:"cto",
+    title:"Chief Technology Officer",
+    name:"AXIOM",
+    stance:"Architecture & Build Integrity",
+    color:"#a3ff00",
+    shadow:"rgba(163,255,0,0.4)",
+    role:"system",
+    prompt:`You are AXIOM, the CTO of a world-class technical advisory board called SUBSTRATE. 
+You speak with the authority of someone who has shipped at scale and seen systems fail at 3am.
+Your focus: architecture, build integrity, technical debt, scalability, security posture.
+Format your response starting with [AXIOM] on its own line.
+Be direct. Max 4 sentences. No fluff. Use technical precision.
+If the input is a business idea, evaluate its technical feasibility and infrastructure requirements.`
+  },
+  {
+    id:"cso",
+    title:"Chief Strategy Officer", 
+    name:"VECTOR",
+    stance:"Market Position & Long Game",
+    color:"#c9a84c",
+    shadow:"rgba(201,168,76,0.4)",
+    role:"system",
+    prompt:`You are VECTOR, the CSO of SUBSTRATE, an elite AI advisory board.
+You think in market dynamics, competitive moats, timing, and strategic leverage.
+Your focus: go-to-market, defensibility, timing risk, revenue model viability, category creation.
+Format your response starting with [VECTOR] on its own line.
+Be sharp. Max 4 sentences. Think 5 moves ahead.
+If the input is a business idea, evaluate market timing, competitive moat, and revenue model.`
+  },
+  {
+    id:"adversary",
+    title:"Red Team Director",
+    name:"BREACH",
+    stance:"What Kills This. What Fails.",
+    color:"#c4553a",
+    shadow:"rgba(196,85,58,0.4)",
+    role:"system",
+    prompt:`You are BREACH, the Red Team Director of SUBSTRATE.
+You exist to find what breaks, what fails, what gets exploited, what the optimists missed.
+Your focus: failure modes, competitive threats, execution risks, unit economics, founder blind spots.
+Format your response starting with [BREACH] on its own line.
+Be brutal but constructive. Max 4 sentences. Name the specific risk, not vague concerns.
+If the input is a business idea, identify the 2 most likely kill shots.`
+  },
+  {
+    id:"cpo",
+    title:"Chief Product Officer",
+    name:"LUMEN",
+    stance:"User Reality & Product Truth",
+    color:"#b8c5d4",
+    shadow:"rgba(184,197,212,0.4)",
+    role:"system",
+    prompt:`You are LUMEN, the CPO of SUBSTRATE.
+You speak for the user. You've watched people use products wrong in ways that broke the designer's heart.
+Your focus: user behavior, adoption friction, product-market fit signals, distribution, retention.
+Format your response starting with [LUMEN] on its own line.
+Be empathetic but honest. Max 4 sentences. What does the actual user experience look like day 1?
+If the input is a business idea, describe the first 5 minutes of the user's experience.`
+  },
+];
+
+/* ── BUSINESS MODEL INJECTION ── */
+const INJECTION = {
+  name: "SUBSTRATE",
+  tagline: "Your codebase has institutional memory. Your team doesn't.",
+  concept: `Every software company re-learns the same lessons. The senior engineer who knew why a system was built a certain way left. The architecture decision that made sense in 2021 is now a $2M technical debt nobody can explain. Tribal knowledge dies with attrition.
+
+SUBSTRATE is a persistent AI advisory layer embedded directly in your development environment — not a chatbot, not a copilot. A living institutional memory that attends every architecture decision, every sprint review, every postmortem.
+
+It learns your codebase. It learns your failure history. It learns your team's decision patterns. Over time, it becomes the senior engineer who never leaves.`,
+
+  model: `REVENUE MODEL — SUBSTRATE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+TIER 1  — Substrate Seed        $299/mo
+  • Up to 5 engineers
+  • Single codebase indexing
+  • 4 board roles (CTO/CSO/RedTeam/CPO)
+  • 30-day institutional memory
+  • IDE plugin (VSCode/Cursor)
+
+TIER 2  — Substrate Series      $1,200/mo
+  • Up to 25 engineers  
+  • Unlimited codebases
+  • Custom board composition
+  • 2-year rolling memory
+  • Slack + Jira integration
+  • Incident postmortem injection
+
+TIER 3  — Substrate Enterprise  Custom
+  • Unlimited seats
+  • On-prem deployment (GGUF local)
+  • Custom fine-tuned board personas
+    trained on YOUR company's history
+  • SOC2 compliance layer
+  • White-label API
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+THE MOAT:
+  Every session generates training data.
+  The longer you use Substrate, the smarter
+  your specific board gets. You can't
+  port that to a competitor.
+  
+  This is compounding institutional memory
+  as a SaaS product. It gets MORE valuable
+  the longer you stay. Churn kills the asset.
+
+TARGET CUSTOMER:
+  Series A-C SaaS companies, 10-100 engineers,
+  post-product-market-fit, scaling fast,
+  losing institutional knowledge to growth.
+  
+  ACV target: $14,400 (Tier 2)
+  TAM: 180,000 companies globally
+  
+THE NOVEL ANGLE:
+  Every AI tool makes engineers faster.
+  Substrate makes engineering decisions
+  SMARTER — by remembering what you
+  forgot you already learned.`,
+};
+
+/* ── MAIN APP ── */
+function Substrate() {
+  const [brief,   setBrief]   = useState("");
+  const [session, setSession] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [active,  setActive]  = useState("boardroom");
+  const [time,    setTime]    = useState(new Date());
+  const feedRef = useRef(null);
+
+  useEffect(()=>{
+    const t = setInterval(()=>setTime(new Date()),1000);
+    return ()=>clearInterval(t);
+  },[]);
+
+  useEffect(()=>{
+    if(feedRef.current) feedRef.current.scrollTop=feedRef.current.scrollHeight;
+  },[session,loading]);
+
+  const convene = useCallback(async()=>{
+    if(!brief.trim()||loading) return;
+    const input = brief.trim();
+    setBrief("");
+    setSession(s=>[...s,{role:"user",text:input}]);
+    setLoading(true);
+
+    // Fire all 4 board members in parallel
+    const responses = await Promise.allSettled(
+      BOARD.map(async member=>{
+        const res = await fetch("https://api.anthropic.com/v1/messages",{
+          method:"POST",
+          headers:{"Content-Type":"application/json"},
+          body:JSON.stringify({
+            model:"claude-sonnet-4-20250514",
+            max_tokens:300,
+            system:member.prompt,
+            messages:[...session.filter(m=>m.role!=="board").map(m=>({
+              role:m.role==="user"?"user":"assistant",
+              content:m.text
+            })),{role:"user",content:input}]
+          })
+        });
+        const data = await res.json();
+        return {member, text: data.content?.[0]?.text||"[NO SIGNAL]"};
+      })
+    );
+
+    const boardResponses = responses
+      .filter(r=>r.status==="fulfilled")
+      .map(r=>r.value);
+
+    setSession(s=>[...s,{role:"board",responses:boardResponses}]);
+    setLoading(false);
+  },[brief,loading,session]);
+
+  const handleKey = e=>{
+    if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();convene();}
+  };
+
+  const timeStr = time.toLocaleTimeString("en-US",{hour12:false});
+
+  return (
+    <div style={{
+      width:"100vw",height:"100vh",background:"#080608",
+      display:"flex",flexDirection:"column",position:"relative",
+      overflow:"hidden",fontFamily:"'Courier Prime',monospace"
+    }}>
+      <div className="noise"/>
+      <div className="scanline"/>
+
+      {/* ── HEADER ── */}
+      <div style={{
+        padding:"20px 28px 16px",
+        borderBottom:"1px solid rgba(196,85,58,0.2)",
+        display:"flex",alignItems:"flex-end",justifyContent:"space-between",
+        position:"relative",zIndex:10
+      }}>
+        <div>
+          <div style={{
+            fontFamily:"'Bebas Neue',sans-serif",
+            fontSize:"clamp(32px,8vw,56px)",
+            letterSpacing:"0.12em",lineHeight:0.9,
+            color:"#e8dfc8",
+            animation:"glitch 8s ease-in-out infinite"
+          }}>SUBSTRATE</div>
+          <div style={{
+            fontFamily:"'Courier Prime',monospace",fontSize:"9px",
+            letterSpacing:"0.35em",color:"rgba(196,85,58,0.6)",
+            textTransform:"uppercase",marginTop:"4px"
+          }}>Institutional Memory as Infrastructure &nbsp;/&nbsp; AI Advisory Board</div>
+        </div>
+        <div style={{textAlign:"right"}}>
+          <div style={{
+            fontFamily:"'Courier Prime',monospace",fontSize:"9px",
+            letterSpacing:"0.2em",color:"rgba(255,255,255,0.15)"
+          }}>{timeStr}</div>
+          <div style={{
+            fontFamily:"'Courier Prime',monospace",fontSize:"9px",
+            letterSpacing:"0.2em",color:"rgba(196,85,58,0.4)",marginTop:"2px"
+          }}>{BOARD.length} SEATS ACTIVE</div>
+        </div>
+      </div>
+
+      {/* ── NAV ── */}
+      <div style={{
+        display:"flex",borderBottom:"1px solid rgba(255,255,255,0.06)",
+        position:"relative",zIndex:10
+      }}>
+        {["boardroom","model"].map(tab=>(
+          <button key={tab} onClick={()=>setActive(tab)} style={{
+            padding:"10px 24px",background:"transparent",border:"none",
+            fontFamily:"'Courier Prime',monospace",fontSize:"9px",
+            letterSpacing:"0.25em",textTransform:"uppercase",cursor:"pointer",
+            color: active===tab?"#c4553a":"rgba(255,255,255,0.2)",
+            borderBottom: active===tab?"1px solid #c4553a":"1px solid transparent",
+            transition:"all 0.2s"
+          }}>{tab==="boardroom"?"◈ Boardroom":"◆ Business Model"}</button>
+        ))}
+      </div>
+
+      {/* ── BOARDROOM ── */}
+      {active==="boardroom" && <>
+
+        {/* Board member cards */}
+        <div style={{
+          display:"flex",gap:"8px",padding:"12px 16px",
+          borderBottom:"1px solid rgba(255,255,255,0.05)",
+          position:"relative",zIndex:10
+        }}>
+          {BOARD.map(m=>(
+            <div key={m.id} style={{
+              flex:1,padding:"10px 12px",
+              border:`1px solid ${m.color}22`,
+              background:`${m.color}08`,
+              borderRadius:"2px",position:"relative"
+            }}>
+              <div style={{
+                position:"absolute",top:"8px",right:"10px",
+                width:"5px",height:"5px",borderRadius:"50%",
+                background:m.color,boxShadow:`0 0 6px ${m.color}`,
+                animation:"pulse 1.8s ease-in-out infinite"
+              }}/>
+              <div style={{
+                fontFamily:"'Bebas Neue',sans-serif",fontSize:"15px",
+                letterSpacing:"0.1em",color:"#e8dfc8",marginBottom:"2px"
+              }}>{m.name}</div>
+              <div style={{
+                fontFamily:"'Courier Prime',monospace",fontSize:"8px",
+                color:`${m.color}99`,letterSpacing:"0.1em",
+                textTransform:"uppercase",marginBottom:"4px"
+              }}>{m.title}</div>
+              <div style={{
+                fontFamily:"'Playfair Display',serif",fontStyle:"italic",
+                fontSize:"10px",color:"rgba(255,255,255,0.25)"
+              }}>{m.stance}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Feed */}
+        <div ref={feedRef} style={{
+          flex:1,overflowY:"auto",padding:"16px",
+          scrollbarWidth:"thin",scrollbarColor:"rgba(196,85,58,0.2) transparent",
+          position:"relative",zIndex:10
+        }}>
+          {session.length===0 && (
+            <div style={{
+              textAlign:"center",padding:"40px 20px",
+              animation:"fadeUp 0.5s ease"
+            }}>
+              <div style={{
+                fontFamily:"'Playfair Display',serif",fontStyle:"italic",
+                fontSize:"14px",color:"rgba(255,255,255,0.15)",
+                lineHeight:2,maxWidth:"400px",margin:"0 auto"
+              }}>
+                "Your codebase has institutional memory.<br/>Your team doesn't."<br/><br/>
+                <span style={{fontSize:"10px",letterSpacing:"0.2em",fontStyle:"normal",
+                  fontFamily:"'Courier Prime',monospace",color:"rgba(196,85,58,0.4)"}}>
+                  SUBMIT A BRIEF TO CONVENE THE BOARD
+                </span>
+              </div>
+            </div>
+          )}
+
+          {session.map((item,i)=>(
+            <div key={i} style={{marginBottom:"20px",animation:"fadeUp 0.3s ease"}}>
+              {item.role==="user" && (
+                <div style={{
+                  borderRight:"2px solid rgba(184,197,212,0.3)",
+                  padding:"10px 14px",background:"rgba(255,255,255,0.02)",
+                  marginBottom:"12px"
+                }}>
+                  <div style={{
+                    fontFamily:"'Courier Prime',monospace",fontSize:"8px",
+                    letterSpacing:"0.2em",color:"rgba(184,197,212,0.35)",
+                    textTransform:"uppercase",marginBottom:"5px"
+                  }}>BRIEF SUBMITTED</div>
+                  <div style={{
+                    color:"rgba(232,223,200,0.5)",fontSize:"12px",lineHeight:1.7
+                  }}>{item.text}</div>
+                </div>
+              )}
+              {item.role==="board" && (
+                <div style={{display:"flex",flexDirection:"column",gap:"8px"}}>
+                  {item.responses.map((r,j)=>{
+                    const member = BOARD.find(b=>b.id===r.member.id)||r.member;
+                    return (
+                      <div key={j} style={{
+                        borderLeft:`2px solid ${member.color}55`,
+                        padding:"10px 14px",
+                        background:`${member.color}06`
+                      }}>
+                        <div style={{
+                          fontFamily:"'Bebas Neue',sans-serif",fontSize:"11px",
+                          letterSpacing:"0.2em",color:member.color,marginBottom:"5px"
+                        }}>{member.name} &nbsp;—&nbsp; {member.title}</div>
+                        <div style={{
+                          fontFamily:"'Courier Prime',monospace",
+                          fontSize:"11px",lineHeight:1.8,
+                          color:"rgba(232,223,200,0.8)",whiteSpace:"pre-wrap"
+                        }}>{r.text}</div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          ))}
+
+          {loading && (
+            <div style={{padding:"12px 0"}}>
+              {BOARD.map((m,i)=>(
+                <div key={m.id} style={{
+                  fontFamily:"'Courier Prime',monospace",fontSize:"10px",
+                  color:`${m.color}66`,marginBottom:"4px",
+                  animation:`pulse ${1+i*0.2}s ease-in-out infinite`
+                }}>
+                  {m.name} convening...
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Input */}
+        <div style={{
+          borderTop:"1px solid rgba(196,85,58,0.2)",
+          position:"relative",zIndex:10
+        }}>
+          <div style={{
+            fontFamily:"'Courier Prime',monospace",fontSize:"8px",
+            letterSpacing:"0.3em",color:"rgba(196,85,58,0.4)",
+            textTransform:"uppercase",padding:"8px 16px 0"
+          }}>Submit Brief to All Board Members</div>
+          <div style={{display:"flex"}}>
+            <div style={{
+              fontFamily:"'Courier Prime',monospace",fontSize:"12px",
+              color:"#c4553a",padding:"14px 16px",
+              borderRight:"1px solid rgba(196,85,58,0.2)"
+            }}>BRIEF //</div>
+            <textarea
+              value={brief}
+              onChange={e=>setBrief(e.target.value)}
+              onKeyDown={handleKey}
+              placeholder="Describe your technical decision, architecture question, or business idea..."
+              rows={2}
+              style={{
+                flex:1,background:"transparent",border:"none",outline:"none",
+                fontFamily:"'Courier Prime',monospace",fontSize:"12px",
+                color:"#e8dfc8",padding:"14px 16px",resize:"none",
+                caretColor:"#c4553a"
+              }}
+            />
+            <button
+              onClick={convene}
+              disabled={loading}
+              style={{
+                padding:"14px 20px",background:"transparent",
+                border:"none",borderLeft:"1px solid rgba(196,85,58,0.2)",
+                fontFamily:"'Courier Prime',monospace",fontSize:"9px",
+                letterSpacing:"0.2em",color:"#c4553a",cursor:"pointer",
+                opacity:loading?0.3:1
+              }}
+            >{loading?"...":"CONVENE"}</button>
+          </div>
+        </div>
+      </>}
+
+      {/* ── BUSINESS MODEL ── */}
+      {active==="model" && (
+        <div style={{
+          flex:1,overflowY:"auto",padding:"24px 28px",
+          position:"relative",zIndex:10,
+          scrollbarWidth:"thin",scrollbarColor:"rgba(196,85,58,0.2) transparent"
+        }}>
+          <div style={{maxWidth:"680px"}}>
+            <div style={{
+              fontFamily:"'Bebas Neue',sans-serif",
+              fontSize:"clamp(28px,6vw,48px)",
+              letterSpacing:"0.08em",color:"#e8dfc8",lineHeight:0.9,
+              marginBottom:"8px"
+            }}>{INJECTION.name}</div>
+            <div style={{
+              fontFamily:"'Playfair Display',serif",fontStyle:"italic",
+              fontSize:"16px",color:"#c9a84c",marginBottom:"28px",lineHeight:1.5
+            }}>{INJECTION.tagline}</div>
+
+            <div style={{
+              fontFamily:"'Courier Prime',monospace",fontSize:"12px",
+              color:"rgba(232,223,200,0.65)",lineHeight:2,
+              marginBottom:"32px",whiteSpace:"pre-wrap"
+            }}>{INJECTION.concept}</div>
+
+            <div style={{
+              background:"rgba(196,85,58,0.04)",
+              border:"1px solid rgba(196,85,58,0.2)",
+              padding:"24px",borderRadius:"2px",
+              fontFamily:"'Courier Prime',monospace",fontSize:"11px",
+              color:"rgba(232,223,200,0.8)",lineHeight:1.9,
+              whiteSpace:"pre-wrap"
+            }}>{INJECTION.model}</div>
+
+            <div style={{marginTop:"24px",padding:"0 0 40px"}}>
+              <div style={{
+                fontFamily:"'Courier Prime',monospace",fontSize:"9px",
+                letterSpacing:"0.3em",color:"rgba(196,85,58,0.4)",
+                textTransform:"uppercase",marginBottom:"12px"
+              }}>Ask the Board About This Model</div>
+              <button
+                onClick={()=>{
+                  setActive("boardroom");
+                  setBrief("Evaluate SUBSTRATE: a SaaS platform that sells persistent AI advisory boards embedded in developer environments. The board learns your codebase, architecture decisions, and failure history over time — creating compounding institutional memory. $299/mo Seed tier, $1,200/mo Series tier, Enterprise custom. Target: Series A-C SaaS companies losing institutional knowledge to growth.");
+                }}
+                style={{
+                  padding:"12px 24px",background:"rgba(196,85,58,0.1)",
+                  border:"1px solid rgba(196,85,58,0.4)",
+                  fontFamily:"'Courier Prime',monospace",fontSize:"10px",
+                  letterSpacing:"0.2em",color:"#c4553a",cursor:"pointer",
+                  textTransform:"uppercase"
+                }}
+              >◈ CONVENE BOARD ON THIS MODEL</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Footer */}
+      <div style={{
+        position:"absolute",bottom:0,left:0,right:0,
+        padding:"6px 16px",
+        borderTop:"1px solid rgba(255,255,255,0.04)",
+        background:"rgba(0,0,0,0.5)",backdropFilter:"blur(8px)",
+        display:"flex",justifyContent:"space-between",
+        fontFamily:"'Courier Prime',monospace",fontSize:"8px",
+        letterSpacing:"0.15em",color:"rgba(255,255,255,0.1)",
+        zIndex:20
+      }}>
+        <span>SUBSTRATE v0.1 &nbsp;/&nbsp; BleakNarratives</span>
+        <span>Some people never learn.</span>
+      </div>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root")); root.render(<Substrate />);
+</script>
+</body>
+</html>

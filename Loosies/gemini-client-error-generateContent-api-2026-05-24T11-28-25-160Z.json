@@ -1,0 +1,27 @@
+{
+  "error": {
+    "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. ",
+    "stack": "RetryableQuotaError: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n    at classifyGoogleError (file:///data/data/com.termux/files/home/.npm-global/lib/node_modules/@google/gemini-cli/bundle/chunk-U6X4OPT5.js:270168:10)\n    at retryWithBackoff (file:///data/data/com.termux/files/home/.npm-global/lib/node_modules/@google/gemini-cli/bundle/chunk-U6X4OPT5.js:270791:31)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async GeminiClient.generateContent (file:///data/data/com.termux/files/home/.npm-global/lib/node_modules/@google/gemini-cli/bundle/chunk-U6X4OPT5.js:307855:23)\n    at async WebSearchToolInvocation.execute (file:///data/data/com.termux/files/home/.npm-global/lib/node_modules/@google/gemini-cli/bundle/chunk-U6X4OPT5.js:292783:24)\n    at async executeToolWithHooks (file:///data/data/com.termux/files/home/.npm-global/lib/node_modules/@google/gemini-cli/bundle/chunk-U6X4OPT5.js:303133:22)\n    at async file:///data/data/com.termux/files/home/.npm-global/lib/node_modules/@google/gemini-cli/bundle/chunk-U6X4OPT5.js:308139:28\n    at async file:///data/data/com.termux/files/home/.npm-global/lib/node_modules/@google/gemini-cli/bundle/chunk-U6X4OPT5.js:250482:23\n    at async Scheduler._execute (file:///data/data/com.termux/files/home/.npm-global/lib/node_modules/@google/gemini-cli/bundle/chunk-U6X4OPT5.js:308786:21)\n    at async Promise.all (index 0)"
+  },
+  "context": {
+    "requestContents": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "best free tier AI CLI tools for Termux Android 2024 2025"
+          }
+        ]
+      }
+    ],
+    "requestConfig": {
+      "temperature": 0,
+      "topP": 1,
+      "tools": [
+        {
+          "googleSearch": {}
+        }
+      ]
+    }
+  }
+}

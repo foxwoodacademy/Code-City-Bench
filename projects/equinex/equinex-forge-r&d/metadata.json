@@ -1,0 +1,7 @@
+{
+  "name": "Equinex Forge R&D",
+  "description": "High-fidelity AR workspace for optical gesture research and Forge Ring interfaces.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "name": "automation",
+    "path": "/storage/emulated/0/RootBase/automation",
+    "languages": {
+      "python": 15,
+      "html": 6,
+      "css": 1,
+      "javascript": 1,
+      "typescript": 1
+    },
+    "entrypoints": [],
+    "package_json": false,
+    "requirements": 0,
+    "readme_excerpt": "",
+    "last_modified": "2026-05-20T16:55:31.944999"
+  },
+  "runbook": {
+    "commands": [],
+    "env": [],
+    "notes": []
+  },
+  "bard_note": "No obvious entrypoint. Bold choice. Polyglot chaos detected. Enjoy merging contexts. (Bardildo: harsh truth incoming)"
+}

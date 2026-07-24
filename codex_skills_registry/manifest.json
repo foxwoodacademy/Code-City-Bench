@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "name": "codex_skills_registry",
+    "path": "/storage/emulated/0/RootBase/codex_skills_registry",
+    "languages": {},
+    "entrypoints": [],
+    "package_json": false,
+    "requirements": 0,
+    "readme_excerpt": "",
+    "last_modified": "2026-05-20T16:53:23.948999"
+  },
+  "runbook": {
+    "commands": [],
+    "env": [],
+    "notes": []
+  },
+  "bard_note": "No obvious entrypoint. Bold choice. (Bardildo: harsh truth incoming)"
+}

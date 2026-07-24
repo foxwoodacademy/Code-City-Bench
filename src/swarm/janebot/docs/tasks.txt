@@ -1,0 +1,38 @@
+# PROMPT FOR GEMINI CLI: MotherBrain UI/UX & Tablet Setup
+
+## Context
+You are assisting Mikey and Melissa in setting up a Samsung Galaxy Tab A9 5G (Android 16, One UI 8, non-rooted) as the 'MotherBrain' steering hub for an agentic swarm in the MkdMind ecosystem.
+
+The device is currently running Termux. A basic UI directory exists at `~/swarm_ui` containing a simple `index.html`.
+
+## Objective
+Your goal is to complete the 'MotherBrain UI/UX & Tablet Setup' section of the `~/HITLIST.md` file.
+
+## Specific Tasks
+1. **Shell Aliases:** Implement a set of "one-shot" shell commands and aliases in `~/.bashrc` to streamline orchestration:
+    - `jane boot`: Launch the Python HTTP server (likely `python -m http.server 8080` in `~/swarm_ui`) and open the UI in Chrome via `termux-open index.html`.
+    - `jane status`: Create a command/script to check the health of the local hub and node connectivity.
+    - `jane stop`: A command to gracefully kill the HTTP server and any related orchestration processes.
+    - `jane init`: A command to initialize the swarm environment and configurations.
+
+2. **Dynamic UI Evolution:** 
+    - Upgrade `~/swarm_ui/index.html` from a static page to a dynamic dashboard.
+    - Implement real-time monitoring views, log streaming (simulated or via API), and intuitive steering controls.
+    - Keep it visually polished, modern, and "alive" (use Vanilla CSS).
+
+3. **Environmental Hardening:** Guide the user through:
+    - Executing `termux-wake-lock` for process persistence.
+    - Configuring a Static Internal IP.
+    - Disabling Android Battery Optimization for Termux.
+
+## Technical Constraints
+- **No Root Access:** All solutions must work within the standard Termux environment.
+- **Budget:** Use free, open-source tools and creative ingenuity.
+- **User Interface:** The tablet's Chrome browser is the primary window for the MotherBrain UI.
+
+## Success Criteria
+- The user can type `jane boot` and have the UI launch instantly.
+- The UI provides actionable, real-time visibility into the swarm's status.
+- The tablet is configured to remain awake and reachable as a stable Hub.
+
+Please refer to `~/HITLIST.md` for the full task list and track your progress there.

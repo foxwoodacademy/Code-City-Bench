@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coach Bleak: The Accountability Engine - Project Roadmap</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* General Styles */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Roboto+Mono:wght@400;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        .roadmap-container {
+            background-color: #1a202c;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            max-width: 1200px;
+            width: 100%;
+            padding: 40px;
+            box-sizing: border-box;
+            border: 2px solid #334155;
+            animation: fadeIn 1s ease-out;
+            position: relative;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Header & Titles */
+        .main-title {
+            font-family: 'Roboto Mono', monospace;
+            color: #3b82f6;
+            font-size: 3.5rem;
+            font-weight: 800;
+            text-shadow: 0 0 15px rgba(59, 130, 246, 0.7);
+            line-height: 1.1;
+        }
+        .subtitle {
+            font-family: 'Inter', sans-serif;
+            color: #cbd5e0;
+            font-size: 1.5rem;
+            margin-top: 10px;
+        }
+        .section-heading {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            width: 60px;
+            height: 3px;
+            background-color: #3b82f6;
+            border-radius: 2px;
+        }
+
+        /* Core Project Visual */
+        .project-visual {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            background-color: #2d3748;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 2.5rem;
+            color: #60a5fa;
+            text-shadow: 0 0 10px rgba(96, 165, 250, 0.5);
+        }
+        .project-visual img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7) blur(2px);
+        }
+        .visual-overlay-text {
+            position: absolute;
+            z-index: 10;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px 30px;
+            border-radius: 10px;
+            border: 1px solid #3b82f6;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+
+        /* Interactive Mode Buttons */
+        .mode-button {
+            background-color: #334155;
+            color: #e2e8f0;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+            border: 1px solid #4a5568;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .mode-button:hover {
+            background-color: #4a5568;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        .mode-button.active {
+            background-color: #3b82f6;
+            color: #ffffff;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.7);
+            border-color: #3b82f6;
+        }
+
+        /* Content Panels (Hidden by default) */
+        .content-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.7s ease-in-out, padding 0.7s ease-in-out;
+            background-color: #2d3748;
+            border-radius: 15px;
+            padding: 0 25px; /* No padding when collapsed */
+            margin-top: 20px;
+            border: 1px solid #4a5568;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+        }
+        .content-panel.open {
+            max-height: 1000px; /* Large enough to accommodate content */
+            padding: 25px;
+        }
+        .feature-list li {
+            margin-bottom: 8px;
+            padding-left: 1.5em;
+            position: relative;
+        }
+        .feature-list li::before {
+            content: '•';
+            color: #60a5fa;
+            position: absolute;
+            left: 0;
+            font-size: 1.2em;
+            line-height: 1;
+        }
+        .feature-list .sub-feature {
+            font-size: 0.9em;
+            color: #a0aec0;
+            margin-top: 2px;
+            padding-left: 1.5em;
+        }
+
+        /* Roadmap Steps */
+        .roadmap-step {
+            background-color: #2d3748;
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid #4a5568;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .roadmap-step strong {
+            color: #3b82f6;
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            .section-heading {
+                font-size: 1.75rem;
+            }
+            .roadmap-container {
+                padding: 25px;
+            }
+            .mode-button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="roadmap-container">
+        <header class="text-center mb-10">
+            <h1 class="main-title">
+                <span class="text-blue-500">COACH BLEAK</span><br>
+                <span class="text-gray-400 text-3xl font-normal">THE ACCOUNTABILITY ENGINE</span>
+            </h1>
+            <p class="subtitle">
+                Your **Legal War Machine** / **The Nightmare Engine** Project Roadmap
+            </p>
+            <p class="text-gray-400 text-sm mt-4 max-w-2xl mx-auto">
+                This interactive roadmap provides a clear overview of the project's structure, core functionalities, and future direction. Click on each "Mode" to expand its details.
+            </p>
+        </header>
+
+        <!-- Central Project Visual (Placeholder) -->
+        <div class="project-visual">
+            <img src="https://placehold.co/1200x675/1a202c/60a5fa?text=COACH+BLEAK+SYSTEM+OVERVIEW" alt="Coach Bleak System Overview Placeholder">
+            <div class="visual-overlay-text">
+                <h2 class="text-4xl font-bold text-white mb-2">SYSTEM OVERVIEW</h2>
+                <p class="text-lg text-gray-300">Click a mode below to explore its features.</p>
+            </div>
+        </div>
+
+        <!-- Interactive Mode Sections -->
+        <section class="mb-10">
+            <h3 class="section-heading text-center">Core Operational Modes</h3>
+            <div class="flex flex-wrap justify-center gap-4 mb-8">
+                <button class="mode-button" data-target="general-analysis">🔍 General Analysis</button>
+                <button class="mode-button" data-target="audit-mode">📊 Audit Mode</button>
+                <button class="mode-button" data-target="psychological-warfare">😈 Psychological Warfare</button>
+            </div>
+
+            <!-- General Analysis Content Panel -->
+            <div id="general-analysis-panel" class="content-panel">
+                <h4 class="text-xl font-bold text-blue-400 mb-4">General Analysis Mode: Unveiling the Core Truth</h4>
+                <p class="text-gray-300 mb-4">Focuses on high-level assessment of ethical breaches, legal ramifications, and accountability principles for any alleged wrongdoing.</p>
+                <ul class="feature-list text-lg">
+                    <li>**Core Analysis Output:** Direct, uncompromising, legally-oriented analysis.</li>
+                    <li>**Chain of Consequences / Liability Calculator:** Outlines typical legal and reputational outcomes.</li>
+                    <li>**✨ Legal Precedent Finder ✨:** Identifies hypothetical key legal precedents or relevant statutes.
+                        <div class="sub-feature">_Provides conceptual legal context and guidance._</div>
+                    </li>
+                    <li>**✨ Historical Parallels ✨:** Presents brief summaries of real-world historical cases.
+                        <div class="sub-feature">_Adds contextual depth by showing recurring patterns of wrongdoing._</div>
+                    </li>
+                    <li>**✨ Witness Interrogation Simulator ✨:** Simulates a brief Q&A transcript with a hypothetical witness.
+                        <div class="sub-feature">_Reveals hypothetical inconsistencies or pressure points._</div>
+                    </li>
+                    <li>**✨ Ethical Dilemma Navigator ✨:** Presents hypothetical ethical dilemmas related to the case and offers different ethical frameworks or paths for resolution.
+                        <div class="sub-feature">_Aids in conceptual navigation of moral complexities._</div>
+                    </li>
+                    <li>**Bloodhound Mode:** Generates probing follow-up questions for deeper investigation.</li>
+                    <li>**Aura (OSINT Helper):** Autonomously finds subtle insights and hidden connections.
+                        <div class="sub-feature">_Equipped with a 'Disinformation Flare' for simulated self-defense._</div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Audit Mode Content Panel -->
+            <div id="audit-mode-panel" class="content-panel">
+                <h4 class="text-xl font-bold text-green-400 mb-4">Audit Mode: Forensic Dissection of Financials</h4>
+                <p class="text-gray-300 mb-4">Dives deep into financial discrepancies, anomalies, and hidden liabilities, simulating forensic tools.</p>
+                <ul class="feature-list text-lg">
+                    <li>**Forensic Audit Findings:** Detailed output of detected anomalies.</li>
+                    <li>**Corruption Probability Matrix:** Visual radar chart scoring scenario risks.</li>
+                    <li>**Paper Trail Incinerator:** Conceptually exposes doctored documents and financial manipulation.</li>
+                    <li>**Entity Spider:** Maps the conceptual web of corruption and interconnected entities.</li>
+                    <li>**Benford's Law Cannon:** Identifies unnatural number patterns in hypothetical financial data.</li>
+                    <li>**✨ Forensic Data Anomaly Generator ✨:** Generates specific, detailed hypothetical data anomalies (e.g., transaction amounts, dates) that would trigger audit flags.
+                        <div class="sub-feature">_Makes simulated forensic detection more concrete._</div>
+                    </li>
+                    <li>**Silent Alarm Keywords:** Flags phrases triggering deeper analysis.</li>
+                    <li>**Chain of Consequences / Liability Calculator:** Specific estimates for audit-related outcomes.</li>
+                    <li>**✨ Legal Precedent Finder ✨:** Identifies hypothetical key legal precedents or relevant statutes.
+                        <div class="sub-feature">_Provides conceptual legal context and guidance._</div>
+                    </li>
+                    <li>**✨ Historical Parallels ✨:** Presents brief summaries of real-world historical cases.
+                        <div class="sub-feature">_Adds contextual depth by showing recurring patterns of wrongdoing._</div>
+                    </li>
+                    <li>**Bloodhound Mode:** Generates probing follow-up questions for deeper investigation.</li>
+                    <li>**Aura (OSINT Helper):** Autonomously finds subtle insights and hidden connections.
+                        <div class="sub-feature">_Equipped with a 'Disinformation Flare' for simulated self-defense._</div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Psychological Warfare Content Panel -->
+            <div id="psychological-warfare-panel" class="content-panel">
+                <h4 class="text-xl font-bold text-red-400 mb-4">Psychological Warfare Mode: Strategic Pressure & Exposure</h4>
+                <p class="text-gray-300 mb-4">Simulates the psychological impact of exposure on targets, focusing on fear, reputation, and public reaction.</p>
+                <ul class="feature-list text-lg">
+                    <li>**Psychological Impact Report:** Comprehensive overview of simulated effects.</li>
+                    <li>**Fear Index Meter:** Visual gauge of subject's conceptual anxiety levels.</li>
+                    <li>**Echo Chamber Leak:** Generates plausible internal memos designed to sow paranoia.</li>
+                    <li>**Unblinking Eye:** Reminds target of conceptual omnipresent surveillance.</li>
+                    <li>**Ego Crusher:** Calculates hypothetical reputational and status loss.</li>
+                    <li>**Last Seen Alive:** Provides unsettling updates on target's conceptual activity.</li>
+                    <li>**Burner Phone Simulator:** Plays out panicked, hypothetical phone calls and voicemails.</li>
+                    <li>**Dead Man's Switch:** Ticking countdown simulating auto-publication of findings.</li>
+                    <li>**Chain of Consequences / Liability Calculator:** General outcomes for psychological warfare.</li>
+                    <li>**✨ Public Opinion Predictor ✨:** Simulates public and media reaction (headlines, sentiment, quotes).
+                        <div class="sub-feature">_Enhances psychological impact by illustrating societal consequences._</div>
+                    </li>
+                    <li>**✨ Witness Interrogation Simulator ✨:** Simulates a brief Q&A transcript with a hypothetical witness.
+                        <div class="sub-feature">_Reveals hypothetical inconsistencies or pressure points._</div>
+                    </li>
+                    <li>**✨ Reputational Damage Control Simulator ✨:** Simulates hypothetical "damage control" strategies or public statements a target might attempt, and analyzes their likely effectiveness.
+                        <div class="sub-feature">_Explores the target's counter-moves and their conceptual impact._</div>
+                    </li>
+                    <li>**Bloodhound Mode:** Generates probing follow-up questions for deeper investigation.</li>
+                    <li>**Aura (OSINT Helper):** Autonomously finds subtle insights and hidden connections.
+                        <div class="sub-feature">_Equipped with a 'Disinformation Flare' for simulated self-defense._</div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Aura & Execution Button Overview -->
+        <section class="mb-10">
+            <h3 class="section-heading text-center">Key Project Components</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="roadmap-step">
+                    <h4 class="text-xl font-bold text-cyan-400 mb-2">✨ Aura: The OSINT Firefly Helper ✨</h4>
+                    <p class="text-gray-300">Aura is an autonomous, conceptual OSINT engine. It subtly operates in the background after main analyses, shining its tiny light into the 'shadowy void' to find 'hidden missions,' 'Easter Eggs,' and 'straight dope' – unnoticed details and unexpected connections. It's equipped with a **Disinformation Flare** for simulated self-defense against conceptual counter-measures.</p>
+                </div>
+                <div class="roadmap-step">
+                    <h4 class="text-xl font-bold text-red-500 mb-2">💥 The Execution Button 💥</h4>
+                    <p class="text-gray-300">The ultimate dramatic conclusion. This button simulates the final act of accountability, triggering a conceptual 'perp walk' and a 'dossier received' message, symbolizing the culmination of the truth-unveiling process within the simulation.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Future Vision / Roadmap Steps -->
+        <section>
+            <h3 class="section-heading text-center">Roadmap to Realization (Conceptual)</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="roadmap-step">
+                    <h4 class="text-xl font-bold text-white mb-2">Phase 1: Conceptual Refinement (Current)</h4>
+                    <p class="text-gray-300 text-sm">Continue enhancing LLM outputs for depth, nuance, and simulated actionable insights. Integrate more detailed hypothetical data for richer scenario analysis. Focus on perfecting the 'blueprint.'</p>
+                </div>
+                <div class="roadmap-step">
+                    <h4 class="text-xl font-bold text-white mb-2">Phase 2: Real-World Prototyping (Future)</h4>
+                    <p class="text-gray-300 text-sm">Transition from conceptual simulation to initial real-world technical design. This phase would involve assembling a human team (legal, engineering, cybersecurity) and planning secure infrastructure for actual data handling and API integrations (e.g., public record access, secure communication).</p>
+                </div>
+                <div class="roadmap-step">
+                    <h4 class="text-xl font-bold text-white mb-2">Phase 3: Ethical Deployment & Scaling (Long-Term)</h4>
+                    <p class="text-gray-300 text-sm">Focus on regulatory compliance, legal licensing, and rigorous ethical oversight. Develop robust user authentication and data privacy measures. Scale the platform for broader, responsible use in assisting individuals with legitimate legal challenges, always under human legal guidance.</p>
+                </div>
+            </div>
+            <p class="text-gray-400 text-sm mt-8 text-center">
+                **Remember:** The transition from conceptual simulation to real-world application requires significant human expertise, legal compliance, and dedicated resources. This roadmap is a guide for that journey.
+            </p>
+        </section>
+
+        <footer class="text-center text-gray-500 text-xs mt-10">
+            <p>&copy; 2025 Coach Bleak Legal AI. All rights reserved. Roadmap concept by Gemini.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const modeButtons = document.querySelectorAll('.mode-button');
+            const contentPanels = document.querySelectorAll('.content-panel');
+
+            modeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetId = button.dataset.target + '-panel';
+                    const targetPanel = document.getElementById(targetId);
+
+                    // Toggle active class on buttons
+                    modeButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    // Toggle visibility of content panels
+                    contentPanels.forEach(panel => {
+                        if (panel.id === targetId) {
+                            panel.classList.add('open');
+                        } else {
+                            panel.classList.remove('open');
+                        }
+                    });
+                });
+            });
+
+            // Optionally, open the first mode by default on load
+            if (modeButtons.length > 0) {
+                modeButtons[0].click();
+            }
+        });
+    </script>
+</body>
+</html>

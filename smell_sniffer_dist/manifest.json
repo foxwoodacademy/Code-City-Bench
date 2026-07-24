@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "name": "smell_sniffer_dist",
+    "path": "/storage/emulated/0/RootBase/smell_sniffer_dist",
+    "languages": {
+      "python": 1
+    },
+    "entrypoints": [
+      "sniffer.py"
+    ],
+    "package_json": false,
+    "requirements": 0,
+    "readme_excerpt": "# \u2623\ufe0f CodeSmellSniffer \n\nA lightweight, blistering fast static analysis engine designed to evaluate raw architecture logic, locate hidden anti-patterns, surface security anomalies, and map technical debt instantly. Perfect for pre-code review audits, automated QA validation pipelines, or freelance code assessments.\n\n## \ud83d\ude80 Execution & Options",
+    "last_modified": "2026-05-20T16:53:24.940999"
+  },
+  "runbook": {
+    "commands": [
+      "python sniffer.py"
+    ],
+    "env": [],
+    "notes": []
+  },
+  "bard_note": "Can't tell what this does \u2014 it's a mystery wrapped in a folder. (Bardildo: harsh truth incoming)"
+}

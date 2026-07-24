@@ -1,0 +1,6 @@
+#!/bin/bash
+# Valet Key Concierge
+if [ -f "/storage/emulated/0/RootBase/vault/keys/openrouter.key" ]; then
+    export OPENROUTER_API_KEY=$(cat /storage/emulated/0/RootBase/vault/keys/openrouter.key)
+fi
+exec "$@"

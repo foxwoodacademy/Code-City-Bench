@@ -1,0 +1,104 @@
+export GEMINI_API_KEY="AIzaSyCQhbJ-Ver16Zva5GBM_CGIKInMdF-gvqo"
+export MISTRAL_API_KEY="AIzaSyCQhbJ-Ver16Zva5GBM_CGIKInMdF-gvqo"
+export OPENAI_API_KEY="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"
+
+# source ~/janebot-motherbrain/scripts/jane_cmds.sh
+
+alias swarmlint='find . -name "__pycache__" -exec rm -rf {} + && find . -name "*.db" -type f -delete'
+alias locals='ollama serve &'
+export PATH=/data/data/com.termux/files/home/.npm-global/bin:$PATH
+export NODE_OPTIONS="--max-old-space-size=2048"
+# --- OpenClaw Start ---
+# WARNING: This section contains your access token - keep ~/.bashrc secure
+export TERMUX_VERSION=1
+export TMPDIR=$HOME/tmp
+export OPENCLAW_GATEWAY_TOKEN=HighFives26!
+export PATH=/data/data/com.termux/files/home/.npm-global/bin:$PATH
+
+
+# OpenClaw color definitions
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
+CYAN='\033[0;36m'
+NC='\033[0m'
+
+# OpenClaw service management functions
+ocr() {
+    echo -e "${YELLOW}Starting/restarting OpenClaw service...${NC}"
+    pkill -9 -f 'openclaw' 2>/dev/null
+    tmux kill-session -t openclaw 2>/dev/null
+    sleep 1
+    tmux new -d -s openclaw
+    sleep 1
+    tmux send-keys -t openclaw "export PATH=/data/data/com.termux/files/home/.npm-global/bin:$PATH TMPDIR=$HOME/tmp OPENCLAW_GATEWAY_TOKEN=$OPENCLAW_GATEWAY_TOKEN; openclaw gateway --bind loopback --port 18789 --token \$OPENCLAW_GATEWAY_TOKEN --allow-unconfigured" C-m
+    sleep 2
+    if tmux has-session -t openclaw 2>/dev/null; then
+        echo ""
+        echo -e "${GREEN}✅ OpenClaw service started${NC}"
+        echo ""
+        echo -e "${CYAN}📖 Usage:${NC}"
+        echo "   1. Open in phone browser:: http://localhost:18789/?token=$OPENCLAW_GATEWAY_TOKEN"
+        echo "   2. Or run command: openclaw tui"
+        echo "   3. Or use Telegram bot (if configured)"
+        echo ""
+        echo -e "${BLUE}💡 oclog to view logs | ockill to stop service${NC}"
+    else
+        echo -e "${RED}❌ Service failed to start, please check logs (openclaw logs)${NC}"
+    fi
+}
+
+oclog() {
+    if tmux has-session -t openclaw 2>/dev/null; then
+        tmux attach -t openclaw
+    else
+        echo -e "${YELLOW}⚠️  OpenClaw service not running, use ocr to start${NC}"
+    fi
+}
+
+ockill() {
+    echo -e "${YELLOW}Stopping OpenClaw service...${NC}"
+    pkill -9 -f "openclaw" 2>/dev/null
+    tmux kill-session -t openclaw 2>/dev/null
+    sleep 1
+    if ! tmux has-session -t openclaw 2>/dev/null && ! pgrep -f "openclaw" > /dev/null; then
+        echo -e "${GREEN}✅ OpenClaw service stopped${NC}"
+    else
+        echo -e "${RED}❌ Failed to stop service, please check manually${NC}"
+    fi
+}
+# --- OpenClaw End ---
+eval "$(zoxide init bash)"
+# Navigation
+alias ..='cd ..'
+alias l='bat'
+alias cls='clear'
+
+# Agent Shortcuts
+alias swarm='openclaw gateway start'
+alias agent='aider --model gemini/gemini-1.5-flash' # Uses free tier
+alias dev='tmux new-session -A -s melissa'
+export PATH=$PATH:/storage/emulated/0/RootBase/codex_install/node_modules/.bin
+eval "$(zoxide init bash)"
+export PATH=$PATH:/storage/emulated/0/RootBase/bin
+alias start_swarm='source /storage/emulated/0/RootBase/bin/start_swarm_tmux.sh'
+
+# >>> Codex installer >>>
+export PATH="/data/data/com.termux/files/home/.local/bin:$PATH"
+# <<< Codex installer <<<
+export GROQ_API_KEY="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"
+export GROQ_API_KEY="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"
+export PATH="/storage/emulated/0/RootBase/CodeMentor-MVP/bin:$PATH"
+alias kimi-code="python3 /storage/emulated/0/RootBase/Kimi-Code/kimi_code.py"
+
+# MOLT v3 Background Swarm Orchestration Aliases
+alias molt-start='nohup bash -c "while true; do ./molt_v3.py --headless --iters 3; sleep 1800; done" > /dev/null 2>&1 &'
+alias molt-stop='pkill -f "molt_v3.py --headless"'
+alias molt-status='ps aux | grep molt_v3.py | grep -v grep'
+export OLLAMA_KEEP_ALIVE="0"
+export OLLAMA_NUM_PARALLEL=1
+export OMP_NUM_THREADS=4
+export TELEGRAM_CHAT_ID=5210530438
+export TELEGRAM_BOT_TOKEN=8595103704:AAHNMLqCX-a15QZaralfKdcbPz5QcNpZmK4
+export VOLTAGE_API_KEY=vltg_dKd3LMr8nchzwt8tdTrPRbaRJhCDmYgk

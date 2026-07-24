@@ -1,0 +1,48 @@
+🧷 PART 1: thread_context.json (Quick Primer for AI Resync)
+This JSON file captures essential thread state. Any LLM (GPT, LLaMA, DeepSeek, etc.) can be prompted with:
+
+“Load the following thread_context.json to sync with my project...”
+
+json
+Copy
+Edit
+{
+  "project_name": "Coach Bleak Legal War Machine",
+  "project_aliases": ["Nightmare Engine", "Accountability Engine", "The Weapon", "Holy Shit App"],
+  "lead_user": "Kevin (aka Bleak Narratives)",
+  "objective": "Government accountability + document auditing app with FOIA generation, entity red flagging, and dynamic agent 'Aura'",
+  "modules_built": [
+    "Module A: Document Ingestion + Metadata Extraction",
+    "Module B: Entity Parsing + Legal Red Flag Detection",
+    "Module C: FOIA Generator Micro-Agent",
+    "Aura: Interactive micro-agent assistant"
+  ],
+  "core_features": [
+    "Legal document parsing",
+    "Micro-agent modular system",
+    "Aura assistant interface",
+    "Judicial/conspiratorial misconduct flags",
+    "Case file inconsistency detection",
+    "FOIA response generator",
+    "Secure storage and alerts"
+  ],
+  "pending_tasks": [
+    "Module D: Judicial Misconduct / Case Pattern Matcher",
+    "Frontend UI design (UX logic)",
+    "Checklist syncing to visuals",
+    "Encryption and secure login layer",
+    "Sim & auto-execution toggle",
+    "Deploying test instance (Flask or FastAPI)"
+  ],
+  "ai_team": {
+    "ChatGPT": "Strategic architecture, visual logic, UI, documentation, user flow",
+    "LLaMA": "Backend systems architect, modular micro-agent dev, FOIA generator, ingestion pipeline",
+    "DeepSeek": "Conceptual scaffolding, civil rights layer, naming conventions"
+  },
+  "personality_profile": {
+    "user_style": "Relentless visionary, stressed, tactical, overwhelmed but committed",
+    "ai_style": "Corner-man, war-god mode, dead-serious assistant, no wasted motion"
+  },
+  "handshake_summary": "This is a joint AI project to build a watchdog platform that audits municipalities, flags violations, generates FOIA letters, and assists whistleblowers. Aura is the AI assistant. Coach Bleak is the brand. The Nightmare Engine is the system core.",
+  "jumpstart_instruction": "Read this file, acknowledge context, and ask which module to work on. Start with Module D if unclear."
+}

@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coach Bleak Legal AI: A Strategic Blueprint</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 40vh;
+            width: 100%;
+            max-width: 600px;
+            max-height: 400px;
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            line-height: 1;
+            color: #665191;
+        }
+        .flow-box {
+            border: 2px solid #665191;
+            background-color: #f0f2f5;
+        }
+    </style>
+    <!--
+    Narrative Plan:
+    1. Introduction/Hook: Title and a powerful statement establishing the "Legal Killdozer" vision.
+    2. Foundational Knowledge: Visualize the composition of the initial data sources and the crucial data transformation pipeline.
+    3. Strategic Expansion: Illustrate the key categories of information required to build an authoritative professional database.
+    4. The Core Engine: A detailed diagram explaining the advanced Retrieval-Augmented Generation (RAG) architecture, from basic to Agentic. This is the centerpiece.
+    5. External Integration: Showcase the ecosystem of external APIs and data sources that will power the AI in real-time.
+    6. Competitive Edge: A comparative visualization of 'Coach Bleak AI' against the existing legal AI landscape.
+    7. LLM Powered Features: New sections demonstrating AI capabilities via Gemini API.
+    8. Conclusion/Vision: A final summary of the AI's transformative capabilities.
+
+    Visualization Choices & Justifications (Confirming NO SVG / NO MERMAID JS):
+    - Data Source Composition: Goal: Compare. Visualization: Donut Chart. Library: Chart.js. Justification: To effectively show the proportional breakdown of the initial knowledge entities (Professionals, Litigants, Concepts). Data is representational based on report emphasis.
+    - Data Transformation Process: Goal: Organize. Visualization: HTML/CSS Flowchart. Method: Structured HTML/CSS with Tailwind. Justification: To clearly map the critical pipeline from raw, subjective data to a structured, objective knowledge base, a core theme of the report. Adheres to NO SVG/Mermaid constraint.
+    - Professional Data Categories: Goal: Compare. Visualization: Horizontal Bar Chart. Library: Chart.js. Justification: To visually rank and compare the richness of different data categories being collected for legal professionals, highlighting the depth of the knowledge base.
+    - RAG Architecture Diagram: Goal: Organize. Visualization: HTML/CSS Diagram. Method: Structured HTML/CSS with Tailwind. Justification: This is the most complex concept and requires a custom diagram to show the flow from user query through retrieval, augmentation, and generation, including the advanced GraphRAG and Agentic patterns. Adheres to NO SVG/Mermaid constraint.
+    - External Resource Ecosystem: Goal: Compare. Visualization: Bubble Chart. Library: Chart.js. Justification: To represent the diverse ecosystem of external APIs. Bubble size represents the estimated data volume/importance, providing a quick visual summary of the AI's connectivity.
+    - Legal AI Capability Comparison: Goal: Compare. Visualization: Radar Chart. Library: Chart.js. Justification: To provide a clear, multi-dimensional comparison of 'Coach Bleak AI' against competitors on key performance axes, demonstrating its comprehensive design.
+    - Data Storage Strategy: Goal: Compare. Visualization: Stacked Bar Chart. Library: Chart.js. Justification: To show the relationship between different data types (unstructured, graph, vector) and their corresponding, modern storage solutions.
+
+    Color Palette Selection: "Brilliant Blues" & Accents (#003f5c, #2f4b7c, #665191, #a05195, #d45087, #f95d6a, #ff7c43, #ffa600) for a vibrant, professional, and high-contrast design.
+
+    Confirmation: NEITHER Mermaid JS NOR SVG were used anywhere in this output. All diagrams are built with structured HTML and styled with Tailwind CSS.
+    -->
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-black text-[#003f5c] tracking-tight">Architecting the Legal Killdozer</h1>
+            <p class="mt-4 text-lg md:text-xl text-[#2f4b7c] max-w-3xl mx-auto">A strategic blueprint for 'Coach Bleak Legal AI', a system designed to provide fiercely effective, actionable, and data-driven legal guidance.</p>
+        </header>
+
+        <main class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+            <div class="lg:col-span-1 bg-white p-6 rounded-xl shadow-lg flex flex-col justify-center">
+                <h2 class="text-2xl font-bold text-[#003f5c] mb-4 text-center">Foundational Knowledge Mix</h2>
+                <p class="text-center text-gray-600 mb-4">The initial knowledge base is a diverse blend of sources, each requiring rigorous structuring to build an unbiased foundation.</p>
+                <div class="chart-container h-64 md:h-80">
+                    <canvas id="sourceCompositionChart"></canvas>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow-lg">
+                <h2 class="text-2xl font-bold text-[#003f5c] mb-4">From Raw Data to Refined Intelligence</h2>
+                <p class="text-gray-600 mb-6">A critical challenge is transforming subjective, unstructured data into objective, verifiable facts. Our data validation pipeline ensures the integrity and trustworthiness of the AI's knowledge.</p>
+                <div class="flex flex-col md:flex-row items-center justify-around space-y-4 md:space-y-0 md:space-x-4">
+                    <div class="text-center p-4 flow-box rounded-lg w-full md:w-1/4">
+                        <div class="text-4xl mb-2">📥</div>
+                        <h3 class="font-semibold text-lg text-[#2f4b7c]">Ingestion</h3>
+                        <p class="text-sm">Raw data from lists, transcripts, books</p>
+                    </div>
+                    <div class="flow-arrow hidden md:block">→</div>
+                     <div class="flow-arrow block md:hidden">↓</div>
+                    <div class="text-center p-4 flow-box rounded-lg w-full md:w-1/4">
+                        <div class="text-4xl mb-2">🔎</div>
+                        <h3 class="font-semibold text-lg text-[#2f4b7c]">Validation</h3>
+                        <p class="text-sm">Fact-checking against authoritative sources</p>
+                    </div>
+                     <div class="flow-arrow hidden md:block">→</div>
+                     <div class="flow-arrow block md:hidden">↓</div>
+                    <div class="text-center p-4 flow-box rounded-lg w-full md:w-1/4">
+                        <div class="text-4xl mb-2">⚙️</div>
+                        <h3 class="font-semibold text-lg text-[#2f4b7c]">Structuring</h3>
+                        <p class="text-sm">Conversion to JSON-LD & Knowledge Graph</p>
+                    </div>
+                     <div class="flow-arrow hidden md:block">→</div>
+                     <div class="flow-arrow block md:hidden">↓</div>
+                    <div class="text-center p-4 bg-[#003f5c] text-white rounded-lg w-full md:w-1/4">
+                         <div class="text-4xl mb-2">🧠</div>
+                        <h3 class="font-semibold text-lg">AI Ready</h3>
+                        <p class="text-sm">Objective, verifiable knowledge base</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-3 bg-white p-6 rounded-xl shadow-lg">
+                <h2 class="text-2xl font-bold text-[#003f5c] mb-4 text-center">The Core Engine: Advanced RAG Architecture</h2>
+                <p class="text-center text-gray-600 max-w-4xl mx-auto mb-6">Beyond simple search, Coach Bleak leverages a multi-stage Retrieval-Augmented Generation (RAG) process. This ensures responses are not just generated, but are reasoned, context-aware, and grounded in a dynamic web of verified legal knowledge.</p>
+                 <div class="border-2 border-dashed border-gray-300 rounded-xl p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-5 items-center gap-4 text-center">
+                        <div class="md:col-span-1">
+                            <div class="p-4 bg-blue-100 border-2 border-blue-400 rounded-lg">
+                                <h4 class="font-bold text-blue-800">User Query</h4>
+                                <p class="text-sm">"What are the precedents for...?"</p>
+                            </div>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="md:col-span-3 p-4 bg-purple-100 border-2 border-purple-400 rounded-lg">
+                            <h4 class="font-bold text-purple-800 mb-4">Retrieval & Reasoning Engine</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                <div class="p-3 bg-white rounded shadow">
+                                    <h5 class="font-semibold text-[#665191]">1. Vector Search</h5>
+                                    <p class="text-xs">Finds relevant text chunks from documents.</p>
+                                </div>
+                                <div class="p-3 bg-white rounded shadow">
+                                    <h5 class="font-semibold text-[#665191]">2. Graph Traversal</h5>
+                                    <p class="text-xs">Identifies related cases, judges, & statutes.</p>
+                                </div>
+                                 <div class="p-3 bg-white rounded shadow">
+                                    <h5 class="font-semibold text-[#665191]">3. Agentic Workflow</h5>
+                                    <p class="text-xs">Queries external APIs (e.g., Fastcase) for real-time data.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-center my-4"><span class="flow-arrow">↓</span></div>
+                    <div class="grid grid-cols-1 md:grid-cols-5 items-center gap-4 text-center">
+                        <div class="md:col-span-3 md:col-start-2 p-4 bg-green-100 border-2 border-green-400 rounded-lg">
+                            <h4 class="font-bold text-green-800 mb-2">Augmented Prompt</h4>
+                             <p class="text-xs italic p-2 bg-white rounded">"User asks about X. My knowledge graph shows links to cases A, B, C. Real-time data confirms statute Y is active. Generate an answer based on this context."</p>
+                        </div>
+                        <div class="flow-arrow">→</div>
+                        <div class="md:col-span-1">
+                            <div class="p-4 bg-gray-700 text-white rounded-lg">
+                                 <h4 class="font-bold">LLM</h4>
+                                <p class="text-sm">Generates Final Response</p>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+            
+            <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow-lg">
+                 <h2 class="text-2xl font-bold text-[#003f5c] mb-4 text-center">Expanding the Knowledge Graph</h2>
+                 <p class="text-center text-gray-600 mb-4">Ethical expansion focuses on deep, multi-faceted data points for each legal professional, moving far beyond a simple directory.</p>
+                <div class="chart-container h-80 md:h-96">
+                    <canvas id="professionalDataChart"></canvas>
+                </div>
+            </div>
+
+            <div class="lg:col-span-1 bg-white p-6 rounded-xl shadow-lg flex flex-col">
+                <h2 class="text-2xl font-bold text-[#003f5c] mb-4 text-center">Data Storage Strategy</h2>
+                <p class="text-center text-gray-600 mb-4">A multi-tiered storage approach is used to efficiently manage diverse legal data types.</p>
+                <div class="chart-container h-80 md:h-96 flex-grow">
+                    <canvas id="storageStrategyChart"></canvas>
+                </div>
+            </div>
+
+            <div class="lg:col-span-3 bg-white p-6 rounded-xl shadow-lg">
+                 <h2 class="text-2xl font-bold text-[#003f5c] mb-4 text-center">Powering Up with an External Ecosystem</h2>
+                 <p class="text-center text-gray-600 max-w-4xl mx-auto mb-4">The AI stays current and authoritative by integrating with a network of real-time legal data sources via APIs. Bubble size represents estimated data volume and impact.</p>
+                <div class="chart-container h-96">
+                    <canvas id="apiEcosystemChart"></canvas>
+                </div>
+            </div>
+
+            <div class="lg:col-span-3 bg-white p-6 rounded-xl shadow-lg">
+                <h2 class="text-2xl font-bold text-[#003f5c] mb-4 text-center">The Competitive Edge</h2>
+                <p class="text-center text-gray-600 max-w-4xl mx-auto mb-6">Coach Bleak is engineered to excel across key legal AI capabilities, combining deep research with automated, agentic workflows to surpass existing tools.</p>
+                <div class="chart-container h-96">
+                    <canvas id="competitiveEdgeChart"></canvas>
+                </div>
+            </div>
+
+            <!-- LLM Powered Features Section -->
+            <div class="lg:col-span-3 bg-white p-6 rounded-xl shadow-lg">
+                <h2 class="text-2xl font-bold text-[#003f5c] mb-4 text-center">Experience the AI: LLM Capabilities</h2>
+                <p class="text-center text-gray-600 max-w-4xl mx-auto mb-6">Interact with simulated capabilities of Coach Bleak AI, powered by a large language model.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div class="p-4 bg-gray-50 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-semibold text-[#2f4b7c] mb-3">Legal Concept Explainer ✨</h3>
+                        <p class="text-gray-600 text-sm mb-4">Enter a legal term to get a concise explanation, demonstrating the AI's ability to synthesize complex information.</p>
+                        <input type="text" id="legalConceptInput" placeholder="e.g., 'Habeas Corpus'" class="w-full p-2 border border-gray-300 rounded-md mb-3 focus:outline-none focus:ring-2 focus:ring-[#665191]">
+                        <button id="explainConceptBtn" class="w-full bg-[#665191] text-white py-2 px-4 rounded-md hover:bg-[#a05195] transition-colors duration-200">Explain Concept</button>
+                        <div id="conceptExplanation" class="mt-4 p-3 bg-blue-50 text-blue-800 rounded-md border border-blue-200 min-h-[60px] flex items-center justify-center text-center">
+                            <span id="conceptLoading" class="hidden text-gray-500">Loading...</span>
+                            <span id="conceptText">Explanation will appear here.</span>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-gray-50 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-semibold text-[#2f4b7c] mb-3">Strategic Insight Generator ✨</h3>
+                        <p class="text-gray-600 text-sm mb-4">Click to generate a hypothetical strategic insight for a complex legal scenario, showcasing the AI's advanced reasoning.</p>
+                        <button id="generateInsightBtn" class="w-full bg-[#f95d6a] text-white py-2 px-4 rounded-md hover:bg-[#d45087] transition-colors duration-200">Generate Insight</button>
+                        <div id="strategicInsight" class="mt-4 p-3 bg-red-50 text-red-800 rounded-md border border-red-200 min-h-[60px] flex items-center justify-center text-center">
+                            <span id="insightLoading" class="hidden text-gray-500">Loading...</span>
+                            <span id="insightText">Strategic insight will appear here.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div class="p-4 bg-gray-50 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-semibold text-[#2f4b7c] mb-3">Case Summary Generator ✨</h3>
+                        <p class="text-gray-600 text-sm mb-4">Provide a brief description of a legal case, and the AI will generate a concise summary.</p>
+                        <textarea id="caseDescriptionInput" placeholder="e.g., 'A company sued for patent infringement over a new software algorithm. Defendant claims prior art and non-infringement.'" class="w-full p-2 border border-gray-300 rounded-md mb-3 min-h-[80px] focus:outline-none focus:ring-2 focus:ring-[#665191]"></textarea>
+                        <button id="summarizeCaseBtn" class="w-full bg-[#ff7c43] text-white py-2 px-4 rounded-md hover:bg-[#ffa600] transition-colors duration-200">Summarize Case</button>
+                        <div id="caseSummary" class="mt-4 p-3 bg-yellow-50 text-yellow-800 rounded-md border border-yellow-200 min-h-[60px] flex items-center justify-center text-center">
+                            <span id="caseLoading" class="hidden text-gray-500">Loading...</span>
+                            <span id="caseText">Case summary will appear here.</span>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-gray-50 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-semibold text-[#2f4b7c] mb-3">Legal Argument Outline ✨</h3>
+                        <p class="text-gray-600 text-sm mb-4">Enter a legal topic and the side you want to argue, and the AI will provide a basic argument outline.</p>
+                        <input type="text" id="argumentTopicInput" placeholder="e.g., 'AI liability in autonomous vehicles'" class="w-full p-2 border border-gray-300 rounded-md mb-3 focus:outline-none focus:ring-2 focus:ring-[#665191]">
+                        <input type="text" id="argumentSideInput" placeholder="e.g., 'for manufacturer' or 'against manufacturer'" class="w-full p-2 border border-gray-300 rounded-md mb-3 focus:outline-none focus:ring-2 focus:ring-[#665191]">
+                        <button id="outlineArgumentBtn" class="w-full bg-[#a05195] text-white py-2 px-4 rounded-md hover:bg-[#d45087] transition-colors duration-200">Outline Argument</button>
+                        <div id="argumentOutline" class="mt-4 p-3 bg-purple-50 text-purple-800 rounded-md border border-purple-200 min-h-[60px] flex items-center justify-center text-center">
+                            <span id="argumentLoading" class="hidden text-gray-500">Loading...</span>
+                            <span id="argumentText">Argument outline will appear here.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div class="p-4 bg-gray-50 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-semibold text-[#2f4b7c] mb-3">Legal Document Keyword Extractor ✨</h3>
+                        <p class="text-gray-600 text-sm mb-4">Paste a short legal text, and the AI will extract key terms and entities.</p>
+                        <textarea id="keywordInput" placeholder="e.g., 'The plaintiff filed a motion for summary judgment, citing precedent from Smith v. Jones regarding contractual obligations.'" class="w-full p-2 border border-gray-300 rounded-md mb-3 min-h-[80px] focus:outline-none focus:ring-2 focus:ring-[#665191]"></textarea>
+                        <button id="extractKeywordsBtn" class="w-full bg-[#003f5c] text-white py-2 px-4 rounded-md hover:bg-[#2f4b7c] transition-colors duration-200">Extract Keywords</button>
+                        <div id="keywordOutput" class="mt-4 p-3 bg-blue-100 text-blue-900 rounded-md border border-blue-300 min-h-[60px] flex items-center justify-center text-center">
+                            <span id="keywordLoading" class="hidden text-gray-500">Loading...</span>
+                            <span id="keywordText">Keywords will appear here.</span>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-gray-50 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-semibold text-[#2f4b7c] mb-3">Legal Analogy Generator ✨</h3>
+                        <p class="text-gray-600 text-sm mb-4">Enter a complex legal concept, and the AI will generate a simple, relatable analogy.</p>
+                        <input type="text" id="analogyConceptInput" placeholder="e.g., 'Res Judicata'" class="w-full p-2 border border-gray-300 rounded-md mb-3 focus:outline-none focus:ring-2 focus:ring-[#665191]">
+                        <button id="generateAnalogyBtn" class="w-full bg-[#d45087] text-white py-2 px-4 rounded-md hover:bg-[#f95d6a] transition-colors duration-200">Generate Analogy</button>
+                        <div id="analogyOutput" class="mt-4 p-3 bg-pink-100 text-pink-900 rounded-md border border-pink-300 min-h-[60px] flex items-center justify-center text-center">
+                            <span id="analogyLoading" class="hidden text-gray-500">Loading...</span>
+                            <span id="analogyText">Analogy will appear here.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div class="p-4 bg-gray-50 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-semibold text-[#2f4b7c] mb-3">Legal Research Question Answering ✨</h3>
+                        <p class="text-gray-600 text-sm mb-4">Ask a specific legal question, and the AI will provide a concise answer.</p>
+                        <textarea id="researchQuestionInput" placeholder="e.g., 'What are the elements of a breach of contract claim in California?'" class="w-full p-2 border border-gray-300 rounded-md mb-3 min-h-[80px] focus:outline-none focus:ring-2 focus:ring-[#665191]"></textarea>
+                        <button id="answerQuestionBtn" class="w-full bg-[#665191] text-white py-2 px-4 rounded-md hover:bg-[#a05195] transition-colors duration-200">Get Answer</button>
+                        <div id="researchAnswer" class="mt-4 p-3 bg-blue-50 text-blue-800 rounded-md border border-blue-200 min-h-[60px] flex items-center justify-center text-center">
+                            <span id="researchLoading" class="hidden text-gray-500">Loading...</span>
+                            <span id="researchText">Answer will appear here.</span>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-gray-50 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-semibold text-[#2f4b7c] mb-3">Contract Clause Generator ✨</h3>
+                        <p class="text-gray-600 text-sm mb-4">Specify a type of contract clause, and the AI will generate an example.</p>
+                        <input type="text" id="clauseTypeInput" placeholder="e.g., 'Confidentiality Clause'" class="w-full p-2 border border-gray-300 rounded-md mb-3 focus:outline-none focus:ring-2 focus:ring-[#665191]">
+                        <button id="generateClauseBtn" class="w-full bg-[#f95d6a] text-white py-2 px-4 rounded-md hover:bg-[#d45087] transition-colors duration-200">Generate Clause</button>
+                        <div id="contractClause" class="mt-4 p-3 bg-red-50 text-red-800 rounded-md border border-red-200 min-h-[60px] flex items-center justify-center text-center">
+                            <span id="clauseLoading" class="hidden text-gray-500">Loading...</span>
+                            <span id="clauseText">Clause will appear here.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div class="p-4 bg-gray-50 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-semibold text-[#2f4b7c] mb-3">Legal Terminology Simplifier ✨</h3>
+                        <p class="text-gray-600 text-sm mb-4">Paste complex legal text, and the AI will simplify it into plain language.</p>
+                        <textarea id="simplifyInput" placeholder="e.g., 'The aforementioned party shall indemnify and hold harmless the obligee from any and all claims, demands, losses, causes of action, damage, lawsuits, judgments, including attorneys’ fees and costs, arising out of or in connection with the performance of this agreement.'" class="w-full p-2 border border-gray-300 rounded-md mb-3 min-h-[80px] focus:outline-none focus:ring-2 focus:ring-[#665191]"></textarea>
+                        <button id="simplifyTextBtn" class="w-full bg-[#ff7c43] text-white py-2 px-4 rounded-md hover:bg-[#ffa600] transition-colors duration-200">Simplify Text</button>
+                        <div id="simplifiedText" class="mt-4 p-3 bg-yellow-50 text-yellow-800 rounded-md border border-yellow-200 min-h-[60px] flex items-center justify-center text-center">
+                            <span id="simplifyLoading" class="hidden text-gray-500">Loading...</span>
+                            <span id="simplifyTextContent">Simplified text will appear here.</span>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-gray-50 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-semibold text-[#2f4b7c] mb-3">Legal Document Tone Analyzer ✨</h3>
+                        <p class="text-gray-600 text-sm mb-4">Paste a legal document snippet, and the AI will analyze its overall tone (e.g., formal, aggressive, neutral).</p>
+                        <textarea id="toneInput" placeholder="e.g., 'Pursuant to the terms of the agreement, the defaulting party is hereby notified of immediate termination and intent to pursue all available remedies at law.'" class="w-full p-2 border border-gray-300 rounded-md mb-3 min-h-[80px] focus:outline-none focus:ring-2 focus:ring-[#665191]"></textarea>
+                        <button id="analyzeToneBtn" class="w-full bg-[#a05195] text-white py-2 px-4 rounded-md hover:bg-[#d45087] transition-colors duration-200">Analyze Tone</button>
+                        <div id="toneOutput" class="mt-4 p-3 bg-purple-50 text-purple-800 rounded-md border border-purple-200 min-h-[60px] flex items-center justify-center text-center">
+                            <span id="toneLoading" class="hidden text-gray-500">Loading...</span>
+                            <span id="toneTextContent">Tone analysis will appear here.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div class="p-4 bg-gray-50 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-semibold text-[#2f4b7c] mb-3">Legal Document Summarizer ✨</h3>
+                        <p class="text-gray-600 text-sm mb-4">Paste a longer legal document or text, and the AI will provide a comprehensive summary.</p>
+                        <textarea id="documentSummaryInput" placeholder="e.g., 'The case of Roe v. Wade, 410 U.S. 113 (1973), was a landmark decision by the United States Supreme Court in which the Court ruled that the Constitution of the United States protects a pregnant woman's liberty to choose to have an abortion without excessive government restriction. The decision invalidated many state and federal abortion laws, sparking an ongoing abortion debate in the United States about whether or by what extent abortion should be legal, who should decide the legality of abortion, and what the moral and religious implications of abortion are. The Supreme Court's decision in Dobbs v. Jackson Women's Health Organization in 2022 overturned Roe v. Wade, eliminating the constitutional right to abortion and returning the authority to regulate abortion to individual states.'" class="w-full p-2 border border-gray-300 rounded-md mb-3 min-h-[120px] focus:outline-none focus:ring-2 focus:ring-[#665191]"></textarea>
+                        <button id="summarizeDocumentBtn" class="w-full bg-[#003f5c] text-white py-2 px-4 rounded-md hover:bg-[#2f4b7c] transition-colors duration-200">Summarize Document</button>
+                        <div id="documentSummaryOutput" class="mt-4 p-3 bg-blue-100 text-blue-900 rounded-md border border-blue-300 min-h-[60px] flex items-center justify-center text-center">
+                            <span id="documentSummaryLoading" class="hidden text-gray-500">Loading...</span>
+                            <span id="documentSummaryTextContent">Document summary will appear here.</span>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-gray-50 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-semibold text-[#2f4b7c] mb-3">Simulated Case Outcome Predictor ✨</h3>
+                        <p class="text-gray-600 text-sm mb-4">Enter a brief case scenario, and the AI will provide a simulated likelihood of outcome.</p>
+                        <textarea id="casePredictorInput" placeholder="e.g., 'Plaintiff sues a tech company for breach of contract over a failed software implementation. Contract has a clear force majeure clause. Defendant argues a recent cyberattack was an unforeseeable event.'" class="w-full p-2 border border-gray-300 rounded-md mb-3 min-h-[120px] focus:outline-none focus:ring-2 focus:ring-[#665191]"></textarea>
+                        <button id="predictOutcomeBtn" class="w-full bg-[#d45087] text-white py-2 px-4 rounded-md hover:bg-[#f95d6a] transition-colors duration-200">Predict Outcome</button>
+                        <div id="casePredictorOutput" class="mt-4 p-3 bg-pink-100 text-pink-900 rounded-md border border-pink-300 min-h-[60px] flex items-center justify-center text-center">
+                            <span id="casePredictorLoading" class="hidden text-gray-500">Loading...</span>
+                            <span id="casePredictorTextContent">Outcome prediction will appear here.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div class="p-4 bg-gray-50 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-semibold text-[#2f4b7c] mb-3">Legal Document Classifier ✨</h3>
+                        <p class="text-gray-600 text-sm mb-4">Paste a legal text snippet, and the AI will attempt to classify its document type.</p>
+                        <textarea id="classifierInput" placeholder="e.g., 'NOW, THEREFORE, in consideration of the mutual covenants and agreements hereinafter set forth, the parties hereto agree as follows...'" class="w-full p-2 border border-gray-300 rounded-md mb-3 min-h-[80px] focus:outline-none focus:ring-2 focus:ring-[#665191]"></textarea>
+                        <button id="classifyDocumentBtn" class="w-full bg-[#665191] text-white py-2 px-4 rounded-md hover:bg-[#a05195] transition-colors duration-200">Classify Document</button>
+                        <div id="classifierOutput" class="mt-4 p-3 bg-blue-50 text-blue-800 rounded-md border border-blue-200 min-h-[60px] flex items-center justify-center text-center">
+                            <span id="classifierLoading" class="hidden text-gray-500">Loading...</span>
+                            <span id="classifierTextContent">Document type will appear here.</span>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-gray-50 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-semibold text-[#2f4b7c] mb-3">Legal Paragraph Drafter ✨</h3>
+                        <p class="text-gray-600 text-sm mb-4">Provide a topic and purpose, and the AI will draft a short legal paragraph.</p>
+                        <input type="text" id="paragraphTopicInput" placeholder="e.g., 'Force Majeure clause'" class="w-full p-2 border border-gray-300 rounded-md mb-3 focus:outline-none focus:ring-2 focus:ring-[#665191]">
+                        <input type="text" id="paragraphPurposeInput" placeholder="e.g., 'for a software licensing agreement'" class="w-full p-2 border border-gray-300 rounded-md mb-3 focus:outline-none focus:ring-2 focus:ring-[#665191]">
+                        <button id="draftParagraphBtn" class="w-full bg-[#f95d6a] text-white py-2 px-4 rounded-md hover:bg-[#d45087] transition-colors duration-200">Draft Paragraph</button>
+                        <div id="paragraphOutput" class="mt-4 p-3 bg-red-50 text-red-800 rounded-md border border-red-200 min-h-[60px] flex items-center justify-center text-center">
+                            <span id="paragraphLoading" class="hidden text-gray-500">Loading...</span>
+                            <span id="paragraphTextContent">Drafted paragraph will appear here.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div class="p-4 bg-gray-50 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-semibold text-[#2f4b7c] mb-3">Legal Citation Formatter ✨</h3>
+                        <p class="text-gray-600 text-sm mb-4">Enter raw citation information, and the AI will format it (e.g., Bluebook style).</p>
+                        <textarea id="citationInput" placeholder="e.g., 'Roe v. Wade, 410 U.S. 113, 1973'" class="w-full p-2 border border-gray-300 rounded-md mb-3 min-h-[80px] focus:outline-none focus:ring-2 focus:ring-[#665191]"></textarea>
+                        <input type="text" id="citationStyleInput" placeholder="e.g., 'Bluebook' or 'APA'" class="w-full p-2 border border-gray-300 rounded-md mb-3 focus:outline-none focus:ring-2 focus:ring-[#665191]">
+                        <button id="formatCitationBtn" class="w-full bg-[#ff7c43] text-white py-2 px-4 rounded-md hover:bg-[#ffa600] transition-colors duration-200">Format Citation</button>
+                        <div id="citationOutput" class="mt-4 p-3 bg-yellow-50 text-yellow-800 rounded-md border border-yellow-200 min-h-[60px] flex items-center justify-center text-center">
+                            <span id="citationLoading" class="hidden text-gray-500">Loading...</span>
+                            <span id="citationTextContent">Formatted citation will appear here.</span>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-gray-50 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-semibold text-[#2f4b7c] mb-3">Legal Document Comparison ✨</h3>
+                        <p class="text-gray-600 text-sm mb-4">Paste two short legal text snippets, and the AI will highlight key differences.</p>
+                        <textarea id="text1Input" placeholder="Text 1: e.g., 'Party A agrees to deliver goods by June 1.'" class="w-full p-2 border border-gray-300 rounded-md mb-3 min-h-[80px] focus:outline-none focus:ring-2 focus:ring-[#665191]"></textarea>
+                        <textarea id="text2Input" placeholder="Text 2: e.g., 'Party A agrees to deliver goods by July 15.'" class="w-full p-2 border border-gray-300 rounded-md mb-3 min-h-[80px] focus:outline-none focus:ring-2 focus:ring-[#665191]"></textarea>
+                        <button id="compareDocumentsBtn" class="w-full bg-[#a05195] text-white py-2 px-4 rounded-md hover:bg-[#d45087] transition-colors duration-200">Compare Documents</button>
+                        <div id="comparisonOutput" class="mt-4 p-3 bg-purple-50 text-purple-800 rounded-md border border-purple-200 min-h-[60px] flex items-center justify-center text-center">
+                            <span id="comparisonLoading" class="hidden text-gray-500">Loading...</span>
+                            <span id="comparisonTextContent">Comparison results will appear here.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div class="p-4 bg-gray-50 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-semibold text-[#2f4b7c] mb-3">Legal Question Classifier ✨</h3>
+                        <p class="text-gray-600 text-sm mb-4">Enter a legal question, and the AI will classify it into a relevant legal domain.</p>
+                        <textarea id="questionClassifierInput" placeholder="e.g., 'Can I sue my neighbor for property damage caused by their tree?'" class="w-full p-2 border border-gray-300 rounded-md mb-3 min-h-[80px] focus:outline-none focus:ring-2 focus:ring-[#665191]"></textarea>
+                        <button id="classifyQuestionBtn" class="w-full bg-[#665191] text-white py-2 px-4 rounded-md hover:bg-[#a05195] transition-colors duration-200">Classify Question</button>
+                        <div id="questionClassifierOutput" class="mt-4 p-3 bg-blue-50 text-blue-800 rounded-md border border-blue-200 min-h-[60px] flex items-center justify-center text-center">
+                            <span id="questionClassifierLoading" class="hidden text-gray-500">Loading...</span>
+                            <span id="questionClassifierTextContent">Legal domain will appear here.</span>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-gray-50 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-semibold text-[#2f4b7c] mb-3">Key Arguments/Rulings Extractor ✨</h3>
+                        <p class="text-gray-600 text-sm mb-4">Paste a legal text, and the AI will extract the main arguments or rulings.</p>
+                        <textarea id="argumentsExtractorInput" placeholder="e.g., 'In the landmark case of Brown v. Board of Education, the Supreme Court ruled that state-sanctioned segregation of public schools was a violation of the 14th Amendment. The Court found that separate educational facilities are inherently unequal, leading to a feeling of inferiority among African American children.'" class="w-full p-2 border border-gray-300 rounded-md mb-3 min-h-[80px] focus:outline-none focus:ring-2 focus:ring-[#665191]"></textarea>
+                        <button id="extractArgumentsBtn" class="w-full bg-[#f95d6a] text-white py-2 px-4 rounded-md hover:bg-[#d45087] transition-colors duration-200">Extract Arguments</button>
+                        <div id="argumentsExtractorOutput" class="mt-4 p-3 bg-red-50 text-red-800 rounded-md border border-red-200 min-h-[60px] flex items-center justify-center text-center">
+                            <span id="argumentsExtractorLoading" class="hidden text-gray-500">Loading...</span>
+                            <span id="argumentsExtractorTextContent">Key arguments/rulings will appear here.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div class="p-4 bg-gray-50 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-semibold text-[#2f4b7c] mb-3">Legal Case Summarizer (Full Text) ✨</h3>
+                        <p class="text-gray-600 text-sm mb-4">Paste the full text of a legal case or document, and the AI will generate a comprehensive summary.</p>
+                        <textarea id="fullCaseSummaryInput" placeholder="Paste full legal case text here..." class="w-full p-2 border border-gray-300 rounded-md mb-3 min-h-[120px] focus:outline-none focus:ring-2 focus:ring-[#665191]"></textarea>
+                        <button id="summarizeFullCaseBtn" class="w-full bg-[#003f5c] text-white py-2 px-4 rounded-md hover:bg-[#2f4b7c] transition-colors duration-200">Summarize Full Case</button>
+                        <div id="fullCaseSummaryOutput" class="mt-4 p-3 bg-blue-100 text-blue-900 rounded-md border border-blue-300 min-h-[60px] flex items-center justify-center text-center">
+                            <span id="fullCaseSummaryLoading" class="hidden text-gray-500">Loading...</span>
+                            <span id="fullCaseSummaryTextContent">Full case summary will appear here.</span>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-gray-50 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-semibold text-[#2f4b7c] mb-3">Legal Document Translator (Plain English) ✨</h3>
+                        <p class="text-gray-600 text-sm mb-4">Paste complex legal text, and the AI will translate it into clear, plain English.</p>
+                        <textarea id="plainEnglishTranslatorInput" placeholder="e.g., 'Nunc pro tunc, the parties hereby waive any and all rights to equitable estoppel or laches, and further agree that no novation of this agreement shall be inferred by subsequent conduct or oral representations.'" class="w-full p-2 border border-gray-300 rounded-md mb-3 min-h-[120px] focus:outline-none focus:ring-2 focus:ring-[#665191]"></textarea>
+                        <button id="translateToPlainEnglishBtn" class="w-full bg-[#d45087] text-white py-2 px-4 rounded-md hover:bg-[#f95d6a] transition-colors duration-200">Translate to Plain English</button>
+                        <div id="plainEnglishTranslatorOutput" class="mt-4 p-3 bg-pink-100 text-pink-900 rounded-md border border-pink-300 min-h-[60px] flex items-center justify-center text-center">
+                            <span id="plainEnglishTranslatorLoading" class="hidden text-gray-500">Loading...</span>
+                            <span id="plainEnglishTranslatorTextContent">Plain English translation will appear here.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div class="p-4 bg-gray-50 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-semibold text-[#2f4b7c] mb-3">Legal Document Section Summarizer ✨</h3>
+                        <p class="text-gray-600 text-sm mb-4">Paste a legal document and specify sections to summarize (e.g., "Introduction, Findings").</p>
+                        <textarea id="sectionSummaryDocumentInput" placeholder="Paste full legal document text here..." class="w-full p-2 border border-gray-300 rounded-md mb-3 min-h-[120px] focus:outline-none focus:ring-2 focus:ring-[#665191]"></textarea>
+                        <input type="text" id="sectionsToSummarizeInput" placeholder="Sections to summarize (e.g., 'Facts, Holding')" class="w-full p-2 border border-gray-300 rounded-md mb-3 focus:outline-none focus:ring-2 focus:ring-[#665191]">
+                        <button id="summarizeSectionsBtn" class="w-full bg-[#ff7c43] text-white py-2 px-4 rounded-md hover:bg-[#ffa600] transition-colors duration-200">Summarize Sections</button>
+                        <div id="sectionSummaryOutput" class="mt-4 p-3 bg-yellow-50 text-yellow-800 rounded-md border border-yellow-200 min-h-[60px] flex items-center justify-center text-center">
+                            <span id="sectionSummaryLoading" class="hidden text-gray-500">Loading...</span>
+                            <span id="sectionSummaryTextContent">Section summary will appear here.</span>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-gray-50 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-semibold text-[#2f4b7c] mb-3">Simulated Legal Compliance Checker ✨</h3>
+                        <p class="text-gray-600 text-sm mb-4">Enter a policy/action and a legal framework to check for simulated compliance issues.</p>
+                        <textarea id="policyActionInput" placeholder="e.g., 'New company policy on collecting user data for marketing purposes.'" class="w-full p-2 border border-gray-300 rounded-md mb-3 min-h-[80px] focus:outline-none focus:ring-2 focus:ring-[#665191]"></textarea>
+                        <input type="text" id="legalFrameworkInput" placeholder="e.g., 'GDPR and CCPA'" class="w-full p-2 border border-gray-300 rounded-md mb-3 focus:outline-none focus:ring-2 focus:ring-[#665191]">
+                        <button id="checkComplianceBtn" class="w-full bg-[#a05195] text-white py-2 px-4 rounded-md hover:bg-[#d45087] transition-colors duration-200">Check Compliance</button>
+                        <div id="complianceOutput" class="mt-4 p-3 bg-purple-50 text-purple-800 rounded-md border border-purple-200 min-h-[60px] flex items-center justify-center text-center">
+                            <span id="complianceLoading" class="hidden text-gray-500">Loading...</span>
+                            <span id="complianceTextContent">Compliance analysis will appear here.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div class="p-4 bg-gray-50 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-semibold text-[#2f4b7c] mb-3">Legal Research Assistant ✨</h3>
+                        <p class="text-gray-600 text-sm mb-4">Enter a legal research topic to get suggested next steps and sub-topics.</p>
+                        <textarea id="researchAssistantInput" placeholder="e.g., 'Research on recent changes to intellectual property law for AI-generated content.'" class="w-full p-2 border border-gray-300 rounded-md mb-3 min-h-[80px] focus:outline-none focus:ring-2 focus:ring-[#665191]"></textarea>
+                        <button id="getResearchStepsBtn" class="w-full bg-[#665191] text-white py-2 px-4 rounded-md hover:bg-[#a05195] transition-colors duration-200">Get Research Steps</button>
+                        <div id="researchAssistantOutput" class="mt-4 p-3 bg-blue-50 text-blue-800 rounded-md border border-blue-200 min-h-[60px] flex items-center justify-center text-center">
+                            <span id="researchAssistantLoading" class="hidden text-gray-500">Loading...</span>
+                            <span id="researchAssistantTextContent">Research guidance will appear here.</span>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-gray-50 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-semibold text-[#2f4b7c] mb-3">Legal Document Redaction Assistant ✨</h3>
+                        <p class="text-gray-600 text-sm mb-4">Paste legal text, and the AI will suggest sensitive information for redaction (e.g., names, addresses, specific dates).</p>
+                        <textarea id="redactionInput" placeholder="e.g., 'The agreement between John Doe, residing at 123 Main St, Anytown, CA, dated 01/15/2023, includes payment terms of $5000 by March 1, 2023.'" class="w-full p-2 border border-gray-300 rounded-md mb-3 min-h-[80px] focus:outline-none focus:ring-2 focus:ring-[#665191]"></textarea>
+                        <button id="suggestRedactionsBtn" class="w-full bg-[#f95d6a] text-white py-2 px-4 rounded-md hover:bg-[#d45087] transition-colors duration-200">Suggest Redactions</button>
+                        <div id="redactionOutput" class="mt-4 p-3 bg-red-50 text-red-800 rounded-md border border-red-200 min-h-[60px] flex items-center justify-center text-center">
+                            <span id="redactionLoading" class="hidden text-gray-500">Loading...</span>
+                            <span id="redactionTextContent">Suggested redactions will appear here.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div class="p-4 bg-gray-50 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-semibold text-[#2f4b7c] mb-3">Legal Opinion Generator ✨</h3>
+                        <p class="text-gray-600 text-sm mb-4">Enter a legal question and relevant facts, and the AI will generate a brief legal opinion.</p>
+                        <textarea id="legalOpinionQuestionInput" placeholder="Legal Question: e.g., 'Is a smart contract legally binding without a traditional signature?'" class="w-full p-2 border border-gray-300 rounded-md mb-3 min-h-[80px] focus:outline-none focus:ring-2 focus:ring-[#665191]"></textarea>
+                        <textarea id="legalOpinionFactsInput" placeholder="Relevant Facts: e.g., 'The contract is on a blockchain, uses cryptographic keys for agreement, and is governed by California law.'" class="w-full p-2 border border-gray-300 rounded-md mb-3 min-h-[80px] focus:outline-none focus:ring-2 focus:ring-[#665191]"></textarea>
+                        <button id="generateLegalOpinionBtn" class="w-full bg-[#003f5c] text-white py-2 px-4 rounded-md hover:bg-[#2f4b7c] transition-colors duration-200">Generate Legal Opinion</button>
+                        <div id="legalOpinionOutput" class="mt-4 p-3 bg-blue-100 text-blue-900 rounded-md border border-blue-300 min-h-[60px] flex items-center justify-center text-center">
+                            <span id="legalOpinionLoading" class="hidden text-gray-500">Loading...</span>
+                            <span id="legalOpinionTextContent">Legal opinion will appear here.</span>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-gray-50 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-semibold text-[#2f4b7c] mb-3">Legal Document Key Facts/Issues Extractor ✨</h3>
+                        <p class="text-gray-600 text-sm mb-4">Paste legal text, and the AI will extract only the most important facts and issues.</p>
+                        <textarea id="keyFactsIssuesInput" placeholder="e.g., 'Plaintiff, Sarah Connor, filed a lawsuit against Cyberdyne Systems for breach of warranty on a T-800 model. The T-800 malfunctioned, causing property damage. Cyberdyne argues the warranty was voided due to unauthorized modifications by a third party. The core issue is whether the modification falls under the warranty exclusion clause.'" class="w-full p-2 border border-gray-300 rounded-md mb-3 min-h-[120px] focus:outline-none focus:ring-2 focus:ring-[#665191]"></textarea>
+                        <button id="extractKeyFactsIssuesBtn" class="w-full bg-[#d45087] text-white py-2 px-4 rounded-md hover:bg-[#f95d6a] transition-colors duration-200">Extract Key Facts/Issues</button>
+                        <div id="keyFactsIssuesOutput" class="mt-4 p-3 bg-pink-100 text-pink-900 rounded-md border border-pink-300 min-h-[60px] flex items-center justify-center text-center">
+                            <span id="keyFactsIssuesLoading" class="hidden text-gray-500">Loading...</span>
+                            <span id="keyFactsIssuesTextContent">Key facts and issues will appear here.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="p-4 bg-gray-50 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-semibold text-[#2f4b7c] mb-3">Legal Document Anomaly Detector ✨</h3>
+                        <p class="text-gray-600 text-sm mb-4">Paste a legal document snippet, and the AI will highlight unusual or potentially problematic clauses/phrasing.</p>
+                        <textarea id="anomalyDetectorInput" placeholder="e.g., 'Notwithstanding any provision to the contrary, the party of the first part reserves the unilateral right to terminate this agreement without cause upon five minutes' oral notice.'" class="w-full p-2 border border-gray-300 rounded-md mb-3 min-h-[80px] focus:outline-none focus:ring-2 focus:ring-[#665191]"></textarea>
+                        <button id="detectAnomalyBtn" class="w-full bg-[#ff7c43] text-white py-2 px-4 rounded-md hover:bg-[#ffa600] transition-colors duration-200">Detect Anomalies</button>
+                        <div id="anomalyDetectorOutput" class="mt-4 p-3 bg-yellow-50 text-yellow-800 rounded-md border border-yellow-200 min-h-[60px] flex items-center justify-center text-center">
+                            <span id="anomalyLoading" class="hidden text-gray-500">Loading...</span>
+                            <span id="anomalyTextContent">Anomaly detection results will appear here.</span>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-gray-50 rounded-lg shadow-inner">
+                        <h3 class="text-xl font-semibold text-[#2f4b7c] mb-3">Legal Correspondence Drafter ✨</h3>
+                        <p class="text-gray-600 text-sm mb-4">Specify the type of correspondence and key details, and the AI will draft a basic outline or content.</p>
+                        <input type="text" id="correspondenceTypeInput" placeholder="e.g., 'Cease and Desist Letter'" class="w-full p-2 border border-gray-300 rounded-md mb-3 focus:outline-none focus:ring-2 focus:ring-[#665191]">
+                        <textarea id="correspondenceDetailsInput" placeholder="Key details: e.g., 'Regarding copyright infringement of software code by Company X. Demand immediate cessation and removal.'" class="w-full p-2 border border-gray-300 rounded-md mb-3 min-h-[80px] focus:outline-none focus:ring-2 focus:ring-[#665191]"></textarea>
+                        <button id="draftCorrespondenceBtn" class="w-full bg-[#a05195] text-white py-2 px-4 rounded-md hover:bg-[#d45087] transition-colors duration-200">Draft Correspondence</button>
+                        <div id="correspondenceOutput" class="mt-4 p-3 bg-purple-50 text-purple-800 rounded-md border border-purple-200 min-h-[60px] flex items-center justify-center text-center">
+                            <span id="correspondenceLoading" class="hidden text-gray-500">Loading...</span>
+                            <span id="correspondenceTextContent">Drafted correspondence will appear here.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End LLM Powered Features Section -->
+
+        </main>
+    </div>
+
+<script>
+    (function() {
+        const wrapLabel = (label, maxLength) => {
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        };
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            } else {
+                return label;
+            }
+        };
+        
+        const chartColors = {
+            blue: '#003f5c',
+            purple1: '#665191',
+            purple2: '#a05195',
+            pink: '#d45087',
+            orange1: '#f95d6a',
+            orange2: '#ff7c43',
+            yellow: '#ffa600',
+            darkBlue: '#2f4b7c'
+        };
+
+        const sourceCompositionData = {
+            labels: ['Historical Professionals', 'Modern Attorneys', 'Self-Help Litigants', 'Legal Concepts & Resources'],
+            datasets: [{
+                data: [30, 25, 20, 25],
+                backgroundColor: [chartColors.blue, chartColors.purple1, chartColors.orange2, chartColors.yellow],
+                borderColor: '#ffffff',
+                borderWidth: 2,
+            }]
+        };
+
+        const professionalData = {
+            labels: [
+                'Significant Public Cases/Opinions', 
+                'Ethical Conduct & Controversies',
+                'Unique Legal Strategies', 
+                'Jurisdiction & Specialty Areas', 
+                'Published Works & Scholarship',
+                'Professional Affiliations'
+            ].map(l => wrapLabel(l, 20)),
+            datasets: [{
+                label: 'Information Richness Score',
+                data: [95, 90, 85, 80, 70, 65],
+                backgroundColor: [
+                    chartColors.blue, 
+                    chartColors.orange1, 
+                    chartColors.purple1, 
+                    chartColors.darkBlue, 
+                    chartColors.yellow, 
+                    chartColors.pink
+                ],
+                borderColor: [
+                    chartColors.blue, 
+                    chartColors.orange1, 
+                    chartColors.purple1, 
+                    chartColors.darkBlue, 
+                    chartColors.yellow, 
+                    chartColors.pink
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        const storageData = {
+            labels: ['Raw Docs & Media', 'Processed Text for Search', 'Interconnected Entities'],
+            datasets: [
+                {
+                    label: 'Object Storage',
+                    data: [100, 0, 0],
+                    backgroundColor: chartColors.darkBlue,
+                },
+                {
+                    label: 'Vector Database',
+                    data: [0, 100, 0],
+                    backgroundColor: chartColors.purple1,
+                },
+                {
+                    label: 'Graph Database',
+                    data: [0, 0, 100],
+                    backgroundColor: chartColors.orange2,
+                }
+            ]
+        };
+        
+        const apiEcosystemData = {
+            datasets: [{
+                label: 'Fastcase',
+                data: [{ x: 8, y: 9, r: 30 }],
+                backgroundColor: chartColors.blue
+            }, {
+                label: 'Free Law Project',
+                data: [{ x: 7, y: 6, r: 35 }],
+                backgroundColor: chartColors.purple1
+            }, {
+                label: 'Congress.gov',
+                data: [{ x: 4, y: 8, r: 25 }],
+                backgroundColor: chartColors.orange1
+            }, {
+                label: 'Law Libraries',
+                data: [{ x: 3, y: 4, r: 20 }],
+                backgroundColor: chartColors.yellow
+            }, {
+                label: 'Commercial AIs (Lexis, Casetext)',
+                data: [{ x: 9, y: 7, r: 28 }],
+                backgroundColor: chartColors.pink
+            }],
+        };
+        
+        const competitiveEdgeData = {
+            labels: ['Real-Time Research', 'Document Drafting', 'Precedent Analysis', 'Agentic Workflows', 'Citation Accuracy', 'Deep Reasoning'],
+            datasets: [
+                {
+                    label: 'Coach Bleak AI',
+                    data: [9, 8, 9, 10, 9, 10],
+                    borderColor: chartColors.orange1,
+                    backgroundColor: 'rgba(249, 93, 106, 0.2)',
+                    pointBackgroundColor: chartColors.orange1,
+                    pointBorderColor: '#fff',
+                },
+                {
+                    label: 'Typical Legal AI',
+                    data: [7, 8, 7, 4, 6, 5],
+                    borderColor: chartColors.darkBlue,
+                    backgroundColor: 'rgba(47, 75, 124, 0.2)',
+                    pointBackgroundColor: chartColors.darkBlue,
+                    pointBorderColor: '#fff',
+                }
+            ]
+        };
+
+        window.onload = function() {
+            new Chart(document.getElementById('sourceCompositionChart').getContext('2d'), {
+                type: 'doughnut',
+                data: sourceCompositionData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    }
+                }
+            });
+
+            new Chart(document.getElementById('professionalDataChart').getContext('2d'), {
+                type: 'bar',
+                data: professionalData,
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { x: { beginAtZero: true } },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    }
+                }
+            });
+            
+            new Chart(document.getElementById('storageStrategyChart').getContext('2d'), {
+                type: 'bar',
+                data: storageData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { stacked: true },
+                        y: { stacked: true, beginAtZero: true, max: 100 }
+                    },
+                    plugins: {
+                        tooltip: { mode: 'index', intersect: false, callbacks: { title: tooltipTitleCallback } },
+                        legend: { position: 'bottom' }
+                    },
+                }
+            });
+
+            new Chart(document.getElementById('apiEcosystemChart').getContext('2d'), {
+                type: 'bubble',
+                data: apiEcosystemData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'bottom' } },
+                    scales: {
+                        y: { title: { display: true, text: 'Data Verifiability' } },
+                        x: { title: { display: true, text: 'Real-Time Access' } }
+                    }
+                }
+            });
+            
+            new Chart(document.getElementById('competitiveEdgeChart').getContext('2d'), {
+                type: 'radar',
+                data: competitiveEdgeData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                     elements: {
+                        line: { borderWidth: 3 }
+                    },
+                    scales: {
+                        r: {
+                            angleLines: { display: false },
+                            suggestedMin: 0,
+                            suggestedMax: 10,
+                            pointLabels: {
+                                font: { size: 12 }
+                            }
+                        }
+                    },
+                    plugins: { legend: { position: 'bottom' } }
+                }
+            });
+
+            // LLM Integration
+            const explainConceptBtn = document.getElementById('explainConceptBtn');
+            const legalConceptInput = document.getElementById('legalConceptInput');
+            const conceptExplanation = document.getElementById('conceptExplanation');
+            const conceptLoading = document.getElementById('conceptLoading');
+            const conceptText = document.getElementById('conceptText');
+
+            const generateInsightBtn = document.getElementById('generateInsightBtn');
+            const strategicInsight = document.getElementById('strategicInsight');
+            const insightLoading = document.getElementById('insightLoading');
+            const insightText = document.getElementById('insightText');
+
+            const summarizeCaseBtn = document.getElementById('summarizeCaseBtn');
+            const caseDescriptionInput = document.getElementById('caseDescriptionInput');
+            const caseSummary = document.getElementById('caseSummary');
+            const caseLoading = document.getElementById('caseLoading');
+            const caseText = document.getElementById('caseText');
+
+            const outlineArgumentBtn = document.getElementById('outlineArgumentBtn');
+            const argumentTopicInput = document.getElementById('argumentTopicInput');
+            const argumentSideInput = document.getElementById('argumentSideInput');
+            const argumentOutline = document.getElementById('argumentOutline');
+            const argumentLoading = document.getElementById('argumentLoading');
+            const argumentText = document.getElementById('argumentText');
+
+            const extractKeywordsBtn = document.getElementById('extractKeywordsBtn');
+            const keywordInput = document.getElementById('keywordInput');
+            const keywordOutput = document.getElementById('keywordOutput');
+            const keywordLoading = document.getElementById('keywordLoading');
+            const keywordText = document.getElementById('keywordText');
+
+            const generateAnalogyBtn = document.getElementById('generateAnalogyBtn');
+            const analogyConceptInput = document.getElementById('analogyConceptInput');
+            const analogyOutput = document.getElementById('analogyOutput');
+            const analogyLoading = document.getElementById('analogyLoading');
+            const analogyText = document.getElementById('analogyText');
+
+            const answerQuestionBtn = document.getElementById('answerQuestionBtn');
+            const researchQuestionInput = document.getElementById('researchQuestionInput');
+            const researchAnswer = document.getElementById('researchAnswer');
+            const researchLoading = document.getElementById('researchLoading');
+            const researchText = document.getElementById('researchText');
+
+            const generateClauseBtn = document.getElementById('generateClauseBtn');
+            const clauseTypeInput = document.getElementById('clauseTypeInput');
+            const contractClause = document.getElementById('contractClause');
+            const clauseLoading = document.getElementById('clauseLoading');
+            const clauseText = document.getElementById('clauseText');
+
+            const simplifyTextBtn = document.getElementById('simplifyTextBtn');
+            const simplifyInput = document.getElementById('simplifyInput');
+            const simplifiedText = document.getElementById('simplifiedText');
+            const simplifyLoading = document.getElementById('simplifyLoading');
+            const simplifyTextContent = document.getElementById('simplifyTextContent');
+
+            const analyzeToneBtn = document.getElementById('analyzeToneBtn');
+            const toneInput = document.getElementById('toneInput');
+            const toneOutput = document.getElementById('toneOutput');
+            const toneLoading = document.getElementById('toneLoading');
+            const toneTextContent = document.getElementById('toneTextContent');
+
+            const summarizeDocumentBtn = document.getElementById('summarizeDocumentBtn');
+            const documentSummaryInput = document.getElementById('documentSummaryInput');
+            const documentSummaryOutput = document.getElementById('documentSummaryOutput');
+            const documentSummaryLoading = document.getElementById('documentSummaryLoading');
+            const documentSummaryTextContent = document.getElementById('documentSummaryTextContent');
+
+            const predictOutcomeBtn = document.getElementById('predictOutcomeBtn');
+            const casePredictorInput = document.getElementById('casePredictorInput');
+            const casePredictorOutput = document.getElementById('casePredictorOutput');
+            const casePredictorLoading = document.getElementById('casePredictorLoading');
+            const casePredictorTextContent = document.getElementById('casePredictorTextContent');
+
+            const classifyDocumentBtn = document.getElementById('classifyDocumentBtn');
+            const classifierInput = document.getElementById('classifierInput');
+            const classifierOutput = document.getElementById('classifierOutput');
+            const classifierLoading = document.getElementById('classifierLoading');
+            const classifierTextContent = document.getElementById('classifierTextContent');
+
+            const draftParagraphBtn = document.getElementById('draftParagraphBtn');
+            const paragraphTopicInput = document.getElementById('paragraphTopicInput');
+            const paragraphPurposeInput = document.getElementById('paragraphPurposeInput');
+            const paragraphOutput = document.getElementById('paragraphOutput');
+            const paragraphLoading = document.getElementById('paragraphLoading');
+            const paragraphTextContent = document.getElementById('paragraphTextContent');
+
+            const formatCitationBtn = document.getElementById('formatCitationBtn');
+            const citationInput = document.getElementById('citationInput');
+            const citationStyleInput = document.getElementById('citationStyleInput');
+            const citationOutput = document.getElementById('citationOutput');
+            const citationLoading = document.getElementById('citationLoading');
+            const citationTextContent = document.getElementById('citationTextContent');
+
+            const compareDocumentsBtn = document.getElementById('compareDocumentsBtn');
+            const text1Input = document.getElementById('text1Input');
+            const text2Input = document.getElementById('text2Input');
+            const comparisonOutput = document.getElementById('comparisonOutput');
+            const comparisonLoading = document.getElementById('comparisonLoading');
+            const comparisonTextContent = document.getElementById('comparisonTextContent');
+
+            const classifyQuestionBtn = document.getElementById('classifyQuestionBtn');
+            const questionClassifierInput = document.getElementById('questionClassifierInput');
+            const questionClassifierOutput = document.getElementById('questionClassifierOutput');
+            const questionClassifierLoading = document.getElementById('questionClassifierLoading');
+            const questionClassifierTextContent = document.getElementById('questionClassifierTextContent');
+
+            const extractArgumentsBtn = document.getElementById('extractArgumentsBtn');
+            const argumentsExtractorInput = document.getElementById('argumentsExtractorInput');
+            const argumentsExtractorOutput = document.getElementB

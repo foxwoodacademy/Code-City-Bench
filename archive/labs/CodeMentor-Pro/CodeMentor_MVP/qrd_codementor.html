@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeMentor QRD Protocol v2.0</title>
+    <style>
+        body { background-color: #1a1a1a; color: #00ff00; font-family: 'Consolas', 'Monospace', monospace; padding: 20px; }
+        .terminal { border: 2px solid #00ff00; padding: 15px; background-color: #000000; height: 90vh; display: flex; flex-direction: column; }
+        .output { flex-grow: 1; overflow-y: auto; margin-bottom: 10px; }
+        .prompt { color: #ffff00; }
+        .input-line { display: flex; }
+        .input { flex-grow: 1; background: none; border: none; color: #00ffff; outline: none; caret-color: #00ff00; font-family: inherit; font-size: 1em; }
+        .command-output { color: #00ff00; }
+        .error { color: #ff0000; }
+        .info { color: #00ffff; }
+        .welcome { color: #ffb800; }
+        .tier-pro { color: #fff; background-color: #383838; padding: 2px; border-radius: 2px; }
+    </style>
+</head>
+<body>
+    <div class="terminal">
+        <div class="output" id="terminal-output">
+            <pre class="welcome">
+CodeMentor QRD Protocol v2.0 Initiated.
+Type '<span class="command">HELP</span>' to view system functions.
+<span class="prompt">/builder_code_tutor $ </span></pre>
+        </div>
+        <div class="input-line">
+            <span class="prompt">/builder_code_tutor $ </span>
+            <input type="text" class="input" id="terminal-input" autofocus>
+        </div>
+    </div>
+
+    <script>
+        const input = document.getElementById('terminal-input');
+        const output = document.getElementById('terminal-output');
+
+        const commands = {
+            'HELP': () => `
+COMMANDS:
+- <span class="info">COMMANDS</span>: List all available CodeMentor functions and tiers.
+- <span class="info">STATUS</span>: Check current build status and folder purpose.
+- <span class="info">CLEAR</span>: Clear the terminal screen.
+- <span class="info">EXIT</span>: Close QRD (closes browser tab).`,
+
+            'STATUS': () => `
+SYSTEM: CodeMentor MVP 1.0 (Target: VSCode)
+BUILD: Artifact Generation Complete.
+FOLDER PURPOSE: This folder, <span class="info">/builder_code_tutor</span>, is the **Mentorship Core**. It houses the core TypeScript logic and the crucial, structured teaching prompt for the AI.
+NEXT STEP: Investor Pitch & Launch Sequence.`,
+            
+            'COMMANDS': () => `
+// CODE MENTOR FUNCTIONS (Tiered Access)
+---------------------------------------
+<span class="command">mentor.explainLastBlock</span>: Free Tier. Structured code explanation.
+<span class="tier-pro">mentor.compareCode</span>: PRO Tier. Compare two code blocks.
+<span class="tier-pro">mentor.quizBlock</span>: PRO Tier. Active learning quiz generation.
+<span class="tier-pro">mentor.authEquiNex</span>: ENTERPRISE Tier. Enables ModMind/SSO login and team reporting.`
+        };
+
+        // Function to handle command input
+        function handleCommand() {
+            const commandText = input.value.trim().toUpperCase();
+            if (!commandText) return;
+
+            // Display the executed command in the output
+            output.innerHTML += `<pre class="prompt">/builder_code_tutor $ ${input.value}</pre>`;
+            input.value = ''; // Clear input field
+
+            let response;
+            if (commandText in commands) {
+                response = commands[commandText]();
+            } else if (commandText === 'CLEAR') {
+                output.innerHTML = `<pre class="welcome">Terminal Cleared. Type '<span class="command">HELP</span>' to continue.
+<span class="prompt">/builder_code_tutor $ </span></pre>`;
+                return;
+            } else if (commandText === 'EXIT') {
+                window.close(); // Attempt to close the window/tab
+                return;
+            } else {
+                response = `<span class="error">ERROR: Command not recognized. Type HELP.</span>`;
+            }
+
+            // Display the response
+            output.innerHTML += `<pre class="command-output">${response}</pre>`;
+            
+            // Scroll to the bottom of the output
+            output.scrollTop = output.scrollHeight;
+        }
+
+        // Event listener for the Enter key
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                handleCommand();
+            }
+        });
+    </script>
+</body>
+</html>

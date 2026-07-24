@@ -1,0 +1,12 @@
+front_desk_config.json
+front_desk_routing_log.json
+income_summary.json
+scout_leads.json
+closer_sent.json
+the_ledger.json
+the_ledger_report.txt
+copy_output/
+logs/
+__pycache__/
+*.pyc
+.env

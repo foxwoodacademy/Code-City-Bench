@@ -1,0 +1,61 @@
+{
+  "bootstrap_metadata": {
+    "version": "2.0",
+    "timestamp": "2025-10-23T00:00:00Z",
+    "protocol_name": "Universal_AI_Context_Bootstrap"
+  },
+  "conversation_context": {
+    "core_project": "android_broken_screen_data_recovery",
+    "project_status": "active_development",
+    "current_phase": "comprehensive_extraction_protocol_refinement",
+    "human": {
+      "name": "user",
+      "approach": "path_creator_dangerous_not_violent",
+      "projects": [
+        "ModMind",
+        "EquiLex"
+      ]
+    },
+    "technical_elements": {
+      "hardware_recovery": {
+        "emmc_extraction": {
+          "tools": [
+            "hot_air_rework_station",
+            "emmc_reader"
+          ],
+          "temperature_range_c": {
+            "min": 300,
+            "max": 320
+          },
+          "nozzle_distance_mm": {
+            "min": 3,
+            "max": 5
+          },
+          "timing_seconds": {
+            "min": 45,
+            "max": 60
+          }
+        }
+      },
+      "software_exploits": {
+        "bootloader_modes": [
+          "recovery",
+          "bootloader",
+          "edl"
+        ]
+      }
+    },
+    "key_insights": {
+      "problem_identification": {
+        "real_issue": "broken_android_screen_data_recovery_no_affordable_solution",
+        "actual_truth": "data_always_recoverable_constraints_are_artificial_control_mechanisms"
+      },
+      "next_steps": {
+        "immediate": [
+          "implement permissions gate",
+          "implement rag context manager"
+        ]
+      }
+    }
+  }
+}

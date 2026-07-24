@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vertical AI — Boardroom</title>
+    <style>
+      body{font-family:Inter,system-ui,Arial;background:#0b1223;color:#e6eef8;padding:18px}
+      .card{background:#0f172a;padding:16px;border-radius:10px;box-shadow:0 8px 30px rgba(2,6,23,.6);max-width:1100px;margin:18px auto}
+      textarea{width:100%;height:160px;border-radius:8px;padding:12px;font-size:14px}
+      .controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+      button{background:#7c5cff;color:white;border:none;padding:10px 14px;border-radius:8px}
+      #report{margin-top:18px;background:#071029;padding:12px;border-radius:8px;color:#dbeafe}
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Vertical AI — Boardroom</h1>
+      <p>Paste your case or upload a short brief. Choose personas (comma ids) or leave blank for defaults. Enable Thoth or Swarm scouts for real-world harvesting (ethical use only).</p>
+
+      <label>Case / Brief</label>
+      <textarea id="case">Summarize strengths/weaknesses of current Vertical AI deployment and recommend product-market fit moves.</textarea>
+
+      <div class="controls">
+        <label>Persona IDs (comma): <input id="personas" placeholder="p1,p2,p3" style="min-width:220px"/></label>
+        <label><input type="checkbox" id="use_thoth"/> Use Thoth</label>
+        <label><input type="checkbox" id="use_scouts"/> Use Swarm Scouts</label>
+        <label>Turns: <input id="turns" type="number" value="3" style="width:70px"/></label>
+        <label>Sims: <input id="sims" type="number" value="25" style="width:80px"/></label>
+        <button id="run">Run Boardroom</button>
+      </div>
+
+      <div id="report">No report yet. Server-rendered HTML will appear here after the run.</div>
+    </div>
+
+    <script>
+      async function runBoardroom(){
+        const caseText = document.getElementById('case').value;
+        const personaRaw = document.getElementById('personas').value.trim();
+        const persona_ids = personaRaw ? personaRaw.split(',').map(s=>s.trim()) : undefined;
+        const use_thoth = document.getElementById('use_thoth').checked;
+        const use_scouts = document.getElementById('use_scouts').checked;
+        const turns = parseInt(document.getElementById('turns').value||3,10);
+        const sims = parseInt(document.getElementById('sims').value||25,10);
+
+        const body = { case_text: caseText, persona_ids: persona_ids, turns: turns, sims: sims, use_thoth: use_thoth, use_scouts: use_scouts };
+        const reportDiv = document.getElementById('report');
+        reportDiv.innerHTML = '<em>Running... this may take a while depending on chosen models.</em>';
+
+        try{
+          const resp = await fetch('/debate/', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body)});
+          if(!resp.ok){
+            const txt = await resp.text(); reportDiv.innerText = 'Error: ' + txt; return;
+          }
+          const html = await resp.text();
+          reportDiv.innerHTML = html;
+        }catch(e){
+          reportDiv.innerText = 'Network or server error: '+e.message;
+        }
+      }
+      document.getElementById('run').addEventListener('click', runBoardroom);
+    </script>
+  </body>
+</html>

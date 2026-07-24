@@ -1,0 +1,28 @@
+{
+  "status": "success",
+  "pipeline_id": "uuid-v4",
+  "timestamp": "ISO8601",
+  "project_metrics": {
+    "code_fitness_score": 0.92,
+    "grant_readiness": 0.85,
+    "key_technologies": ["python", "langgraph", "fastapi"]
+  },
+  "grant_match": {
+    "id": "DE-FOA-0003467",
+    "title": "SEEDING CRITICAL ADVANCES...",
+    "relevance_score": 0.95,
+    "intent_alignment": "high",
+    "funder": "DOE-ARPAE"
+  },
+  "generated_artifacts": {
+    "narrative_url": "http://implore-host:8000/artifacts/narrative_uuid.txt",
+    "sf424_json": {
+       "applicant_name": "ModMind Intelligence",
+       "estimated_funding": 500000
+    }
+  },
+  "audit_trail": {
+    "status": "passed",
+    "verification_timestamp": "ISO8601"
+  }
+}

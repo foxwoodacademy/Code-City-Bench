@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "name": "molt_v4_log",
+    "path": "/storage/emulated/0/RootBase/molt_v4_log",
+    "languages": {},
+    "entrypoints": [],
+    "package_json": false,
+    "requirements": 0,
+    "readme_excerpt": "",
+    "last_modified": "2026-05-20T16:53:59.852999"
+  },
+  "runbook": {
+    "commands": [],
+    "env": [],
+    "notes": []
+  },
+  "bard_note": "No obvious entrypoint. Bold choice. (Bardildo: harsh truth incoming)"
+}

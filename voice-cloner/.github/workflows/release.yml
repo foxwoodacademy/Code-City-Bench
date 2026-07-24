@@ -1,0 +1,118 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install build twine
+
+      - name: Build package
+        run: |
+          python -m build
+
+      - name: Extract release notes
+        id: extract-release-notes
+        run: |
+          # Extract changelog for this version
+          tag=${GITHUB_REF#refs/tags/}
+          echo "tag=$tag" >> $GITHUB_OUTPUT
+          
+          # Try to extract from CHANGELOG.md if it exists
+          if [ -f "CHANGELOG.md" ]; then
+            # Find section for this version
+            awk -v tag="$tag" '
+              /^## / { in_section=0 }
+              $0 ~ ("^## " tag) { in_section=1; next }
+              in_section && /^## / { exit }
+              in_section { print }
+            ' CHANGELOG.md > RELEASE_NOTES.md 2>/dev/null || true
+          fi
+          
+          # If no changelog, use commit messages
+          if [ ! -s "RELEASE_NOTES.md" ]; then
+            git log --pretty=format:"%s" ${GITHUB_SHA}^..${GITHUB_SHA} > RELEASE_NOTES.md || true
+          fi
+          
+          # Clean up
+          sed -i '/^$/d' RELEASE_NOTES.md || true
+          echo "release_notes=$(cat RELEASE_NOTES.md)" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          body: ${{ steps.extract-release-notes.outputs.release_notes }}
+          files: |
+            dist/*.tar.gz
+            dist/*.whl
+          draft: false
+          prerelease: ${{ contains(github.ref_name, '-') }}
+
+      - name: Publish to PyPI
+        if: startsWith(github.ref_name, 'v')
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist/
+          verbose: true
+
+  docker:
+    name: Build and Push Docker Image
+    runs-on: ubuntu-latest
+    needs: release
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+            type=sha
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}

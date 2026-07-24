@@ -1,0 +1,817 @@
+
+ceiving objects:  50% (5566/11131), 2.92 MiB Receiving objects:  51% (5677/11131), 2.92 MiB Receiving objects:  52% (5789/11131), 2.92 MiB Receiving objects:  53% (5900/11131), 2.92 MiB Receiving objects:  54% (6011/11131), 2.92 MiB Receiving objects:  55% (6123/11131), 2.92 MiB Receiving objects:  56% (6234/11131), 2.92 MiB Receiving objects:  57% (6345/11131), 2.92 MiB Receiving objects:  58% (6456/11131), 2.92 MiB Receiving objects:  59% (6568/11131), 2.92 MiB Receiving objects:  60% (6679/11131), 2.92 MiB Receiving objects:  61% (6790/11131), 4.84 MiB Receiving objects:  62% (6902/11131), 4.84 MiB Receiving objects:  63% (7013/11131), 4.84 MiB Receiving objects:  64% (7124/11131), 4.84 MiB Receiving objects:  65% (7236/11131), 4.84 MiB Receiving objects:  66% (7347/11131), 4.84 MiB Receiving objects:  67% (7458/11131), 4.84 MiB Receiving objects:  67% (7501/11131), 6.73 MiB Receiving objects:  68% (7570/11131), 6.73 MiB Receiving objects:  69% (7681/11131), 6.73 MiB Receiving objects:  70% (7792/11131), 6.73 MiB Receiving objects:  71% (7904/11131), 6.73 MiB Receiving objects:  72% (8015/11131), 6.73 MiB Receiving objects:  73% (8126/11131), 6.73 MiB Receiving objects:  74% (8237/11131), 6.73 MiB Receiving objects:  75% (8349/11131), 6.73 MiB Receiving objects:  76% (8460/11131), 6.73 MiB Receiving objects:  77% (8571/11131), 6.73 MiB Receiving objects:  78% (8683/11131), 6.73 MiB Receiving objects:  79% (8794/11131), 6.73 MiB Receiving objects:  80% (8905/11131), 8.33 MiB Receiving objects:  81% (9017/11131), 8.33 MiB Receiving objects:  82% (9128/11131), 8.33 MiB Receiving objects:  83% (9239/11131), 8.33 MiB Receiving objects:  84% (9351/11131), 8.33 MiB Receiving objects:  85% (9462/11131), 8.33 MiB Receiving objects:  86% (9573/11131), 8.33 MiB Receiving objects:  87% (9684/11131), 8.33 MiB Receiving objects:  88% (9796/11131), 8.33 MiB Receiving objects:  89% (9907/11131), 8.33 MiB Receiving objects:  90% (10018/11131), 8.33 MiBReceiving objects:  91% (10130/11131), 8.33 MiBReceiving objects:  92% (10241/11131), 8.33 MiBReceiving objects:  92% (10338/11131), 9.88 MiBReceiving objects:  93% (10352/11131), 9.88 MiBReceiving objects:  94% (10464/11131), 9.88 MiBReceiving objects:  95% (10575/11131), 9.88 MiBReceiving objects:  96% (10686/11131), 9.88 MiBReceiving objects:  97% (10798/11131), 11.16 MiReceiving objects:  98% (10909/11131), 11.16 MiReceiving objects:  99% (11020/11131), 11.16 Miremote: Total 11131 (delta 3696), reused 8265 (delta 3072), pack-reused 0 (from 0)
+Receiving objects: 100% (11131/11131), 11.16 MiReceiving objects: 100% (11131/11131), 11.78 MiB | 2.97 MiB/s, done.
+Resolving deltas: 100% (3696/3696), done.
+Updating files: 100% (10569/10569), done.
+━━━ Configuring ━━━
+CMake Error at CMakeLists.txt:42 (cmake_policy):
+  Policy CMP0026 may not be set to OLD behavior because this version of CMake
+  no longer supports it.  The policy was introduced in CMake version 3.0.0,
+  and use of NEW behavior is now required.
+
+  Please either update your CMakeLists.txt files to conform to the new
+  behavior or use an older version of CMake that still supports the old
+  behavior.  Run cmake --help-policy CMP0026 for more information.
+
+
+CMake Error at /data/data/com.termux/files/usr/share/cmake-4.3/Modules/CMakeDetermineSystem.cmake:35 (file):
+  file failed to open for reading (No such file or directory):
+
+    /include/android/api-level.h
+Call Stack (most recent call first):
+  CMakeLists.txt:64 (project)
+
+
+-- The C compiler identification is Clang 21.1.8
+-- The CXX compiler identification is Clang 21.1.8
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /data/data/com.termux/files/usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /data/data/com.termux/files/usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Performing Test CXX_SUPPORTS_MISSING_FIELD_INITIALIZERS_FLAG
+-- Performing Test CXX_SUPPORTS_MISSING_FIELD_INITIALIZERS_FLAG - Success
+-- Performing Test DEPRECATED_COPY_FLAG
+-- Performing Test DEPRECATED_COPY_FLAG - Success
+-- Performing Test CXX_SUPPORTS_CLASS_MEMACCESS_FLAG
+-- Performing Test CXX_SUPPORTS_CLASS_MEMACCESS_FLAG - Failed
+-- Performing Test CXX_SUPPORTS_NOEXCEPT_TYPE_FLAG
+-- Performing Test CXX_SUPPORTS_NOEXCEPT_TYPE_FLAG - Success
+-- Performing Test CXX_WONT_WARN_ON_FINAL_NONVIRTUALDTOR
+-- Performing Test CXX_WONT_WARN_ON_FINAL_NONVIRTUALDTOR - Success
+-- Performing Test C_SUPPORTS_DELETE_NON_VIRTUAL_DTOR_FLAG
+-- Performing Test C_SUPPORTS_DELETE_NON_VIRTUAL_DTOR_FLAG - Success
+-- Performing Test CXX_SUPPORTS_DELETE_NON_VIRTUAL_DTOR_FLAG
+-- Performing Test CXX_SUPPORTS_DELETE_NON_VIRTUAL_DTOR_FLAG - Success
+-- Performing Test RANGE_ANALYSIS_FLAG
+-- Performing Test RANGE_ANALYSIS_FLAG - Success
+-- Found Python: /data/data/com.termux/files/usr/bin/python3.13 (found version "3.13.13") found components: Interpreter
+-- Performing Test HAVE_COMPUTED_GOTO
+-- Performing Test HAVE_COMPUTED_GOTO - Success
+-- Performing Test HAVE_GC_SECTIONS
+-- Performing Test HAVE_GC_SECTIONS - Success
+-- Performing Test HAVE_ICF
+-- Performing Test HAVE_ICF - Success
+-- Performing Test C_SUPPORTS_FUNCTION_SECTIONS
+-- Performing Test C_SUPPORTS_FUNCTION_SECTIONS - Success
+-- Performing Test CXX_SUPPORTS_FUNCTION_SECTIONS
+-- Performing Test CXX_SUPPORTS_FUNCTION_SECTIONS - Success
+-- Performing Test C_SUPPORTS_DATA_SECTIONS
+-- Performing Test C_SUPPORTS_DATA_SECTIONS - Success
+-- Performing Test CXX_SUPPORTS_DATA_SECTIONS
+-- Performing Test CXX_SUPPORTS_DATA_SECTIONS - Success
+-- Performing Test C_SUPPORTS_ADDRSIG
+-- Performing Test C_SUPPORTS_ADDRSIG - Success
+-- Performing Test CXX_SUPPORTS_ADDRSIG
+-- Performing Test CXX_SUPPORTS_ADDRSIG - Success
+-- Found ICU: /data/data/com.termux/files/usr/include (found suitable version "78.3", minimum required is "52") found components: uc i18n data uc
+icu dir: /data/data/com.termux/files/usr/lib
+-- Performing Test CXX_SUPPORTS_SHORTEN_64_TO_32
+-- Performing Test CXX_SUPPORTS_SHORTEN_64_TO_32 - Success
+-- Performing Test LLVM_NO_OLD_LIBSTDCXX
+-- Performing Test LLVM_NO_OLD_LIBSTDCXX - Success
+-- Looking for dlfcn.h
+-- Looking for dlfcn.h - found
+-- Looking for errno.h
+-- Looking for errno.h - found
+-- Looking for fcntl.h
+-- Looking for fcntl.h - found
+-- Looking for link.h
+-- Looking for link.h - found
+-- Looking for malloc.h
+-- Looking for malloc.h - found
+-- Looking for malloc/malloc.h
+-- Looking for malloc/malloc.h - not found
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Looking for signal.h
+-- Looking for signal.h - found
+-- Looking for sys/ioctl.h
+-- Looking for sys/ioctl.h - found
+-- Looking for sys/mman.h
+-- Looking for sys/mman.h - found
+-- Looking for sys/param.h
+-- Looking for sys/param.h - found
+-- Looking for sys/resource.h
+-- Looking for sys/resource.h - found
+-- Looking for sys/stat.h
+-- Looking for sys/stat.h - found
+-- Looking for sys/time.h
+-- Looking for sys/time.h - found
+-- Looking for sys/types.h
+-- Looking for sys/types.h - found
+-- Looking for termios.h
+-- Looking for termios.h - found
+-- Looking for unistd.h
+-- Looking for unistd.h - found
+-- Looking for valgrind/valgrind.h
+-- Looking for valgrind/valgrind.h - not found
+-- Looking for zlib.h
+-- Looking for zlib.h - found
+-- Looking for fenv.h
+-- Looking for fenv.h - found
+-- Looking for FE_ALL_EXCEPT
+-- Looking for FE_ALL_EXCEPT - found
+-- Looking for FE_INEXACT
+-- Looking for FE_INEXACT - found
+-- Looking for mach/mach.h
+-- Looking for mach/mach.h - not found
+-- Looking for histedit.h
+-- Looking for histedit.h - found
+-- Looking for CrashReporterClient.h
+-- Looking for CrashReporterClient.h - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - found
+-- Looking for pthread_getspecific in pthread
+-- Looking for pthread_getspecific in pthread - found
+-- Looking for pthread_rwlock_init in pthread
+-- Looking for pthread_rwlock_init in pthread - found
+-- Looking for pthread_mutex_lock in pthread
+-- Looking for pthread_mutex_lock in pthread - found
+-- Looking for dlopen in dl
+-- Looking for dlopen in dl - found
+-- Looking for clock_gettime in rt
+-- Looking for clock_gettime in rt - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - found
+-- Found Threads: TRUE
+-- Looking for xar_open in xar
+-- Looking for xar_open in xar - not found
+-- Looking for arc4random
+-- Looking for arc4random - found
+-- Looking for backtrace
+-- Looking for backtrace - found
+-- backtrace facility detected in default set of libraries
+-- Found Backtrace: /data/data/com.termux/files/usr/include
+-- Performing Test C_SUPPORTS_WERROR_UNGUARDED_AVAILABILITY_NEW
+-- Performing Test C_SUPPORTS_WERROR_UNGUARDED_AVAILABILITY_NEW - Success
+-- Looking for _Unwind_Backtrace
+-- Looking for _Unwind_Backtrace - found
+-- Looking for getpagesize
+-- Looking for getpagesize - found
+-- Looking for sysconf
+-- Looking for sysconf - found
+-- Looking for getrusage
+-- Looking for getrusage - found
+-- Looking for setrlimit
+-- Looking for setrlimit - found
+-- Looking for isatty
+-- Looking for isatty - found
+-- Looking for futimens
+-- Looking for futimens - found
+-- Looking for futimes
+-- Looking for futimes - not found
+-- Looking for posix_fallocate
+-- Looking for posix_fallocate - found
+-- Looking for sigaltstack
+-- Looking for sigaltstack - found
+-- Looking for lseek64
+-- Looking for lseek64 - found
+-- Looking for mallctl
+-- Looking for mallctl - not found
+-- Looking for mallinfo
+-- Looking for mallinfo - found
+-- Looking for malloc_zone_statistics
+-- Looking for malloc_zone_statistics - not found
+-- Looking for getrlimit
+-- Looking for getrlimit - found
+-- Looking for posix_spawn
+-- Looking for posix_spawn - found
+-- Looking for pread
+-- Looking for pread - found
+-- Looking for realpath
+-- Looking for realpath - found
+-- Looking for sbrk
+-- Looking for sbrk - found
+-- Looking for strerror
+-- Looking for strerror - found
+-- Looking for strerror_r
+-- Looking for strerror_r - found
+-- Looking for strerror_s
+-- Looking for strerror_s - not found
+-- Looking for setenv
+-- Looking for setenv - found
+-- Looking for dlopen
+-- Looking for dlopen - found
+-- Looking for dladdr
+-- Looking for dladdr - found
+-- Looking for __GLIBC__
+-- Looking for __GLIBC__ - not found
+-- Looking for sched_getaffinity
+-- Looking for sched_getaffinity - not found
+-- Looking for CPU_COUNT
+-- Looking for CPU_COUNT - not found
+-- Looking for pthread_getname_np
+-- Looking for pthread_getname_np - not found
+-- Looking for pthread_setname_np
+-- Looking for pthread_setname_np - found
+-- Performing Test HAVE_CXX_ATOMICS_WITHOUT_LIB
+-- Performing Test HAVE_CXX_ATOMICS_WITHOUT_LIB - Success
+-- Performing Test HAVE_CXX_ATOMICS64_WITHOUT_LIB
+-- Performing Test HAVE_CXX_ATOMICS64_WITHOUT_LIB - Success
+-- Performing Test LLVM_HAS_ATOMICS
+-- Performing Test LLVM_HAS_ATOMICS - Success
+-- Performing Test SUPPORTS_NO_PIE_FLAG
+-- Performing Test SUPPORTS_NO_PIE_FLAG - Success
+-- Performing Test SUPPORTS_VARIADIC_MACROS_FLAG
+-- Performing Test SUPPORTS_VARIADIC_MACROS_FLAG - Success
+-- Performing Test SUPPORTS_GNU_ZERO_VARIADIC_MACRO_ARGUMENTS_FLAG
+-- Performing Test SUPPORTS_GNU_ZERO_VARIADIC_MACRO_ARGUMENTS_FLAG - Success
+-- Threads enabled.
+-- Doxygen disabled.
+-- Go bindings disabled.
+-- Found Python module pygments
+-- Found Python module pygments.lexers.c_cpp
+-- Found Python module yaml
+-- CMAKE_HOST_SYSTEM_NAME = Android
+-- CMAKE_SYSTEM_NAME = Android
+-- HERMES_APPLE_TARGET_PLATFORM =
+-- CMAKE_CROSSCOMPILING = FALSE
+-- Looking for readline
+-- Looking for readline - found
+-- Configuring incomplete, errors occurred!
+━━━ Building (single thread — keeping you alive) ━━━
+ninja: error: loading 'build.ninja': No such file or directory
+Build failed. Check output above for errors.
+~ $ rm -rf build_hermes && cmake -S hermes -B build_hermes -G Ninja \
+>   -DCMAKE_BUILD_TYPE=MinSizeRel \
+>   -DHERMES_ENABLE_DEBUGGER=OFF \
+>   -DHERMES_ENABLE_TOOLS=ON \
+>   -DHERMES_BUILD_SHARED_JSI=OFF \
+>   -DHERMES_USE_FLOWPARSER=OFF \
+>   -DHERMES_ENABLE_INTL=OFF \
+>   -DCMAKE_EXE_LINKER_FLAGS="-llog"
+CMake Error at CMakeLists.txt:42 (cmake_policy):
+  Policy CMP0026 may not be set to OLD behavior because this version of CMake
+  no longer supports it.  The policy was introduced in CMake version 3.0.0,
+  and use of NEW behavior is now required.
+
+  Please either update your CMakeLists.txt files to conform to the new
+  behavior or use an older version of CMake that still supports the old
+  behavior.  Run cmake --help-policy CMP0026 for more information.
+
+
+CMake Error at /data/data/com.termux/files/usr/share/cmake-4.3/Modules/CMakeDetermineSystem.cmake:35 (file):
+  file failed to open for reading (No such file or directory):
+
+    /include/android/api-level.h
+Call Stack (most recent call first):
+  CMakeLists.txt:64 (project)
+
+
+-- The C compiler identification is Clang 21.1.8
+-- The CXX compiler identification is Clang 21.1.8
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /data/data/com.termux/files/usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /data/data/com.termux/files/usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Performing Test CXX_SUPPORTS_MISSING_FIELD_INITIALIZERS_FLAG
+-- Performing Test CXX_SUPPORTS_MISSING_FIELD_INITIALIZERS_FLAG - Success
+-- Performing Test DEPRECATED_COPY_FLAG
+-- Performing Test DEPRECATED_COPY_FLAG - Success
+-- Performing Test CXX_SUPPORTS_CLASS_MEMACCESS_FLAG
+-- Performing Test CXX_SUPPORTS_CLASS_MEMACCESS_FLAG - Failed
+-- Performing Test CXX_SUPPORTS_NOEXCEPT_TYPE_FLAG
+-- Performing Test CXX_SUPPORTS_NOEXCEPT_TYPE_FLAG - Success
+-- Performing Test CXX_WONT_WARN_ON_FINAL_NONVIRTUALDTOR
+-- Performing Test CXX_WONT_WARN_ON_FINAL_NONVIRTUALDTOR - Success
+-- Performing Test C_SUPPORTS_DELETE_NON_VIRTUAL_DTOR_FLAG
+-- Performing Test C_SUPPORTS_DELETE_NON_VIRTUAL_DTOR_FLAG - Success
+-- Performing Test CXX_SUPPORTS_DELETE_NON_VIRTUAL_DTOR_FLAG
+-- Performing Test CXX_SUPPORTS_DELETE_NON_VIRTUAL_DTOR_FLAG - Success
+-- Performing Test RANGE_ANALYSIS_FLAG
+-- Performing Test RANGE_ANALYSIS_FLAG - Success
+-- Found Python: /data/data/com.termux/files/usr/bin/python3.13 (found version "3.13.13") found components: Interpreter
+-- Performing Test HAVE_COMPUTED_GOTO
+-- Performing Test HAVE_COMPUTED_GOTO - Success
+-- Performing Test HAVE_GC_SECTIONS
+-- Performing Test HAVE_GC_SECTIONS - Success
+-- Performing Test HAVE_ICF
+-- Performing Test HAVE_ICF - Success
+-- Performing Test C_SUPPORTS_FUNCTION_SECTIONS
+-- Performing Test C_SUPPORTS_FUNCTION_SECTIONS - Success
+-- Performing Test CXX_SUPPORTS_FUNCTION_SECTIONS
+-- Performing Test CXX_SUPPORTS_FUNCTION_SECTIONS - Success
+-- Performing Test C_SUPPORTS_DATA_SECTIONS
+-- Performing Test C_SUPPORTS_DATA_SECTIONS - Success
+-- Performing Test CXX_SUPPORTS_DATA_SECTIONS
+-- Performing Test CXX_SUPPORTS_DATA_SECTIONS - Success
+-- Performing Test C_SUPPORTS_ADDRSIG
+-- Performing Test C_SUPPORTS_ADDRSIG - Success
+-- Performing Test CXX_SUPPORTS_ADDRSIG
+-- Performing Test CXX_SUPPORTS_ADDRSIG - Success
+-- Found ICU: /data/data/com.termux/files/usr/include (found suitable version "78.3", minimum required is "52") found components: uc i18n data uc
+icu dir: /data/data/com.termux/files/usr/lib
+-- Performing Test CXX_SUPPORTS_SHORTEN_64_TO_32
+-- Performing Test CXX_SUPPORTS_SHORTEN_64_TO_32 - Success
+-- Performing Test LLVM_NO_OLD_LIBSTDCXX
+-- Performing Test LLVM_NO_OLD_LIBSTDCXX - Success
+-- Looking for dlfcn.h
+-- Looking for dlfcn.h - found
+-- Looking for errno.h
+-- Looking for errno.h - found
+-- Looking for fcntl.h
+-- Looking for fcntl.h - found
+-- Looking for link.h
+-- Looking for link.h - found
+-- Looking for malloc.h
+-- Looking for malloc.h - found
+-- Looking for malloc/malloc.h
+-- Looking for malloc/malloc.h - not found
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Looking for signal.h
+-- Looking for signal.h - found
+-- Looking for sys/ioctl.h
+-- Looking for sys/ioctl.h - found
+-- Looking for sys/mman.h
+-- Looking for sys/mman.h - found
+-- Looking for sys/param.h
+-- Looking for sys/param.h - found
+-- Looking for sys/resource.h
+-- Looking for sys/resource.h - found
+-- Looking for sys/stat.h
+-- Looking for sys/stat.h - found
+-- Looking for sys/time.h
+-- Looking for sys/time.h - found
+-- Looking for sys/types.h
+-- Looking for sys/types.h - found
+-- Looking for termios.h
+-- Looking for termios.h - found
+-- Looking for unistd.h
+-- Looking for unistd.h - found
+-- Looking for valgrind/valgrind.h
+-- Looking for valgrind/valgrind.h - not found
+-- Looking for zlib.h
+-- Looking for zlib.h - found
+-- Looking for fenv.h
+-- Looking for fenv.h - found
+-- Looking for FE_ALL_EXCEPT
+-- Looking for FE_ALL_EXCEPT - found
+-- Looking for FE_INEXACT
+-- Looking for FE_INEXACT - found
+-- Looking for mach/mach.h
+-- Looking for mach/mach.h - not found
+-- Looking for histedit.h
+-- Looking for histedit.h - found
+-- Looking for CrashReporterClient.h
+-- Looking for CrashReporterClient.h - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - found
+-- Looking for pthread_getspecific in pthread
+-- Looking for pthread_getspecific in pthread - found
+-- Looking for pthread_rwlock_init in pthread
+-- Looking for pthread_rwlock_init in pthread - found
+-- Looking for pthread_mutex_lock in pthread
+-- Looking for pthread_mutex_lock in pthread - found
+-- Looking for dlopen in dl
+-- Looking for dlopen in dl - found
+-- Looking for clock_gettime in rt
+-- Looking for clock_gettime in rt - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - found
+-- Found Threads: TRUE
+-- Looking for xar_open in xar
+-- Looking for xar_open in xar - not found
+-- Looking for arc4random
+-- Looking for arc4random - found
+-- Looking for backtrace
+-- Looking for backtrace - found
+-- backtrace facility detected in default set of libraries
+-- Found Backtrace: /data/data/com.termux/files/usr/include
+-- Performing Test C_SUPPORTS_WERROR_UNGUARDED_AVAILABILITY_NEW
+-- Performing Test C_SUPPORTS_WERROR_UNGUARDED_AVAILABILITY_NEW - Success
+-- Looking for _Unwind_Backtrace
+-- Looking for _Unwind_Backtrace - found
+-- Looking for getpagesize
+-- Looking for getpagesize - found
+-- Looking for sysconf
+-- Looking for sysconf - found
+-- Looking for getrusage
+-- Looking for getrusage - found
+-- Looking for setrlimit
+-- Looking for setrlimit - found
+-- Looking for isatty
+-- Looking for isatty - found
+-- Looking for futimens
+-- Looking for futimens - found
+-- Looking for futimes
+-- Looking for futimes - not found
+-- Looking for posix_fallocate
+-- Looking for posix_fallocate - found
+-- Looking for sigaltstack
+-- Looking for sigaltstack - found
+-- Looking for lseek64
+-- Looking for lseek64 - found
+-- Looking for mallctl
+-- Looking for mallctl - not found
+-- Looking for mallinfo
+-- Looking for mallinfo - found
+-- Looking for malloc_zone_statistics
+-- Looking for malloc_zone_statistics - not found
+-- Looking for getrlimit
+-- Looking for getrlimit - found
+-- Looking for posix_spawn
+-- Looking for posix_spawn - found
+-- Looking for pread
+-- Looking for pread - found
+-- Looking for realpath
+-- Looking for realpath - found
+-- Looking for sbrk
+-- Looking for sbrk - found
+-- Looking for strerror
+-- Looking for strerror - found
+-- Looking for strerror_r
+-- Looking for strerror_r - found
+-- Looking for strerror_s
+-- Looking for strerror_s - not found
+-- Looking for setenv
+-- Looking for setenv - found
+-- Looking for dlopen
+-- Looking for dlopen - found
+-- Looking for dladdr
+-- Looking for dladdr - found
+-- Looking for __GLIBC__
+-- Looking for __GLIBC__ - not found
+-- Looking for sched_getaffinity
+-- Looking for sched_getaffinity - not found
+-- Looking for CPU_COUNT
+-- Looking for CPU_COUNT - not found
+-- Looking for pthread_getname_np
+-- Looking for pthread_getname_np - not found
+-- Looking for pthread_setname_np
+-- Looking for pthread_setname_np - found
+-- Performing Test HAVE_CXX_ATOMICS_WITHOUT_LIB
+-- Performing Test HAVE_CXX_ATOMICS_WITHOUT_LIB - Success
+-- Performing Test HAVE_CXX_ATOMICS64_WITHOUT_LIB
+-- Performing Test HAVE_CXX_ATOMICS64_WITHOUT_LIB - Success
+-- Performing Test LLVM_HAS_ATOMICS
+-- Performing Test LLVM_HAS_ATOMICS - Success
+-- Performing Test SUPPORTS_NO_PIE_FLAG
+-- Performing Test SUPPORTS_NO_PIE_FLAG - Success
+-- Performing Test SUPPORTS_VARIADIC_MACROS_FLAG
+-- Performing Test SUPPORTS_VARIADIC_MACROS_FLAG - Success
+-- Performing Test SUPPORTS_GNU_ZERO_VARIADIC_MACRO_ARGUMENTS_FLAG
+-- Performing Test SUPPORTS_GNU_ZERO_VARIADIC_MACRO_ARGUMENTS_FLAG - Success
+-- Threads enabled.
+-- Doxygen disabled.
+-- Go bindings disabled.
+-- Found Python module pygments
+-- Found Python module pygments.lexers.c_cpp
+-- Found Python module yaml
+-- CMAKE_HOST_SYSTEM_NAME = Android
+-- CMAKE_SYSTEM_NAME = Android
+-- HERMES_APPLE_TARGET_PLATFORM =
+-- CMAKE_CROSSCOMPILING = FALSE
+-- Looking for readline
+-- Looking for readline - found
+-- Configuring incomplete, errors occurred!
+~ $ bash hermes_build.sh --force
+
+It appears that directory '~/storage' already exists.
+This script is going to rebuild its structure from
+scratch, wiping all dangling files. The actual storage
+content IS NOT going to be deleted.
+
+Do you want to continue? (y/n) y
+Checking availability of current mirror:
+[*] https://packages-cf.termux.dev/apt/termux-main: ok
+Get:1 https://tur.kcubeterm.com tur-packages InRelease
+Hit:2 https://packages-cf.termux.dev/apt/termux-main stable InRelease
+Hit:3 https://packages-cf.termux.dev/apt/termux-root root InRelease
+Hit:4 https://packages-cf.termux.dev/apt/termux-x11 x11 InRelease
+Fetched 18.4 kB in 7s (2638 B/s)
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+All packages are up to date.
+Checking availability of current mirror:
+[*] https://packages-cf.termux.dev/apt/termux-main: ok
+Hit:1 https://packages-cf.termux.dev/apt/termux-main stable InRelease
+Hit:2 https://packages-cf.termux.dev/apt/termux-root root InRelease
+Get:3 https://tur.kcubeterm.com tur-packages InRelease
+Hit:4 https://packages-cf.termux.dev/apt/termux-x11 x11 InRelease
+Fetched 18.4 kB in 7s (2710 B/s)
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+All packages are up to date.
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Calculating upgrade... Done
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+Checking availability of current mirror:
+[*] https://packages-cf.termux.dev/apt/termux-main: ok
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+ncurses-utils is already the newest version (6.6.20260307+really6.5.20250830).
+cmake is already the newest version (4.3.2-1).
+git is already the newest version (2.54.0).
+ninja is already the newest version (1.13.2).
+libicu is already the newest version (78.3).
+python is already the newest version (3.13.13-1).
+zip is already the newest version (3.0-7).
+readline is already the newest version (8.3.3).
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+WARNING: Only 994MB free RAM. Build may get OOM killed.
+Close everything else before continuing.
+Continue anyway? (y/N) y
+Pick your hbc version:
+hbc84 hbc85 hbc89 hbc90 hbc94 hbc95 hbc96 latest
+hbcversion > hbc96
+━━━ Cloning hermes (hbc96) ━━━
+Cloning into 'hermes'...
+remote: Enumerating objects: 11131, done.
+remote: Counting objects: 100% (11131/11131), done.
+remote: Compressing objects: 100% (5343/5343), done.
+Receiving objects:  31% (3451/11131), 1.46 MiB Receiving objects:  32% (3562/11131), 1.46 MiB Receiving objects:  33% (3674/11131), 1.46 MiB Receiving objects:  34% (3785/11131), 1.46 MiB Receiving objects:  35% (3896/11131), 1.46 MiB Receiving objects:  36% (4008/11131), 1.46 MiB Receiving objects:  37% (4119/11131), 1.46 MiB Receiving objects:  38% (4230/11131), 1.46 MiB Receiving objects:  39% (4342/11131), 1.46 MiB Receiving objects:  40% (4453/11131), 1.46 MiB Receiving objects:  41% (4564/11131), 1.46 MiB Receiving objects:  42% (4676/11131), 1.46 MiB Receiving objects:  43% (4787/11131), 1.46 MiB Receiving objects:  44% (4898/11131), 1.46 MiB Receiving objects:  45% (5009/11131), 1.46 MiB Receiving objects:  46% (5121/11131), 1.46 MiB Receiving objects:  47% (5232/11131), 1.46 MiB Receiving objects:  48% (5343/11131), 1.46 MiB Receiving objects:  49% (5455/11131), 1.46 MiB Receiving objects:  50% (5566/11131), 1.46 MiB Receiving objects:  51% (5677/11131), 1.46 MiB Receiving objects:  52% (5789/11131), 1.46 MiB Receiving objects:  53% (5900/11131), 1.46 MiB Receiving objects:  54% (6011/11131), 1.46 MiB Receiving objects:  55% (6123/11131), 1.46 MiB Receiving objects:  55% (6173/11131), 1.46 MiB Receiving objects:  56% (6234/11131), 3.54 MiB Receiving objects:  57% (6345/11131), 3.54 MiB Receiving objects:  58% (6456/11131), 3.54 MiB Receiving objects:  59% (6568/11131), 3.54 MiB Receiving objects:  60% (6679/11131), 4.59 MiB Receiving objects:  61% (6790/11131), 4.59 MiB Receiving objects:  62% (6902/11131), 4.59 MiB Receiving objects:  63% (7013/11131), 4.59 MiB Receiving objects:  63% (7028/11131), 4.59 MiB Receiving objects:  64% (7124/11131), 5.85 MiB Receiving objects:  65% (7236/11131), 5.85 MiB Receiving objects:  66% (7347/11131), 5.85 MiB Receiving objects:  67% (7458/11131), 5.85 MiB Receiving objects:  68% (7570/11131), 5.85 MiB Receiving objects:  69% (7681/11131), 5.85 MiB Receiving objects:  70% (7792/11131), 7.61 MiB Receiving objects:  71% (7904/11131), 7.61 MiB Receiving objects:  72% (8015/11131), 7.61 MiB Receiving objects:  73% (8126/11131), 7.61 MiB Receiving objects:  74% (8237/11131), 7.61 MiB Receiving objects:  75% (8349/11131), 7.61 MiB Receiving objects:  76% (8460/11131), 7.61 MiB Receiving objects:  77% (8571/11131), 7.61 MiB Receiving objects:  78% (8683/11131), 7.61 MiB Receiving objects:  79% (8794/11131), 7.61 MiB Receiving objects:  80% (8905/11131), 7.61 MiB Receiving objects:  80% (8979/11131), 7.61 MiB Receiving objects:  81% (9017/11131), 7.61 MiB Receiving objects:  82% (9128/11131), 7.61 MiB Receiving objects:  83% (9239/11131), 7.61 MiB Receiving objects:  84% (9351/11131), 7.61 MiB Receiving objects:  85% (9462/11131), 7.61 MiB Receiving objects:  86% (9573/11131), 7.61 MiB Receiving objects:  87% (9684/11131), 7.61 MiB Receiving objects:  88% (9796/11131), 8.79 MiB Receiving objects:  89% (9907/11131), 8.79 MiB Receiving objects:  90% (10018/11131), 8.79 MiBReceiving objects:  91% (10130/11131), 8.79 MiBReceiving objects:  92% (10241/11131), 8.79 MiBReceiving objects:  93% (10352/11131), 10.21 MiReceiving objects:  94% (10464/11131), 10.21 MiReceiving objects:  95% (10575/11131), 10.21 MiReceiving objects:  96% (10686/11131), 10.21 MiReceiving objects:  96% (10787/11131), 10.21 MiReceiving objects:  97% (10798/11131), 10.21 MiReceiving objects:  98% (10909/11131), 11.22 MiReceiving objects:  99% (11020/11131), 11.22 Miremote: Total 11131 (delta 3695), reused 8263 (delta 3071), pack-reused 0 (from 0)
+Receiving objects: 100% (11131/11131), 11.22 MiReceiving objects: 100% (11131/11131), 11.78 MiB | 2.74 MiB/s, done.
+Resolving deltas: 100% (3695/3695), done.
+Updating files: 100% (10569/10569), done.
+━━━ Configuring ━━━
+CMake Error at CMakeLists.txt:42 (cmake_policy):
+  Policy CMP0026 may not be set to OLD behavior because this version of CMake
+  no longer supports it.  The policy was introduced in CMake version 3.0.0,
+  and use of NEW behavior is now required.
+
+  Please either update your CMakeLists.txt files to conform to the new
+  behavior or use an older version of CMake that still supports the old
+  behavior.  Run cmake --help-policy CMP0026 for more information.
+
+
+CMake Error at /data/data/com.termux/files/usr/share/cmake-4.3/Modules/CMakeDetermineSystem.cmake:35 (file):
+  file failed to open for reading (No such file or directory):
+
+    /include/android/api-level.h
+Call Stack (most recent call first):
+  CMakeLists.txt:64 (project)
+
+
+-- The C compiler identification is Clang 21.1.8
+-- The CXX compiler identification is Clang 21.1.8
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /data/data/com.termux/files/usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /data/data/com.termux/files/usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Performing Test CXX_SUPPORTS_MISSING_FIELD_INITIALIZERS_FLAG
+-- Performing Test CXX_SUPPORTS_MISSING_FIELD_INITIALIZERS_FLAG - Success
+-- Performing Test DEPRECATED_COPY_FLAG
+-- Performing Test DEPRECATED_COPY_FLAG - Success
+-- Performing Test CXX_SUPPORTS_CLASS_MEMACCESS_FLAG
+-- Performing Test CXX_SUPPORTS_CLASS_MEMACCESS_FLAG - Failed
+-- Performing Test CXX_SUPPORTS_NOEXCEPT_TYPE_FLAG
+-- Performing Test CXX_SUPPORTS_NOEXCEPT_TYPE_FLAG - Success
+-- Performing Test CXX_WONT_WARN_ON_FINAL_NONVIRTUALDTOR
+-- Performing Test CXX_WONT_WARN_ON_FINAL_NONVIRTUALDTOR - Success
+-- Performing Test C_SUPPORTS_DELETE_NON_VIRTUAL_DTOR_FLAG
+-- Performing Test C_SUPPORTS_DELETE_NON_VIRTUAL_DTOR_FLAG - Success
+-- Performing Test CXX_SUPPORTS_DELETE_NON_VIRTUAL_DTOR_FLAG
+-- Performing Test CXX_SUPPORTS_DELETE_NON_VIRTUAL_DTOR_FLAG - Success
+-- Performing Test RANGE_ANALYSIS_FLAG
+-- Performing Test RANGE_ANALYSIS_FLAG - Success
+-- Found Python: /data/data/com.termux/files/usr/bin/python3.13 (found version "3.13.13") found components: Interpreter
+-- Performing Test HAVE_COMPUTED_GOTO
+-- Performing Test HAVE_COMPUTED_GOTO - Success
+-- Performing Test HAVE_GC_SECTIONS
+-- Performing Test HAVE_GC_SECTIONS - Success
+-- Performing Test HAVE_ICF
+-- Performing Test HAVE_ICF - Success
+-- Performing Test C_SUPPORTS_FUNCTION_SECTIONS
+-- Performing Test C_SUPPORTS_FUNCTION_SECTIONS - Success
+-- Performing Test CXX_SUPPORTS_FUNCTION_SECTIONS
+-- Performing Test CXX_SUPPORTS_FUNCTION_SECTIONS - Success
+-- Performing Test C_SUPPORTS_DATA_SECTIONS
+-- Performing Test C_SUPPORTS_DATA_SECTIONS - Success
+-- Performing Test CXX_SUPPORTS_DATA_SECTIONS
+-- Performing Test CXX_SUPPORTS_DATA_SECTIONS - Success
+-- Performing Test C_SUPPORTS_ADDRSIG
+-- Performing Test C_SUPPORTS_ADDRSIG - Success
+-- Performing Test CXX_SUPPORTS_ADDRSIG
+-- Performing Test CXX_SUPPORTS_ADDRSIG - Success
+-- Found ICU: /data/data/com.termux/files/usr/include (found suitable version "78.3", minimum required is "52") found components: uc i18n data uc
+icu dir: /data/data/com.termux/files/usr/lib
+-- Performing Test CXX_SUPPORTS_SHORTEN_64_TO_32
+-- Performing Test CXX_SUPPORTS_SHORTEN_64_TO_32 - Success
+-- Performing Test LLVM_NO_OLD_LIBSTDCXX
+-- Performing Test LLVM_NO_OLD_LIBSTDCXX - Success
+-- Looking for dlfcn.h
+-- Looking for dlfcn.h - found
+-- Looking for errno.h
+-- Looking for errno.h - found
+-- Looking for fcntl.h
+-- Looking for fcntl.h - found
+-- Looking for link.h
+-- Looking for link.h - found
+-- Looking for malloc.h
+-- Looking for malloc.h - found
+-- Looking for malloc/malloc.h
+-- Looking for malloc/malloc.h - not found
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Looking for signal.h
+-- Looking for signal.h - found
+-- Looking for sys/ioctl.h
+-- Looking for sys/ioctl.h - found
+-- Looking for sys/mman.h
+-- Looking for sys/mman.h - found
+-- Looking for sys/param.h
+-- Looking for sys/param.h - found
+-- Looking for sys/resource.h
+-- Looking for sys/resource.h - found
+-- Looking for sys/stat.h
+-- Looking for sys/stat.h - found
+-- Looking for sys/time.h
+-- Looking for sys/time.h - found
+-- Looking for sys/types.h
+-- Looking for sys/types.h - found
+-- Looking for termios.h
+-- Looking for termios.h - found
+-- Looking for unistd.h
+-- Looking for unistd.h - found
+-- Looking for valgrind/valgrind.h
+-- Looking for valgrind/valgrind.h - not found
+-- Looking for zlib.h
+-- Looking for zlib.h - found
+-- Looking for fenv.h
+-- Looking for fenv.h - found
+-- Looking for FE_ALL_EXCEPT
+-- Looking for FE_ALL_EXCEPT - found
+-- Looking for FE_INEXACT
+-- Looking for FE_INEXACT - found
+-- Looking for mach/mach.h
+-- Looking for mach/mach.h - not found
+-- Looking for histedit.h
+-- Looking for histedit.h - found
+-- Looking for CrashReporterClient.h
+-- Looking for CrashReporterClient.h - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - found
+-- Looking for pthread_getspecific in pthread
+-- Looking for pthread_getspecific in pthread - found
+-- Looking for pthread_rwlock_init in pthread
+-- Looking for pthread_rwlock_init in pthread - found
+-- Looking for pthread_mutex_lock in pthread
+-- Looking for pthread_mutex_lock in pthread - found
+-- Looking for dlopen in dl
+-- Looking for dlopen in dl - found
+-- Looking for clock_gettime in rt
+-- Looking for clock_gettime in rt - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - found
+-- Found Threads: TRUE
+-- Looking for xar_open in xar
+-- Looking for xar_open in xar - not found
+-- Looking for arc4random
+-- Looking for arc4random - found
+-- Looking for backtrace
+-- Looking for backtrace - found
+-- backtrace facility detected in default set of libraries
+-- Found Backtrace: /data/data/com.termux/files/usr/include
+-- Performing Test C_SUPPORTS_WERROR_UNGUARDED_AVAILABILITY_NEW
+-- Performing Test C_SUPPORTS_WERROR_UNGUARDED_AVAILABILITY_NEW - Success
+-- Looking for _Unwind_Backtrace
+-- Looking for _Unwind_Backtrace - found
+-- Looking for getpagesize
+-- Looking for getpagesize - found
+-- Looking for sysconf
+-- Looking for sysconf - found
+-- Looking for getrusage
+-- Looking for getrusage - found
+-- Looking for setrlimit
+-- Looking for setrlimit - found
+-- Looking for isatty
+-- Looking for isatty - found
+-- Looking for futimens
+-- Looking for futimens - found
+-- Looking for futimes
+-- Looking for futimes - not found
+-- Looking for posix_fallocate
+-- Looking for posix_fallocate - found
+-- Looking for sigaltstack
+-- Looking for sigaltstack - found
+-- Looking for lseek64
+-- Looking for lseek64 - found
+-- Looking for mallctl
+-- Looking for mallctl - not found
+-- Looking for mallinfo
+-- Looking for mallinfo - found
+-- Looking for malloc_zone_statistics
+-- Looking for malloc_zone_statistics - not found
+-- Looking for getrlimit
+-- Looking for getrlimit - found
+-- Looking for posix_spawn
+-- Looking for posix_spawn - found
+-- Looking for pread
+-- Looking for pread - found
+-- Looking for realpath
+-- Looking for realpath - found
+-- Looking for sbrk
+-- Looking for sbrk - found
+-- Looking for strerror
+-- Looking for strerror - found
+-- Looking for strerror_r
+-- Looking for strerror_r - found
+-- Looking for strerror_s
+-- Looking for strerror_s - not found
+-- Looking for setenv
+-- Looking for setenv - found
+-- Looking for dlopen
+-- Looking for dlopen - found
+-- Looking for dladdr
+-- Looking for dladdr - found
+-- Looking for __GLIBC__
+-- Looking for __GLIBC__ - not found
+-- Looking for sched_getaffinity
+-- Looking for sched_getaffinity - not found
+-- Looking for CPU_COUNT
+-- Looking for CPU_COUNT - not found
+-- Looking for pthread_getname_np
+-- Looking for pthread_getname_np - not found
+-- Looking for pthread_setname_np
+-- Looking for pthread_setname_np - found
+-- Performing Test HAVE_CXX_ATOMICS_WITHOUT_LIB
+-- Performing Test HAVE_CXX_ATOMICS_WITHOUT_LIB - Success
+-- Performing Test HAVE_CXX_ATOMICS64_WITHOUT_LIB
+-- Performing Test HAVE_CXX_ATOMICS64_WITHOUT_LIB - Success
+-- Performing Test LLVM_HAS_ATOMICS
+-- Performing Test LLVM_HAS_ATOMICS - Success
+-- Performing Test SUPPORTS_NO_PIE_FLAG
+-- Performing Test SUPPORTS_NO_PIE_FLAG - Success
+-- Performing Test SUPPORTS_VARIADIC_MACROS_FLAG
+-- Performing Test SUPPORTS_VARIADIC_MACROS_FLAG - Success
+-- Performing Test SUPPORTS_GNU_ZERO_VARIADIC_MACRO_ARGUMENTS_FLAG
+-- Performing Test SUPPORTS_GNU_ZERO_VARIADIC_MACRO_ARGUMENTS_FLAG - Success
+-- Threads enabled.
+-- Doxygen disabled.
+-- Go bindings disabled.
+-- Found Python module pygments
+-- Found Python module pygments.lexers.c_cpp
+-- Found Python module yaml
+-- CMAKE_HOST_SYSTEM_NAME = Android
+-- CMAKE_SYSTEM_NAME = Android
+-- HERMES_APPLE_TARGET_PLATFORM =
+-- CMAKE_CROSSCOMPILING = FALSE
+-- Looking for readline
+-- Looking for readline - found
+-- Configuring incomplete, errors occurred!
+━━━ Building (single thread — keeping you alive) ━━━
+ninja: error: loading 'build.ninja': No such file or directory
+Build failed. Check output above for errors.
+~ $ pkg install build-essential cmake ninja python git libicu-dev libedit libzip
+Checking availability of current mirror:
+[*] https://packages-cf.termux.dev/apt/termux-main: ok
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Package libicu-dev is not available, but is referred to by another package.
+This may mean that the package is missing, has been obsoleted, or
+is only available from another source
+However the following packages replace it:
+  libicu
+
+E: Package 'libicu-dev' has no installation candidate
+~ $ rm -rf build/
+~ $ mkdir build && cd build
+~/build $ npm install build-essential cmake ninja python git libicu-dev libedit libzip
+npm error code E404
+npm error 404 Not Found - GET https://registry.npmjs.org/build-essential - Not found
+npm error 404
+npm error 404  The requested resource 'build-essential@*' could not be found or you do not have permission to access it.
+npm error 404
+npm error 404 Note that you can also install from a
+npm error 404 tarball, folder, http url, or git url.
+npm error A complete log of this run can be found in: /data/data/com.termux/files/home/.npm/_logs/2026-05-08T01_59_42_514Z-debug-0.log
+~/build $ pip install build-essential cmake ninja python git libicu-dev libedit libzip
+ERROR: Could not find a version that satisfies the requirement build-essential (from versions: none)
+ERROR: No matching distribution found for build-essential

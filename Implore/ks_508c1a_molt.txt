@@ -1,0 +1,378 @@
+
+Religious Entity Structuring: The 501(c)(3) vs. 508(c)(1)(A) Matrix
+Establishing a religious entity to govern a software codebase like Implore in Kansas requires navigating state-level corporate laws and federal tax regulations. Under Kansas law, the initial step in creating a nonprofit corporate shield is filing the Not-For-Profit Corporation Articles of Incorporation, designated as Form IA, with the Kansas Secretary of State.
+
+State-Level Incorporation and Name Reservation
+Under the Kansas General Corporation Code (K.S.A. § 17-6002), the Articles of Incorporation must be executed and filed by at least one incorporator. The corporate name must be distinguishable from other business entities registered in the state database and must include a specific corporate designator such as "association," "church," "college," "company," "corporation," "club," "foundation," "fund," "incorporated," "institute," "society," "union," "university," "syndicate," "limited," or their respective abbreviations (such as "Co.," "Corp.," "Inc.," or "Ltd.").
+
+To secure a specific name during the planning phase, an application for Temporary Reservation of Business Entity Name (Form NR) can be submitted to the Kansas Secretary of State. This holds the name for a non-renewable period of 120 days for a fee of $30.00 online or $35.00 by mail. The standard state filing fee for the Articles of Incorporation (Form IA) is $20.00. Online filing is processed immediately, while paper mail-in filings take approximately four business days.
+
+The physical street address of the registered office and the name of the resident agent in Kansas must be declared in the document; post office boxes are strictly prohibited. Crucially, the standard boilerplate template provided by the Kansas Secretary of State does not satisfy the requirements of the Internal Revenue Service (IRS) for obtaining federal tax-exempt status. It must be manually amended to include explicit dissolution and operational limitation clauses that permanently dedicate corporate assets to an exempt purpose described in Section 501(c)(3).   
+
+To organize a proper fee and agency overview, the baseline Kansas corporate setup and state compliance cost structure is detailed below:
+
+Filing Type	Kansas Agency	State Statutory Fee	Processing / Filing Method
+Name Reservation (Form NR)	Secretary of State	$30.00	Online portal; holds for 120 days
+Articles of Incorporation (Form IA)	Secretary of State	$20.00	Online portal or mail-in; instant online approval
+Articles of Organization (LLC)	Secretary of State	$85.00	Online portal (reduced from $160 in 2026 by Sec. Scott Schwab)
+Biennial Information Report	Secretary of State	$5.00	Online portal every 2 years; schedule based on odd/even formation year
+Charitable Registration	Attorney General	$25.00	Mail-in initial and annual renewal
+Sales Tax Exemption (ST-28)	Department of Revenue	$0.00	Online application via KDOR Customer Service Center
+Following state-level incorporation, the entity must secure a Federal Employer Identification Number (EIN) from the IRS by filing Form SS-4. This identifier is required for bank account initiation, tax registration, and SAM.gov system account verification.
+
+The 501(c)(3) vs. 508(c)(1)(A) Structural Comparison
+The Internal Revenue Code contains a fundamental distinction between organizations that must notify the IRS of their claim to tax-exempt status and those that are automatically recognized as exempt. Section 501(c)(3) represents the standard statutory category for religious, charitable, and scientific organizations. To obtain formal IRS recognition, an organization must submit Form 1023 (with a $600.00 user fee) or Form 1023-EZ (with a $275.00 user fee).
+
+To qualify for the streamlined Form 1023-EZ, the organization must project annual gross receipts under $50,000.00 and possess total assets valued below $250,000.00. Upon approval, the IRS issues a formal determination letter, which provides a definitive legal presumption of tax-exempt status.
+
+Section 508(c)(1)(A) provides a mandatory exemption from the initial notification requirements of Section 508(a). This exemption dictates that "churches, their integrated auxiliaries, and conventions or associations of churches" are automatically recognized as tax-exempt Section 501(c)(3) organizations without being required to submit Form 1023 or Form 1023-EZ. While Section 508(c)(1)(A) provides an administrative exemption from the application process, it does not relieve the religious entity from complying with the substantive operational requirements of Section 501(c)(3).   
+
+The primary legal and operational differences between these regulatory paths are analyzed below:
+
+Legal Attribute	Formal 501(c)(3) Organization	Section 508(c)(1)(A) Church	Integrated Auxiliary of a Church
+IRS Filing Obligation	Mandatory Form 1023 / 1023-EZ	
+Automatically exempt 
+
+Automatically exempt 
+
+Form 990 Annual Return	
+Mandatory unless explicitly exempt 
+
+Automatically exempt under Sec. 6033 
+
+Automatically exempt under Sec. 6033 
+
+Legal Presumption of Exemption	
+Rebuttable presumption established 
+
+No presumption (Branch Ministries) 
+
+No independent presumption 
+
+Burden of Proof During Audit	
+Borne by IRS; limited by church audit rules 
+
+Borne entirely by entity or audited donor 
+
+Borne by entity to prove affiliation 
+
+Donor Receipt Verification	
+Simple citation of IRS Master File listing 
+
+Donors must prove the church qualifies 
+
+Verified via parent church affiliation 
+
+Commercial Contract Acceptance	
+Universal acceptance by vendors and banks 
+
+Frequently rejected without IRS letter 
+
+Accepted via parent group exemption 
+
+  
+Legal Auditing, Tax Shelters, and the Burden of Proof
+Relying solely on the automatic exemption of Section 508(c)(1)(A) without a formal IRS determination letter introduces severe legal risks, primarily centered on the reallocation of the burden of proof. Under established federal jurisprudence, most notably Branch Ministries v. Rossotti, an organization operating without an IRS determination letter has no legal presumption of tax exemption. In an audit, the burden of proof shifts to the organization or the individual donor to establish that the entity qualifies as a tax-exempt religious organization.   
+
+As established in Jack Lane Taylor v. Commissioner, if a donor is audited, the donor cannot rely on a presumption of deductibility; instead, the donor must legally prove that the church meets all the statutory and structural requirements of Section 501(c)(3). This requires demonstrating compliance with the strict IRS 14-point test.   
+
+Furthermore, "508 churches" and "corporations sole" are heavily scrutinized by the IRS due to their history of exploitation by tax shelter promoters. Promoters often market the corporation sole as a mechanism for individuals to declare themselves "bishops," take a "vow of poverty," and assign personal income to a one-person religious corporation to evade federal taxes, child support, and personal debts.   
+
+The Department of Justice and the IRS actively prosecute these schemes under 26 U.S.C. § 6700, penalizing promoters for making false or fraudulent statements regarding tax benefits. A legitimate corporation sole is designed only to ensure the continuity of property ownership for assets dedicated to a bona fide religious organization. Utilizing a Section 508(c)(1)(A) structure as a shell to shield licensing revenue or commercial profits derived from the Implore codebase will be classified as a sham transaction, exposing the organizers to civil and criminal liability.   
+
+The 14-Point Test and the Definition of a Church
+The term "church" is found but not specifically defined in the Internal Revenue Code. To analyze an entity's claim to church status, the IRS and the courts apply a 14-point test evaluating objective characteristics. These characteristics include a distinct legal existence, a recognized creed and form of worship, a definite and distinct ecclesiastical government, a formal code of doctrine and discipline, a distinct religious history, a membership not associated with any other church, an organization of ordained ministers selected after completing prescribed studies, a literature of its own, established places of worship, regular congregations, regular religious services, Sunday schools for religious instruction of the young, and schools for the preparation of ministers.   
+
+No single factor is controlling, but the presence of a regular congregation is considered an essential, high-weight requirement. In American Guidance Foundation, Inc. v. United States, the court ruled that at a minimum, a church must include a body of believers or communicants that assembles regularly to worship.   
+
+A technical group or development team maintaining the Implore codebase cannot satisfy this requirement. A congregation requires a physical, associational community. Praying in physical solitude or interacting purely through online forums, mail, or passive digital broadcasts does not constitute a "congregation" within the ordinary meaning of the word.   
+
+An alternative structure for technical religious operations is the "Integrated Auxiliary of a Church". Under Treasury Regulations, an integrated auxiliary is a separate legal entity that is described in Section 501(c)(3), is affiliated with a church or association of churches, and is internally supported. Affiliation must be structural, demonstrated by the church's authority to appoint or remove officers, common charter provisions, or formal group exemption coverage. An organization is internally supported if it does not offer goods, services, or facilities for sale to the general public on more than an incidental basis.   
+
+Kansas State and Local Compliance Architectures
+Operating a technical or religious entity in Kansas requires adherence to state-level charitable registration laws, state tax exemptions, and specific tax compliance requirements governing business income.
+
+Charitable Solicitation and State Business Licensing
+Under the Kansas Charitable Organizations and Solicitations Act (K.S.A. § 17-1759 et seq.), any nonprofit organization that intends to solicit contributions from state residents must register with the Kansas Attorney General’s Office (Consumer Protection Division) prior to fundraising. This duty was officially transferred from the Secretary of State to the Attorney General via 2021 House Bill 2079. The initial registration fee is $25.00, and the registration must be renewed annually.
+
+Crucially, bona fide religious organizations and their affiliated ministries are eligible for an automatic exemption from this filing requirement under K.S.A. 17-1762. While the exemption is automatic and does not strictly require a separate state filing, the organization must maintain proper documentation of its exempt status for compliance purposes.
+
+Unlike many other states, Kansas does not require an initial or annual general state business license. However, local municipalities or counties may enforce zoning ordinances or specialized permits depending on physical operations. If the entity hires employees in Kansas, it must register for Unemployment Insurance with the Kansas Department of Labor.
+
+Sales and Use Tax Exemption
+While some states grant automatic sales tax exemption to 501(c)(3) entities, Kansas requires a separate application process. To buy goods or services tax-free, a qualified nonprofit or religious organization must apply to the Kansas Department of Revenue (KDOR) via the Customer Service Center (KCSC) to secure a numbered Tax Entity Exemption Certificate. This certificate must be presented directly to retailers at the time of purchase.
+
+Unrelated Business Income Tax (UBIT) and Form 990-T
+A tax-exempt religious entity or church is still liable for taxes on its unrelated business income (UBI). Unrelated business income is defined as gross income derived from any trade or business that is regularly carried on and is not substantially related to the organization's tax-exempt purpose.   
+
+If a religious entity owns the Implore codebase and licenses it to commercial entities, charges subscription fees for its use, or operates it as a commercial Software-as-a-Service (SaaS) platform, this revenue constitutes UBI. Using commercial profits to fund legitimate religious activities does not shield that income from taxation; the "destination-of-income" test is rejected in favor of analyzing the nature of the activity itself.   
+
+The regulatory filing and payment requirements for UBI are structured as follows:
+
+Filing Threshold: An exempt organization with gross income from an unrelated trade or business of $1,000.00 or more must file Form 990-T. This obligation is in addition to any other annual filing requirements.   
+
+Tax Rates: For corporate-structured nonprofits, UBI is taxable at federal corporate tax rates. For trusts, standard trust tax rates apply.   
+
+Estimated Tax: The organization must make quarterly estimated tax payments if its estimated tax on UBI is expected to be $500.00 or more for the year. Payments must be deposited electronically.   
+
+Public Inspection: Under IRC Section 501(c)(3), Form 990-T filings are subject to mandatory public inspection. The organization must make the return, including all supporting schedules, attachments, and financial details, available for public copying and inspection for three years from the filing due date.   
+
+There are narrow exceptions to UBI, such as activities conducted entirely by uncompensated volunteers, the sale of donated merchandise, or passive rental income from real property where at least 85% of the property is used directly for the organization's exempt purposes. However, commercial software licensing or the execution of automated SaaS transactions does not fall under these exceptions and remains fully taxable.   
+
+Legal-Technical Architecture for SAM.gov API Access
+Integrating the Implore codebase with the System for Award Management (SAM.gov) requires a highly structured technical and administrative framework to comply with federal access policies and authentication standards.
+
+SAM.gov API Protocols and Technical Security
+The GSA exposes federal procurement data through several REST APIs, primarily the Opportunity Management API and the Entity Management API. Accessing these systems requires implementing specific protocol standards and security verifications to ensure that data transmission is secure and compliant with the Federal Information Security Modernization Act.   
+
+The technical specifications and authentication protocols for SAM.gov API integration are compiled below:
+
+Technical Parameter	
+Opportunity Management API 
+
+Entity Management API (Public Data) 
+
+Entity Management API (Sensitive CUI) 
+
+Authentication Protocol	
+System Account API Key 
+
+Individual or System API Key 
+
+Basic Auth + x-api-key 
+
+Required HTTP Headers	
+api_key or x-api-key 
+
+api_key or x-api-key 
+
+Authorization: Base64(User:Pass), x-api-key, Accept: application/json 
+
+Request Method	
+GET / POST 
+
+GET (Synchronous/Asynchronous) 
+
+POST only 
+
+IP Address Validation	
+Whitelisted static IPs in profile 
+
+Optional 
+
+Mandatory static IP whitelisting 
+
+Connection Profile	
+Must be validated as "REST API" 
+
+REST API 
+
+REST API 
+
+Response Limits	
+Custom pagination 
+
+10 records per page; Max 10,000 
+
+10 records per page; Max 10,000 
+
+Parameter Exclusions	
+Standard URL parameters 
+
+No special characters: & | { } ^ \ 
+
+No special characters: & | { } ^ \ 
+
+  
+For basic testing, SAM.gov provides immediate public access with a restrictive limit of 10 requests per day. To increase this limit to 1,000 requests per day, the organization must complete a full entity registration with a Unique Entity ID (UEI), wait approximately 10 to 15 business days for validation, request the "Data Entry" role, and regenerate a high-limit system API key.   
+
+All API integrations must enforce static IP address validation; any requests originating from non-registered IP addresses are rejected with a system error. Developers must also implement strict password and key rotation rules, updating system passwords and API keys every 90 days to prevent account revocation.   
+
+To manage daily rate limits effectively and mitigate HTTP 429 (Too Many Requests) errors, the codebase must implement aggressive caching mechanisms, batch operations, and exponential backoff retry algorithms.   
+
+Entity Administrator Notarized Letter Requirements
+A primary administrative bottleneck in registering a system account on SAM.gov is the formal appointment of an Entity Administrator. The GSA enforces strict identity verification protocols to prevent fraudulent takeovers of federal registration records.   
+
+The appointment of an Entity Administrator requires the submission of a physical, notarized letter to the Federal Service Desk (FSD). The letter must strictly adhere to the following template and submission guidelines:   
+
+Corporate Letterhead: The letter must be printed on the formal letterhead of the registering entity. If the entity does not have pre-printed letterhead, it must display its legal business name and physical address at the top of the page.   
+
+Unique Identifiers: The letter must declare the entity's legal business name, physical street address, and assigned UEI.   
+
+Administrator Contact Details: It must state the full name, telephone number, and email address of the appointed Entity Administrator. This email address must match exactly the email address associated with the administrator’s individual Login.gov account.   
+
+Third-Party Agent Clause: The letter must explicitly include a clause either authorizing or denying third-party agent representation. If the administration will be managed internally, the letter must contain the statement: "For the purpose of registering with the United States Federal Government through the online System for Award Management (SAM), I do not authorize any 3rd party to act on behalf of [company/organization]." Letters omitting either third-party authorization or denial will be rejected.   
+
+Signatory Authority: The letter must be signed by an officer of the company who possesses formal signatory authority, such as the President, CEO, or Managing Partner. The Entity Administrator cannot sign their own appointment letter unless they are the sole officer of the registering entity.   
+
+Notarization: The signing officer must sign the letter in the presence of a licensed Notary Public, who must execute a standard state-compliant acknowledgment block and apply their official seal.   
+
+Submission Process: The completed, signed, and notarized letter must be scanned and uploaded as a PDF file to the FSD.gov portal by creating a formal service ticket under the issue type "SAM: Notarized Letter". The original physical copy must then be mailed to the Federal Service Desk processing facility in London, Kentucky, within 45 days of any conditional registration activation :   
+
+Mailing Address:
+FEDERAL SERVICE DESK
+ATTN: SAM.GOV REGISTRATION PROCESSING
+460 INDUSTRIAL BLVD
+LONDON, KY 40741-7285
+UNITED STATES OF AMERICA
+
+Data Scraping Legality and CFAA Exposure
+To bypass SAM.gov's rate limits or the administrative delays associated with official API key registration, developers sometimes integrate automated web scrapers or third-party scraping actors into their software architectures. This approach introduces severe legal liabilities and technical risks.   
+
+The SAM.gov Terms of Use explicitly prohibit the use of automated data gathering, web scraping tools, bots, or data mining software. If the GSA detects unauthorized scraping activities, it will terminate the associated Login.gov accounts and deny the offending IP addresses access to federal systems.   
+
+From a statutory standpoint, unauthorized scraping of federal portals exposes developers to liability under the Computer Fraud and Abuse Act (CFAA), codified at 18 U.S.C. § 1030. The CFAA imposes civil and criminal penalties on anyone who intentionally accesses a protected computer without authorization or exceeds authorized access.   
+
+The federal courts have established distinct parameters governing the legality of scraping:
+
+Public Data Protections: In hiQ Labs, Inc. v. LinkedIn Corp., the Ninth Circuit ruled that the CFAA does not apply to the web scraping of publicly available data that is not protected by authorization barriers (such as usernames and passwords).   
+
+Revocation of Consent: However, the courts have also held that if a platform explicitly revokes a scraper's permission to access its data, or if the scraper circumvents technological barriers (such as CAPTCHAs, rate limiting devices, or login gateways), subsequent scraping constitutes "access without authorization" under the CFAA.   
+
+Contractual Breach: Even if a CFAA claim is avoided, the target website can pursue claims for breach of contract, trespass to chattels, or copyright infringement if the scraper agreed to Terms of Service that explicitly forbid automated data extraction.   
+
+GSA Best Practices: The GSA’s Emerging Technology Office recommends that all entities engaging in data collection strictly adhere to the Robots Exclusion Protocol (robots.txt), identify their scrapers using transparent User-Agent strings, implement strict rate limiting, and respect any copyright control measures or digital rights management protections.   
+
+Technical and Legal Liability Mitigation for the Implore Codebase
+Deploying an interactive software system that processes federal procurement data and generates automated outputs introduces unique liabilities at the intersection of professional licensing, intellectual property, and product liability.
+
+Unauthorized Practice of Law (UPL) in Kansas
+If the Implore codebase performs advanced operations—such as analyzing federal solicitations, drafting legal proposals, interpreting FAR regulations, or generating contract language—it operates within the domain of legal services. This creates substantial exposure to charges of the Unauthorized Practice of Law (UPL).   
+
+Under the Kansas Consumer Protection Act (KCPA) and Kansas Supreme Court rules, nonlawyers are strictly prohibited from practicing law or assisting others in doing so. Under K.S.A. § 50-6,142, committing an act that constitutes UPL or soliciting payment for services that would constitute UPL is explicitly deemed an "unconscionable act or practice" under K.S.A. 50-627. This exposes the entity to severe civil penalties, consumer class actions, and direct prosecution by the Kansas Attorney General’s Public Protection Division.
+
+The Kansas Supreme Court defines the "practice of law" functionally: it is the rendition of services requiring the knowledge and application of legal principles and techniques to serve the interests of another. Drafting binding contracts, completing legal deeds, or negotiating legal settlement terms on behalf of a client are all designated as the practice of law.   
+
+If a non-attorney entity operates the Implore codebase to generate automated contract proposals, draft compliance documents, or provide customized regulatory advice directly to users, the entity and its developers can face severe statutory penalties. To mitigate this risk, the codebase must be structured strictly as a document-assembly and data-analytics tool rather than an automated legal advisor. It must function purely as a support mechanism under the direct, active supervision of a licensed attorney who reviews and approves all final outputs, thereby preserving compliance with professional standards.   
+
+AI Hallucinations, Malpractice, and Product Liability
+The deployment of generative AI algorithms introduces significant technical and operational risks, most notably "hallucinations"—the generation of fabricated, incorrect, or entirely fictitious data that appears legitimate.   
+
+In the legal and procurement sectors, AI hallucinations have led to severe court sanctions. For example, attorneys have faced major fines and public sanctions for submitting briefs containing fabricated legal citations generated by AI assistants.   
+
+If the Implore codebase generates inaccurate procurement bids, quotes false regulatory compliance metrics, or includes non-existent legal authorities in its outputs, users relying on those outputs can face disqualification, loss of government contracts, or severe financial damages.
+
+From a liability standpoint, the legal system divides software failures into products and services:
+
+Product Liability: Under the Uniform Commercial Code (UCC), mass-produced, off-the-shelf software is classified as a "good," subjecting the developer to strict product liability standards for design defects or warning failures.   
+
+Service Negligence: Conversely, highly customized software specifically designed for an individual client is classified as a "service," subjecting the developer to a standard negligence framework where the plaintiff must prove a breach of reasonable care.   
+
+The Section 230 Limitation: Developers cannot rely on Section 230 of the Communications Decency Act to shield themselves from liability for AI-generated outputs. While Section 230 protects online platforms from liability for third-party user-generated content, it does not immunize a platform when it acts as an active publisher or creator of its own content. Because generative AI systems create novel content rather than passively hosting third-party data, the developer is legally classified as the author of the output and faces full liability for any resulting harm.   
+
+Legal Wrappers, Disclaimers, and Contractual Indemnification
+To manage these liabilities, developers must implement a robust "legal wrapper" around the Implore codebase. This involves structuring contractual terms, disclaimers, and indemnification provisions to allocate risk away from the development entity.
+
+The essential components of this liability mitigation framework are structured in the table below:
+
+Risk Category	Technical Exposure	Legal Precedent / Statute	Mitigation Protocol
+Unauthorized Practice of Law	
+Automated drafting of contract terms and regulatory analyses 
+
+K.S.A. § 50-6,142 (KCPA UPL restriction)	
+Mandatory "Human-in-the-Loop" (attorney) review before submission 
+
+Generative AI Hallucinations	
+Fictitious citations, incorrect FAR guidelines, or false data 
+
+Professional Negligence / Tort Law 
+
+Strict disclaimers of accuracy; conspicuous warning labels on all outputs 
+
+Section 230 Exposure	
+AI-generated recommendations causing financial or contractual losses 
+
+47 U.S.C. § 230 (Loss of immunity for active publishers) 
+
+Absolute exclusion of consequential damages in End User License Agreements (EULA) 
+
+Third-Party Data Breaches	
+Ingestion of sensitive proprietary or classified government data 
+
+Privacy statutes & common-law data breach standards 
+
+Strict bilateral indemnification clauses in vendor and client agreements 
+
+Product Defect Claims	
+Algorithmic errors leading to defective procurement submissions 
+
+Strict Product Liability / UCC 
+
+Classification of the software as a service rather than a good; limit remedies to fee refunds 
+
+  
+Bilateral indemnification provisions are highly effective tools for managing these risks. These clauses legally bind the user to compensate the developer for any losses, legal fees, or damages arising from the misuse of the software, regulatory non-compliance, or intellectual property disputes.   
+
+By establishing these risk-allocation parameters on the front end, the development entity secures essential financial protection and holds users accountable for validating AI-generated outputs before they are formally submitted to the federal government.   
+
+Strategic Structural Model and Actionable Implementation Roadmap
+To deploy the Implore codebase safely while minimizing IRS audit risk, avoiding UPL violations under Kansas law, and ensuring secure SAM.gov integration, a bifurcated (dual-entity) model is recommended. This framework separates commercial operational liability from the religious tax-exempt structure.
+
+                  +----------------------------------------------+
+                  |               Religious Body                 |
+                  |     (Registered 501(c)(3) Entity or Church)   |
+                  +----------------------+-----------------------+
+                                         |
+                                         | Controls / Direct Affiliation
+                                         v
+                  +----------------------------------------------+
+                  |        Taxable Operational Subsidiary        |
+                  |     (Kansas LLC / Commercial Legal Wrapper)   |
+                  +----------------------+-----------------------+
+                                         |
+                                         | Licenses Implore Codebase
+                                         v
+                  +----------------------------------------------+
+                  |           SAM.gov System Account             |
+                  | (REST API, Static IP, x-api-key Authentication) |
+                  +----------------------------------------------+
+Phase 1: Dual-Entity Structuring and Corporate Formation
+Incorporate the Religious Body: File a Not-for-Profit Corporation Articles of Incorporation (Form IA) with the Kansas Secretary of State with a $20.00 state fee.
+
+While Kansas permits a minimum of one (1) director for a nonprofit under K.S.A. § 17-6301, the board should recruit at least three (3) unrelated directors to ensure compliance with standard IRS expectations for tax-exempt status.
+
+Manually insert specific IRS-approved language dedicating assets permanently to religious purposes and prohibiting private inurement.
+
+Apply for formal 501(c)(3) tax-exempt status by submitting Form 1023 to the IRS. Avoid relying strictly on the automatic "508" exemption to preserve a clear presumption of tax-exempt status and minimize audit risks for donors.   
+
+Form the Operational Subsidiary (The Legal Wrapper): Establish a separate, domestic Kansas Limited Liability Company (LLC) to act as the commercial vehicle for the Implore codebase.
+
+File Articles of Organization online through the Kansas Secretary of State Business Filing portal for a highly reduced, early-2026 fee of $85.00.
+
+Establish the parent religious organization as the majority member or sole owner of the LLC to ensure doctrinal alignment and structural control.   
+
+Secure a separate EIN for both the religious organization and the LLC.
+
+Reasoning: Conducting software licensing, SaaS sales, and advanced commercial technical operations directly within a church structure triggers massive Unrelated Business Income Tax (UBIT) under Form 990-T. Because Form 990-T is subject to public disclosure, this would expose the church’s financial records to the public, undermining its financial privacy. Furthermore, a software development enterprise cannot satisfy the IRS's 14-point test for a church, as it lacks a physical, self-associating congregation.   
+
+By utilizing a dual-entity model, the commercial LLC serves as a "legal wrapper" that licenses the software, executes client contracts, and absorbs operational, product, and technical liability. All profits from the LLC are then passed to the parent religious organization as passive, tax-free dividend distributions, which are exempt from UBIT under IRC Section 512(b).   
+
+Phase 2: Secure SAM.gov Technical Integration
+Appoint the Entity Administrator: Draft the formal designation letter on the corporate letterhead of the registered entity.   
+
+Ensure the letter contains the legal name, UEI, physical address, and exact Login.gov account details of the administrator.   
+
+The letter must be signed by an authorized officer in the presence of a notary public and scanned.   
+
+Create a service ticket on FSD.gov under "SAM: Notarized Letter," upload the scanned PDF, and mail the physical original to the Federal Service Desk facility in London, Kentucky.   
+
+Establish the System Account and API Bridge: Request a dedicated SAM.gov System Account with "Read Public" or "Read Sensitive" permissions, depending on the operational requirements of the Implore codebase.   
+
+Register the static IP addresses from which the Implore servers will make API requests in the SAM.gov system profile.   
+
+Enforce Base64-encoded Basic Authentication combined with the x-api-key header for all Entity Management API requests.   
+
+Configure the Implore codebase to perform automated password and API key rotations every 90 days to comply with federal terms of use.   
+
+Avoid any web scraping, data mining, or third-party scraping actors, as unauthorized data extraction violates the CFAA and will result in the immediate revocation of access.   
+
+Phase 3: Technical Risk Mitigation and UPL Defense
+Implement Legal Disclaimers and Terms of Service: Integrate a mandatory user agreement into the Implore platform.
+
+Conspicuously declare that the software provides data-processing and document-assembly services only, and does not provide legal representation, legal advice, or professional consulting services.   
+
+Require users to review and verify all generated documents, contract proposals, and compliance metrics before submitting them to any federal agency.   
+
+Embed a comprehensive indemnification clause requiring users to indemnify, defend, and hold the software entity harmless from any third-party claims or damages resulting from inaccurate outputs, AI hallucinations, or regulatory non-compliance.   
+
+Enforce a Human-in-the-Loop Protocol: To prevent violations of Kansas's strict UPL regulations (K.S.A. § 50-6,142) and protect the entity from unconscionable practice liabilities under the KCPA, structure the system workflow to require a professional human review (conducted by a licensed attorney or a certified contracting specialist) before any generated contract, appeal, or legal filing is formally finalized or executed.

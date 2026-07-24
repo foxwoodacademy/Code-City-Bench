@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "codex": "^0.2.3",
+    "requirements": "^3.0.0"
+  }
+}

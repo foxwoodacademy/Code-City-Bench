@@ -1,0 +1,17 @@
+{
+  "title": "Service Manifest",
+  "type": "object",
+  "required": ["service", "encrypted_key", "meta"],
+  "properties": {
+    "service": { "type": "string" },
+    "encrypted_key": { "type": "string" },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "expires_at": { "type": "string", "format": "date-time" },
+        "provider": { "type": "string" },
+        "status": { "enum": ["active", "rotating", "expired"] }
+      }
+    }
+  }
+}

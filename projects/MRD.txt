@@ -1,0 +1,5 @@
+- [ ] Manually document project code-mentor
+- [ ] Manually document project equinex
+- [ ] Manually document project implore
+- [ ] Manually document project tools
+- [ ] Manually document project vertical-ai

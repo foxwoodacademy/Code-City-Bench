@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "name": "vertical_local",
+    "path": "/storage/emulated/0/RootBase/vertical_local",
+    "languages": {
+      "python": 8,
+      "html": 1,
+      "javascript": 3,
+      "css": 1
+    },
+    "entrypoints": [
+      "app.py",
+      "run.sh",
+      "app.py"
+    ],
+    "package_json": false,
+    "requirements": 5,
+    "readme_excerpt": "Vertical Local Wrapper\n\nA minimal, model-agnostic FastAPI wrapper to run LLM calls locally or behind an API key. Supports OpenAI and Huggingface Inference API out of the box. Use environment variables or pass api_key per-request.\n\nQuickstart (local):",
+    "last_modified": "2026-05-20T16:54:02.612999"
+  },
+  "runbook": {
+    "commands": [
+      "./run.sh",
+      "python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt && python main.py",
+      "python app.py",
+      "python app.py"
+    ],
+    "env": [],
+    "notes": []
+  },
+  "bard_note": "Has Python deps. Hope they pinned versions. Polyglot chaos detected. Enjoy merging contexts. (Bardildo: harsh truth incoming)"
+}

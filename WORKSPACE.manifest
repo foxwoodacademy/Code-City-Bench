@@ -1,0 +1,46 @@
+# WORKSPACE.manifest
+# SOURCE: /storage/emulated/0/RootBase/WORKSPACE.manifest
+# AUTHOR: foxwoodacademy
+# PURPOSE: Single source of truth for directory structure and critical paths.
+
+VERSION: 1.0
+LAST_VALIDATED: 2026-06-08
+
+CORE:
+  motherbrain_entrypoint: /storage/emulated/0/RootBase/Loosies/MOTHERBRAIN-1.sh
+  workspace_manifest: /storage/emulated/0/RootBase/WORKSPACE.manifest
+  configuration_schema: /storage/emulated/0/RootBase/config_juicer.yaml
+
+VAULT_SYSTEM:
+  concierge_multi_model: /storage/emulated/0/RootBase/Official-Vertical-AI-Boardroom/concierge.py
+  valet_orchestrator: /storage/emulated/0/RootBase/src/swarm/molt/sovereign_valet.py
+  vault_storage: /storage/emulated/0/RootBase/src/swarm/vault/sovereign_vault.py
+  config_loader: /storage/emulated/0/RootBase/scripts/utilities/config_juicer.py
+
+DAEMONS:
+  higgins_shipping: /storage/emulated/0/RootBase/scripts/utilities/higgins_daemon.py
+  routing_monitor: /storage/emulated/0/RootBase/scripts/utilities/monitor_routing.py
+  feedback_aggregator: /storage/emulated/0/RootBase/scripts/utilities/feedback_aggregator.py
+
+SHIPPING_PIPELINE:
+  front_desk_handler: /storage/emulated/0/RootBase/mrs_higgins_saas/front_desk_lady.py
+  packages_directory: /storage/emulated/0/RootBase/mrs_higgins_saas/packages/
+  state_directory: /storage/emulated/0/RootBase/mrs_higgins_saas/state/
+  logs_directory: /storage/emulated/0/RootBase/mrs_higgins_saas/logs/
+
+DESIGNATED_PATHS:
+  utilities: /storage/emulated/0/RootBase/scripts/utilities/
+  integrations: /storage/emulated/0/RootBase/scripts/integrations/
+  cli_tools: /storage/emulated/0/RootBase/scripts/cli/
+  config_schemas: /storage/emulated/0/RootBase/config/
+  documentation: /storage/emulated/0/RootBase/docs/
+
+DEPRECATED:
+  - /storage/emulated/0/RootBase/mrs-higgins-unified/
+  - /storage/emulated/0/RootBase/MrsHiggins_Unified/
+
+RULES:
+  - All new Python files must include AUTHOR, SOURCE path, and PURPOSE in headers
+  - No pseudo-code, placeholders, or LARP in production
+  - Register new tools in this manifest BEFORE first use
+  - No hard-coded secrets - use config_juicer vault system only

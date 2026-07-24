@@ -1,0 +1,11 @@
+
+[2026-06-02T16:38:01.685638] REGION: Metro Atlanta, GA
+INTEL: Sudden 34% spike in pre-foreclosure listings and institutional inventory dumps.
+FIELD ORDER: Deploy cash-buyer marketing campaigns to this zip code cluster immediately.
+
+[2026-06-02T16:47:59.688676] REGION: Metro Atlanta, GA
+INTEL: Sudden 34% spike in pre-foreclosure listings and institutional inventory dumps.
+FIELD ORDER: Deploy cash-buyer marketing campaigns to this zip code cluster immediately.
+[2026-06-04T10:52:11.863402+00:00] REGION: Metro Atlanta, GA
+INTEL: Spike in pre-foreclosure listings and inventory pressure.
+FIELD ORDER: Review local acquisition capacity and constraints.

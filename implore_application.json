@@ -1,0 +1,21 @@
+{
+  "sf424": {
+    "sf424": {
+      "applicant_name": "ModMind Intelligence",
+      "project_title": "Proposal for Engineering for Civil Infrastructure",
+      "federal_identifier": "PD-19-073Y",
+      "cfda_number": "47.041",
+      "proposed_start_date": "2026-10-01",
+      "estimated_funding": 500000
+    },
+    "sf424a": {
+      "budget_categories": {
+        "personnel": 250000,
+        "equipment": 100000,
+        "supplies": 50000,
+        "indirect_costs": 100000
+      }
+    }
+  },
+  "narrative": "Fact-based technical approach for Engineering for Civil Infrastructure (governance sector) (Mocked)."
+}

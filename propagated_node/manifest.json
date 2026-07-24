@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "name": "propagated_node",
+    "path": "/storage/emulated/0/RootBase/propagated_node",
+    "languages": {
+      "python": 12,
+      "javascript": 1
+    },
+    "entrypoints": [],
+    "package_json": false,
+    "requirements": 0,
+    "readme_excerpt": "",
+    "last_modified": "2026-05-20T16:54:02.408999"
+  },
+  "runbook": {
+    "commands": [],
+    "env": [],
+    "notes": []
+  },
+  "bard_note": "No obvious entrypoint. Bold choice. Polyglot chaos detected. Enjoy merging contexts. (Bardildo: harsh truth incoming)"
+}

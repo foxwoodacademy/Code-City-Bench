@@ -1,0 +1,30 @@
+<h3>Overview and Purpose</h3>
+<p>The code block provided is a simple **Python 3 script** named <code>Cognitive_bypass.py</code>. The primary purpose of this script is straightforward: to print three informational lines to the user's terminal. It serves as a basic **confirmation and documentation tool**, verifying its own creation, location, and execution command.</p>
+
+<h3>Step-by-Step Breakdown</h3>
+<ol>
+    <li><strong>Shebang Line:</strong> <code>#!/usr/bin/env python3</code>
+        <ul>
+            <li>This is a "shebang" or "hashbang." On Linux/Unix-like systems (like Android's terminal environments), this line tells the operating system which interpreter should be used to execute the file—in this case, <code>python3</code>. This allows the file to be run directly as an executable (e.g., <code>./Cognitive_bypass.py</code>) rather than needing the <code>python3</code> command before it.</li>
+        </ul>
+    </li>
+    <li><strong>File Creation Confirmation:</strong> <code>print("COGNITIVE BYPASS - FILE CREATED")</code>
+        <ul>
+            <li>This line calls Python's built-in <code>print()</code> function to output the string "COGNITIVE BYPASS - FILE CREATED" to the standard output (the terminal). It acts as a friendly confirmation that the script has started running.</li>
+        </ul>
+    </li>
+    <li><strong>Self-Location Documentation:</strong> <code>print("This file is at: /storage/emulated/0/cognitive_bypass/cognitive_bypass.py")</code>
+        <ul>
+            <li>This line prints a string providing the **absolute file path** where the script is expected to be found. This is a crucial piece of internal documentation, especially in mobile or custom environments where file paths can be complex.</li>
+        </ul>
+    </li>
+    <li><strong>Execution Instruction:</strong> <code>print("Run with: python3 cognitive_bypass.py")</code>
+        <ul>
+            <li>The final line prints the exact command needed to run the script using the Python 3 interpreter. This is a helpful reminder for users who might forget the required command or interpreter version.</li>
+        </ul>
+    </li>
+</ol>
+<p><strong>Best Practice:</strong> While <code>print()</code> is excellent for simple debugging, for more complex logs in a production environment, you should use Python's built-in <code>logging</code> module for better control over log levels and output destinations.</p>
+
+<h3>Mentorship Challenge</h3>
+<p>Modify the script to be more robust. Instead of hardcoding the file path, use Python's <code>os</code> or <code>pathlib</code> module to dynamically detect and print the actual current directory of the script when it runs. Use <code>os.getcwd()</code> or <code>pathlib.Path(__file__).parent</code> to find the true location, ensuring the script documentation is correct even if the file is moved to a new folder on your Android device.</p>

@@ -1,0 +1,46 @@
+Telegram bridge setup for CodeCity / ZeroClaw
+
+1. Create your real env file from the example:
+cp ~/.telegram_bridge.env.example ~/.telegram_bridge.env
+
+2. Edit it:
+nano ~/.telegram_bridge.env
+
+3. Put in:
+TELEGRAM_BOT_TOKEN=your_bot_token_here
+TELEGRAM_CHAT_ID=your_chat_id_here
+TELEGRAM_POLL_ENABLED=1
+
+4. Start the bridge:
+sh ~/telegram_bridge_ctl.sh restart
+
+5. Check status:
+cat ~/.telegram_bridge_status.json
+
+6. Start the whole habitat:
+sh ~/start_all_now.sh
+
+What it does:
+- sends new suggestions.txt lines to Telegram
+- polls Telegram replies from your authorized chat
+- appends Telegram replies back into suggestions.txt
+- exposes bridge status inside CodeCity
+- accepts Telegram commands for ZeroClaw
+
+Telegram commands:
+- /help
+- /status
+- /agents
+- /suggestions
+- /jobs
+- /lead source | contact | need
+- /queue
+- /offer church Wellington church
+- /reply your message here
+- /scout example.com
+
+CodeCity:
+http://127.0.0.1:8080/index.html?v=10
+
+Easter egg:
+- tap the "night cycle" / pulse pill 5 times quickly

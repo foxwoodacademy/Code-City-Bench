@@ -1,0 +1,45 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import json
+import http.server
+import socketserver
+import sys
+from pathlib import Path
+
+LIB_DIR = Path(__file__).resolve().parents[1] / "lib"
+if str(LIB_DIR) not in sys.path:
+    sys.path.insert(0, str(LIB_DIR))
+
+from state_engine import State
+
+PORT = 8765
+
+class Handler(http.server.BaseHTTPRequestHandler):
+    def do_POST(self):
+        if self.path == "/trigger":
+            length = int(self.headers.get('Content-Length', 0))
+            body   = self.rfile.read(length)
+            try:
+                data = json.loads(body)
+            except json.JSONDecodeError:
+                self.send_response(400); self.end_headers()
+                self.wfile.write(b'{"error":"bad json"}')
+                return
+            S = State()
+            S.trigger(data.get("event"), data.get("payload"))
+            if data.get("mode"):
+                S.data["mode"] = data["mode"]
+                S.save()
+            self.send_response(200)
+            self.end_headers()
+            self.wfile.write(b'{"status":"ok"}')
+        else:
+            self.send_response(404); self.end_headers()
+
+    def log_message(self, format, *args):
+        pass  # silent
+
+with socketserver.TCPServer(("0.0.0.0", PORT), Handler) as httpd:
+    print(f"Webhook listening on :{PORT}")
+    httpd.serve_forever()

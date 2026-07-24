@@ -1,0 +1,23 @@
+# 🤖 AI Quick Rundown (QRD.txt)
+# Status: Phase 1 - UI/UX Transformation
+
+## [ ] PHASE 1: THE COMMAND CONSOLE (UI/UX)
+- [ ] [DONE] Establish "ModMind" Design Language (CSS Variables, Glassmorphism, Obsidian Palette).
+- [ ] [DONE] Refactor App.jsx into a Dashboard Grid layout.
+- [ ] [ ] Integrate "Boardroom" mode into the Unified App.
+- [ ] [ ] Implement high-fidelity telemetry (Websocket status, Swarm activity pulses).
+- [ ] [ ] Add "Concierge" settings (Collapsible/Elegant configuration).
+
+## [ ] PHASE 2: ONE-SHOT EXECUTION (OPERATIONAL)
+- [ ] [ ] Refactor shell scripts (`run_boardroom.sh`, etc.) for silent backgrounding.
+- [ ] [ ] Optimize Termux Widget for zero-friction, single-tap launch.
+- [ ] [ ] Automate environment/dependency checks during startup.
+
+## [ ] PHASE 3: THE AUDIT (INTEGRITY)
+- [ ] [ ] Run `smell_sniffer` on all new/modified frontend/backend code.
+- [ ] [ ] Run `truthsleuth` to monitor real-time stability.
+- [ ] [ ] Implement automated testing for the "Boardroom" logic loop.
+
+## [ ] PHASE 4: FULL STACK INTEGRATION (SCALE)
+- [ ] [ ] Verify seamless data flow: Loom/Whorl -> Swarm -> Boardroom -> Strategy Output.
+- [ ] [ ] Ensure "Molt" engine can trigger automated UI/logic refinements based on usage metrics.

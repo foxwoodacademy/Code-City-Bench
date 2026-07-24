@@ -1,0 +1,3989 @@
+/storage/emulated/0/RootBase
+├── ${ROOTBASE_LOGS}
+│   └── vibe
+│       └── session
+├── Access-Dashboard
+│   ├── App.tsx
+│   ├── README.md
+│   ├── components
+│   │   ├── AIStudioView.tsx
+│   │   ├── ApiKeyManager.tsx
+│   │   ├── AssistantView.tsx
+│   │   ├── CameraInput.tsx
+│   │   ├── Composer.tsx
+│   │   ├── ConversationLog.tsx
+│   │   ├── DashboardView.tsx
+│   │   ├── ErrorBoundary.tsx
+│   │   ├── GuidedAssistantView.tsx
+│   │   ├── Icons.tsx
+│   │   ├── LiveAnalysisView.tsx
+│   │   ├── LiveCameraView.tsx
+│   │   ├── ParticipantsView.tsx
+│   │   ├── PermissionsGate.tsx
+│   │   ├── PhilosophyView.tsx
+│   │   ├── ProView.tsx
+│   │   ├── SettingsView.tsx
+│   │   ├── Sidebar.tsx
+│   │   ├── TechnicalView.tsx
+│   │   └── studio
+│   ├── context
+│   │   └── AppContext.tsx
+│   ├── data
+│   │   └── context.ts
+│   ├── hooks
+│   │   └── useSpeechRecognition.ts
+│   ├── index.html
+│   ├── index.tsx
+│   ├── metadata.json
+│   ├── package.json
+│   ├── services
+│   │   ├── api.ts
+│   │   └── contextManager.ts
+│   ├── tsconfig.json
+│   ├── types.ts
+│   ├── utils
+│   │   ├── audio.ts
+│   │   └── handleError.ts
+│   └── vite.config.ts
+├── Agent-Bleak
+│   ├── Ask
+│   │   ├── Agent
+│   │   ├── Persona
+│   │   └── Scout
+│   ├── MRD.txt
+│   ├── _agent_state
+│   │   ├── agent_prompt_generator.py
+│   │   ├── conversation_log.txt
+│   │   └── env_state.json
+│   ├── agent_bootstrap.py
+│   └── agent_state.json
+├── AskHole
+│   └── Docs
+│       ├── AskHole_FinalDocs-1.docx
+│       ├── AskHole_FinalDocs.docx
+│       ├── AskHole_For_Mike.html
+│       ├── AskHole_Launch_Checklist.docx
+│       ├── AskHole_Legal.docx
+│       ├── AskHole_Onboarding-1.docx
+│       ├── AskHole_Onboarding.docx
+│       ├── AskHole_Outreach_Emails.docx
+│       ├── AskHole_ProductHunt_Kit-1.docx
+│       ├── AskHole_ProductHunt_Kit.docx
+│       ├── Engineered_Subversion.pptx
+│       ├── askhole.json
+│       └── askhole.jsx
+├── Askhole-Too-Also
+│   ├── AI_Excuse_Engineering_Overview.png
+│   ├── AskHole_Onboarding.docx
+│   ├── AskHole_ProductHunt_Kit.docx
+│   ├── Engineered_Subversion.pdf
+│   ├── Engineered_Subversion.pptx
+│   ├── V3
+│   │   ├── README.md
+│   │   ├── askhole.py
+│   │   ├── dispatchers
+│   │   ├── economics.json
+│   │   ├── outreach
+│   │   └── verticals
+│   └── config.yaml
+├── CaptCoder
+│   ├── v1
+│   │   ├── README.md
+│   │   ├── index.html
+│   │   ├── package.json
+│   │   ├── src
+│   │   ├── tsconfig.json
+│   │   └── vite.config.ts
+│   └── v2
+│       ├── README.md
+│       ├── index.html
+│       ├── package.json
+│       ├── src
+│       ├── tsconfig.json
+│       └── vite.config.ts
+├── Code-City-RR
+├── CodeCity-Bench
+│   ├── README.md
+│   ├── V0.1
+│   │   ├── README.md
+│   │   ├── docs
+│   │   ├── src
+│   │   └── tests
+│   ├── docs
+│   │   ├── ROADMAP_PATHS.md
+│   │   ├── SOFTWARE_3.0_TOPOLOGICAL_COMPRESSION_STUB.md
+│   │   └── workbench_concept.html
+│   ├── src
+│   │   ├── api
+│   │   ├── core
+│   │   └── visualizers
+│   ├── tests
+│   │   ├── __pycache__
+│   │   ├── stress_test.py
+│   │   ├── test_complexity_scanner.py
+│   │   ├── test_loom.py
+│   │   ├── test_scribe_scanner.py
+│   │   ├── test_security_scanner.py
+│   │   └── test_telemetry_bridge.py
+│   ├── visualizer_config.toml
+│   └── workbench.sh
+├── CodeMentor-CityBridge
+│   ├── README.md
+│   ├── bridge.py
+│   ├── bridge.yaml
+│   ├── manifest.json
+│   ├── runbook.txt
+│   ├── start.sh
+│   └── stop.sh
+├── CodeMentor-MVP
+│   ├── CodeMentor_MVP
+│   │   ├── QRD.html
+│   │   ├── demo_explanation.html
+│   │   ├── qrd_codementor.html
+│   │   └── src
+│   ├── README.md
+│   ├── analytics
+│   ├── backend
+│   │   ├── bin
+│   │   ├── cache
+│   │   └── lib
+│   ├── bin
+│   │   ├── mentor
+│   │   └── package-saas
+│   ├── cache
+│   ├── config
+│   ├── frontend
+│   │   ├── index.html
+│   │   ├── src
+│   │   └── vite.config.ts
+│   ├── lib
+│   │   ├── ai_explain.py
+│   │   └── qrd_bridge.js
+│   ├── manifest.json
+│   ├── runbook.txt
+│   └── shared
+├── CodeMentorMVP
+│   └── cache
+├── CodeMentor_MVP
+│   └── CodeMentor_MVP
+│       ├── QRD.html
+│       ├── demo_explanation.html
+│       ├── qrd_codementor.html
+│       └── src
+├── Codementor-SaaS
+│   ├── README.md
+│   ├── bin
+│   │   └── codementor
+│   ├── docker
+│   │   └── Dockerfile
+│   ├── requirements.txt
+│   ├── src
+│   │   ├── __pycache__
+│   │   └── main.py
+│   └── web_demo
+│       └── public
+├── Dockerfile
+├── Elevated-Locally
+│   ├── concept.py
+│   ├── manifest.json
+│   └── runbook.txt
+├── Hermes
+│   ├── hermes.sh
+│   ├── higgins_adapter.py
+│   ├── nostr_poster.py
+│   ├── thoth.py
+│   ├── thothImprovementEngine.js
+│   ├── thoth_adapters.py
+│   ├── thoth_core.py
+│   └── thoth_improvement_engine.py
+├── Higgs
+│   ├── MRS_HIGGINS_SETUP.md
+│   ├── askhole.json
+│   ├── hotseat.json
+│   └── vertical_ai.json
+├── Hot-Seat
+├── Hotseat-Too
+│   ├── manifest.json
+│   ├── memory.db
+│   ├── runbook.txt
+│   └── sessions.log
+├── Implore
+│   ├── IMPLORE_SIDECAR_DOCS.md
+│   ├── MRD.txt
+│   ├── SAFETY_AND_SCOPE.md
+│   ├── SF424_Application.pdf
+│   ├── __pycache__
+│   │   ├── auditor.cpython-313.pyc
+│   │   ├── ecosystem_bridge.cpython-313.pyc
+│   │   ├── generator.cpython-313.pyc
+│   │   ├── governance.cpython-313.pyc
+│   │   ├── grants_gov_client.cpython-313.pyc
+│   │   ├── implore_scanner_profile.cpython-313.pyc
+│   │   ├── implore_scanner_walker.cpython-313.pyc
+│   │   ├── ingestor.cpython-313.pyc
+│   │   ├── matcher.cpython-313.pyc
+│   │   ├── persistence.cpython-313.pyc
+│   │   ├── regional_sources.cpython-313.pyc
+│   │   ├── sf424_filler.cpython-313.pyc
+│   │   └── workflow.cpython-313.pyc
+│   ├── api_service.py
+│   ├── auditor.py
+│   ├── ecosystem_bridge.py
+│   ├── generator.py
+│   ├── governance.py
+│   ├── grants_gov_client.py
+│   ├── i18n.py
+│   ├── implore-action.yml
+│   ├── implore.py
+│   ├── implore_application.json
+│   ├── implore_data.db
+│   ├── implore_scanner_profile.py
+│   ├── implore_scanner_walker.py
+│   ├── implore_sidecar.py
+│   ├── ingestor.py
+│   ├── matcher.py
+│   ├── mission_velocity.py
+│   ├── persistence.py
+│   ├── regional_sources.py
+│   ├── response_schema.json
+│   ├── sf424_filler.py
+│   ├── simulate_halt.py
+│   ├── syntax_ai_sim.py
+│   ├── test_scanner.py
+│   ├── test_security.py
+│   └── workflow.py
+├── Kimi-Code
+│   ├── README.md
+│   ├── bridges
+│   │   ├── __init__.py
+│   │   ├── api_server.py
+│   │   ├── codementor_bridge.py
+│   │   └── rootbase_sync.py
+│   ├── config.json
+│   ├── core
+│   │   ├── __init__.py
+│   │   ├── api_bridge.py
+│   │   ├── challenge_generator.py
+│   │   ├── progression_engine.py
+│   │   ├── six_hats.py
+│   │   ├── skill_tree.py
+│   │   └── state_engine.py
+│   ├── data
+│   ├── kimi_code.py
+│   ├── modules
+│   │   ├── __init__.py
+│   │   ├── challenges
+│   │   ├── difficulty
+│   │   ├── hats
+│   │   └── languages
+│   ├── requirements.txt
+│   ├── setup.sh
+│   ├── templates
+│   │   ├── challenge_template.html
+│   │   ├── dashboard_template.html
+│   │   └── report_template.html
+│   └── tests
+│       ├── __init__.py
+│       ├── test_hats.py
+│       ├── test_progression.py
+│       └── test_state.py
+├── Kimi-Code-v1.0-Fixed
+│   └── Kimi-Code
+│       ├── README.md
+│       ├── bridges
+│       ├── config.json
+│       ├── core
+│       ├── data
+│       ├── kimi_code.py
+│       ├── modules
+│       ├── requirements.txt
+│       ├── setup.sh
+│       ├── templates
+│       └── tests
+├── Kimi-CodeMentor-MVP
+│   ├── api_bridge.py
+│   ├── challenge_generator.py
+│   ├── kimi_code.py
+│   ├── progression_engine.py
+│   ├── six_hats.py
+│   ├── skill_tree.py
+│   └── state_engine.py
+├── Loosies
+│   ├── 1771294402525.png
+│   ├── 1771294697265.png
+│   ├── 1771295191801.png
+│   ├── 20260523_161922.jpg
+│   ├── 20260603_231155.jpg
+│   ├── AGENCY_PROTOCOL.md
+│   ├── AI_Excuse_Engineering_Overview.png
+│   ├── App.tsx.txt
+│   ├── Backup-codes-foxwoodadmin.txt
+│   ├── Bedtime_for_the_Gods.txt
+│   ├── CODE_CITY_FOCUS_GROUP_QUESTIONNAIRE.md
+│   ├── Engineered_Subversion.pdf
+│   ├── FUCKIT.txt
+│   ├── Fixing_AskHole_AI_Onboarding_and_Launch.m4a
+│   ├── Hotseat.txt
+│   ├── Launch_Day__Mad_Genius.mp4
+│   ├── MODMIND_CODE_CITY_INTEGRATION_PLAN.md
+│   ├── MOTHERBRAIN-1.sh
+│   ├── MY_WHOLE_SHIT_kinda.txt
+│   ├── OLLAMA_SYNTAX_SETUP_COMPLETE.md
+│   ├── Offensive_Intelligence_300_techniques,_tools_and_tips_to_know_everything.pdf
+│   ├── QRD.html
+│   ├── README (1).md
+│   ├── README.md
+│   ├── README2.md
+│   ├── Research Report.md
+│   ├── RootBase_Sovereign_Architecture.pdf
+│   ├── Screenshot_20250902_144317_Chrome.jpg
+│   ├── Sovereign_Agentic_Ecosystem_Diagram.png
+│   ├── TELEGRAM_BRIDGE_SETUP.txt
+│   ├── TONIGHT_STOPPING_POINT.txt
+│   ├── Terminal Text (1).txt
+│   ├── Terminal Text (2).txt
+│   ├── Terminal Text.txt
+│   ├── Terminal Text4.txt
+│   ├── Terminal Text_2.txt
+│   ├── The_Codebase_Scrapbook.mp4
+│   ├── Turning_Crashed_Android_AI_Into_B2B_Products.m4a
+│   ├── _storage_emulated_0_code_city_code_city_debug_v2.py
+│   ├── _storage_emulated_0_loosies_smart_coder2.py
+│   ├── adbkey
+│   ├── adbkey.pub
+│   ├── advanced_code_bundler.py
+│   ├── advanced_code_bundler_pdf.py
+│   ├── advanced_code_bundler_pdf_2.py
+│   ├── android_code_city.html
+│   ├── android_code_city.py
+│   ├── authorized_keys
+│   ├── auto_code_extractor.py
+│   ├── auto_code_extractor2.py
+│   ├── bluetooth_content_share-1.html
+│   ├── bluetooth_content_share-2.html
+│   ├── bluetooth_content_share-3.html
+│   ├── bluetooth_content_share-4.html
+│   ├── bluetooth_content_share-5.html
+│   ├── bluetooth_content_share.html
+│   ├── boardroom_bridge.py
+│   ├── boardroom_launch.sh
+│   ├── boardroom_minimal.html
+│   ├── brainbleed.html
+│   ├── brainbleed_v2_fixed.html
+│   ├── buggy_code.py
+│   ├── builder_dump.txt
+│   ├── chat_code_capture.py
+│   ├── chat_code_capture_save.py
+│   ├── claudaciity.PDF
+│   ├── code_bundler_v3.py
+│   ├── code_city.html
+│   ├── code_city_apocalypse.html
+│   ├── code_city_apocalypse.py
+│   ├── code_city_apocalypse_meatsuit_edition.html
+│   ├── code_city_apocalypse_mvp.html
+│   ├── code_city_apocalypse_v1_1.py
+│   ├── code_city_apocalypse_v1_2.cpython-313.pyc
+│   ├── code_city_apocalypse_v1_2.py
+│   ├── code_city_apocalypse_v1_2_2.cpython-313.pyc
+│   ├── code_city_apocalypse_v1_2_2.py
+│   ├── code_city_apocalypse_v1_4.cpython-313.pyc
+│   ├── code_city_apocalypse_v1_4.py
+│   ├── code_city_apocalypse_v2.cpython-313.pyc
+│   ├── code_city_apocalypse_v2.py
+│   ├── code_city_apocalypse_v3.cpython-313.pyc
+│   ├── code_city_apocalypse_v3.py
+│   ├── code_city_apocalypse_v4.py
+│   ├── code_city_backend.py
+│   ├── code_city_debug.cpython-313.pyc
+│   ├── code_city_debug.py
+│   ├── code_city_integration.py
+│   ├── code_city_retro_visualization.html
+│   ├── code_city_server.py
+│   ├── code_city_static.cpython-313.pyc
+│   ├── code_city_static.py
+│   ├── code_city_v2.html
+│   ├── code_fixer.py
+│   ├── code_gamification.py
+│   ├── code_miner.py
+│   ├── code_miner_fixed.py
+│   ├── code_miner_fixed2.py
+│   ├── code_organizer.py
+│   ├── code_processor.py
+│   ├── code_visualizer.py
+│   ├── codementor_dump.txt
+│   ├── demo_explanation.html
+│   ├── equinex_v1.html
+│   ├── equinex_v1_1.html
+│   ├── equinex_v1_2.html
+│   ├── equinex_v2 (1).html
+│   ├── equinex_v2.html
+│   ├── equinex_v3.html
+│   ├── evolution.html
+│   ├── gap_wall.html
+│   ├── gemini-client-error-generateContent-api-2026-05-22T22-49-55-138Z.json
+│   ├── gemini-client-error-generateContent-api-2026-05-24T11-28-25-160Z.json
+│   ├── gemini-client-error-generateContent-api-2026-05-24T17-32-14-922Z.json
+│   ├── gemini-client-error-generateContent-api-2026-05-29T04-31-52-643Z.json
+│   ├── gemini-client-error-generateJson-api-2026-05-22T15-36-07-329Z.json
+│   ├── gemini-client-error-generateJson-api-2026-05-22T15-38-35-767Z.json
+│   ├── gemini-client-error-generateJson-api-2026-05-22T18-12-20-203Z.json
+│   ├── gemini-client-error-generateJson-api-2026-05-22T21-54-03-283Z.json
+│   ├── gemini-client-error-generateJson-api-2026-05-22T21-57-01-437Z.json
+│   ├── gemini-client-error-generateJson-api-2026-05-22T22-03-08-142Z.json
+│   ├── gemini-client-error-generateJson-api-2026-05-22T22-10-18-003Z.json
+│   ├── gemini-client-error-generateJson-api-2026-05-22T22-20-36-403Z.json
+│   ├── gemini-client-error-generateJson-api-2026-05-22T22-49-30-316Z.json
+│   ├── gemini-client-error-generateJson-api-2026-05-24T10-38-39-605Z.json
+│   ├── gemini-client-error-generateJson-api-2026-05-24T16-37-26-276Z.json
+│   ├── gemini-client-error-generateJson-api-2026-05-29T04-32-22-579Z.json
+│   ├── gemini-client-error-generateJson-api-2026-05-29T04-32-25-228Z.json
+│   ├── hotseat_handoff.md
+│   ├── index (1).html
+│   ├── index.html
+│   ├── kimi_dump.txt
+│   ├── loom_encoder.py
+│   ├── main.tsx.txt
+│   ├── manifest.json
+│   ├── marketplace.html
+│   ├── organize_extracted_code.py
+│   ├── package (1).json
+│   ├── project.html
+│   ├── read-aloud.mp3
+│   ├── rider_code.py
+│   ├── root_2025_detailed_tree.txt
+│   ├── runbook.txt
+│   ├── simple_coder.py
+│   ├── status_codes.py
+│   ├── styles.css
+│   ├── substrate_boardroom.html
+│   ├── syntaxgenint.png
+│   ├── test_whorl_1.txt
+│   ├── this_one_got_scary_real_fast.txt
+│   ├── trunc.txt
+│   ├── trunc_v2.txt
+│   ├── types.ts
+│   ├── vai_json.txt
+│   ├── vert_no_claude_yet.txt
+│   ├── vert_wowowowowow.txt
+│   ├── vertical-ai-boardroom-wired.html
+│   ├── vertical-ai-boardroom-wired2.html
+│   ├── vertical-ai-boardroom.html
+│   ├── vertical-ai-boardroom_v1_2.html
+│   ├── vertical_ai_boardroom_3d-1.html
+│   ├── vertical_ai_boardroom_3d.html
+│   ├── vibe_restore_point.txt
+│   ├── vite.config.ts
+│   └── voice_code_capture.py
+├── MarketScout
+│   ├── agent.py
+│   ├── requirements.txt
+│   └── scrapers
+│       └── reddit_scout.py
+├── Molt-V4
+│   ├── MOLT_V4_README.md
+│   ├── manifest.json
+│   ├── molt_v4-1.py
+│   ├── molt_v4.py
+│   └── runbook.txt
+├── MrsHiggins_Unified
+│   ├── MRS_HIGGINS_SETUP.md
+│   ├── README.md
+│   ├── bookkeeper.py
+│   ├── briefing.py
+│   ├── closer_sent.json
+│   ├── copy_output
+│   │   └── vertical_ai_nostr.txt
+│   ├── copywriter.py
+│   ├── firefly_urllib
+│   │   └── README.md
+│   ├── front_desk_config.json
+│   ├── front_desk_lady.py
+│   ├── front_desk_routing_log.json
+│   ├── front_desk_ui.py
+│   ├── frontend_verification.png
+│   ├── income_summary.json
+│   ├── logs
+│   │   ├── run_20260522_115652.log
+│   │   ├── run_20260522_125148.log
+│   │   ├── run_20260522_130330.log
+│   │   ├── run_20260524_151908.log
+│   │   ├── run_20260524_153633.log
+│   │   ├── run_20260524_154034.log
+│   │   ├── run_20260604_090518.log
+│   │   ├── run_20260604_090839.log
+│   │   ├── run_20260604_091114.log
+│   │   ├── run_20260607_004047.log
+│   │   └── run_20260607_004326.log
+│   ├── mrs_higgins.sh
+│   ├── mrs_higgins_cli.py
+│   ├── nostr_keys.json
+│   ├── nostr_post_log.json
+│   ├── nostr_poster.py
+│   ├── saas_assessment_report.json
+│   ├── saas_packages
+│   │   ├── adversarial_shield_agent.json
+│   │   ├── android_dev_environment.json
+│   │   ├── askhole.json
+│   │   ├── askhole_ai.json
+│   │   ├── asset_recovery_optimizer.json
+│   │   ├── business_scout.json
+│   │   ├── capitulation_prediction_engine.json
+│   │   ├── code_city_apocalypse.json
+│   │   ├── code_city_blue_beta.json
+│   │   ├── codesleuth.json
+│   │   ├── compliance_auditor_agent.json
+│   │   ├── context_defrag_engine.json
+│   │   ├── docgenius.json
+│   │   ├── equinex_forge.json
+│   │   ├── hotseat.json
+│   │   ├── lightning_payment_integration.json
+│   │   ├── local_ai_chatbot_setup.json
+│   │   ├── maigret_osint.json
+│   │   ├── model_guard_protection.json
+│   │   ├── molt_engine.json
+│   │   ├── operational_fidelity_monitor.json
+│   │   ├── outreach_engine.json
+│   │   ├── panic_pipeline.json
+│   │   ├── pipeline.json
+│   │   ├── pipeline_observability_bridge.json
+│   │   ├── predictive_margin_guardian.json
+│   │   ├── predictive_market_scout.json
+│   │   ├── privacy_guardian_agent.json
+│   │   ├── recondog_scanner.json
+│   │   ├── regulatory_compliance_guardian.json
+│   │   ├── sovereign_dev_profiler.json
+│   │   ├── swarm_token_economist.json
+│   │   ├── syntax_ai_cli.json
+│   │   ├── truthsleuth.json
+│   │   ├── vertical_ai.json
+│   │   └── voice_synthesis_agent.json
+│   ├── saas_summary.md
+│   ├── scout.py
+│   ├── setup.sh
+│   ├── state
+│   │   └── pipeline_state.json
+│   ├── state_test.py
+│   ├── static
+│   │   ├── css
+│   │   └── js
+│   ├── syntax_bedtime.svg
+│   ├── templates
+│   │   └── index.html
+│   ├── the_closer.py
+│   └── the_ledger.py
+├── Negotiator
+│   ├── agent.py
+│   └── requirements.txt
+├── New-SaaS
+│   ├── config
+│   ├── data_outbound
+│   │   ├── askhole
+│   │   ├── boardroom
+│   │   ├── hotseat
+│   │   └── scouts
+│   ├── hotseat_session_logger.json
+│   ├── phoneinfoga_scanner.json
+│   ├── saas_shell.sh
+│   ├── src
+│   │   ├── alerts
+│   │   ├── data
+│   │   ├── models
+│   │   ├── outreach_engine.py
+│   │   ├── panic_pipeline.py
+│   │   ├── pipeline.py
+│   │   └── services
+│   ├── supply_saas.js
+│   ├── supply_saas.py
+│   └── venv
+│       ├── include
+│       └── lib
+├── NostrPlugin
+│   ├── README.md
+│   ├── plugin.py
+│   └── requirements.txt
+├── Notes_2026_05_29_02_25_44.PDF
+├── Notes_2026_05_29_02_36_17.PDF
+├── Notes_2026_05_29_02_49_25.PDF
+├── Notes_2026_06_01_12_26_52.PDF
+├── Official-Vertical-AI-Boardroom
+│   ├── LICENSE
+│   ├── README.md
+│   ├── SETUP_GUIDE.md
+│   ├── _.env.template
+│   ├── __pycache__
+│   │   ├── boardroom.cpython-313.pyc
+│   │   ├── concierge.cpython-313.pyc
+│   │   ├── concierge_new.cpython-313.pyc
+│   │   ├── firefly_lite.cpython-313.pyc
+│   │   ├── genetics.cpython-313.pyc
+│   │   ├── mutation_engine.cpython-313.pyc
+│   │   ├── router.cpython-313.pyc
+│   │   ├── simulator.cpython-313.pyc
+│   │   ├── smarter_scout.cpython-313.pyc
+│   │   └── state.cpython-313.pyc
+│   ├── boardroom.py
+│   ├── boardroom_bridge.py
+│   ├── concierge.py
+│   ├── concierge_new.py
+│   ├── concierge_v3.py
+│   ├── enrich_targets.py
+│   ├── firefly_lite.py
+│   ├── generate_reports.py
+│   ├── genetics.py
+│   ├── ingest.py
+│   ├── ingest_output.txt
+│   ├── manifest.json
+│   ├── mutation_engine.py
+│   ├── patch_agents.py
+│   ├── patch_boardroom.py
+│   ├── patch_chairman.py
+│   ├── pitch_day.sh
+│   ├── post_reddit.py
+│   ├── render_report.py
+│   ├── reports
+│   │   ├── CaseyOS_pitch.txt
+│   │   ├── Chew_Plumbing_pitch.txt
+│   │   ├── Countryside_Motors_pitch.txt
+│   │   ├── RCB_Bank_pitch.txt
+│   │   ├── Restaurant_General_pitch.txt
+│   │   ├── Rural_Revive_pitch.txt
+│   │   └── caseyos_report.html
+│   ├── router.py
+│   ├── router_v3.py
+│   ├── runbook.txt
+│   ├── scout_targets.py
+│   ├── scouts
+│   │   ├── __pycache__
+│   │   ├── cfpb.py
+│   │   ├── google_business.py
+│   │   ├── swarm_intel.py
+│   │   └── web_search.py
+│   ├── shared
+│   │   └── schema.py
+│   ├── simulator.py
+│   ├── smarter_scout.py
+│   ├── state.py
+│   ├── swarm_reloader.py
+│   ├── targets
+│   │   ├── enriched_wellington.json
+│   │   ├── targets_20260531_1821.txt
+│   │   ├── targets_20260531_1822.txt
+│   │   ├── targets_20260531_1823.txt
+│   │   └── targets_20260531_1856.txt
+│   ├── test_mutation.py
+│   ├── vai_output_vai_0c4b9bb1d32a.json
+│   ├── vai_output_vai_155dfbf9c71b.json
+│   ├── vai_output_vai_1a3798be282b.json
+│   ├── vai_output_vai_23b70e1b05a4.json
+│   ├── vai_output_vai_2aa0b40c8da4.json
+│   ├── vai_output_vai_328ab1e30c94.json
+│   ├── vai_output_vai_42b64cf906b6.json
+│   ├── vai_output_vai_46ed21e9e08a.json
+│   ├── vai_output_vai_48d48eca8685.json
+│   ├── vai_output_vai_4bcfab02e01b.json
+│   ├── vai_output_vai_515da0888a38.json
+│   ├── vai_output_vai_557ad8c72d34.json
+│   ├── vai_output_vai_5c2e71ef1a97.json
+│   ├── vai_output_vai_68e5ee606424.json
+│   ├── vai_output_vai_6eacfb40ad0c.json
+│   ├── vai_output_vai_704ce1e0dd78.json
+│   ├── vai_output_vai_73c8f5d788c1.json
+│   ├── vai_output_vai_7ed97c9a1310.json
+│   ├── vai_output_vai_84da696b4c81.json
+│   ├── vai_output_vai_8716f7c368ba.json
+│   ├── vai_output_vai_899b9cd46f2d.json
+│   ├── vai_output_vai_937956642c8a.json
+│   ├── vai_output_vai_9f4fa5c292df.json
+│   ├── vai_output_vai_a14402bc48ea.json
+│   ├── vai_output_vai_a62ad944f34a.json
+│   ├── vai_output_vai_d807f2ee7ec9.json
+│   ├── vai_output_vai_ef4c1b798d0d.json
+│   ├── vertical_ai.py
+│   ├── vertical_ai_boardroom_3d.html
+│   ├── verticals
+│   │   ├── auto_dealer.txt
+│   │   ├── banking.txt
+│   │   ├── convenience.txt
+│   │   ├── dental.txt
+│   │   ├── plumber.txt
+│   │   └── restaurant.txt
+│   └── yvette.py
+├── OllamaWrapper
+│   ├── README.md
+│   ├── client.py
+│   └── requirements.txt
+├── PhoneInfoga
+│   ├── PhoneInfoga.zip
+│   ├── README.md
+│   └── phoneinfoga.sh
+├── PhoneInfoga_v1
+│   ├── Dockerfile
+│   ├── LICENSE
+│   ├── README.md
+│   ├── __pycache__
+│   │   └── config.cpython-38.pyc
+│   ├── black.config.toml
+│   ├── config.py
+│   ├── docker-compose.yml
+│   ├── docker_push.sh
+│   ├── docs
+│   │   ├── contribute.md
+│   │   ├── formatting.md
+│   │   ├── googlesearch.md
+│   │   ├── images
+│   │   ├── index.md
+│   │   ├── install.md
+│   │   ├── resources.md
+│   │   └── usage.md
+│   ├── examples
+│   │   ├── generate.sh
+│   │   ├── input.txt
+│   │   ├── output_from_input.txt
+│   │   └── output_single.txt
+│   ├── geckodriver.log
+│   ├── lib
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   ├── args.py
+│   │   ├── banner.py
+│   │   ├── colors.py
+│   │   ├── format.py
+│   │   ├── googlesearch.py
+│   │   ├── logger.py
+│   │   ├── output.py
+│   │   └── request.py
+│   ├── mkdocs.yml
+│   ├── osint
+│   │   ├── disposable_num_providers.json
+│   │   ├── individuals.json
+│   │   ├── reputation.json
+│   │   └── social_medias.json
+│   ├── phoneinfoga.py
+│   ├── requirements.txt
+│   ├── scanners
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   ├── footprints.py
+│   │   ├── localscan.py
+│   │   ├── numverify.py
+│   │   ├── ovh.py
+│   │   └── recon.py
+│   └── tests
+│       ├── __init__.py
+│       └── lib
+├── Praudit
+│   ├── CRD.txt
+│   ├── INTEGRATION_DOCS.md
+│   ├── Vibe_Handoff.json
+│   ├── Vibe_Refactor_Outline.txt
+│   ├── agent_kernel.py
+│   ├── config
+│   ├── integrate_insight.sh
+│   ├── molt_shim.py
+│   ├── openclaw_shim.py
+│   ├── praudit.py
+│   ├── src
+│   │   ├── __pycache__
+│   │   ├── detector.py
+│   │   ├── enforcer.py
+│   │   ├── integrator.py
+│   │   ├── migrator.py
+│   │   ├── patcher.py
+│   │   └── sync.py
+│   ├── vibe_bridge.py
+│   └── vibe_skill_shim.py
+├── QRD
+│   └── QRD.md
+├── README.md
+├── RED_HAWK
+│   ├── Dockerfile
+│   ├── LICENSE
+│   ├── README.md
+│   ├── config.php
+│   ├── crawl
+│   │   ├── admin.ini
+│   │   ├── backup.ini
+│   │   ├── others.ini
+│   │   └── readme.txt
+│   ├── functions.php
+│   ├── rhawk.php
+│   ├── sqlerrors.ini
+│   ├── var.php
+│   └── version.txt
+├── Syntax-AI-CLI
+│   ├── __pycache__
+│   │   └── syntax_v1.cpython-313.pyc
+│   ├── charter.py
+│   └── syntax_v1.py
+├── Yvette
+│   ├── README.md
+│   └── knowledge
+│       └── plumbing_core.md
+├── agent_backups
+│   ├── vibe_backup_20260604_073006.json
+│   ├── vibe_backup_20260604_073008.json
+│   ├── vibe_backup_20260604_073010.json
+│   ├── vibe_backup_20260604_073011.json
+│   ├── vibe_backup_20260604_073012.json
+│   ├── vibe_backup_20260604_073013.json
+│   └── vibe_backup_20260604_073021.json
+├── ai-cli
+│   ├── node_modules
+│   │   ├── @google
+│   │   ├── @protobufjs
+│   │   ├── @types
+│   │   ├── agent-base
+│   │   ├── base64-js
+│   │   ├── bignumber.js
+│   │   ├── buffer-equal-constant-time
+│   │   ├── data-uri-to-buffer
+│   │   ├── debug
+│   │   ├── ecdsa-sig-formatter
+│   │   ├── extend
+│   │   ├── fetch-blob
+│   │   ├── formdata-polyfill
+│   │   ├── gaxios
+│   │   ├── gcp-metadata
+│   │   ├── google-auth-library
+│   │   ├── google-logging-utils
+│   │   ├── https-proxy-agent
+│   │   ├── json-bigint
+│   │   ├── jwa
+│   │   ├── jws
+│   │   ├── long
+│   │   ├── ms
+│   │   ├── node-domexception
+│   │   ├── node-fetch
+│   │   ├── openai
+│   │   ├── p-retry
+│   │   ├── protobufjs
+│   │   ├── retry
+│   │   ├── safe-buffer
+│   │   ├── undici-types
+│   │   ├── web-streams-polyfill
+│   │   └── ws
+│   ├── package-lock.json
+│   └── package.json
+├── apex_recovery
+│   ├── audit_gaps.md
+│   ├── engine
+│   │   ├── brute_force.py
+│   │   ├── swarm_bridge.py
+│   │   ├── validator.py
+│   │   └── validator.py.bak
+│   ├── manifest.json
+│   └── runbook.txt
+├── archive
+│   ├── labs
+│   │   ├── ActionAgent
+│   │   ├── Code-City-Claude
+│   │   ├── CodeMentor-MVP
+│   │   ├── CodeMentor-Pro
+│   │   ├── CodeMentor_MVP
+│   │   ├── Hermes-Android-BleakNarratives
+│   │   ├── Kimi-Code-v1.0-Fixed
+│   │   ├── Kimi-CodeMentor-MVP
+│   │   ├── MarketScout
+│   │   ├── More
+│   │   ├── Negotiator
+│   │   ├── NostrPlugin
+│   │   ├── OllamaWrapper
+│   │   ├── QRD
+│   │   ├── manifest.json
+│   │   ├── runbook.txt
+│   │   ├── veritas_engine
+│   │   ├── vertical_ai
+│   │   ├── vertical_ai_engine
+│   │   ├── vertical_radar
+│   │   ├── vertical_radar_dupe
+│   │   ├── whorl
+│   │   └── whorl_verification
+│   ├── logs
+│   │   ├── SESSION_LOG.md
+│   │   ├── Terminal_transcript.txt
+│   │   ├── codex_setup.log
+│   │   ├── gemini_autonomous_log.jsonl
+│   │   ├── godmode.log
+│   │   ├── ingestion.log
+│   │   ├── manifest.json
+│   │   ├── runbook.txt
+│   │   └── swarm_motion.log
+│   └── research
+│       ├── AGENT_CONCEPTS.md
+│       ├── CONCIERGE_HYPE_DESIGN.md
+│       ├── REWARD_ENGINE.md
+│       ├── behavioral_science
+│       ├── manifest.json
+│       └── runbook.txt
+├── aria-termux
+│   ├── ARCHITECTURE.md
+│   ├── CHANGELOG.md
+│   ├── CONTRIBUTING.md
+│   ├── LICENSE
+│   ├── README.md
+│   ├── aria
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   ├── api_client.py
+│   │   ├── command_system.py
+│   │   ├── config.py
+│   │   ├── guardian.py
+│   │   ├── knowledge_base.py
+│   │   ├── main.py
+│   │   ├── repair_agent.py
+│   │   ├── ui.py
+│   │   ├── utils.py
+│   │   └── watch_mode.py
+│   ├── aria-termux
+│   │   ├── ARCHITECTURE.md
+│   │   ├── CHANGELOG.md
+│   │   ├── CONTRIBUTING.md
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── aria
+│   │   ├── install.sh
+│   │   ├── requirements.txt
+│   │   ├── run_aria.py
+│   │   ├── setup.py
+│   │   └── tests
+│   ├── install.sh
+│   ├── requirements.txt
+│   ├── run_aria.py
+│   ├── setup.py
+│   └── tests
+│       ├── __init__.py
+│       ├── test_api_client.py
+│       ├── test_command_system.py
+│       ├── test_config.py
+│       ├── test_guardian.py
+│       ├── test_knowledge_base.py
+│       ├── test_repair_agent.py
+│       └── test_watch_mode.py
+├── askhole_autopilot
+│   ├── bin
+│   │   ├── askhole-daemon
+│   │   ├── askhole-status
+│   │   ├── askhole-trigger
+│   │   └── askhole-webhook
+│   ├── install.sh
+│   ├── lib
+│   │   ├── pipeline.py
+│   │   └── state_engine.py
+│   ├── state
+│   ├── triggers
+│   │   ├── generate.sh
+│   │   ├── idle.sh
+│   │   ├── scout.sh
+│   │   ├── ship.sh
+│   │   └── status.sh
+│   └── webhooks
+├── askhole_autopilot_bak
+│   ├── bin
+│   │   ├── __pycache__
+│   │   ├── askhole-daemon
+│   │   ├── askhole-status
+│   │   ├── askhole-trigger
+│   │   └── askhole-webhook
+│   ├── install.sh
+│   ├── lib
+│   │   ├── __pycache__
+│   │   ├── pipeline.py
+│   │   ├── shared.py
+│   │   └── state_engine.py
+│   ├── state
+│   ├── triggers
+│   │   ├── generate.sh
+│   │   ├── idle.sh
+│   │   ├── scout.sh
+│   │   ├── ship.sh
+│   │   └── status.sh
+│   └── webhooks
+├── automation
+│   ├── automation
+│   │   ├── AUTONOMOUS_AGENT_COMMIT_SUMMARY.md
+│   │   ├── AUTONOMOUS_AGENT_SUMMARY.md
+│   │   ├── DockerFile
+│   │   ├── FINAL_SESSION_SUMMARY.md
+│   │   ├── GITHUB_README.md
+│   │   ├── HANDOFF_20260202.md
+│   │   ├── README.md
+│   │   ├── SAVE_POINT_SUMMARY.md
+│   │   ├── ai_automation_paths_outcomes.md
+│   │   ├── cache
+│   │   ├── core
+│   │   ├── docker-compose.yml
+│   │   ├── docs
+│   │   ├── evolved_onboarding.json
+│   │   ├── gems.txt
+│   │   ├── models.py
+│   │   ├── models.py.bak
+│   │   ├── onboarding_process.json
+│   │   ├── pain_engine.py
+│   │   ├── pain_engine.py.bak
+│   │   ├── requirements.txt
+│   │   ├── run_pipeline.sh
+│   │   ├── scraper.py
+│   │   ├── scraper.py.bak
+│   │   ├── scraper_v_2.py
+│   │   ├── scraper_v_2.py.bak
+│   │   ├── tests
+│   │   ├── tests.pytest_cache-v-cache-lastfailed
+│   │   ├── tests.pytest_cache-v-cache-nodeids
+│   │   └── web
+│   ├── manifest.json
+│   └── runbook.txt
+├── bin
+│   ├── clear_ram.sh
+│   ├── codex
+│   ├── codex-bridge.Modelfile
+│   ├── install.sh
+│   ├── manifest.json
+│   ├── patch_code_city.py
+│   ├── physical_swap.sh
+│   ├── runbook.txt
+│   ├── setup_aliases.sh
+│   ├── setup_ollama_syntax_models.sh
+│   ├── skill_scanner.py
+│   ├── start_swarm.sh
+│   ├── start_swarm_tmux.sh
+│   ├── syntax-general-intelligence.Modelfile
+│   ├── tag_version.sh
+│   ├── telegram_setup.sh
+│   ├── unindexing.py
+│   ├── update_dna.sh
+│   ├── web_search.py
+│   └── yt-dlp
+├── blackbird
+│   ├── Dockerfile
+│   ├── README.md
+│   ├── assets
+│   │   ├── fonts
+│   │   ├── img
+│   │   └── text
+│   ├── blackbird.py
+│   ├── data
+│   │   ├── email-data.json
+│   │   ├── useragents.txt
+│   │   ├── wmn-data.json
+│   │   └── wmn-metadata.json
+│   ├── docs
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── SUMMARY.md
+│   │   ├── advanced-usage.md
+│   │   ├── ai.md
+│   │   ├── basic-usage.md
+│   │   ├── getting-started.md
+│   │   └── use-cases.md
+│   ├── logs
+│   │   └── blackbird.log
+│   ├── requirements.txt
+│   ├── src
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   ├── config.py
+│   │   └── modules
+│   └── tests
+│       ├── data
+│       ├── test_core.py
+│       └── test_export.py
+├── bleak_core
+│   ├── README.md
+│   ├── bleak_core
+│   │   ├── __init__.py
+│   │   ├── dataweaver.py
+│   │   ├── lough.py
+│   │   ├── providers.py
+│   │   ├── scout.py
+│   │   └── whorl.py
+│   └── setup.py
+├── builder_code_tutor
+│   ├── CodeMentor_MVP
+│   │   ├── QRD.html
+│   │   ├── demo_explanation.html
+│   │   ├── qrd_codementor.html
+│   │   └── src
+│   ├── builder_coder_tutor.md
+│   ├── manifest.json
+│   └── runbook.txt
+├── citybridge
+│   ├── bridge.py
+│   ├── manifest.json
+│   ├── runbook.txt
+│   └── start.sh
+├── claudaciity.PDF
+├── coach_bleak
+│   ├── Coach
+│   │   ├── Analysis Coach Bleak Interface Results PsyOp.txt
+│   │   ├── BASE64.txt
+│   │   ├── Coach Bleak Accountabiliy Engine Code Block.txt
+│   │   ├── Coach Bleak Accountabiliy Engine v1.2 Code Block.txt
+│   │   ├── Coach Bleak Accountabiliy Engine v1.3 Code Block.txt
+│   │   ├── Coach Bleak Interactive Brand Guide v1.txt
+│   │   ├── Coach Bleak Legal War Machine Code Block v1.1.txt
+│   │   ├── Coach Bleak Legal War Machine Code Block v1.2.txt
+│   │   ├── Coach Bleak_ Unpacking the Accountability Engine's Psychological Warfare and the Quest for Justice.mp3
+│   │   ├── CoachBleakWarMachine.html
+│   │   ├── Coach_Bleak_Account_Engine_V0.txt
+│   │   ├── Coach_Bleak_Branding_Judgement_Chamber_V0.txt
+│   │   ├── Coach_Bleak_Interactive_Brand_Guide_v1.html
+│   │   ├── Coach_Bleak_Project_Markdown_Summary.txt
+│   │   ├── DS_Thread_Dump_7_12_2025.txt
+│   │   ├── Deepseek_New_Thread_7_11_2025.txt
+│   │   ├── GPT_New-Thread_7_11_2025.txt
+│   │   ├── GPT_Thread_Dump.txt
+│   │   ├── Gem LWM.txt
+│   │   ├── Gemini_Dump.txt
+│   │   ├── LARP
+│   │   ├── LLama LWM.txt
+│   │   ├── Llama_Thread_Dump_7_12_2025.txt
+│   │   ├── Llama_Thread_Dump_7_12_2025_2.txt
+│   │   ├── New_Gemini_Thread_7_11_2025.txt
+│   │   ├── New_Thread_GPT_Prompt_GPT.txt
+│   │   ├── Old_Gemini_THread_7_11_2025.txt
+│   │   ├── Veritas_AI_Project_Overview (2).txt
+│   │   ├── Veritas_AI_Project_Overview.txt
+│   │   ├── Veritas_Plntxt_Overview.txt
+│   │   ├── app.py
+│   │   ├── coach_bleak_roadmap.html
+│   │   ├── coach_bleak_roadmap.txt
+│   │   ├── index.html
+│   │   ├── legal-war-machine.html
+│   │   ├── legal_war_machine_V2.1.html
+│   │   ├── requirements.txt
+│   │   ├── thread_context.json
+│   │   └── wowowow coach bleak.txt
+│   ├── ROADMAP.md
+│   ├── manifest.json
+│   └── runbook.txt
+├── codex_install
+│   ├── cleaner.py
+│   ├── deduper.py
+│   ├── manifest.json
+│   ├── merge_engine.py
+│   └── runbook.txt
+├── codex_skills_registry
+│   ├── manifest.json
+│   └── runbook.txt
+├── conductor_shim
+│   ├── conductor_shim.py
+│   ├── manifest.json
+│   └── runbook.txt
+├── config
+│   ├── api
+│   ├── env
+│   ├── manifest.json
+│   ├── project-metadata
+│   │   ├── advanced_settings.json
+│   │   ├── command.json
+│   │   ├── enriched_wellington.json
+│   │   ├── front_desk_routing_log.json
+│   │   ├── mcp_server_config.json
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   ├── project_profile.json
+│   │   ├── project_profile_new.json
+│   │   ├── tsconfig.json
+│   │   └── vibe_export_1780558215.json
+│   └── runbook.txt
+├── data
+│   ├── foxwood_addendum.txt
+│   ├── foxwood_comms.json
+│   ├── foxwood_haiku.txt
+│   ├── manifest.json
+│   ├── motherbrain
+│   │   ├── api
+│   │   └── relay
+│   ├── ollama_syntax_models.json
+│   ├── runbook.txt
+│   ├── system_checkpoints.db
+│   ├── table.csv
+│   ├── table_2.csv
+│   └── theme_dna.json
+├── datacampus
+│   ├── datacampus
+│   │   ├── README.md
+│   │   ├── RESTORE_POINT.md
+│   │   ├── datacampus
+│   │   ├── docs
+│   │   └── tests
+│   ├── manifest.json
+│   └── runbook.txt
+├── deepseek-coder
+│   └── latest
+├── deepseek_mobile.js
+├── dist
+│   └── code_city_blue
+│       ├── DISTRIBUTION.md
+│       ├── README.md
+│       ├── health_dashboard.py
+│       ├── janebot
+│       ├── manifest.json
+│       └── molt
+├── docker-compose.yml
+├── docs
+│   ├── API.md
+│   ├── ARCHITECTURE.md
+│   ├── App.tsx.txt
+│   ├── CONCEPT_PATH_OUTLINE.md
+│   ├── CONVERGENCE.md
+│   ├── Dudefuck.txt
+│   ├── Engineered_Subversion.pdf
+│   ├── HANDOFF_SYNTAX.md
+│   ├── NAT_VISION.md
+│   ├── ROOTBASE.md
+│   ├── Research Report.md
+│   ├── RootBase_Sovereign_Architecture.pdf
+│   ├── SATURN
+│   │   ├── LAB_MANIFEST_SPEC.md
+│   │   ├── MAINTENANCE_LOOP.md
+│   │   └── OVERVIEW.md
+│   ├── SATURN.md
+│   ├── SECURITY.md
+│   ├── SOVEREIGN_BRIDGE.md
+│   ├── SYSTEM_INTEGRATION_MAP.md
+│   ├── TREE_SNAPSHOT.txt
+│   ├── TRUTH_SLEUTH_AUDIT.md
+│   ├── VIBE_GODMODE_EASTEREGG.md
+│   ├── bashrc_tablet_backup.txt
+│   ├── bridge_audit.txt
+│   ├── builder_dump.txt
+│   ├── countryside_full_boardroom.txt
+│   ├── countryside_motors_pitch.txt
+│   ├── dirtree.txt
+│   ├── kimi_dump.txt
+│   ├── main.tsx.txt
+│   ├── manifest.json
+│   ├── modmind_gesture_bridge.jsx.txt
+│   ├── mrd.txt
+│   ├── qrd.txt
+│   ├── requirements-1.txt
+│   ├── requirements.txt
+│   ├── runbook.txt
+│   ├── session_assessment.txt
+│   ├── session_log_2026_05_29.txt
+│   ├── shallow_tree.txt
+│   ├── structure_dump.txt
+│   ├── syntax_brown_bedtime_story.txt
+│   ├── vai_json.txt
+│   ├── vert_no_claude_yet.txt
+│   └── vert_wowowowowow.txt
+├── ecosystem_bridge
+│   ├── charter.json
+│   ├── new_grant_match.json
+│   └── truth_switch.json
+├── export
+│   ├── Notes_2026_05_28_19_27_53.txt
+│   ├── Notes_2026_05_28_23_23_57.txt
+│   ├── Notes_2026_05_31_04_27_59.txt
+│   ├── agent_thought_ollamago.txt
+│   ├── claude_vert_round_1_mel_but_really_mike.txt
+│   ├── gem_cli_larp.txt
+│   ├── hotseat_veetical_ai_ollama_ds_coder.txt
+│   ├── moltbleak_transcript_watcher.txt
+│   ├── mutation_engine.txt
+│   ├── run.txt
+│   ├── searchlabs_gem_token_thought_trick.txt
+│   ├── transcript_watcher.txt
+│   └── vibe_cli_mod.txt
+├── fart.c
+├── foxwood_backup
+│   ├── foxwood_comms_20260517_123317.json
+│   ├── manifest.json
+│   └── runbook.txt
+├── foxwoodacademy
+│   └── saas_packages
+│       └── grewsome.json
+├── gemini-cli-termux
+│   ├── CHANGELOG.md
+│   ├── CONTRIBUTING.md
+│   ├── Dockerfile
+│   ├── GEMINI.md
+│   ├── LICENSE
+│   ├── MAINTAINER.md
+│   ├── Makefile
+│   ├── NOTICE
+│   ├── README.md
+│   ├── ROADMAP.md
+│   ├── SECURITY.md
+│   ├── docs
+│   │   ├── CONTRIBUTING.md
+│   │   ├── admin
+│   │   ├── assets
+│   │   ├── changelogs
+│   │   ├── cli
+│   │   ├── core
+│   │   ├── examples
+│   │   ├── extensions
+│   │   ├── get-started
+│   │   ├── hooks
+│   │   ├── ide-integration
+│   │   ├── index.md
+│   │   ├── integration-tests.md
+│   │   ├── issue-and-pr-automation.md
+│   │   ├── local-development.md
+│   │   ├── mermaid
+│   │   ├── npm.md
+│   │   ├── redirects.json
+│   │   ├── reference
+│   │   ├── release-confidence.md
+│   │   ├── releases.md
+│   │   ├── resources
+│   │   ├── sidebar.json
+│   │   └── tools
+│   ├── esbuild.config.js
+│   ├── eslint.config.js
+│   ├── evals
+│   │   ├── README.md
+│   │   ├── answer-vs-act.eval.ts
+│   │   ├── app-test-helper.ts
+│   │   ├── ask_user.eval.ts
+│   │   ├── auto_memory_contract.eval.ts
+│   │   ├── auto_memory_modes.eval.ts
+│   │   ├── automated-tool-use.eval.ts
+│   │   ├── background_processes.eval.ts
+│   │   ├── cli_help_delegation.eval.ts
+│   │   ├── component-test-helper.ts
+│   │   ├── concurrency-safety.eval.ts
+│   │   ├── edit-locations-eval.eval.ts
+│   │   ├── file_creation_behavior.eval.ts
+│   │   ├── frugalReads.eval.ts
+│   │   ├── frugalSearch.eval.ts
+│   │   ├── generalist_agent.eval.ts
+│   │   ├── generalist_delegation.eval.ts
+│   │   ├── gitRepo.eval.ts
+│   │   ├── grep_search_functionality.eval.ts
+│   │   ├── hierarchical_memory.eval.ts
+│   │   ├── interactive-hang.eval.ts
+│   │   ├── model_steering.eval.ts
+│   │   ├── plan_mode.eval.ts
+│   │   ├── redundant_casts.eval.ts
+│   │   ├── sandbox_recovery.eval.ts
+│   │   ├── save_memory.eval.ts
+│   │   ├── shell-efficiency.eval.ts
+│   │   ├── skill_extraction.eval.ts
+│   │   ├── statistics-helper.ts
+│   │   ├── subagents.eval.ts
+│   │   ├── subtask_delegation.eval.ts
+│   │   ├── test-helper.test.ts
+│   │   ├── test-helper.ts
+│   │   ├── tool_output_masking.eval.ts
+│   │   ├── tracker.eval.ts
+│   │   ├── tsconfig.json
+│   │   ├── unsafe-cloning.eval.ts
+│   │   ├── update_topic.eval.ts
+│   │   ├── validation_fidelity.eval.ts
+│   │   ├── validation_fidelity_pre_existing_errors.eval.ts
+│   │   └── vitest.config.ts
+│   ├── integration-tests
+│   │   ├── acp-env-auth.test.ts
+│   │   ├── acp-telemetry.test.ts
+│   │   ├── api-resilience.responses
+│   │   ├── api-resilience.test.ts
+│   │   ├── browser-agent-localhost.dynamic.responses
+│   │   ├── browser-agent-localhost.form.responses
+│   │   ├── browser-agent-localhost.multistep.responses
+│   │   ├── browser-agent-localhost.navigate.responses
+│   │   ├── browser-agent-localhost.screenshot.responses
+│   │   ├── browser-agent-localhost.test.ts
+│   │   ├── browser-agent.cleanup.responses
+│   │   ├── browser-agent.concurrent.responses
+│   │   ├── browser-agent.confirmation.responses
+│   │   ├── browser-agent.interaction.responses
+│   │   ├── browser-agent.navigate-snapshot.responses
+│   │   ├── browser-agent.persistent-session.responses
+│   │   ├── browser-agent.screenshot.responses
+│   │   ├── browser-agent.sequential.responses
+│   │   ├── browser-agent.test.ts
+│   │   ├── browser-policy.responses
+│   │   ├── browser-policy.test.ts
+│   │   ├── checkpointing.test.ts
+│   │   ├── clipboard-linux.test.ts
+│   │   ├── concurrency-limit.responses
+│   │   ├── concurrency-limit.test.ts
+│   │   ├── context-compress-interactive.compress-empty.responses
+│   │   ├── context-compress-interactive.compress-failure.responses
+│   │   ├── context-compress-interactive.compress.responses
+│   │   ├── context-compress-interactive.test.ts
+│   │   ├── ctrl-c-exit.test.ts
+│   │   ├── deprecation-warnings.test.ts
+│   │   ├── extensions-install.test.ts
+│   │   ├── extensions-reload.test.ts
+│   │   ├── file-system-interactive.test.ts
+│   │   ├── file-system.test.ts
+│   │   ├── flicker-detector.max-height.responses
+│   │   ├── flicker.test.ts
+│   │   ├── globalSetup.ts
+│   │   ├── google_web_search.test.ts
+│   │   ├── hooks-agent-flow-multistep.responses
+│   │   ├── hooks-agent-flow.responses
+│   │   ├── hooks-agent-flow.test.ts
+│   │   ├── hooks-system.after-agent.responses
+│   │   ├── hooks-system.after-model.responses
+│   │   ├── hooks-system.after-tool-context.responses
+│   │   ├── hooks-system.allow-tool.responses
+│   │   ├── hooks-system.before-agent.responses
+│   │   ├── hooks-system.before-model.responses
+│   │   ├── hooks-system.before-tool-selection.responses
+│   │   ├── hooks-system.before-tool-stop.responses
+│   │   ├── hooks-system.block-tool.responses
+│   │   ├── hooks-system.compress-auto.responses
+│   │   ├── hooks-system.disabled-via-command.responses
+│   │   ├── hooks-system.disabled-via-settings.responses
+│   │   ├── hooks-system.error-handling.responses
+│   │   ├── hooks-system.input-modification.responses
+│   │   ├── hooks-system.input-validation.responses
+│   │   ├── hooks-system.multiple-events.responses
+│   │   ├── hooks-system.notification.responses
+│   │   ├── hooks-system.sequential-execution.responses
+│   │   ├── hooks-system.session-clear.responses
+│   │   ├── hooks-system.session-startup.responses
+│   │   ├── hooks-system.tail-tool-call.responses
+│   │   ├── hooks-system.telemetry.responses
+│   │   ├── hooks-system.test.ts
+│   │   ├── json-output.error.responses
+│   │   ├── json-output.france.responses
+│   │   ├── json-output.session-id.responses
+│   │   ├── json-output.test.ts
+│   │   ├── list_directory.test.ts
+│   │   ├── mcp-list-resources.responses
+│   │   ├── mcp-read-resource.responses
+│   │   ├── mcp-resources.responses
+│   │   ├── mcp-resources.test.ts
+│   │   ├── mcp_server_cyclic_schema.test.ts
+│   │   ├── mixed-input-crash.test.ts
+│   │   ├── parallel-tools.responses
+│   │   ├── parallel-tools.test.ts
+│   │   ├── plan-mode.test.ts
+│   │   ├── policy-headless-readonly.responses
+│   │   ├── policy-headless-shell-allowed.responses
+│   │   ├── policy-headless-shell-denied.responses
+│   │   ├── policy-headless.test.ts
+│   │   ├── read_many_files.test.ts
+│   │   ├── replace.test.ts
+│   │   ├── resume_repro.responses
+│   │   ├── resume_repro.test.ts
+│   │   ├── ripgrep-real.test.ts
+│   │   ├── run_shell_command.test.ts
+│   │   ├── shell-background.responses
+│   │   ├── shell-background.test.ts
+│   │   ├── simple-mcp-server.test.ts
+│   │   ├── skill-creator-scripts.test.ts
+│   │   ├── skill-creator-vulnerabilities.test.ts
+│   │   ├── stdin-context.test.ts
+│   │   ├── stdout-stderr-output-error.responses
+│   │   ├── stdout-stderr-output.responses
+│   │   ├── stdout-stderr-output.test.ts
+│   │   ├── symlink-install.test.ts
+│   │   ├── telemetry.test.ts
+│   │   ├── test-fixtures
+│   │   ├── test-helper.ts
+│   │   ├── test-mcp-server.ts
+│   │   ├── test-mcp-support.responses
+│   │   ├── test-mcp-support.test.ts
+│   │   ├── tsconfig.json
+│   │   ├── user-policy.responses
+│   │   ├── user-policy.test.ts
+│   │   ├── utf-bom-encoding.test.ts
+│   │   ├── vitest.config.ts
+│   │   ├── voice-mode.test.ts
+│   │   └── write_file.test.ts
+│   ├── memory-tests
+│   │   ├── baselines.json
+│   │   ├── globalSetup.ts
+│   │   ├── large-chat-session.json
+│   │   ├── memory-usage.test.ts
+│   │   ├── memory.idle-startup.responses
+│   │   ├── memory.multi-function-call.responses
+│   │   ├── memory.multi-turn.responses
+│   │   ├── memory.simple-prompt.responses
+│   │   ├── tsconfig.json
+│   │   └── vitest.config.ts
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── packages
+│   │   ├── a2a-server
+│   │   ├── cli
+│   │   ├── core
+│   │   ├── devtools
+│   │   ├── sdk
+│   │   ├── test-utils
+│   │   └── vscode-ide-companion
+│   ├── perf-tests
+│   │   ├── README.md
+│   │   ├── baselines.json
+│   │   ├── globalSetup.ts
+│   │   ├── perf-usage.test.ts
+│   │   ├── perf.asian-language.responses
+│   │   ├── perf.cold-startup.responses
+│   │   ├── perf.high-volume.responses
+│   │   ├── perf.idle-cpu.responses
+│   │   ├── perf.long-chat.responses
+│   │   ├── perf.skill-loading.responses
+│   │   ├── tsconfig.json
+│   │   └── vitest.config.ts
+│   ├── schemas
+│   │   └── settings.schema.json
+│   ├── scripts
+│   │   ├── aggregate_evals.js
+│   │   ├── batch_triage.sh
+│   │   ├── build.js
+│   │   ├── build_binary.js
+│   │   ├── build_package.js
+│   │   ├── build_sandbox.js
+│   │   ├── build_vscode_companion.js
+│   │   ├── changed_prompt.js
+│   │   ├── check-build-status.js
+│   │   ├── check-inbox.js
+│   │   ├── check-lockfile.js
+│   │   ├── check-termux-patches.sh
+│   │   ├── clean.js
+│   │   ├── cleanup-branches.ts
+│   │   ├── close_duplicate_issues.js
+│   │   ├── compare_evals.js
+│   │   ├── copy_bundle_assets.js
+│   │   ├── copy_files.js
+│   │   ├── create_alias.sh
+│   │   ├── deflake.js
+│   │   ├── download-ripgrep-binaries.ts
+│   │   ├── entitlements.plist
+│   │   ├── eval_utils.js
+│   │   ├── generate-git-commit-info.js
+│   │   ├── generate-keybindings-doc.ts
+│   │   ├── generate-settings-doc.ts
+│   │   ├── generate-settings-schema.ts
+│   │   ├── get-release-version.js
+│   │   ├── get_trustworthy_evals.js
+│   │   ├── harvest_api_reliability.sh
+│   │   ├── lint.js
+│   │   ├── local_telemetry.js
+│   │   ├── postinstall.cjs
+│   │   ├── pre-commit.js
+│   │   ├── prepare-github-release.js
+│   │   ├── prepare-npm-release.js
+│   │   ├── prepare-package.js
+│   │   ├── prepare-termux.cjs
+│   │   ├── relabel_issues.sh
+│   │   ├── releasing
+│   │   ├── review.sh
+│   │   ├── run_eval_regression.js
+│   │   ├── run_regression_check.js
+│   │   ├── sandbox_command.js
+│   │   ├── seed-test-inbox.js
+│   │   ├── send_gemini_request.sh
+│   │   ├── start.js
+│   │   ├── sync_project_dry_run.js
+│   │   ├── telemetry.js
+│   │   ├── telemetry_gcp.js
+│   │   ├── telemetry_genkit.js
+│   │   ├── telemetry_utils.js
+│   │   ├── termux-setup.sh
+│   │   ├── termux-tools
+│   │   ├── test-windows-paths.js
+│   │   ├── tests
+│   │   ├── utils
+│   │   └── version.js
+│   ├── sea
+│   │   ├── sea-launch.cjs
+│   │   └── sea-launch.test.js
+│   ├── test-reports
+│   │   ├── 0.35.2-termux
+│   │   ├── 0.37.1-termux
+│   │   ├── 0.38.3-termux
+│   │   ├── 0.42.0-nightly
+│   │   ├── 0.42.0-termux
+│   │   ├── README.md
+│   │   └── suites
+│   ├── third_party
+│   │   └── get-ripgrep
+│   ├── tools
+│   │   └── gemini-cli-bot
+│   └── tsconfig.json
+├── go
+│   ├── bin
+│   │   ├── blogwatcher
+│   │   ├── blu
+│   │   ├── eightctl
+│   │   ├── gifgrep
+│   │   ├── ordercli
+│   │   └── sonos
+│   ├── manifest.json
+│   ├── pkg
+│   │   ├── mod
+│   │   └── sumdb
+│   └── runbook.txt
+├── higgs.zip
+├── how
+├── incoming
+│   ├── manifest.json
+│   └── runbook.txt
+├── key-handoff-system
+│   ├── README.md
+│   ├── config
+│   │   └── manifest-schema.json
+│   ├── docs
+│   │   └── ARCHITECTURE.md
+│   ├── install.sh
+│   └── src
+│       ├── __pycache__
+│       ├── mediator.js
+│       ├── mediator.py
+│       ├── nanny.py
+│       └── vault.py
+├── loom_encoder
+│   ├── __pycache__
+│   │   └── loom_encoder.cpython-313.pyc
+│   └── loom_encoder.py
+├── lough_system
+│   ├── AUDIT_LOG.md
+│   ├── CLIENT_SERVICE_SETUP.md
+│   ├── HUMAN_REVIEW_TODO.md
+│   ├── LOUGH_EXPANSION.md
+│   ├── README.md
+│   ├── RESTORE_POINT.md
+│   ├── ROADMAP.md
+│   ├── ROADMAP2.md
+│   ├── adapters
+│   │   ├── __init__.py
+│   │   └── csv_ingest.py
+│   ├── domain_bridge.py
+│   ├── domains
+│   │   ├── __init__.py
+│   │   ├── air_traffic.py
+│   │   ├── markets.py
+│   │   ├── movement.py
+│   │   ├── predictive.py
+│   │   ├── safety_governance.py
+│   │   └── text_behavior.py
+│   ├── event_envelope.py
+│   ├── event_registry.py
+│   ├── export_events.py
+│   ├── field_analyst.py
+│   ├── field_analyst_specialist.py
+│   ├── field_bridge.py
+│   ├── field_server.py
+│   ├── field_watcher.py
+│   ├── lough.log
+│   ├── lough_system
+│   │   ├── AUDIT_LOG.md
+│   │   ├── CLIENT_SERVICE_SETUP.md
+│   │   ├── HUMAN_REVIEW_TODO.md
+│   │   ├── LOUGH_EXPANSION.md
+│   │   ├── README.md
+│   │   ├── RESTORE_POINT.md
+│   │   ├── ROADMAP.md
+│   │   ├── __pycache__
+│   │   ├── adapters
+│   │   ├── domain_bridge.py
+│   │   ├── domains
+│   │   ├── event_envelope.py
+│   │   ├── event_registry.py
+│   │   ├── export_events.py
+│   │   ├── field_analyst.py
+│   │   ├── field_analyst_specialist.py
+│   │   ├── field_bridge.py
+│   │   ├── field_server.py
+│   │   ├── field_watcher.py
+│   │   └── tests
+│   ├── manifest.json
+│   ├── runbook.txt
+│   └── tests
+│       └── test_phase1_hardening.py
+├── lucrative_engines
+│   ├── Claude-4-Prez
+│   │   ├── alerts-as-a-service
+│   │   ├── arbitrage-monitor
+│   │   ├── data-resale
+│   │   ├── lead-gen
+│   │   └── package.json
+│   ├── __pycache__
+│   │   └── state_manager.cpython-313.pyc
+│   ├── cloud_auditor
+│   │   ├── README.md
+│   │   └── scanner.py
+│   ├── data_pipelines
+│   │   └── README.md
+│   ├── devops_cloud
+│   │   └── README.md
+│   ├── engine_bridge.py
+│   ├── offensive_sec
+│   │   └── README.md
+│   ├── sentiment_analysis
+│   │   ├── README.md
+│   │   └── pipeline.py
+│   ├── setup_env.sh
+│   ├── state_manager.py
+│   └── web3_trading
+│       ├── README.md
+│       ├── abis
+│       ├── bot.js
+│       ├── node_modules
+│       ├── package-lock.json
+│       └── package.json
+├── maigret
+│   ├── Cargo.lock
+│   ├── Cargo.toml
+│   ├── LICENSE
+│   ├── README.md
+│   ├── data.json
+│   ├── generate_sites_md.py
+│   ├── images
+│   │   ├── maigret.gif
+│   │   └── maigret.png
+│   ├── sites.md
+│   ├── src
+│   │   ├── chrome.rs
+│   │   ├── cli.rs
+│   │   ├── core.rs
+│   │   ├── downloader.rs
+│   │   ├── logger.rs
+│   │   ├── main.rs
+│   │   └── scraper.rs
+│   └── target
+│       ├── CACHEDIR.TAG
+│       └── release
+├── media
+│   ├── AI_Excuse_Engineering_Overview.png
+│   ├── Flipped_Scripts.mp4
+│   ├── Launch_Day__Mad_Genius.mp4
+│   ├── Sovereign_Agentic_Ecosystem_Diagram.png
+│   ├── The_Codebase_Scrapbook.mp4
+│   └── Turning_Crashed_Android_AI_Into_B2B_Products.m4a
+├── molt_bleak
+│   ├── MoltBleak
+│   │   ├── MRDclaw.md
+│   │   ├── bin
+│   │   ├── incorp
+│   │   ├── molt.py.5tr8d0p3.txt
+│   │   ├── molt.txt
+│   │   ├── molt_cli_v4.py.5tr8d0p3.txt
+│   │   ├── molt_core.txt
+│   │   ├── molt_prog.py
+│   │   ├── molt_survey.txt
+│   │   ├── molt_watchdog.py
+│   │   ├── openclaw
+│   │   ├── openclaw_dashboard.html
+│   │   ├── requirements.txt
+│   │   ├── src
+│   │   ├── test_connection.py.5tr8d0p3.txt
+│   │   └── the_telegramining
+│   ├── dump.txt
+│   ├── manifest.json
+│   └── runbook.txt
+├── molt_engine
+│   ├── manifest.json
+│   ├── runbook.txt
+│   └── src
+│       └── core
+├── molt_v3_engine
+│   ├── manifest.json
+│   ├── molt_v3.py
+│   ├── runbook.txt
+│   └── src
+│       ├── __init__.py
+│       ├── __pycache__
+│       ├── config
+│       ├── core
+│       ├── memory
+│       ├── prompts
+│       └── ui
+├── molt_v4_log
+│   ├── improvements.jsonl
+│   ├── manifest.json
+│   └── runbook.txt
+├── molt_v5_log
+│   ├── manifest.json
+│   └── runbook.txt
+├── mrs-higgins-main
+│   └── mrs-higgins-main
+│       ├── README.md
+│       ├── bookkeeper.py
+│       ├── briefing.py
+│       ├── copy_output
+│       ├── copywriter.py
+│       ├── front_desk_lady.py
+│       ├── front_desk_routing_log.json
+│       ├── front_desk_ui.py
+│       ├── frontend_verification.png
+│       ├── income_summary.json
+│       ├── logs
+│       ├── mrs_higgins.sh
+│       ├── mrs_higgins_cli.py
+│       ├── saas_packages
+│       ├── scout.py
+│       ├── scout.py.disabled
+│       ├── setup.sh
+│       ├── static
+│       ├── syntax_bedtime.svg
+│       ├── templates
+│       ├── the_closer.py
+│       └── the_ledger.py
+├── mrs-higgins-saas.tar.gz
+├── mrs-higgins-unified
+│   └── saas
+│       ├── MRS_HIGGINS_SETUP.md
+│       ├── README.md
+│       ├── bookkeeper.py
+│       ├── briefing.py
+│       ├── closer_sent.json
+│       ├── copy_output
+│       ├── copywriter.py
+│       ├── firefly_urllib
+│       ├── front_desk_config.json
+│       ├── front_desk_lady.py
+│       ├── front_desk_routing_log.json
+│       ├── front_desk_ui.py
+│       ├── frontend_verification.png
+│       ├── income_summary.json
+│       ├── logs
+│       ├── mrs_higgins.sh
+│       ├── mrs_higgins_cli.py
+│       ├── nostr_keys.json
+│       ├── nostr_post_log.json
+│       ├── nostr_poster.py
+│       ├── saas_assessment_report.json
+│       ├── saas_packages
+│       ├── saas_summary.md
+│       ├── scout.py
+│       ├── setup.sh
+│       ├── state
+│       ├── state_test.py
+│       ├── static
+│       ├── syntax_bedtime.svg
+│       ├── templates
+│       ├── the_closer.py
+│       └── the_ledger.py
+├── mrs_h
+├── mrs_higgins_saas
+│   ├── MRS_HIGGINS_SETUP.md
+│   ├── README.md
+│   ├── bookkeeper.py
+│   ├── briefing.py
+│   ├── closer_sent.json
+│   ├── copy_output
+│   │   └── vertical_ai_nostr.txt
+│   ├── copywriter.py
+│   ├── firefly_urllib
+│   │   └── README.md
+│   ├── front_desk_config.json
+│   ├── front_desk_lady.py
+│   ├── front_desk_routing_log.json
+│   ├── front_desk_ui.py
+│   ├── frontend_verification.png
+│   ├── income_summary.json
+│   ├── logs
+│   │   ├── run_20260522_115652.log
+│   │   ├── run_20260522_125148.log
+│   │   ├── run_20260522_130330.log
+│   │   ├── run_20260524_151908.log
+│   │   ├── run_20260524_153633.log
+│   │   ├── run_20260524_154034.log
+│   │   ├── run_20260604_090518.log
+│   │   ├── run_20260604_090839.log
+│   │   ├── run_20260604_091114.log
+│   │   ├── run_20260607_004047.log
+│   │   └── run_20260607_004326.log
+│   ├── mrs_higgins.sh
+│   ├── mrs_higgins_cli.py
+│   ├── nostr_keys.json
+│   ├── nostr_post_log.json
+│   ├── nostr_poster.py
+│   ├── saas_assessment_report.json
+│   ├── saas_packages
+│   │   ├── adversarial_shield_agent.json
+│   │   ├── android_dev_environment.json
+│   │   ├── askhole.json
+│   │   ├── askhole_ai.json
+│   │   ├── asset_recovery_optimizer.json
+│   │   ├── business_scout.json
+│   │   ├── capitulation_prediction_engine.json
+│   │   ├── code_city_apocalypse.json
+│   │   ├── code_city_blue_beta.json
+│   │   ├── codesleuth.json
+│   │   ├── compliance_auditor_agent.json
+│   │   ├── context_defrag_engine.json
+│   │   ├── docgenius.json
+│   │   ├── equinex_forge.json
+│   │   ├── hotseat.json
+│   │   ├── lightning_payment_integration.json
+│   │   ├── local_ai_chatbot_setup.json
+│   │   ├── maigret_osint.json
+│   │   ├── model_guard_protection.json
+│   │   ├── molt_engine.json
+│   │   ├── operational_fidelity_monitor.json
+│   │   ├── outreach_engine.json
+│   │   ├── panic_pipeline.json
+│   │   ├── pipeline.json
+│   │   ├── pipeline_observability_bridge.json
+│   │   ├── predictive_margin_guardian.json
+│   │   ├── predictive_market_scout.json
+│   │   ├── privacy_guardian_agent.json
+│   │   ├── recondog_scanner.json
+│   │   ├── regulatory_compliance_guardian.json
+│   │   ├── sovereign_dev_profiler.json
+│   │   ├── swarm_token_economist.json
+│   │   ├── syntax_ai_cli.json
+│   │   ├── truthsleuth.json
+│   │   ├── vertical_ai.json
+│   │   └── voice_synthesis_agent.json
+│   ├── saas_summary.md
+│   ├── scout.py
+│   ├── setup.sh
+│   ├── state
+│   │   └── pipeline_state.json
+│   ├── state_test.py
+│   ├── static
+│   │   ├── css
+│   │   └── js
+│   ├── syntax_bedtime.svg
+│   ├── templates
+│   │   └── index.html
+│   ├── the_closer.py
+│   └── the_ledger.py
+├── natcommand_nathub
+│   ├── data
+│   │   └── store.json
+│   ├── manifest.json
+│   ├── nat.py
+│   ├── nat_spec
+│   │   └── README.md
+│   ├── runbook.txt
+│   └── src
+│       └── natcommand
+├── nemo
+│   ├── AUTHORS
+│   ├── BRANCHES.md
+│   ├── CITATION.cff
+│   ├── CONTRIBUTING.md
+│   ├── COPYING
+│   ├── MANIFEST
+│   ├── Makefile.in
+│   ├── README.install
+│   ├── README.md
+│   ├── TODO
+│   ├── VERSION
+│   ├── astroNEMO.egg-info
+│   │   ├── PKG-INFO
+│   │   ├── SOURCES.txt
+│   │   ├── dependency_links.txt
+│   │   ├── requires.txt
+│   │   └── top_level.txt
+│   ├── codemeta.json
+│   ├── config.guess
+│   ├── config.h.in
+│   ├── config.log
+│   ├── config.sub
+│   ├── configure
+│   ├── configure.ac
+│   ├── data
+│   │   ├── 3body.tab
+│   │   ├── Bbarolo
+│   │   ├── DP_pf.tab
+│   │   ├── GalPot
+│   │   ├── README
+│   │   ├── SP_pf.tab
+│   │   ├── devauc.dat
+│   │   ├── expmodel.inp
+│   │   ├── figure8.dat
+│   │   ├── figure8.mpv
+│   │   ├── filter
+│   │   ├── fortunes
+│   │   ├── gaussfit
+│   │   ├── hershey
+│   │   ├── iau25-tr.tab
+│   │   ├── iau25.dat
+│   │   ├── iau25.data
+│   │   ├── idf
+│   │   ├── imfit
+│   │   ├── k1isot.dat
+│   │   ├── k1isot.data
+│   │   ├── k3isot.dat
+│   │   ├── k3isot.data
+│   │   ├── k5an01.dat
+│   │   ├── k5an01.data
+│   │   ├── k5an02.dat
+│   │   ├── k5an02.data
+│   │   ├── k5isot.dat
+│   │   ├── k5isot.data
+│   │   ├── k7an01.dat
+│   │   ├── k7an01.data
+│   │   ├── k7isot.dat
+│   │   ├── k7isot.data
+│   │   ├── lindblad60.tab
+│   │   ├── lut
+│   │   ├── nbabel
+│   │   ├── nbody0.input
+│   │   ├── nemoplot
+│   │   ├── observatory.txt
+│   │   ├── plum.dat
+│   │   ├── plum.data
+│   │   ├── pyth.dat
+│   │   ├── pyth.mpv
+│   │   ├── snapshot
+│   │   ├── ss2063.txt
+│   │   ├── star_of_david.dat
+│   │   ├── star_of_david.mpv
+│   │   ├── starlab
+│   │   ├── template.tab
+│   │   ├── test
+│   │   ├── testsuite.log
+│   │   ├── units.lib
+│   │   ├── yapp.layout
+│   │   └── z_lines.list
+│   ├── docs
+│   │   ├── contents_motif.gif
+│   │   ├── examples
+│   │   ├── faq.html
+│   │   ├── figures
+│   │   ├── index.html
+│   │   ├── install_nemo.sh
+│   │   ├── install_nemo_old
+│   │   ├── intro1.md
+│   │   ├── man_html
+│   │   ├── nemo.gif
+│   │   ├── nemo.help
+│   │   ├── new.gif
+│   │   ├── red.ball.gif
+│   │   ├── requirements.txt
+│   │   ├── rss.xml
+│   │   ├── source
+│   │   ├── whatsdown.html
+│   │   ├── whatsnew.html
+│   │   └── whatsup.html
+│   ├── inc
+│   │   ├── acceleration.h
+│   │   ├── archaic
+│   │   ├── axis.h
+│   │   ├── bad
+│   │   ├── bitio.h
+│   │   ├── body.h
+│   │   ├── bodyext.h
+│   │   ├── bodytrans.h
+│   │   ├── bodytransc.h
+│   │   ├── cfitsio
+│   │   ├── cfortran.h
+│   │   ├── cgs.h
+│   │   ├── command.h
+│   │   ├── cpgplot.h
+│   │   ├── ctrl.h
+│   │   ├── cycle.h
+│   │   ├── defacc.h
+│   │   ├── diag.h
+│   │   ├── dld.h
+│   │   ├── dop853.h
+│   │   ├── dopri5.h
+│   │   ├── exception.h
+│   │   ├── extstring.h
+│   │   ├── f2c.h
+│   │   ├── filefn.h
+│   │   ├── filestruct.h
+│   │   ├── fits.h
+│   │   ├── fitsio_nemo.h
+│   │   ├── fortran
+│   │   ├── fslinker.h
+│   │   ├── funtab.h
+│   │   ├── getparam.h
+│   │   ├── getparam.inc
+│   │   ├── gipsyc.h
+│   │   ├── grid.h
+│   │   ├── hash.h
+│   │   ├── history.h
+│   │   ├── image.h
+│   │   ├── io_nemo.h
+│   │   ├── kepler.h
+│   │   ├── layout.h
+│   │   ├── loadobj.h
+│   │   ├── lsq.h
+│   │   ├── matdef.h
+│   │   ├── mathdefs.h
+│   │   ├── mathfns.h
+│   │   ├── mathlinker.h
+│   │   ├── max
+│   │   ├── mdarray.h
+│   │   ├── memio.h
+│   │   ├── mks.h
+│   │   ├── module.h
+│   │   ├── moment.h
+│   │   ├── mpfit.h
+│   │   ├── multicode
+│   │   ├── nemo
+│   │   ├── nemo.h
+│   │   ├── newton0.h
+│   │   ├── node.h
+│   │   ├── nr.h
+│   │   ├── nrutil.h
+│   │   ├── numrec
+│   │   ├── options.h
+│   │   ├── orbit.h
+│   │   ├── pgplot
+│   │   ├── potential.h
+│   │   ├── potential_float.h
+│   │   ├── pyplot.h
+│   │   ├── read_eagle.h
+│   │   ├── rotcurshape.h
+│   │   ├── run.h
+│   │   ├── snapshot
+│   │   ├── snipshot.h
+│   │   ├── sorting.h
+│   │   ├── spec.h
+│   │   ├── spline.h
+│   │   ├── state.h
+│   │   ├── stdinc.h
+│   │   ├── story.h
+│   │   ├── strlib.h
+│   │   ├── syst.h
+│   │   ├── table.h
+│   │   ├── testbed.c
+│   │   ├── tiff
+│   │   ├── timers.h
+│   │   ├── unfio.h
+│   │   ├── units.h
+│   │   ├── usercore.h
+│   │   ├── vectdefs.h
+│   │   ├── vectmath.h
+│   │   ├── version.h
+│   │   ├── vogl
+│   │   ├── xdl.h
+│   │   ├── xyio.h
+│   │   ├── yapp.h
+│   │   ├── yapp.icon
+│   │   ├── yapp_long.h
+│   │   └── ygl
+│   ├── install-sh
+│   ├── m4
+│   │   ├── Makefile
+│   │   ├── acx_plplot.m4
+│   │   ├── ax_f77_cmain_fflags.m4
+│   │   ├── ax_f77_func_mangle.m4
+│   │   ├── csh.m4
+│   │   └── gsl.m4
+│   ├── makedefs.in
+│   ├── man
+│   │   ├── Makefile
+│   │   ├── bibcode.awk
+│   │   ├── bibcode2.awk
+│   │   ├── doc
+│   │   ├── make_bibcode.csh
+│   │   ├── make_html
+│   │   ├── make_man.csh
+│   │   ├── make_whatis.csh
+│   │   ├── man1
+│   │   ├── man3
+│   │   ├── man5
+│   │   ├── man6
+│   │   ├── man8
+│   │   ├── mandoc.css
+│   │   ├── manl
+│   │   ├── manpdf
+│   │   ├── md
+│   │   ├── tmac.an
+│   │   ├── whatis
+│   │   └── whatis.awk
+│   ├── manifest.json
+│   ├── modulefiles
+│   │   ├── README
+│   │   └── nemo
+│   ├── nemo-config.in
+│   ├── nemo.pl.in
+│   ├── nemo_build.sh
+│   ├── nemo_local.template
+│   ├── nemo_start.csh.in
+│   ├── nemo_start.in
+│   ├── nemo_start.py.in
+│   ├── nemo_start.sh.in
+│   ├── nemo_start_example.ipynb
+│   ├── nemopy
+│   │   ├── __init__.py
+│   │   └── getparam.py
+│   ├── runbook.txt
+│   ├── scripts
+│   │   ├── csh
+│   │   ├── notebooks
+│   │   └── templates
+│   ├── setup.py
+│   ├── src
+│   │   ├── Makefile
+│   │   ├── image
+│   │   ├── kernel
+│   │   ├── nbody
+│   │   ├── orbit
+│   │   ├── scripts
+│   │   ├── tools
+│   │   ├── tutor
+│   │   └── uNEMO
+│   ├── text
+│   │   ├── Makefile
+│   │   ├── Notes
+│   │   ├── PROBLEMS
+│   │   ├── README.local
+│   │   ├── README.md
+│   │   ├── README.obj
+│   │   ├── README.old
+│   │   ├── README.opt
+│   │   ├── Sites
+│   │   ├── bugs
+│   │   ├── cfortran.doc
+│   │   ├── claude.txt
+│   │   ├── demo
+│   │   ├── dist.list
+│   │   ├── faq.tex
+│   │   ├── fig
+│   │   ├── fig-screen1
+│   │   ├── ftb
+│   │   ├── html
+│   │   ├── info
+│   │   ├── manuals
+│   │   ├── manybody
+│   │   ├── mkmanual
+│   │   ├── mktst
+│   │   ├── nbody2.tex
+│   │   ├── nemo-doxygen.cfg
+│   │   ├── nemo.bib
+│   │   ├── nemo2020.dchoi98
+│   │   ├── nemo2020.maxtano
+│   │   ├── nemo2020.teuben
+│   │   ├── nemo2024.txt
+│   │   ├── nemo2025.txt
+│   │   ├── pipes
+│   │   ├── plotting25.md
+│   │   ├── random
+│   │   ├── savekeys.design
+│   │   ├── summary.tex
+│   │   └── tableV2.txt
+│   ├── usr
+│   │   ├── Makefile
+│   │   ├── README
+│   │   ├── aarseth
+│   │   ├── agama
+│   │   ├── amuse
+│   │   ├── arepo
+│   │   ├── boily
+│   │   ├── bonsai
+│   │   ├── dehnen
+│   │   ├── deisenst
+│   │   ├── eagle
+│   │   ├── gadget
+│   │   ├── galic
+│   │   ├── gravidy
+│   │   ├── hannorein
+│   │   ├── heggie
+│   │   ├── jcl
+│   │   ├── jfwallin
+│   │   ├── jwallin
+│   │   ├── kawai
+│   │   ├── koda
+│   │   ├── kuepper
+│   │   ├── kuijken
+│   │   ├── lib
+│   │   ├── lindblad
+│   │   ├── lpvi
+│   │   ├── makino
+│   │   ├── manybody
+│   │   ├── martini
+│   │   ├── mello
+│   │   ├── nbabel
+│   │   ├── noordermeer
+│   │   ├── pjt
+│   │   ├── radex
+│   │   ├── sellwood
+│   │   ├── spekkens
+│   │   ├── stadel
+│   │   ├── trenti
+│   │   ├── villumsen
+│   │   ├── vogl
+│   │   ├── wolfire
+│   │   └── zeno
+│   └── zinstall.sh
+├── node_modules
+│   ├── btop
+│   │   ├── README.md
+│   │   ├── index.js
+│   │   ├── package.json
+│   │   └── test.js
+│   ├── jax
+│   │   ├── README.md
+│   │   ├── example
+│   │   ├── index.js
+│   │   └── package.json
+│   ├── node-fetch
+│   │   ├── LICENSE.md
+│   │   ├── README.md
+│   │   ├── browser.js
+│   │   ├── lib
+│   │   └── package.json
+│   ├── numpy
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   └── package.json
+│   ├── pyinstaller
+│   │   └── package.json
+│   ├── spacy
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── api
+│   │   ├── dist
+│   │   ├── package.json
+│   │   ├── requirements.txt
+│   │   ├── src
+│   │   └── tests
+│   ├── tr46
+│   │   ├── index.js
+│   │   ├── lib
+│   │   └── package.json
+│   ├── uv
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── index.d.ts
+│   │   ├── index.js
+│   │   └── package.json
+│   ├── vibe
+│   │   ├── GruntFile.js
+│   │   ├── README.md
+│   │   ├── package.json
+│   │   ├── src
+│   │   ├── test
+│   │   ├── vibe.js
+│   │   └── vibe.min.js
+│   ├── webidl-conversions
+│   │   ├── LICENSE.md
+│   │   ├── README.md
+│   │   ├── lib
+│   │   └── package.json
+│   ├── whatwg-url
+│   │   ├── LICENSE.txt
+│   │   ├── README.md
+│   │   ├── lib
+│   │   └── package.json
+│   └── xterm
+│       ├── LICENSE
+│       ├── README.md
+│       ├── css
+│       ├── lib
+│       ├── package.json
+│       ├── src
+│       └── typings
+├── nursery
+│   ├── bedtime_story_syntax_v1.txt
+│   ├── manifest.json
+│   ├── molt_core.py
+│   ├── nursery_core.py
+│   └── runbook.txt
+├── ollama_models_too
+│   ├── blobs
+│   │   ├── sha256-005f95c7475154a17e84b85cd497949d6dd2a4f9d77c096e3c66e4d9c32acaf5
+│   │   ├── sha256-0a31e31f32131641e2779708db9cff94317db1913f4740d18e1afc1f0cd7d260
+│   │   ├── sha256-0d30ab46bcac79487e4772a1630633a734b262f66f7ba01dd028f68946b2a24c
+│   │   ├── sha256-0ee4a11e36f1393ce61bc7bf5bb2a5cace21bd324ef83f338115a314344df4d2
+│   │   ├── sha256-152cb442202b836b5415fe4397169982b74dc3bdbb06b9777a126e0161c740da
+│   │   ├── sha256-183715c435899236895da3869489cc30ac241476b4971a20285b1a462818a5b4
+│   │   ├── sha256-1e65450c30670713aa47fe23e8b9662bdf4065e81cc8e3cbfaa98924fcc0d320
+│   │   ├── sha256-20693aeb02c63304e263a72453b6ab89e1c700a87c6948cac523ac1e6f7cade0
+│   │   ├── sha256-29d8c98fa6b098e200069bfb88b9508dc3e85586d20cba59f8dda9a808165104
+│   │   ├── sha256-2af71558e438db0b73a20beab92dc278a94e1bbe974c00c1a33e3ab62d53a608
+│   │   ├── sha256-377ac4d7aeefd5b870c9fccff9a6d4df36901d99fe3277c2f755bc401601ba1c
+│   │   ├── sha256-4b021a3b4b4a58b06921bdf163d1b61e78b74d7df434a7f735edfdc807e68377
+│   │   ├── sha256-4cc1cb3660d87ff56432ebeb7884ad35d67c48c7b9f6b2856f305e39c38eed8f
+│   │   ├── sha256-4f659a1e86d7f5a33c389f7991e7224b7ee6ad0358b53437d54c02d2e1b1118d
+│   │   ├── sha256-5009345f7381e828ff4c50acea80dc3239083419b7aa094b32988eb9e38f5041
+│   │   ├── sha256-579283b604b6f92100a1f468bd3c7488280e26355f895e68e49d214f20fc6ca1
+│   │   ├── sha256-61718bc6c487ffeb000c6d62e0eb50e518277a703c558729c479c191cf0dffd6
+│   │   ├── sha256-66b9ea09bd5b7099cbb4fc820f31b575c0366fa439b08245566692c6784e281e
+│   │   ├── sha256-6e4c38e1172f42fdbff13edf9a7a017679fb82b0fde415a3e8b3c31c6ed4a4e4
+│   │   ├── sha256-80cfc3f96fcf7d7c802ff067ac808483fdc6db0052cd37a39dac0f856a20b761
+│   │   ├── sha256-832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e
+│   │   ├── sha256-8893e08fa9f91f7dc39e24d27bdfaece4e9c86bb3269293ff8cea6cba98c872d
+│   │   ├── sha256-8972a96b8ff1957ca24ff839aeb54411e6849de68609857a3fa17a4e78114247
+│   │   ├── sha256-9468773bdc1f9908492a3cdaab70bf5ac0a45d2d52717e8208c0deece2765262
+│   │   ├── sha256-966de95ca8a62200913e3f8bfbf84c8494536f1b94b49166851e76644e966396
+│   │   ├── sha256-a3a0e9449cb691a12f4de1d03725fd41326614fdeaf5d80b28c51187da0bed0e
+│   │   ├── sha256-a70ff7e570d97baaf4e62ac6e6ad9975e04caa6d900d3742d37698494479e0cd
+│   │   ├── sha256-a85fe2a2e58e2426116d3686dfdc1a6ea58640c1e684069976aa730be6c1fa01
+│   │   ├── sha256-aabd4debf0c8f08881923f2c25fc0fdeed24435271c2b3e92c4af36704040dbc
+│   │   ├── sha256-af56fd041950217501dda68191c3290c6dea2a9f3fe7189168715a31ba5b4a2a
+│   │   ├── sha256-b1bd258a12c4cb8e8d6299dc943bdccb3b419896259579e0518c87a87f41e76e
+│   │   ├── sha256-ba5fbb481ada654c85475473fa862b81eb5539cecc56da57f90ef5af56798be2
+│   │   ├── sha256-c5396e06af294bd101b30dce59131a76d2b773e76950acc870eda801d3ab0515
+│   │   ├── sha256-c5ad996bda6eed4df6e3b605a9869647624851ac248209d22fd5e2c0cc1121d3
+│   │   ├── sha256-c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4
+│   │   ├── sha256-d040cc18521592f70c199396aeaa44cdc40224079156dc09d4283d745d9dc5fd
+│   │   ├── sha256-d55c9eb1669a22f75956872166c676634c77cd8dfb94900640bd09a474dfcd0c
+│   │   ├── sha256-dedcbf3159e051675ba89642680de2bbfcac020a3f2c1afde851e27629484659
+│   │   ├── sha256-e554c6b9de016673fd2c732e0342967727e9659ca5f853a4947cc96263fa602b
+│   │   ├── sha256-eb4402837c7829a690fa845de4d7f3fd842c2adee476d5341da8a46ea9255175
+│   │   ├── sha256-f4d24e9138dd4603380add165d2b0d970bef471fac194b436ebd50e6147c6588
+│   │   ├── sha256-fcc5a6bec9daf9b561a68827b67ab6088e1dba9d1fa2a50d7bbcc8384e0a265d
+│   │   └── sha256-fd756732a762734e6988d579a35789ff504db081a9381553159a967a7b45033d
+│   ├── manifest.json
+│   ├── manifests
+│   │   └── registry.ollama.ai
+│   └── runbook.txt
+├── openclaw
+│   ├── ETHICAL_HEADLESS_FRAMEWORK.md
+│   ├── agent_headless_framework.py
+│   ├── manifest.json
+│   ├── openclaw-main
+│   │   ├── AGENTS.md
+│   │   ├── CHANGELOG.md
+│   │   ├── CLAUDE.md
+│   │   ├── CONTRIBUTING.md
+│   │   ├── README.md
+│   │   ├── SECURITY.md
+│   │   ├── Swabble
+│   │   ├── apps
+│   │   ├── assets
+│   │   ├── docs
+│   │   ├── docs.acp.md
+│   │   ├── extensions
+│   │   ├── packages
+│   │   ├── scripts
+│   │   ├── skills
+│   │   ├── src
+│   │   ├── test
+│   │   ├── tsdown.config.ts
+│   │   ├── ui
+│   │   ├── vendor
+│   │   ├── vitest.config.ts
+│   │   ├── vitest.e2e.config.ts
+│   │   ├── vitest.extensions.config.ts
+│   │   ├── vitest.gateway.config.ts
+│   │   ├── vitest.live.config.ts
+│   │   └── vitest.unit.config.ts
+│   ├── openclaw_dashboard.html
+│   ├── runbook.txt
+│   └── src
+│       └── openclaw_supervisor.py
+├── openclaw-logs
+│   ├── install.log
+│   ├── manifest.json
+│   ├── openclaw-2026-05-15.log
+│   ├── runbook.txt
+│   └── runtime.log
+├── pitch_reports
+│   ├── CaseyOS_pitch.txt
+│   ├── Chew_Plumbing_pitch.txt
+│   ├── Countryside_Motors_pitch.txt
+│   ├── RCB_Bank_pitch.txt
+│   ├── Restaurant_General_pitch.txt
+│   └── reports
+│       ├── Chew_Plumbing_pitch.txt
+│       ├── Countryside_Motors_pitch.txt
+│       ├── RCB_Bank_pitch.txt
+│       ├── Restaurant_General_pitch.txt
+│       └── Rural_Revive_pitch.txt
+├── project_bundle_20251017_234615
+│   ├── App.tsx
+│   ├── components
+│   │   └── BlueSkyMode.tsx
+│   ├── forge_backend.py
+│   ├── real_bundler.py
+│   └── services
+│       └── api.ts
+├── project_bundle_20260513_120226
+│   ├── Artificial-Criminal
+│   │   ├── README.md
+│   │   ├── RESTORE_POINT.md
+│   │   ├── artificial_criminal
+│   │   ├── docs
+│   │   └── tests
+│   ├── GEMINI.md
+│   ├── GRIMOIRE
+│   │   ├── GREENROOM_HANDOFF_GRIMOIRE.md
+│   │   └── LOUGH_HUB_DOCS.md
+│   ├── MoltBleak
+│   │   ├── MRDclaw.md
+│   │   ├── bin
+│   │   ├── incorp
+│   │   ├── molt.py.5tr8d0p3.txt
+│   │   ├── molt.txt
+│   │   ├── molt_cli_v4.py.5tr8d0p3.txt
+│   │   ├── molt_core.txt
+│   │   ├── molt_prog.py
+│   │   ├── molt_watchdog.py
+│   │   ├── openclaw
+│   │   ├── openclaw_dashboard.html
+│   │   ├── requirements.txt
+│   │   ├── src
+│   │   ├── test_connection.py.5tr8d0p3.txt
+│   │   └── the_telegramining
+│   ├── NEXT_CODER_HANDOFF.md
+│   ├── datacampus
+│   │   ├── README.md
+│   │   ├── RESTORE_POINT.md
+│   │   ├── datacampus
+│   │   ├── docs
+│   │   └── tests
+│   ├── forge_actual_output
+│   │   ├── App.tsx
+│   │   ├── components
+│   │   ├── forge_backend.py
+│   │   ├── real_bundler.py
+│   │   └── services
+│   ├── free_models.txt
+│   ├── gemin_cli.txt
+│   ├── lough_biokinetics
+│   │   └── src
+│   ├── lough_integration
+│   │   ├── demo_defense_pitch.py
+│   │   ├── lough_pipeline.py
+│   │   └── test_pipeline.py
+│   ├── lough_system
+│   │   ├── AUDIT_LOG.md
+│   │   ├── CLIENT_SERVICE_SETUP.md
+│   │   ├── HUMAN_REVIEW_TODO.md
+│   │   ├── LOUGH_EXPANSION.md
+│   │   ├── README.md
+│   │   ├── RESTORE_POINT.md
+│   │   ├── ROADMAP.md
+│   │   ├── adapters
+│   │   ├── domain_bridge.py
+│   │   ├── domains
+│   │   ├── event_envelope.py
+│   │   ├── event_registry.py
+│   │   ├── export_events.py
+│   │   ├── field_analyst.py
+│   │   ├── field_analyst_specialist.py
+│   │   ├── field_bridge.py
+│   │   ├── field_server.py
+│   │   ├── field_watcher.py
+│   │   └── tests
+│   ├── modind_unified
+│   │   └── proximity_engine.py
+│   ├── molt.py
+│   ├── patch_code_city.py
+│   ├── project_incubator
+│   │   ├── README.md
+│   │   ├── agentic_curriculum_exchange
+│   │   ├── ethics_vault
+│   │   ├── openclaw_market_signals
+│   │   ├── pattern_atlas
+│   │   ├── simulation_foundry
+│   │   └── zeroclaw_lab_broker
+│   ├── ui_forge
+│   │   └── src
+│   ├── vertical
+│   │   └── src
+│   └── ~
+│       └── lough_system
+├── project_incubator
+│   ├── manifest.json
+│   ├── runbook.txt
+│   └── voltron_incubator.py
+├── projects
+│   ├── MRD.txt
+│   ├── agent-engine
+│   │   ├── README.md
+│   │   ├── agents
+│   │   ├── core
+│   │   ├── docs
+│   │   └── personas
+│   ├── code-city
+│   │   ├── README.md
+│   │   ├── _storage_emulated_0_code_city_code_city_debug_v2.py
+│   │   ├── android_code_city.html
+│   │   ├── android_code_city.py
+│   │   ├── code_city.html
+│   │   ├── code_city_apocalypse.html
+│   │   ├── code_city_apocalypse.py
+│   │   ├── code_city_apocalypse_meatsuit_edition.html
+│   │   ├── code_city_apocalypse_mvp.html
+│   │   ├── code_city_apocalypse_v1_1.py
+│   │   ├── code_city_apocalypse_v1_2.cpython-313.pyc
+│   │   ├── code_city_apocalypse_v1_2.py
+│   │   ├── code_city_apocalypse_v1_2_2.cpython-313.pyc
+│   │   ├── code_city_apocalypse_v1_2_2.py
+│   │   ├── code_city_apocalypse_v1_4.cpython-313.pyc
+│   │   ├── code_city_apocalypse_v1_4.py
+│   │   ├── code_city_apocalypse_v2.cpython-313.pyc
+│   │   ├── code_city_apocalypse_v2.py
+│   │   ├── code_city_apocalypse_v3.cpython-313.pyc
+│   │   ├── code_city_apocalypse_v3.py
+│   │   ├── code_city_apocalypse_v4.py
+│   │   ├── code_city_backend.py
+│   │   ├── code_city_debug.cpython-313.pyc
+│   │   ├── code_city_debug.py
+│   │   ├── code_city_integration.py
+│   │   ├── code_city_retro_visualization.html
+│   │   ├── code_city_server.py
+│   │   ├── code_city_static.cpython-313.pyc
+│   │   ├── code_city_static.py
+│   │   ├── code_city_v2.html
+│   │   └── docs
+│   ├── code-mentor
+│   │   ├── README.md
+│   │   ├── codementor_cli
+│   │   ├── codementor_extracted
+│   │   └── docs
+│   ├── equinex
+│   │   ├── README.md
+│   │   ├── equinex-forge-r&d
+│   │   ├── equinex_v1.html
+│   │   ├── equinex_v1_1.html
+│   │   ├── equinex_v1_2.html
+│   │   ├── equinex_v2 (1).html
+│   │   ├── equinex_v2.html
+│   │   └── equinex_v3.html
+│   ├── hotseat
+│   │   ├── README.md
+│   │   ├── docs
+│   │   ├── hotseat
+│   │   ├── hotseat3.py
+│   │   └── hotseat_claude.sh
+│   ├── implore
+│   │   ├── README.md
+│   │   ├── docs
+│   │   ├── implore_application.json
+│   │   └── implore_cli.py
+│   ├── infrastructure
+│   │   ├── README.md
+│   │   ├── shipwrekd_os
+│   │   └── veritas_engine
+│   ├── saas
+│   │   ├── README.md
+│   │   ├── docs
+│   │   ├── saas
+│   │   ├── saas_packages
+│   │   └── saas_shell.sh
+│   ├── tools
+│   │   ├── OSINT-MasterTool
+│   │   ├── README.md
+│   │   ├── ReconDog
+│   │   ├── TBomb
+│   │   ├── UserFinder
+│   │   └── WebSift
+│   ├── vertical-ai
+│   │   ├── README.md
+│   │   ├── docs
+│   │   ├── vertical-ai-boardroom-wired.html
+│   │   ├── vertical-ai-boardroom-wired2.html
+│   │   ├── vertical-ai-boardroom.html
+│   │   ├── vertical-ai-boardroom_v1_2.html
+│   │   ├── vertical_ai
+│   │   ├── vertical_ai_boardroom-1.html
+│   │   ├── vertical_ai_boardroom.html
+│   │   ├── vertical_ai_boardroom_3d.html
+│   │   └── vertical_ai_engine
+│   └── web-ui
+│       ├── QRD.html
+│       ├── README.md
+│       ├── boardroom_minimal.html
+│       ├── brainbleed.html
+│       ├── brainbleed_v2_fixed.html
+│       ├── chew_plumbing.html
+│       ├── demo_explanation.html
+│       ├── evolution.html
+│       ├── gap_wall.html
+│       ├── index (1).html
+│       ├── index.html
+│       ├── index2.html
+│       ├── index_hub.html
+│       ├── index_idk.html
+│       ├── marketplace.html
+│       ├── project.html
+│       ├── rootbase_topology.html
+│       ├── styles.css
+│       ├── substrate_boardroom.html
+│       ├── syntax_pitch.html
+│       └── whorl.html
+├── propagated_node
+│   ├── manifest.json
+│   ├── runbook.txt
+│   └── swarm_node
+│       ├── ROADMAP.md
+│       ├── THOTH_AUTONOMOUS_SYSTEM.md
+│       ├── __init__.py
+│       ├── __pycache__
+│       ├── coach_bleak_adapter.py
+│       ├── hermes.sh
+│       ├── higgins_adapter.py
+│       ├── launch_thoth_swarm.sh
+│       ├── manifest.json
+│       ├── nostr_poster.py
+│       ├── runbook.txt
+│       ├── swarm_intel.py
+│       ├── teleswarm.txt
+│       ├── thoth-coordinator.Modelfile
+│       ├── thoth.py
+│       ├── thothImprovementEngine.js
+│       ├── thoth_adapters.py
+│       ├── thoth_automation_engine.py
+│       ├── thoth_core.py
+│       ├── thoth_daemon.py
+│       ├── thoth_improvement_engine.py
+│       └── thoth_ui.py
+├── results
+│   ├── infoooze_userRecon_24052026095025.txt
+│   ├── infoooze_userRecon_24052026100251.txt
+│   └── infoooze_userRecon_24052026101621.txt
+├── rootbase_win_pulse.ps1
+├── scripts
+│   ├── analysis
+│   ├── automation
+│   ├── deployment
+│   │   ├── MOTHERBRAIN.sh
+│   │   ├── autonomous_agent_env.sh
+│   │   ├── boardroom_launch.sh
+│   │   ├── bot_wrapper.sh
+│   │   ├── conductor_shim.sh
+│   │   ├── conductor_shim_v2.sh
+│   │   ├── headless_gemini.sh
+│   │   ├── pitch_demo.sh
+│   │   ├── rootbase_oneshot.sh
+│   │   ├── run_triggers.sh
+│   │   ├── scaffold.sh
+│   │   ├── termux_ram.sh
+│   │   └── tree_scan.sh
+│   └── utilities
+│       ├── _storage_emulated_0_loosies_smart_coder2.py
+│       ├── advanced_code_bundler.py
+│       ├── advanced_code_bundler_pdf.py
+│       ├── advanced_code_bundler_pdf_2.py
+│       ├── api_bridge.py
+│       ├── auditor.py
+│       ├── auto_code_extractor.py
+│       ├── auto_code_extractor2.py
+│       ├── boardroom_bridge.py
+│       ├── buggy_code.py
+│       ├── chat_code_capture.py
+│       ├── chat_code_capture_save.py
+│       ├── code_bundler_v3.py
+│       ├── code_fixer.py
+│       ├── code_gamification.py
+│       ├── code_miner.py
+│       ├── code_miner_fixed.py
+│       ├── code_miner_fixed2.py
+│       ├── code_organizer.py
+│       ├── code_processor.py
+│       ├── code_visualizer.py
+│       ├── extract_codementor.py
+│       ├── fractal_mesh.py
+│       ├── fractal_relay.py
+│       ├── front_desk_lady.py
+│       ├── front_desk_lady_v2.py
+│       ├── godmode.py
+│       ├── loom_encoder.py
+│       ├── main.py
+│       ├── matcher.py
+│       ├── motherbrain_boot.py
+│       ├── motherbrain_governor.py
+│       ├── network_guard.py
+│       ├── organize_extracted_code.py
+│       ├── outreach_engine.py
+│       ├── package_project.py
+│       ├── panel_connector.py
+│       ├── panic_pipeline.py
+│       ├── patch_insight.py
+│       ├── path_resolver.py
+│       ├── pipeline.py
+│       ├── purge_buzzwords.py
+│       ├── rider_code.py
+│       ├── rootbase_mrd_generator.py
+│       ├── schema.py
+│       ├── scratch_test.py
+│       ├── shared.py
+│       ├── simple_coder.py
+│       ├── smart_router.py
+│       ├── status_codes.py
+│       ├── swarm_intel.py
+│       ├── syntax.py
+│       ├── the_fix.py
+│       └── voice_code_capture.py
+├── smart_tar.sh
+├── smell_sniffer
+│   ├── README.md
+│   └── sniffer.py
+├── smell_sniffer_dist
+│   ├── README.md
+│   ├── install.sh
+│   ├── manifest.json
+│   ├── runbook.txt
+│   └── sniffer.py
+├── sovereign_dashboard
+│   ├── Gemini_Breakout_Clone_Game.html
+│   ├── Gemini_Retro_Space_Shooter_Game.html
+│   ├── Gemini_Retro_Space_Shooter_Game_Gemini_Features.html
+│   ├── index.html
+│   ├── manifest.json
+│   ├── runbook.txt
+│   ├── saturn_map.html
+│   ├── termux_agent_swarm_larp.html
+│   └── website_template.html
+├── spec-workflow-mcp-main
+│   ├── CHANGELOG.md
+│   ├── LICENSE
+│   ├── README.ar.md
+│   ├── README.de.md
+│   ├── README.es.md
+│   ├── README.fr.md
+│   ├── README.it.md
+│   ├── README.ja.md
+│   ├── README.ko.md
+│   ├── README.md
+│   ├── README.pt.md
+│   ├── README.ru.md
+│   ├── README.zh.md
+│   ├── containers
+│   │   ├── DOCKER_USAGE.md
+│   │   ├── Dockerfile
+│   │   ├── Dockerfile.prebuilt
+│   │   ├── README.md
+│   │   ├── docker-compose.yml
+│   │   ├── example.mcp.json
+│   │   └── test-docker.sh
+│   ├── docs
+│   │   ├── CONFIGURATION.ar.md
+│   │   ├── CONFIGURATION.de.md
+│   │   ├── CONFIGURATION.es.md
+│   │   ├── CONFIGURATION.fr.md
+│   │   ├── CONFIGURATION.it.md
+│   │   ├── CONFIGURATION.ja.md
+│   │   ├── CONFIGURATION.ko.md
+│   │   ├── CONFIGURATION.md
+│   │   ├── CONFIGURATION.pt.md
+│   │   ├── CONFIGURATION.ru.md
+│   │   ├── CONFIGURATION.zh.md
+│   │   ├── DEVELOPMENT.ar.md
+│   │   ├── DEVELOPMENT.de.md
+│   │   ├── DEVELOPMENT.es.md
+│   │   ├── DEVELOPMENT.fr.md
+│   │   ├── DEVELOPMENT.it.md
+│   │   ├── DEVELOPMENT.ja.md
+│   │   ├── DEVELOPMENT.ko.md
+│   │   ├── DEVELOPMENT.md
+│   │   ├── DEVELOPMENT.pt.md
+│   │   ├── DEVELOPMENT.ru.md
+│   │   ├── DEVELOPMENT.zh.md
+│   │   ├── INTERFACES.ar.md
+│   │   ├── INTERFACES.de.md
+│   │   ├── INTERFACES.es.md
+│   │   ├── INTERFACES.fr.md
+│   │   ├── INTERFACES.it.md
+│   │   ├── INTERFACES.ja.md
+│   │   ├── INTERFACES.ko.md
+│   │   ├── INTERFACES.md
+│   │   ├── INTERFACES.pt.md
+│   │   ├── INTERFACES.ru.md
+│   │   ├── INTERFACES.zh.md
+│   │   ├── PROMPTING-GUIDE.ar.md
+│   │   ├── PROMPTING-GUIDE.de.md
+│   │   ├── PROMPTING-GUIDE.es.md
+│   │   ├── PROMPTING-GUIDE.fr.md
+│   │   ├── PROMPTING-GUIDE.it.md
+│   │   ├── PROMPTING-GUIDE.ja.md
+│   │   ├── PROMPTING-GUIDE.ko.md
+│   │   ├── PROMPTING-GUIDE.md
+│   │   ├── PROMPTING-GUIDE.pt.md
+│   │   ├── PROMPTING-GUIDE.ru.md
+│   │   ├── PROMPTING-GUIDE.zh.md
+│   │   ├── TOOLS-REFERENCE.ar.md
+│   │   ├── TOOLS-REFERENCE.de.md
+│   │   ├── TOOLS-REFERENCE.es.md
+│   │   ├── TOOLS-REFERENCE.fr.md
+│   │   ├── TOOLS-REFERENCE.it.md
+│   │   ├── TOOLS-REFERENCE.ja.md
+│   │   ├── TOOLS-REFERENCE.ko.md
+│   │   ├── TOOLS-REFERENCE.md
+│   │   ├── TOOLS-REFERENCE.pt.md
+│   │   ├── TOOLS-REFERENCE.ru.md
+│   │   ├── TOOLS-REFERENCE.zh.md
+│   │   ├── TROUBLESHOOTING.ar.md
+│   │   ├── TROUBLESHOOTING.de.md
+│   │   ├── TROUBLESHOOTING.es.md
+│   │   ├── TROUBLESHOOTING.fr.md
+│   │   ├── TROUBLESHOOTING.it.md
+│   │   ├── TROUBLESHOOTING.ja.md
+│   │   ├── TROUBLESHOOTING.ko.md
+│   │   ├── TROUBLESHOOTING.md
+│   │   ├── TROUBLESHOOTING.pt.md
+│   │   ├── TROUBLESHOOTING.ru.md
+│   │   ├── TROUBLESHOOTING.zh.md
+│   │   ├── USER-GUIDE.ar.md
+│   │   ├── USER-GUIDE.de.md
+│   │   ├── USER-GUIDE.es.md
+│   │   ├── USER-GUIDE.fr.md
+│   │   ├── USER-GUIDE.it.md
+│   │   ├── USER-GUIDE.ja.md
+│   │   ├── USER-GUIDE.ko.md
+│   │   ├── USER-GUIDE.md
+│   │   ├── USER-GUIDE.pt.md
+│   │   ├── USER-GUIDE.ru.md
+│   │   ├── USER-GUIDE.zh.md
+│   │   ├── WORKFLOW.ar.md
+│   │   ├── WORKFLOW.de.md
+│   │   ├── WORKFLOW.es.md
+│   │   ├── WORKFLOW.fr.md
+│   │   ├── WORKFLOW.it.md
+│   │   ├── WORKFLOW.ja.md
+│   │   ├── WORKFLOW.ko.md
+│   │   ├── WORKFLOW.md
+│   │   ├── WORKFLOW.pt.md
+│   │   ├── WORKFLOW.ru.md
+│   │   ├── WORKFLOW.zh.md
+│   │   └── technical-documentation
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── scripts
+│   │   ├── copy-static.cjs
+│   │   ├── sync-plugin-version.js
+│   │   └── validate-i18n.js
+│   ├── src
+│   │   ├── __tests__
+│   │   ├── config.ts
+│   │   ├── core
+│   │   ├── dashboard
+│   │   ├── dashboard_frontend
+│   │   ├── index.ts
+│   │   ├── markdown
+│   │   ├── prompts
+│   │   ├── server.ts
+│   │   ├── tools
+│   │   └── types.ts
+│   ├── tsconfig.json
+│   ├── vitest.config.ts
+│   └── vscode-extension
+│       ├── CHANGELOG.md
+│       ├── LICENSE
+│       ├── README.md
+│       ├── components.json
+│       ├── esbuild.js
+│       ├── eslint.config.mjs
+│       ├── icon.png
+│       ├── icons
+│       ├── package-lock.json
+│       ├── package.json
+│       ├── package.nls.ja.json
+│       ├── package.nls.json
+│       ├── package.nls.zh.json
+│       ├── src
+│       ├── tailwind.config.js
+│       ├── tsconfig.app.json
+│       ├── tsconfig.extension.json
+│       ├── tsconfig.json
+│       ├── tsconfig.node.json
+│       ├── vite.config.ts
+│       ├── webview-assets
+│       └── webview-dist
+├── src
+│   ├── App.tsx
+│   ├── cli
+│   │   └── commands
+│   ├── code_city_meld
+│   │   ├── archive
+│   │   ├── audit.log
+│   │   ├── blue
+│   │   └── red
+│   ├── components
+│   │   ├── AssistantView.tsx
+│   │   ├── ErrorBoundary.tsx
+│   │   ├── PermissionsGate.tsx
+│   │   └── SettingsView.tsx
+│   ├── context
+│   │   └── AppContext.tsx
+│   ├── core
+│   │   └── whorl
+│   ├── data
+│   │   └── context.json
+│   ├── main.tsx
+│   ├── manifest.json
+│   ├── runbook.txt
+│   ├── saas
+│   │   └── higgins
+│   ├── services
+│   │   ├── api.ts
+│   │   └── contextManager.ts
+│   ├── styles.css
+│   ├── swarm
+│   │   ├── auditor
+│   │   ├── hypebot
+│   │   ├── janebot
+│   │   ├── model_guard
+│   │   ├── molt
+│   │   └── vault
+│   ├── sync
+│   ├── types.ts
+│   └── utils
+│       └── handleError.ts
+├── swarm_intell_dupe
+├── syntax_captcoder
+│   ├── Syntax Captcoder .txt
+│   ├── __pycache__
+│   │   ├── syntax_ai_code_optimizer_core.cpython-313.pyc
+│   │   └── syntax_captcoder.cpython-313.pyc
+│   ├── phase_1
+│   │   ├── README.md
+│   │   ├── index.html
+│   │   ├── package.json
+│   │   ├── src
+│   │   ├── tsconfig.json
+│   │   └── vite.config.ts
+│   ├── phase_1_v_2
+│   │   ├── README.md
+│   │   ├── index.html
+│   │   ├── package.json
+│   │   ├── src
+│   │   ├── tsconfig.json
+│   │   └── vite.config.ts
+│   ├── sovereign-access-dashboard.zip
+│   ├── syntax_ai_code_optimizer_core.py
+│   └── syntax_captcoder.py
+├── syntax_seed
+│   ├── manifest.json
+│   ├── runbook.txt
+│   └── syntax.py
+├── system
+│   └── bus
+│       └── state.json
+├── temp_json
+├── temp_repo
+│   ├── LICENSE
+│   ├── README.md
+│   └── tools.py
+├── terminal_titans
+│   ├── 02-terminal-basics.md
+│   ├── manifest.json
+│   ├── ollama_terminal_mastery_qrd.html
+│   ├── runbook.txt
+│   ├── terminal-commands.md
+│   ├── terminal-practice
+│   │   └── 01-basics.md
+│   ├── terminal_coach
+│   │   ├── claude_refine_terminal_coach.txt
+│   │   ├── terminal_coach.py
+│   │   ├── terminal_coach_README.md
+│   │   ├── terminal_coach_v2.py
+│   │   ├── terminal_coach_v3.py
+│   │   ├── terminal_coach_v4.py
+│   │   └── terminal_coach_v5.py
+│   ├── terminal_coach_v2.py
+│   ├── terminal_coach_v3.py
+│   ├── terminal_coach_v4.py
+│   ├── terminal_coach_v5.py
+│   ├── terminal_fighter
+│   │   ├── game.js
+│   │   ├── index.html
+│   │   ├── plugin_architecture.txt
+│   │   ├── terminal_fighter.html
+│   │   ├── terminal_fighter_qrd_arena.js
+│   │   └── terminal_fighter_qrd_arena_pre_fix.js
+│   ├── terminal_fighter.html
+│   ├── terminal_titans
+│   │   ├── ds_temimal_titans.mp3
+│   │   ├── terminal_titans.py
+│   │   ├── terminal_titans_demo.py
+│   │   ├── terminal_titans_v2.py
+│   │   ├── terminal_titans_v3.py
+│   │   └── titan_battle.py
+│   ├── terminal_titans.py
+│   ├── terminal_titans_demo.py
+│   ├── terminal_titans_v2.py
+│   └── terminal_titans_v3.py
+├── termux-app-store
+│   ├── ARCHITECTURE.md
+│   ├── BINARY_DISCLAIMER.md
+│   ├── CHANGELOG.md
+│   ├── CODE_OF_CONDUCT.md
+│   ├── CONTRIBUTING.md
+│   ├── DISCLAIMER.md
+│   ├── FAQ.md
+│   ├── FINAL_SUMMARY.md
+│   ├── GOVERNANCE.md
+│   ├── HOW_TO_UPLOAD.md
+│   ├── INSTALL.md
+│   ├── LICENSE
+│   ├── MANIFEST.in
+│   ├── PRIVACY.md
+│   ├── README.ch.md
+│   ├── README.id.md
+│   ├── README.in.md
+│   ├── README.jp.md
+│   ├── README.md
+│   ├── README.th.md
+│   ├── README.vi.md
+│   ├── SECURITY.md
+│   ├── SUPPORT.md
+│   ├── TROUBLESHOOTING.md
+│   ├── build-package.sh
+│   ├── build-tester.py
+│   ├── ci
+│   │   ├── run_cli.py
+│   │   ├── run_fix_sha256.py
+│   │   ├── run_tasctl.py
+│   │   └── run_termux_build.py
+│   ├── doctor.py
+│   ├── guidebook.py
+│   ├── install-repo.py
+│   ├── install.sh
+│   ├── packages
+│   │   ├── aichat
+│   │   ├── ani-cli
+│   │   ├── aura
+│   │   ├── auxscan
+│   │   ├── bashxt
+│   │   ├── basic
+│   │   ├── baxter
+│   │   ├── bing-ip2hosts
+│   │   ├── binwalk
+│   │   ├── bit
+│   │   ├── bower
+│   │   ├── broot
+│   │   ├── brutespray
+│   │   ├── clickjacking-tester
+│   │   ├── cloudflair
+│   │   ├── cmseek
+│   │   ├── cmsmap
+│   │   ├── commix
+│   │   ├── crowbar
+│   │   ├── cupp
+│   │   ├── cybertuz
+│   │   ├── dalfox
+│   │   ├── dbd
+│   │   ├── djangohunter
+│   │   ├── dnsmap
+│   │   ├── dnsrecon
+│   │   ├── doona
+│   │   ├── dumpzilla
+│   │   ├── dust
+│   │   ├── elpscrk
+│   │   ├── encrypt
+│   │   ├── eternal-scanner
+│   │   ├── evilginx2
+│   │   ├── fbvid
+│   │   ├── fd
+│   │   ├── fuckshitup
+│   │   ├── gemail-hack
+│   │   ├── get
+│   │   ├── ghosttrack
+│   │   ├── goblinwordgenerator
+│   │   ├── gobuster
+│   │   ├── hammer
+│   │   ├── hash-buster
+│   │   ├── holehe
+│   │   ├── ht-wps-breaker
+│   │   ├── hunner
+│   │   ├── impulse
+│   │   ├── infoooze
+│   │   ├── instareporter
+│   │   ├── ip-tracker
+│   │   ├── ipgeolocation
+│   │   ├── killchain
+│   │   ├── lalin
+│   │   ├── lazymux
+│   │   ├── lux
+│   │   ├── merlin
+│   │   ├── myserver
+│   │   ├── orchat
+│   │   ├── parsero
+│   │   ├── photon
+│   │   ├── pmcli
+│   │   ├── pnpm
+│   │   ├── pymaker
+│   │   ├── red-hawk
+│   │   ├── ssrfmap
+│   │   ├── sublist3r
+│   │   ├── tdoc
+│   │   ├── tere
+│   │   ├── termstyle
+│   │   ├── termux-ai
+│   │   ├── termux-sync
+│   │   ├── termux-tui
+│   │   ├── termuxalpine
+│   │   ├── the-eye
+│   │   ├── ttyper
+│   │   ├── tuifimanager
+│   │   ├── tx
+│   │   ├── userfinder
+│   │   ├── uv
+│   │   ├── viu
+│   │   ├── webshake
+│   │   ├── xeuledoc
+│   │   ├── xsstrike
+│   │   ├── ytfzf
+│   │   ├── zerodoor
+│   │   ├── zora
+│   │   ├── zorabuilder
+│   │   └── zoracrypter
+│   ├── pkg-scaffold.py
+│   ├── projects
+│   │   ├── MASTER_PLAN.md
+│   │   ├── autonomous_agent
+│   │   ├── hardware_pipeline
+│   │   ├── high_income_automation
+│   │   ├── local_ai_lab
+│   │   └── network_command_center
+│   ├── pyproject.toml
+│   ├── pytest.ini
+│   ├── tasctl
+│   ├── template
+│   │   ├── build.sh
+│   │   └── index.json
+│   ├── termux-build
+│   ├── termux_app_store
+│   │   ├── __init__.py
+│   │   ├── core
+│   │   ├── data
+│   │   ├── fast_install.py
+│   │   ├── main.py
+│   │   ├── termux_app_store.py
+│   │   ├── termux_app_store_cli.py
+│   │   └── utils
+│   ├── tests
+│   │   ├── conftest.py
+│   │   ├── test_build.py
+│   │   ├── test_cli.py
+│   │   ├── test_conftest_helpers.py
+│   │   ├── test_package.py
+│   │   ├── test_tools.py
+│   │   └── test_version.py
+│   ├── tools
+│   │   ├── build.py
+│   │   ├── colors.sh
+│   │   ├── index.json
+│   │   ├── mirrors.json
+│   │   ├── package_manager.py
+│   │   ├── termux-build-check-pr.sh
+│   │   ├── termux-build-create-index.sh
+│   │   ├── termux-build-create.sh
+│   │   ├── termux-build-doctor.sh
+│   │   ├── termux-build-explain.sh
+│   │   ├── termux-build-guide.sh
+│   │   ├── termux-build-init.sh
+│   │   ├── termux-build-lint.sh
+│   │   ├── termux-build-suggest.sh
+│   │   ├── termux-build-template.sh
+│   │   └── validate-build.sh
+│   └── uninstall.sh
+├── test_codex_import.js
+├── tests
+│   ├── __pycache__
+│   │   └── test_transport.cpython-313-pytest-9.0.3.pyc
+│   ├── manifest.json
+│   ├── runbook.txt
+│   └── test_transport.py
+├── thoth_orchestrator
+│   ├── ROADMAP.md
+│   ├── THOTH_AUTONOMOUS_SYSTEM.md
+│   ├── __pycache__
+│   │   ├── coach_bleak_adapter.cpython-313.pyc
+│   │   ├── higgins_adapter.cpython-313.pyc
+│   │   ├── nostr_poster.cpython-313.pyc
+│   │   ├── thoth_adapters.cpython-313.pyc
+│   │   └── thoth_core.cpython-313.pyc
+│   ├── coach_bleak_adapter.py
+│   ├── hermes.sh
+│   ├── hermes_module
+│   │   └── README.md
+│   ├── higgins_adapter.py
+│   ├── launch_thoth_swarm.sh
+│   ├── manifest.json
+│   ├── nostr_poster.py
+│   ├── runbook.txt
+│   ├── swarm_intel.py
+│   ├── teleswarm.txt
+│   ├── thoth-coordinator.Modelfile
+│   ├── thoth.py
+│   ├── thothImprovementEngine.js
+│   ├── thoth_adapters.py
+│   ├── thoth_automation_engine.py
+│   ├── thoth_core.py
+│   ├── thoth_daemon.py
+│   ├── thoth_improvement_engine.py
+│   ├── thoth_ui.py
+│   └── truthsleuth
+│       └── README.md
+├── tmp
+│   ├── gemini-client-error-Turn.run-sendMessageStream-2026-05-16T08-56-38-698Z.json
+│   ├── gemini-client-error-Turn.run-sendMessageStream-2026-05-16T08-57-08-179Z.json
+│   ├── gemini-client-error-Turn.run-sendMessageStream-2026-05-16T11-12-24-136Z.json
+│   ├── gemini-client-error-Turn.run-sendMessageStream-2026-05-16T11-13-28-918Z.json
+│   ├── gemini-client-error-generateContent-api-2026-05-16T11-09-40-538Z.json
+│   ├── gemini-client-error-generateJson-api-2026-05-16T08-56-32-357Z.json
+│   ├── jiti
+│   │   ├── ansi-styles-index.794683d3.cjs
+│   │   ├── anthropic-provider-discovery.254e1f21.cjs
+│   │   ├── byteplus-provider-discovery.363390e7.cjs
+│   │   ├── deepseek-provider-discovery.bc4e1cba.cjs
+│   │   ├── dist-account-id-CwBWagLE.9b3d80d5.cjs
+│   │   ├── dist-account-lookup-DAEppsQ5.9845242d.cjs
+│   │   ├── dist-activation-context-BswEn1PI.e6aee8d1.cjs
+│   │   ├── dist-activation-planner-BqLR383f.b56d1020.cjs
+│   │   ├── dist-active-runtime-registry-CToOMaT0.ea0bb3dd.cjs
+│   │   ├── dist-agent-events-CXxjiM_O.45ec2a0c.cjs
+│   │   ├── dist-agent-filter-DDYttCiF.c2d1761d.cjs
+│   │   ├── dist-agent-scope-C1Fl7gAf.3af0b2b9.cjs
+│   │   ├── dist-agent-scope-config-26EcJVc0.cb619465.cjs
+│   │   ├── dist-ansi-Bk0Jp_0O.9837aa14.cjs
+│   │   ├── dist-api-builder-BgtzF-dV.c189f70a.cjs
+│   │   ├── dist-api-facades-B7aKRySD.233f244c.cjs
+│   │   ├── dist-archive-76p2JA6C.068db998.cjs
+│   │   ├── dist-archive-CvTrYfE4.8b073ef0.cjs
+│   │   ├── dist-arg-split-BIyUChOU.715c50c5.cjs
+│   │   ├── dist-argv-BHL8kwwH.4b3ba159.cjs
+│   │   ├── dist-artifacts-CZN5dsCJ.f981cb0c.cjs
+│   │   ├── dist-audit-fs-B7MzqwqM.536a56b0.cjs
+│   │   ├── dist-avatar-policy-CyZ5bBVf.b2f06d0b.cjs
+│   │   ├── dist-base64-6r8Q508J.9234e88b.cjs
+│   │   ├── dist-bootstrap-registry-BkdH0XC0.7caf4a81.cjs
+│   │   ├── dist-boundary-file-read-wgc2vgUM.e66a0ecd.cjs
+│   │   ├── dist-boundary-path-DoEhnof5.9760f469.cjs
+│   │   ├── dist-bundle-manifest-BL4DoREl.1453e9a7.cjs
+│   │   ├── dist-bundle-mcp-CFLIOQBM.bff7e7b6.cjs
+│   │   ├── dist-bundled-Q4WXUmmu.6d79b67b.cjs
+│   │   ├── dist-bundled-compat-Dfs9mbab.65bea388.cjs
+│   │   ├── dist-bundled-dir-LBl9nCAz.3cbbc35b.cjs
+│   │   ├── dist-channel-catalog-registry-Dqw0ZSIq.e2a5bc0c.cjs
+│   │   ├── dist-channel-configured-MsxgGeYA.0631eb0e.cjs
+│   │   ├── dist-channel-env-vars-CdW2Wcru.945a68f2.cjs
+│   │   ├── dist-channel-lifecycle.core-2s7owtO-.78fa1a53.cjs
+│   │   ├── dist-channel-meta-BIgMUfKa.193caadc.cjs
+│   │   ├── dist-channel-route-jaZFObQA.ae6400df.cjs
+│   │   ├── dist-channel-target-BJoc4Exk.98e94286.cjs
+│   │   ├── dist-chat-message-content-Df8A1xtk.33924961.cjs
+│   │   ├── dist-chat-meta-DTmQp8Tt.033baeec.cjs
+│   │   ├── dist-chat-type-DEba-Ejp.72c670ed.cjs
+│   │   ├── dist-chunk-HkwdBwDg.47d98848.cjs
+│   │   ├── dist-chutes-oauth-DpVhQFi0.727dd0c9.cjs
+│   │   ├── dist-clawhub-spec-DSNLh5F2.efc32980.cjs
+│   │   ├── dist-cli-auth-seam-0lbzWXCP.f695f747.cjs
+│   │   ├── dist-client-info-CgOISqZp.d1969e31.cjs
+│   │   ├── dist-cmd-argv-DexenlHS.bf786765.cjs
+│   │   ├── dist-combined-store-gateway-CrCDV3An.d7bd57e6.cjs
+│   │   ├── dist-common-V7-zd73S.cf838b9e.cjs
+│   │   ├── dist-config-CzeRK-GW.ab22c263.cjs
+│   │   ├── dist-config-contracts-DNcGOQR9.e03f733b.cjs
+│   │   ├── dist-config-normalization-shared-DlCktopk.95d2e85a.cjs
+│   │   ├── dist-config-paths-CGVJzJre.d1baa308.cjs
+│   │   ├── dist-config-presence-zxkqSlIB.5b08eb6a.cjs
+│   │   ├── dist-config-schema-DftNRjDz.9746d0a0.cjs
+│   │   ├── dist-config-state-BgyjpLHd.359d349a.cjs
+│   │   ├── dist-console-DTusPN3F.7ad2495a.cjs
+│   │   ├── dist-container-environment-DQOYng0C.beda4766.cjs
+│   │   ├── dist-conversation-label-BwWSua75.752ad057.cjs
+│   │   ├── dist-current-plugin-metadata-snapshot-DHmOxzz2.a745d257.cjs
+│   │   ├── dist-custom-command-config-DqBK2Av5.b737d103.cjs
+│   │   ├── dist-dedupe-Cby1DfpJ.fa7a47ab.cjs
+│   │   ├── dist-defaults-B7Swclqd.54ba55c6.cjs
+│   │   ├── dist-defaults-BGwElg4C.453e0df7.cjs
+│   │   ├── dist-delivery-context.shared-Dk7-07JJ.b64bf009.cjs
+│   │   ├── dist-detached-task-runtime-state-jgdLXpsx.29f0576b.cjs
+│   │   ├── dist-diagnostic-events-BkhOFI0h.ee63f7e8.cjs
+│   │   ├── dist-diagnostic-flags-BAYJHjtr.79654c0c.cjs
+│   │   ├── dist-discovery-BEbYTYvv.7c112259.cjs
+│   │   ├── dist-discovery-shared-DCvt1ibE.7a6774ac.cjs
+│   │   ├── dist-dotenv-DpVSuK0u.36c437ce.cjs
+│   │   ├── dist-dreaming-DWqFIr5P.15f3604c.cjs
+│   │   ├── dist-enable-Cnmqb24T.d6d55cd6.cjs
+│   │   ├── dist-env-DL0trrAI.b9cfd1b5.cjs
+│   │   ├── dist-env-substitution-9nsc3cTc.899ecf96.cjs
+│   │   ├── dist-errors-VfATXfah.b2c72c22.cjs
+│   │   ├── dist-exec-DusmGtXL.f68e0910.cjs
+│   │   ├── dist-exec-safe-bin-trust-C58pNRL_.78e875f5.cjs
+│   │   ├── dist-exec-safety-D79DFxXy.a9cd6846.cjs
+│   │   ├── dist-extension-shared-BznPIa-o.476545d3.cjs
+│   │   ├── dist-external-content-CjyYcKYs.d1b77cf5.cjs
+│   │   ├── dist-facade-loader-BqRX3EBI.6da00711.cjs
+│   │   ├── dist-facade-resolution-shared-G6qeiL63.6e0c73cd.cjs
+│   │   ├── dist-facade-runtime-BJdBwhen.3cacecf7.cjs
+│   │   ├── dist-fetch-guard-B7xT8hT9.fd740502.cjs
+│   │   ├── dist-fetch-headers-Daqi8X9C.331365d8.cjs
+│   │   ├── dist-fetch-timeout-BxQNNg4F.f9bec010.cjs
+│   │   ├── dist-file-identity-PAmF0zvV.355c94a0.cjs
+│   │   ├── dist-file-lock-BMwiVCZV.5aead5ef.cjs
+│   │   ├── dist-file-lock-D6tjMR7o.780b1a9e.cjs
+│   │   ├── dist-file-lock-DDZT8E76.b3787704.cjs
+│   │   ├── dist-file-store-Bh8hmqc8.46907a93.cjs
+│   │   ├── dist-filter-_6eE5RKS.b1fb785a.cjs
+│   │   ├── dist-fs-safe-DpJlqO1z.90a54450.cjs
+│   │   ├── dist-fs-safe-advanced-BQymc1Ql.ff676ea7.cjs
+│   │   ├── dist-fs-safe-defaults-azXCfv92.574d718e.cjs
+│   │   ├── dist-gateway-method-policy-wkwYae2r.61df2d0a.cjs
+│   │   ├── dist-gateway-process-argv-Dy8AqYte.0cc5a0f7.cjs
+│   │   ├── dist-gateway-processes-BCBqxtZ_.c61d99cd.cjs
+│   │   ├── dist-gateway-request-scope-v3GshBD5.9cd763f1.cjs
+│   │   ├── dist-global-singleton-B2nbp4Tq.03d6f1be.cjs
+│   │   ├── dist-globals-CouSpJO4.7707c059.cjs
+│   │   ├── dist-google-models-BLJJ8QBL.f68344e4.cjs
+│   │   ├── dist-gpt5-prompt-overlay-CCXWkJ2o.9f99ccf3.cjs
+│   │   ├── dist-harness-runtimes-Bz4u5UtH.e44e54b2.cjs
+│   │   ├── dist-home-dir-iZwpu-40.ac806fc6.cjs
+│   │   ├── dist-hook-runner-global-aUo3QVZe.50a14c3f.cjs
+│   │   ├── dist-host-env-security-DRikErcl.5ee8c1f8.cjs
+│   │   ├── dist-host-hook-cleanup-DaMlCN8H.f6be7541.cjs
+│   │   ├── dist-hostname-D0GmZ7Va.6b7c40c1.cjs
+│   │   ├── dist-http-route-overlap-D7fcTpXY.e8b78fad.cjs
+│   │   ├── dist-identity-DX9yGpYy.8bedb1c2.cjs
+│   │   ├── dist-ids-DFu3Ho6n.84dcb775.cjs
+│   │   ├── dist-image-ops-CL9ZQP7k.b3051542.cjs
+│   │   ├── dist-inbound-path-policy-CMFnHCFD.fe136196.cjs
+│   │   ├── dist-includes-CuflrSI8.3acfd39d.cjs
+│   │   ├── dist-install-paths-COOYiHmY.78111023.cjs
+│   │   ├── dist-install-safe-path-v8MhVhyK.f465da29.cjs
+│   │   ├── dist-install-source-info-BGhKPNa2.f73c6b36.cjs
+│   │   ├── dist-install-source-utils-ZE-6Bmcp.d60886a8.cjs
+│   │   ├── dist-installed-plugin-index-record-reader-BieSpyRG.f6e1c366.cjs
+│   │   ├── dist-installed-plugin-index-records-CXoaBLTL.3b31b268.cjs
+│   │   ├── dist-installed-plugin-index-store-DetkjvO9.e8acd6bc.cjs
+│   │   ├── dist-installs-KWYwBF1Q.fe49e79d.cjs
+│   │   ├── dist-internal-hooks-C8Y435Ix.bc4a1814.cjs
+│   │   ├── dist-io-5xE1dPMK.f079e102.cjs
+│   │   ├── dist-ip-Db8k2XjS.3ccfd654.cjs
+│   │   ├── dist-issue-format-C1rff-gs.f9e49b5f.cjs
+│   │   ├── dist-json-file-C3OPVumq.fb8d13fa.cjs
+│   │   ├── dist-json-files-CahFuwKs.25bf750c.cjs
+│   │   ├── dist-json-pointer-CmLFufbV.89a4e199.cjs
+│   │   ├── dist-keyed-async-queue-icOnXu2Z.299c56aa.cjs
+│   │   ├── dist-lazy-promise-SFT4i6yI.d0e00650.cjs
+│   │   ├── dist-lazy-runtime-Dh47Iq4d.549663c9.cjs
+│   │   ├── dist-legacy-names-B770VN3J.d7cbd886.cjs
+│   │   ├── dist-listeners-C4WrDNP6.4d4f6356.cjs
+│   │   ├── dist-load-context-44_qDmo1.ad266bc3.cjs
+│   │   ├── dist-loader-DkTFEskE.7354ed1c.cjs
+│   │   ├── dist-loader-channel-setup-YlJ0gLmv.1176205d.cjs
+│   │   ├── dist-local-file-access-CxMyNsBJ.f75c698d.cjs
+│   │   ├── dist-logger-DIiFDaHc.0933ec93.cjs
+│   │   ├── dist-logger-Dtrz4Rfi.098517f3.cjs
+│   │   ├── dist-logging-wxB8Ssux.72682d12.cjs
+│   │   ├── dist-main-session-BkilxHe0.52f5d25c.cjs
+│   │   ├── dist-manifest-command-aliases-BFWl4mXS.95ba67bd.cjs
+│   │   ├── dist-manifest-contract-eligibility-zsCdv7Ob.5ddc9f1a.cjs
+│   │   ├── dist-manifest-kLnLMS7v.03a98ad6.cjs
+│   │   ├── dist-manifest-metadata-scan-DmQpfwPO.5a0be4b7.cjs
+│   │   ├── dist-manifest-registry-Dgt5v-vG.629d4f60.cjs
+│   │   ├── dist-manifest-registry-installed-Cr9K7amI.39d87e31.cjs
+│   │   ├── dist-map-size-iKLwUWZ5.6b5cc018.cjs
+│   │   ├── dist-media-source-url-CdJEUGM2.f091aa31.cjs
+│   │   ├── dist-memory-embedding-providers-G_zj7dLG.a79223b8.cjs
+│   │   ├── dist-memory-state-C_iIBw9h.c7e33cdb.cjs
+│   │   ├── dist-merge-patch-DDivnvVJ.445966f3.cjs
+│   │   ├── dist-message-channel-core-Bs-MA2kH.369907fe.cjs
+│   │   ├── dist-message-channel-s-A-ruKR.9e20d130.cjs
+│   │   ├── dist-mime-Bg_OIUJn.540d5585.cjs
+│   │   ├── dist-min-host-version-W1db37pp.947827a3.cjs
+│   │   ├── dist-model-auth-env-CblHr3q1.24c5af7b.cjs
+│   │   ├── dist-model-auth-markers-UDEQVW7W.e9653dfd.cjs
+│   │   ├── dist-model-auth-runtime-shared-wzqc0OTs.f782a820.cjs
+│   │   ├── dist-model-catalog-_Ht45y-A.efdb5e46.cjs
+│   │   ├── dist-model-input-B9p-bobB.b2f0b402.cjs
+│   │   ├── dist-model-ref-profile-BAEY2i_C.744d1b9e.cjs
+│   │   ├── dist-model-ref-shared-Rt54Iaru.41953dfa.cjs
+│   │   ├── dist-model-refs-DXRP-zZl.b6aefdf1.cjs
+│   │   ├── dist-model-runtime-policy-kr6rAaY9.761988d4.cjs
+│   │   ├── dist-models-0oWbVjFz.decc160d.cjs
+│   │   ├── dist-models-XNmSbtfr.80d891f0.cjs
+│   │   ├── dist-models-config.providers.secrets-DzUJ8-IV.3a7bb07c.cjs
+│   │   ├── dist-models.576ad761.cjs
+│   │   ├── dist-models.generated.55cb93bb.cjs
+│   │   ├── dist-module-export-C7eualdo.70e92115.cjs
+│   │   ├── dist-moonshot-thinking-stream-wrappers-DY0RTUKY.54ab0131.cjs
+│   │   ├── dist-mutate-FhI2HIyp.f26cce4e.cjs
+│   │   ├── dist-net-Gkm1Cz9b.e02cce0f.cjs
+│   │   ├── dist-network-mode-CEeB8NXI.1354a2eb.cjs
+│   │   ├── dist-nix-mode-write-guard-BqXH8Kti.6c6526d9.cjs
+│   │   ├── dist-node-commands-Bjc3C9QN.d6ee45eb.cjs
+│   │   ├── dist-normalize-secret-input-CrCOUFln.3941310a.cjs
+│   │   ├── dist-npm-registry-spec-V6zweZlj.4c698d63.cjs
+│   │   ├── dist-number-coercion-jbeDQtsd.7e48fab4.cjs
+│   │   ├── dist-oauth-B8qSiLIG.8aacdfe6.cjs
+│   │   ├── dist-oauth.cb48c499.cjs
+│   │   ├── dist-official-external-plugin-catalog-2ZDJDP4z.9cb2d9e3.cjs
+│   │   ├── dist-openai-codex-routing-kS7Ub1vB.14c96528.cjs
+│   │   ├── dist-openclaw-exec-env-m4y29Ewl.02cdc5c7.cjs
+│   │   ├── dist-openclaw-root-DDaGBMF_.715f1dab.cjs
+│   │   ├── dist-openclaw.plugin-BAfFPp8s.67333813.cjs
+│   │   ├── dist-openclaw.plugin-DqQ9bIzT.05d01c08.cjs
+│   │   ├── dist-operator-scopes-CpnZaPqz.32a45147.cjs
+│   │   ├── dist-order-YU9choem.0453295f.cjs
+│   │   ├── dist-package-entry-resolution-g1dAmNUZ.f9984f23.cjs
+│   │   ├── dist-package-entrypoints-D_bjPUwf.a5a61ae0.cjs
+│   │   ├── dist-package-state-probes-DT5qTY-y.70ae5cc9.cjs
+│   │   ├── dist-parse-duration-961Oqdwr.c0747ae8.cjs
+│   │   ├── dist-parse-finite-number-2P2_lXOQ.4fc86fca.cjs
+│   │   ├── dist-parse-json-compat-CukN3ZQB.704e48ea.cjs
+│   │   ├── dist-path-B5B-_oAT.de5464ff.cjs
+│   │   ├── dist-path-guards-DOGmBasP.22a65c79.cjs
+│   │   ├── dist-path-safety-BSMeaGzV.2cc161cd.cjs
+│   │   ├── dist-paths-Cnwfh6dH.1928cc5c.cjs
+│   │   ├── dist-paths-DQ81gelS.7066e8d4.cjs
+│   │   ├── dist-paths-kGAxo7MN.3759d827.cjs
+│   │   ├── dist-permissions-BwHqNako.dde47e94.cjs
+│   │   ├── dist-pid-alive-DHduzhBu.db15ef5a.cjs
+│   │   ├── dist-pinned-open-Dx64loDQ.e9c96c44.cjs
+│   │   ├── dist-plugin-auto-enable-DLIxCAM0.f9a8d9b0.cjs
+│   │   ├── dist-plugin-cache-primitives-M9JN_JCw.72125d45.cjs
+│   │   ├── dist-plugin-install-config-migration-Cm47ZQYp.f935f9bb.cjs
+│   │   ├── dist-plugin-load-profile-BSCTMdA8.4b95f56d.cjs
+│   │   ├── dist-plugin-metadata-snapshot-DlaHO4z7.3076983b.cjs
+│   │   ├── dist-plugin-module-loader-cache-MuKAXPrS.e43cb9e9.cjs
+│   │   ├── dist-plugin-registry-Cdr1zbpf.6d9a63a7.cjs
+│   │   ├── dist-plugin-scope-D0hUY2Gw.267140a0.cjs
+│   │   ├── dist-plugin-state-store-agWe2J3x.41fc2375.cjs
+│   │   ├── dist-plugin-text-transforms-BLjBtFc3.d6beff13.cjs
+│   │   ├── dist-plugin-web-search-config-DS7x0yMy.9f188cd0.cjs
+│   │   ├── dist-plugins-YTdL-Pji.250dbe53.cjs
+│   │   ├── dist-plugins-allowlist-VNS6kKFK.5c7bc66b.cjs
+│   │   ├── dist-policy-AKMwD9k5.d3771440.cjs
+│   │   ├── dist-policy-CYC_UyL9.082521b9.cjs
+│   │   ├── dist-ports-lsof-Cpn-IFge.2c9f5dd8.cjs
+│   │   ├── dist-private-file-store-9NwvLNnb.7144005c.cjs
+│   │   ├── dist-private-temp-workspace-CS7i2diZ.b3f5b4fa.cjs
+│   │   ├── dist-profile-list-1dJMPDMe.e3f2913c.cjs
+│   │   ├── dist-profiles-Bj_dclxz.154b818e.cjs
+│   │   ├── dist-progress-line-BRiU5MFa.36222f23.cjs
+│   │   ├── dist-prototype-keys-Dna4GplE.a97c952f.cjs
+│   │   ├── dist-provider-api-key-auth-DaaaGg6p.aad5cbd3.cjs
+│   │   ├── dist-provider-attribution-BJpDy8Xw.2ba86e73.cjs
+│   │   ├── dist-provider-auth-D5QGE8z6.6bbcf234.cjs
+│   │   ├── dist-provider-auth-aliases-3NFJcokO.284622fb.cjs
+│   │   ├── dist-provider-auth-helpers-Hp3hWZu2.d67b5692.cjs
+│   │   ├── dist-provider-auth-input-BB3v7mkT.df6cb21e.cjs
+│   │   ├── dist-provider-auth-mode-BTbGLgZT.5fb0e989.cjs
+│   │   ├── dist-provider-auth-ref-Ytsr5yIt.e38cc2c3.cjs
+│   │   ├── dist-provider-auth-result-Bwa-OosX.c3761373.cjs
+│   │   ├── dist-provider-base-url-BorJpQi-.cd9ec194.cjs
+│   │   ├── dist-provider-catalog-3ECgZRtq.5a31b26d.cjs
+│   │   ├── dist-provider-catalog-BBD8udus.6fe03c31.cjs
+│   │   ├── dist-provider-catalog-DX3b7tze.d6d3355a.cjs
+│   │   ├── dist-provider-catalog-jbSIuQVe.4402c977.cjs
+│   │   ├── dist-provider-catalog-shared-4kkagm5f.362b01d9.cjs
+│   │   ├── dist-provider-catalog-u6q2gnHx.1506c230.cjs
+│   │   ├── dist-provider-discovery.runtime-CC0GVVKo.14c1c112.cjs
+│   │   ├── dist-provider-discovery.runtime.a4467b73.cjs
+│   │   ├── dist-provider-env-vars-Bdegz5z9.15e43006.cjs
+│   │   ├── dist-provider-id-Cz7K6wgK.db7038fc.cjs
+│   │   ├── dist-provider-model-compat-Dk5etUbu.5d3ac0bc.cjs
+│   │   ├── dist-provider-model-id-normalize-_TvLu-Zl.2b85395b.cjs
+│   │   ├── dist-provider-model-shared-D-slKnZa.1dd3889f.cjs
+│   │   ├── dist-provider-runtime-DXB7r8u2.06b91b06.cjs
+│   │   ├── dist-provider-runtime.runtime-B3maJVhy.a8528e75.cjs
+│   │   ├── dist-provider-runtime.runtime.29da63bd.cjs
+│   │   ├── dist-provider-web-search-D2KY-StD.29e9fd47.cjs
+│   │   ├── dist-providers.runtime-Bj4QRzbJ.f6919613.cjs
+│   │   ├── dist-proxy-env-Bl2eQt0u.0f2f4daf.cjs
+│   │   ├── dist-public-surface-loader-DWEAPKsr.7753e250.cjs
+│   │   ├── dist-public-surface-runtime-B8V5ml4K.388e8937.cjs
+│   │   ├── dist-record-coerce-CZkSQL9n.28080294.cjs
+│   │   ├── dist-redact-R2-EdHUS.95d63c48.cjs
+│   │   ├── dist-redirect-headers-DX3qwOnF.3c775819.cjs
+│   │   ├── dist-ref-contract-BLk8mcqQ.c84021e1.cjs
+│   │   ├── dist-registry-481lFxWt.4dccf290.cjs
+│   │   ├── dist-registry-BdfZSqhE2.e2d08480.cjs
+│   │   ├── dist-registry-CNnI9MEE.065ff907.cjs
+│   │   ├── dist-registry-ere6Hdl3.c3867da5.cjs
+│   │   ├── dist-registry-loaded-CF1z2CuQ.cb4b663b.cjs
+│   │   ├── dist-registry-loaded-read-B8n0mpjH.b56a0d48.cjs
+│   │   ├── dist-registry-lookup-DrgM4VYY.ad7b5a0f.cjs
+│   │   ├── dist-registry-normalize-DyAO17vM.4a9e0fec.cjs
+│   │   ├── dist-regular-file-6GdZVPgG.f8f08e4f.cjs
+│   │   ├── dist-regular-file-BGI9Nxdy.86a3e918.cjs
+│   │   ├── dist-repair-CzDi-eiN.0a8c993c.cjs
+│   │   ├── dist-replace-file-VPhXrtU-.10758d1c.cjs
+│   │   ├── dist-reset-DB4GrS9r.b7086942.cjs
+│   │   ├── dist-resolve-BHS7vHp1.1b565813.cjs
+│   │   ├── dist-restart-stale-pids-EQd_aMqt.92226d1f.cjs
+│   │   ├── dist-restore-Bf3iQQZN.755fab32.cjs
+│   │   ├── dist-root-file-CqMcFM3J.017ba246.cjs
+│   │   ├── dist-root-path-DTHDXh_7.48e898ef.cjs
+│   │   ├── dist-run-with-concurrency-u5TU0MMx.526561e9.cjs
+│   │   ├── dist-runtime-CFKT2mp_.af3de676.cjs
+│   │   ├── dist-runtime-DDH_zqCr.9d67cdc0.cjs
+│   │   ├── dist-runtime-channel-state-DJHEiBs1.6ae449c7.cjs
+│   │   ├── dist-runtime-d2Px3Q1Z.d4ee1207.cjs
+│   │   ├── dist-runtime-fetch-UdH5CUp4.1b725ffe.cjs
+│   │   ├── dist-runtime-guard-BuMdLq1N.6332139e.cjs
+│   │   ├── dist-runtime-logger-DZWIm7UX.e698ca21.cjs
+│   │   ├── dist-runtime-snapshot-tLK3Mx7y.ca5a066d.cjs
+│   │   ├── dist-runtime-state-Br1Hd8D7.8bdd194a.cjs
+│   │   ├── dist-safe-path-segment-BIlsa0xw.9317f7bb.cjs
+│   │   ├── dist-safe-text-CdNixupx.5131a29a.cjs
+│   │   ├── dist-sandbox-paths-BOOkw4YG.d31d79db.cjs
+│   │   ├── dist-scan-paths-CQGIktzD.3960dd6a.cjs
+│   │   ├── dist-schema-validator-Cf8K6s7f.062d068e.cjs
+│   │   ├── dist-scp-host-DHSZDDhg.f2434094.cjs
+│   │   ├── dist-sdk-alias-npL7bYup.be931a8f.cjs
+│   │   ├── dist-secret-file-DOoC_YK8.8d971d62.cjs
+│   │   ├── dist-secret-input-DlbCRffO.2055b5dd.cjs
+│   │   ├── dist-secure-temp-dir-GC3bO7Qi.20e0e0d5.cjs
+│   │   ├── dist-security-path-BXEjHAGL.2759da6f.cjs
+│   │   ├── dist-semver-compare-DHhdxikS.1d7d59ce.cjs
+│   │   ├── dist-session-conversation-kSBVRbLR.2cc60b64.cjs
+│   │   ├── dist-session-dirs-DO_2hW-1.a27f0d12.cjs
+│   │   ├── dist-session-file-C6TQVMAx.596a360e.cjs
+│   │   ├── dist-session-key-CDZmhV4O.4b9d6a32.cjs
+│   │   ├── dist-session-key-DFEyR49L.1497ec1c.cjs
+│   │   ├── dist-session-key-utils-qD-NZHCY.472a80b2.cjs
+│   │   ├── dist-session-write-lock-BT1vMcpZ.5ec469fc.cjs
+│   │   ├── dist-session-write-lock-error-BwBL0Pgr.134edd25.cjs
+│   │   ├── dist-sessions-BhOk6siH.fcd64b48.cjs
+│   │   ├── dist-setup-registry-C32GYnQD.2fde556d.cjs
+│   │   ├── dist-shared-yONM2O7r.ff54a581.cjs
+│   │   ├── dist-shell-wrapper-resolution-CN1bWvVT.dc3dc857.cjs
+│   │   ├── dist-sidecar-lock-h5BKJRxL.e6056eb6.cjs
+│   │   ├── dist-slots-DLJ2h3Qv.4343aa09.cjs
+│   │   ├── dist-source-check-BnSDslnj.35b1db5e.cjs
+│   │   ├── dist-sqlite-wal-CWnVmfPu.4cb6d83f.cjs
+│   │   ├── dist-ssrf-CYoLqc2K.fe27e5bb.cjs
+│   │   ├── dist-ssrf-policy-CxXKjyWH.6af760c9.cjs
+│   │   ├── dist-ssrf-runtime-B7YsbRmp.81f9400b.cjs
+│   │   ├── dist-state-dir-dotenv-CpqPih8R.f6c3bfd7.cjs
+│   │   ├── dist-store-3qAZ3Zl6.e9b63148.cjs
+│   │   ├── dist-store-a4exFSck.3fb9927a.cjs
+│   │   ├── dist-store-load-cmAGD4uk.918a3e01.cjs
+│   │   ├── dist-string-coerce-Cx5273Cj.437e7004.cjs
+│   │   ├── dist-string-coerce-LndEvhRk.941f64f1.cjs
+│   │   ├── dist-string-normalization-DEwYgSEp.3dbc69ae.cjs
+│   │   ├── dist-subsystem-DLRoKDlF.6ec1e137.cjs
+│   │   ├── dist-tailnet-B-qRX5pZ.eb180f94.cjs
+│   │   ├── dist-talk-CbjHCImG.530024dd.cjs
+│   │   ├── dist-targets-DaLztPKR.aade3585.cjs
+│   │   ├── dist-theme-CStEj1vt.a08ea948.cjs
+│   │   ├── dist-thinking-ix_990qw.cb20c1af.cjs
+│   │   ├── dist-tmp-openclaw-dir-C5ctwRKD.1d087d2b.cjs
+│   │   ├── dist-toggle-config-B8vg6YvL.ab5e70d7.cjs
+│   │   ├── dist-tool-auth-shared-CLxDQ-nU.325ca1ea.cjs
+│   │   ├── dist-tool-contracts-DrrZ2VcD.dbde7ec4.cjs
+│   │   ├── dist-tool-images-Bfwv9zjs.991a2529.cjs
+│   │   ├── dist-transcript-D34ZH8ZQ.9fc72195.cjs
+│   │   ├── dist-transcript-events-B00DLjg-.d049dc77.cjs
+│   │   ├── dist-types-Db71gsKA.4e797a3b.cjs
+│   │   ├── dist-types-k3POMgTC.e1765d81.cjs
+│   │   ├── dist-types.models-Cgsin5R9.7d311ec7.cjs
+│   │   ├── dist-types.secrets-BxqheYvy.aa29fb50.cjs
+│   │   ├── dist-undici-global-dispatcher-DbxuiFXu.46bf98e0.cjs
+│   │   ├── dist-undici-runtime-DzZbpePE.21f8ad62.cjs
+│   │   ├── dist-utils-CKsuXgDI.39bb5d5e.cjs
+│   │   ├── dist-version-B2G3zXnp.9f368048.cjs
+│   │   ├── dist-version-Du8fTz5t.0c167afd.cjs
+│   │   ├── dist-warning-filter-BGICq60U.60076c6e.cjs
+│   │   ├── dist-web-guarded-fetch-hhVIx3eo.deb97dda.cjs
+│   │   ├── dist-web-search-install-catalog-BQeH4Lj_.a6fb9cc6.cjs
+│   │   ├── dist-web-search-provider-common-CHdvpLZ1.0035c9a4.cjs
+│   │   ├── dist-web-search-provider-config-BmnIzf0a.f78e3128.cjs
+│   │   ├── dist-web-shared-B-Y2uCeO.2e7445a1.cjs
+│   │   ├── dist-windows-command-O_lLEVq_.a15ccc36.cjs
+│   │   ├── dist-windows-install-roots-ByO-WfMp.7e6f97b3.cjs
+│   │   ├── dist-workspace-default-Cg5lIU6L.5150c44a.cjs
+│   │   ├── dist-workspace-dir-DPcc1MHX.ba21016e.cjs
+│   │   ├── dist-write-queue-BKRKUV0w.38f58e6a.cjs
+│   │   ├── dist-wsl-CPSzfLq9.2dfb5231.cjs
+│   │   ├── dist-zod-parse-7tICWiqC.96e845c1.cjs
+│   │   ├── dist-zod-schema-C6VV4etB.1cfd4400.cjs
+│   │   ├── dist-zod-schema.agent-runtime-CkLkDy5d.17131b69.cjs
+│   │   ├── dist-zod-schema.core-CrlgnnCI.e8e988cc.cjs
+│   │   ├── dist-zod-schema.installs-DTTZnerp.93fe720a.cjs
+│   │   ├── dist-zod-schema.providers-whatsapp-BElo3xB4.e0da99aa.cjs
+│   │   ├── dist-zod-schema.sensitive-DZxjbqai.4508cc24.cjs
+│   │   ├── moonshot-provider-discovery.08e60036.cjs
+│   │   ├── oauth-anthropic.c9c6966a.cjs
+│   │   ├── oauth-github-copilot.de40f658.cjs
+│   │   ├── oauth-index.860471dd.cjs
+│   │   ├── oauth-oauth-page.7a25e54a.cjs
+│   │   ├── oauth-openai-codex.74236f25.cjs
+│   │   ├── oauth-pkce.6ccbd66f.cjs
+│   │   ├── oauth-types.d8e87461.cjs
+│   │   ├── ollama-provider-discovery.269d7ce1.cjs
+│   │   ├── source-index.d006654a.cjs
+│   │   ├── source-utilities.b4ed7e04.cjs
+│   │   ├── supports-color-index.5a8dab4d.cjs
+│   │   ├── tencent-provider-discovery.53970f1c.cjs
+│   │   ├── volcengine-provider-discovery.c817d180.cjs
+│   │   └── xai-provider-discovery.57a0f5a7.cjs
+│   ├── manifest.json
+│   ├── node-compile-cache
+│   │   ├── openclaw
+│   │   └── v24.14.1-arm64-cf738c9d-10327
+│   ├── openclaw-10327
+│   │   └── gateway.b4424d84.lock
+│   ├── pip-build-env-fb4lf1yz
+│   │   ├── overlay
+│   │   └── site
+│   ├── pip-build-env-uvy7nukw
+│   │   ├── overlay
+│   │   └── site
+│   ├── pip-install-j8jehxk5
+│   │   ├── grpcio_b567abfd884045969fe2944ab6984054
+│   │   └── pillow_b76b75d3f8d641cc8c9771fbb7ac5264
+│   ├── pip-metadata-2ewpcyoc
+│   │   └── METADATA
+│   ├── pip-metadata-7rc_eso_
+│   │   └── METADATA
+│   ├── pip-metadata-chq5qkhg
+│   │   └── METADATA
+│   ├── pip-metadata-rn_s9ucy
+│   │   └── METADATA
+│   ├── pip-modern-metadata-g838c5ys
+│   │   ├── pillow-12.2.0.dist-info
+│   │   └── pillow.egg-info
+│   ├── pip-modern-metadata-zn1j6rrs
+│   │   ├── grpcio-1.80.0.dist-info
+│   │   └── grpcio.egg-info
+│   ├── pip-unpack-aj2ftkwq
+│   │   └── werkzeug-3.1.8-py3-none-any.whl.metadata
+│   ├── pip-unpack-al6w2e8d
+│   │   └── pillow-12.2.0.tar.gz
+│   ├── pip-unpack-dcmsuemv
+│   │   └── absl_py-2.4.0-py3-none-any.whl.metadata
+│   ├── pip-unpack-div3yhac
+│   │   └── grpcio-1.80.0.tar.gz
+│   ├── pip-unpack-jobp72is
+│   │   ├── absl_py-2.4.0-py3-none-any.whl
+│   │   ├── tensorboard-2.20.0-py3-none-any.whl
+│   │   ├── tensorboard_data_server-0.7.2-py3-none-any.whl
+│   │   └── werkzeug-3.1.8-py3-none-any.whl
+│   ├── pip-unpack-pa26ffop
+│   │   └── tensorboard_data_server-0.7.2-py3-none-any.whl.metadata
+│   ├── pip-unpack-pdy79wi9
+│   │   └── tensorboard-2.20.0-py3-none-any.whl.metadata
+│   ├── runbook.txt
+│   └── tmppgj7763u
+│       └── input.json
+├── tookie-osint
+│   ├── CODE_OF_CONDUCT.md
+│   ├── CONTRIBUTING.md
+│   ├── LICENSE
+│   ├── README.md
+│   ├── SECURITY.md
+│   ├── brib.py
+│   ├── config
+│   │   └── version
+│   ├── docs
+│   │   └── readmelang
+│   ├── install.sh
+│   ├── lang
+│   │   ├── ar.py
+│   │   ├── de.py
+│   │   ├── en.py
+│   │   ├── es.py
+│   │   ├── fa.py
+│   │   ├── fi.py
+│   │   ├── fr.py
+│   │   ├── hi.py
+│   │   ├── id.py
+│   │   ├── il.py
+│   │   ├── it.py
+│   │   ├── ja.py
+│   │   ├── pt.py
+│   │   ├── ru.py
+│   │   ├── tr.py
+│   │   ├── tw.py
+│   │   └── zh_cn.py
+│   ├── modules
+│   │   ├── __init__.py
+│   │   ├── fancy.py
+│   │   ├── modules.py
+│   │   └── webscraper.py
+│   ├── requirements.txt
+│   ├── sites
+│   │   ├── feilds.json
+│   │   ├── headers.txt
+│   │   └── sites.json
+│   ├── smsmithey27.txt
+│   ├── smsmithey27_yahoo.com.txt
+│   ├── test_safe_filename.py
+│   ├── uninstall.sh
+│   ├── venv
+│   │   ├── include
+│   │   └── lib
+│   ├── windows_install.ps1
+│   └── windows_uninstall.ps1
+├── tools
+│   ├── bardildo
+│   │   ├── DOCS.md
+│   │   ├── NEW_DOCS.md
+│   │   ├── PERSONA_MAP_README.md
+│   │   ├── README.md
+│   │   ├── __pycache__
+│   │   ├── archivist.py
+│   │   ├── archivist_ollama.py
+│   │   ├── bardildo-cli.sh
+│   │   ├── bardildo.py
+│   │   ├── create_improved_widget.sh
+│   │   ├── create_termux_widget.sh
+│   │   ├── dustbunny.py
+│   │   ├── lead_dev_actions.sh
+│   │   ├── ollama_client.py
+│   │   ├── persona_map.json
+│   │   ├── populate_persona_map.py
+│   │   ├── qa.py
+│   │   ├── qa_ollama.py
+│   │   ├── run_bardildo.sh
+│   │   ├── schedule_run.sh
+│   │   ├── scheduled_scan.py
+│   │   ├── summarizer.py
+│   │   ├── summarizer_ollama.py
+│   │   └── tui.py
+│   └── codementor_cli
+│       ├── ai_explain.py
+│       └── requirements.txt
+├── tree_dump.txt
+├── truthsleuth
+│   ├── TRUTHSLEUTH.md
+│   ├── __init__.py
+│   ├── bridge.py
+│   ├── config.py
+│   ├── main.py
+│   ├── manifest.json
+│   ├── monitor.py
+│   ├── reporter.py
+│   ├── runbook.txt
+│   ├── smell_sniffer
+│   │   ├── README.md
+│   │   ├── __init__.py
+│   │   ├── analysis.py
+│   │   ├── architectural_smell_rules.json
+│   │   ├── biohazard.py
+│   │   ├── karma_oracle.py
+│   │   ├── rules.py
+│   │   ├── sniffer.py
+│   │   └── veritas_bridge.py
+│   └── verify.py
+├── types.ts
+├── upload.py
+├── v1.38.2
+│   ├── manifest.json
+│   ├── modernc.org
+│   │   ├── sqlite@v1.38.2
+│   │   ├── sqlite@v1.38.2-AUTHORS
+│   │   ├── sqlite@v1.38.2-CONTRIBUTORS
+│   │   ├── sqlite@v1.38.2-LICENSE
+│   │   ├── sqlite@v1.38.2-Makefile
+│   │   ├── sqlite@v1.38.2-SQLITE-LICENSE
+│   │   ├── sqlite@v1.38.2-testdata-testlog-darwin-amd64
+│   │   ├── sqlite@v1.38.2-testdata-testlog-linux-amd64
+│   │   ├── sqlite@v1.38.2-testdata-testlog-linux-arm
+│   │   ├── sqlite@v1.38.2-testdata-testlog-linux-arm64
+│   │   └── sqlite@v1.38.2-vfs-Makefile
+│   └── runbook.txt
+├── vertical_local
+│   ├── CHANGELOG
+│   ├── CONTROL.md
+│   ├── README.md
+│   ├── README_DEPLOY.md
+│   ├── __pycache__
+│   │   ├── app.cpython-313.pyc
+│   │   ├── app.cpython-314.pyc
+│   │   ├── debate_engine.cpython-313.pyc
+│   │   ├── debate_router.cpython-313.pyc
+│   │   ├── personas_router.cpython-313.pyc
+│   │   ├── presets_router.cpython-313.pyc
+│   │   ├── presets_router.cpython-314.pyc
+│   │   ├── providers.cpython-313.pyc
+│   │   ├── providers.cpython-314.pyc
+│   │   ├── reports.cpython-313.pyc
+│   │   ├── scout_sandbox.cpython-313.pyc
+│   │   ├── swarm_client.cpython-313.pyc
+│   │   └── thoth_client.cpython-313.pyc
+│   ├── app.py
+│   ├── data
+│   │   ├── personas.json
+│   │   └── presets.json
+│   ├── debate_engine.py
+│   ├── debate_router.py
+│   ├── manifest.json
+│   ├── personas_router.py
+│   ├── presets_router.py
+│   ├── providers.py
+│   ├── reports.py
+│   ├── requirements.txt
+│   ├── run.sh
+│   ├── run_boardroom.sh
+│   ├── run_boardroom_menu.sh
+│   ├── runbook.txt
+│   ├── scout_sandbox.py
+│   ├── swarm_client.py
+│   ├── thoth_client.py
+│   ├── tui_control.py
+│   └── web
+│       ├── README_UI.md
+│       ├── boardroom.html
+│       ├── index.html
+│       ├── package.json
+│       ├── src
+│       └── vite.config.js
+├── vertical_radar
+│   ├── README.md
+│   └── src
+│       ├── radar
+│       └── tools
+├── vertical_radar_dupe
+│   ├── README.md
+│   └── src
+│       ├── radar
+│       └── tools
+├── vite.config.ts
+├── voice-cloner
+│   ├── CONTRIBUTING.md
+│   ├── LICENSE
+│   ├── README.md
+│   ├── config.json
+│   ├── docs
+│   │   ├── api.md
+│   │   ├── installation.md
+│   │   └── usage.md
+│   ├── models
+│   ├── outputs
+│   ├── requirements.txt
+│   ├── samples
+│   ├── setup.sh
+│   ├── src
+│   │   ├── __init__.py
+│   │   └── voice_cloner.py
+│   ├── temp
+│   ├── tests
+│   └── tools
+├── web_server
+│   ├── Websocket
+│   │   ├── ws_server-1.py
+│   │   ├── ws_server.log
+│   │   └── ws_server.py
+│   ├── manifest.json
+│   ├── runbook.txt
+│   └── websocket.log
+├── whorl
+│   ├── dataweaver
+│   ├── docs
+│   │   └── ECOSYSTEM_RULES.md
+│   ├── examples
+│   ├── forge
+│   ├── found_assets.log
+│   ├── hivemind_state.json
+│   ├── loom
+│   ├── platform_bridge
+│   │   └── README.md
+│   ├── src
+│   │   ├── data_campus
+│   │   ├── dataweaver
+│   │   ├── easter_egg.log
+│   │   ├── forge
+│   │   ├── loom
+│   │   ├── molt
+│   │   ├── university
+│   │   └── whr_runtime
+│   ├── syntax_sessions
+│   │   ├── 20260602_210037.jsonl
+│   │   └── 20260605_043216.jsonl
+│   ├── tests
+│   ├── wavelang_visualization.html
+│   ├── whorl_visualizer.html
+│   ├── whorl_whitepaper_v0.1-1.pdf
+│   └── whr_runtime
+├── whorl_verification
+│   └── assets.log
+├── zeroclaw_broker
+│   ├── ROADMAP.md
+│   ├── manifest.json
+│   ├── runbook.txt
+│   ├── test_watermarking_mock.py
+│   ├── tests
+│   │   ├── __pycache__
+│   │   └── test_api_import.py
+│   └── zeroclaw_lab_broker
+│       ├── NEXT_CODER_HANDOFF.md
+│       ├── README.md
+│       ├── RESTORE_POINT.md
+│       ├── broker_records.jsonl
+│       ├── docs
+│       ├── tests
+│       ├── zeroclaw_lab_broker
+│       └── zeroclaw_server.log
+└── ~
+    └── START_HERE.sh
+
+972 directories, 3015 files

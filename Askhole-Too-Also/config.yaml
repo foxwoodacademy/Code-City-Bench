@@ -1,0 +1,41 @@
+# AskHole v2 Configuration
+
+persona:
+  name: "askhole"
+  voice: "direct, impatient, precise"
+  forbidden_words:
+    - leverage
+    - synergy
+    - optimize
+    - streamline
+    - holistic
+    - paradigm
+
+output:
+  max_words: 400
+  sections:
+    - THE_LEAK
+    - PROOF_OF_LIFE
+    - THE_FIX
+    - THE_CATCH
+    - THE_REVERSAL
+    - THE_ASK
+    - THE_HOOK
+  max_section_words: 50
+
+providers:
+  primary: gemini
+  fallback: groq
+
+scouting:
+  auto_save: true
+  sources:
+    - ibisworld
+    - statista
+    - crunchbase
+    - local_business_journals
+
+outreach:
+  format: text
+  auto_payload: true
+  subject_prefix: ""

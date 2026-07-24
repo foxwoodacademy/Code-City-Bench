@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ollama Terminal Mastery Quest</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: #00ff41;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #00ff41;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.3);
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px #00ff41;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from { text-shadow: 0 0 5px #00ff41, 0 0 10px #00ff41; }
+            to { text-shadow: 0 0 10px #00ff41, 0 0 20px #00ff41, 0 0 30px #00ff41; }
+        }
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        .xp-bar {
+            background: #1a1a2e;
+            border: 2px solid #00ff41;
+            border-radius: 20px;
+            height: 30px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .xp-fill {
+            background: linear-gradient(90deg, #00ff41, #00cc33);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #000;
+        }
+        .level-badge {
+            display: inline-block;
+            background: #00ff41;
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin: 0 10px;
+        }
+        .quest-section {
+            background: rgba(0, 50, 20, 0.5);
+            border-left: 4px solid #00ff41;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .quest-section h2 {
+            color: #00ff41;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+        .quest-section h3 {
+            color: #00cc99;
+            margin: 15px 0 10px 0;
+            font-size: 1.3em;
+        }
+        .command-box {
+            background: #000;
+            border: 1px solid #00ff41;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            position: relative;
+            overflow-x: auto;
+        }
+        .command-box code {
+            color: #ff6b35;
+            display: block;
+            white-space: pre;
+        }
+        .tip {
+            background: rgba(255, 200, 0, 0.1);
+            border-left: 4px solid #ffc800;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            color: #ffc800;
+        }
+        .pro-tip {
+            background: rgba(138, 43, 226, 0.1);
+            border-left: 4px solid #8a2be2;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            color: #bb86fc;
+        }
+        .warning {
+            background: rgba(255, 0, 0, 0.1);
+            border-left: 4px solid #ff0000;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            color: #ff6b6b;
+        }
+        .checkpoint {
+            background: rgba(0, 255, 65, 0.1);
+            border: 2px dashed #00ff41;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .checkpoint button {
+            background: #00ff41;
+            color: #000;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s;
+        }
+        .checkpoint button:hover {
+            background: #00cc33;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+        }
+        .achievement {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 255, 65, 0.95);
+            color: #000;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.8);
+            z-index: 1000;
+            animation: slideIn 0.5s ease;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(400px); }
+            to { transform: translateX(0); }
+        }
+        .workflow-diagram {
+            background: rgba(0, 20, 40, 0.5);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            border: 2px solid #0099ff;
+        }
+        ul, ol {
+            margin-left: 25px;
+            margin-top: 10px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        a {
+            color: #00ccff;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #00ff41;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚡ OLLAMA TERMINAL MASTERY QUEST ⚡</h1>
+        <p class="subtitle">From Script Kiddie to Terminal Wizard in One Session</p>
+        
+        <div class="xp-bar">
+            <div class="xp-fill" id="xpBar">0 XP / 1000 XP</div>
+        </div>
+        <div style="text-align: center;">
+            <span class="level-badge" id="levelBadge">Level 1: Novice</span>
+        </div>
+
+        <div class="achievement" id="achievement">
+            🏆 Achievement Unlocked!
+        </div>
+
+        <!-- QUEST 1: BASICS -->
+        <div class="quest-section">
+            <h2>🎯 Quest 1: Master the Foundation (100 XP)</h2>
+            
+            <h3>📋 Essential Commands</h3>
+            <div class="command-box"><code># List all your models
+ollama list
+
+# Check model details
+ollama show deepseek-coder:6.7b
+
+# Run interactive chat
+ollama run deepseek-coder:6.7b
+
+# Exit chat (type this in the model chat)
+/bye
+
+# Delete a model (free up space)
+ollama rm tinyllama</code></div>
+
+            <div class="tip">
+                💡 <strong>TIP:</strong> Keep 2-3 specialized models instead of 10 mediocre ones. Quality > Quantity.
+            </div>
+
+            <h3>🚀 Power User Flags</h3>
+            <div class="command-box"><code># Keep model loaded in memory (way faster follow-ups)
+ollama run deepseek-coder:6.7b --keep-alive 30m
+
+# Adjust temperature (creativity level 0-1)
+ollama run deepseek-coder:6.7b --temperature 0.7
+
+# Set max tokens in response
+ollama run deepseek-coder:6.7b --num-predict 500</code></div>
+
+            <div class="checkpoint">
+                <h3>✅ Checkpoint Alpha</h3>
+                <p>Run your DeepSeek model, ask it to write a Python function, then exit.</p>
+                <button onclick="completeQuest(1)">Quest Complete! (+100 XP)</button>
+            </div>
+        </div>
+
+        <!-- QUEST 2: PIPING & AUTOMATION -->
+        <div class="quest-section">
+            <h2>🎯 Quest 2: Pipe Dreams to Reality (150 XP)</h2>
+            
+            <h3>⚙️ Unix Pipe Magic</h3>
+            <div class="command-box"><code># Analyze a code file
+cat mycode.py | ollama run deepseek-coder:6.7b "find bugs and suggest improvements"
+
+# Process multiple files
+find . -name "*.js" | xargs cat | ollama run deepseek-coder:6.7b "summarize what this codebase does"
+
+# Generate documentation
+cat functions.py | ollama run deepseek-coder:6.7b "write comprehensive docstrings for each function" > documented.py
+
+# Code review automation
+git diff | ollama run deepseek-coder:6.7b "review this code change for issues"</code></div>
+
+            <div class="pro-tip">
+                🔥 <strong>PRO TIP:</strong> Chain commands with && to create automated workflows:
+                <div class="command-box"><code>ollama run qwen2.5:7b "generate 5 blog post ideas about AI" > ideas.txt && cat ideas.txt | ollama run llama3.1:8b "expand idea 1 into a full outline"</code></div>
+            </div>
+
+            <h3>📝 One-Shot Queries (No Interactive Mode)</h3>
+            <div class="command-box"><code># Quick answer, no chat session
+echo "explain async/await in JavaScript" | ollama run deepseek-coder:6.7b
+
+# Save output directly
+echo "write a FastAPI endpoint for user authentication" | ollama run deepseek-coder:6.7b > auth_endpoint.py
+
+# Batch processing
+for file in *.py; do
+  echo "Add comments to this code: $(cat $file)" | ollama run deepseek-coder:6.7b > "commented_$file"
+done</code></div>
+
+            <div class="checkpoint">
+                <h3>✅ Checkpoint Bravo</h3>
+                <p>Pipe a code file to Ollama and save the analysis to a new file.</p>
+                <button onclick="completeQuest(2)">Quest Complete! (+150 XP)</button>
+            </div>
+        </div>
+
+        <!-- QUEST 3: MULTI-TERMINAL ORCHESTRATION -->
+        <div class="quest-section">
+            <h2>🎯 Quest 3: Terminal Orchestration (200 XP)</h2>
+            
+            <h3>🎭 Multi-Model Strategy</h3>
+            <div class="workflow-diagram">
+                <h4>The Specialist Approach:</h4>
+                <ul>
+                    <li><strong>Terminal 1:</strong> deepseek-coder (code generation & analysis)</li>
+                    <li><strong>Terminal 2:</strong> llama3.1 (creative writing, marketing copy)</li>
+                    <li><strong>Terminal 3:</strong> qwen2.5 (business logic, planning, strategy)</li>
+                </ul>
+            </div>
+
+            <div class="command-box"><code># Terminal 1: Generate code
+ollama run deepseek-coder:6.7b --keep-alive 60m
+# Ask: "Create a Stripe payment webhook handler in Python"
+
+# Terminal 2: Write marketing copy
+ollama run llama3.1:8b --keep-alive 60m
+# Ask: "Write 3 pricing tier descriptions for an AI automation service"
+
+# Terminal 3: Strategic planning
+ollama run qwen2.5:7b --keep-alive 60m
+# Ask: "Create a 90-day launch timeline for a SaaS product"</code></div>
+
+            <h3>🔄 The Feedback Loop Pattern</h3>
+            <div class="command-box"><code># Step 1: Generate initial code
+echo "create a REST API for task management" | ollama run deepseek-coder:6.7b > api.py
+
+# Step 2: Get code review
+cat api.py | ollama run deepseek-coder:6.7b "review this code for security issues" > review.txt
+
+# Step 3: Apply improvements
+cat api.py review.txt | ollama run deepseek-coder:6.7b "fix the issues mentioned in the review" > api_v2.py
+
+# Step 4: Generate tests
+cat api_v2.py | ollama run deepseek-coder:6.7b "write pytest unit tests" > test_api.py</code></div>
+
+            <div class="pro-tip">
+                🧠 <strong>GALAXY BRAIN MOVE:</strong> Use tmux or screen to manage multiple terminals:
+                <div class="command-box"><code># Create named sessions for each model
+tmux new -s coder
+# Ctrl+B then D to detach
+tmux new -s writer
+tmux new -s planner
+
+# Switch between them
+tmux attach -t coder
+tmux attach -t writer
+
+# List all sessions
+tmux ls</code></div>
+            </div>
+
+            <div class="checkpoint">
+                <h3>✅ Checkpoint Charlie</h3>
+                <p>Run 2 different models simultaneously in separate terminals and have them solve different parts of a problem.</p>
+                <button onclick="completeQuest(3)">Quest Complete! (+200 XP)</button>
+            </div>
+        </div>
+
+        <!-- QUEST 4: AGENTIC SWARM PATTERNS -->
+        <div class="quest-section">
+            <h2>🎯 Quest 4: Agentic Swarm Tactics (250 XP)</h2>
+            
+            <h3>🐝 The Swarm Architecture</h3>
+            <div class="workflow-diagram">
+                <strong>Project: Launch AI Automation SaaS</strong><br><br>
+                <strong>Agent 1 (Researcher):</strong> Market analysis, competitor research<br>
+                <strong>Agent 2 (Architect):</strong> System design, tech stack decisions<br>
+                <strong>Agent 3 (Coder):</strong> Implementation, code generation<br>
+                <strong>Agent 4 (Tester):</strong> Test generation, QA<br>
+                <strong>Agent 5 (Marketer):</strong> Copy, pricing, positioning<br>
+            </div>
+
+            <h3>📋 Real World Swarm Script</h3>
+            <div class="command-box"><code>#!/bin/bash
+# swarm_launch.sh - Coordinate multiple AI agents
+
+PROJECT="AI_Automation_SaaS"
+mkdir -p $PROJECT/{research,architecture,code,tests,marketing}
+
+# Agent 1: Market Research
+echo "Analyze the AI automation market: competitors, pricing, gaps" | \
+  ollama run qwen2.5:7b > $PROJECT/research/market_analysis.txt &
+
+# Agent 2: Architecture
+echo "Design a microservices architecture for an AI automation platform with payment integration" | \
+  ollama run deepseek-coder:6.7b > $PROJECT/architecture/system_design.txt &
+
+# Agent 3: Generate core service
+echo "Create a Python FastAPI service that processes automation requests via webhooks" | \
+  ollama run deepseek-coder:6.7b > $PROJECT/code/automation_service.py &
+
+# Agent 4: Generate tests
+sleep 30 # Wait for code to generate
+cat $PROJECT/code/automation_service.py | \
+  ollama run deepseek-coder:6.7b "write comprehensive pytest tests" > $PROJECT/tests/test_automation.py &
+
+# Agent 5: Marketing copy
+echo "Write compelling landing page copy for an AI automation SaaS targeting small businesses" | \
+  ollama run llama3.1:8b > $PROJECT/marketing/landing_page.txt &
+
+# Wait for all agents
+wait
+echo "✅ Swarm complete! Check $PROJECT folder"</code></div>
+
+            <div class="warning">
+                ⚠️ <strong>WARNING:</strong> Running 5+ models simultaneously will crush your RAM. Use --keep-alive sparingly and stagger executions.
+            </div>
+
+            <h3>⏱️ Timeline Generation Formula</h3>
+            <div class="command-box"><code># Get realistic timeline
+echo "I want to build: [YOUR PROJECT]
+I have: [YOUR RESOURCES]
+I can work: [HOURS PER WEEK]
+
+Break this into:
+1. Week-by-week milestones
+2. Critical path items
+3. Parallel tasks
+4. Risk factors
+5. Minimum viable product scope" | ollama run qwen2.5:7b > timeline.txt</code></div>
+
+            <div class="checkpoint">
+                <h3>✅ Checkpoint Delta</h3>
+                <p>Create a bash script that runs 3 different Ollama commands for different aspects of a project.</p>
+                <button onclick="completeQuest(4)">Quest Complete! (+250 XP)</button>
+            </div>
+        </div>
+
+        <!-- QUEST 5: ADVANCED TACTICS -->
+        <div class="quest-section">
+            <h2>🎯 Quest 5: 10x Multiplier Tactics (300 XP)</h2>
+            
+            <h3>🎯 Precision Prompting Patterns</h3>
+            <div class="command-box"><code># BAD: Vague request
+"make my code better"
+
+# GOOD: Specific with constraints
+"Refactor this Python function to:
+1. Reduce time complexity from O(n²) to O(n)
+2. Add type hints
+3. Include docstring with examples
+4. Handle edge cases for empty input"
+
+# BAD: Generic
+"write an API"
+
+# GOOD: Detailed blueprint
+"Create a FastAPI endpoint that:
+- Accepts POST requests at /api/v1/analyze
+- Validates input using Pydantic (user_id: int, code: str)
+- Returns JSON with {status, analysis, suggestions}
+- Includes error handling for 400/500 errors
+- Has rate limiting decorator (10 req/min)"</code></div>
+
+            <h3>🔧 Custom Model Creation</h3>
+            <div class="command-box"><code># Create a specialized model with custom system prompt
+cat > Modelfile << EOF
+FROM deepseek-coder:6.7b
+
+SYSTEM You are an expert SaaS pricing strategist. You specialize in creating profitable pricing tiers, calculating CAC/LTV ratios, and positioning products for maximum conversion.
+
+PARAMETER temperature 0.7
+PARAMETER top_p 0.9
+EOF
+
+ollama create pricing-expert -f Modelfile
+
+# Now use your custom model
+ollama run pricing-expert "analyze pricing for an AI automation tool"</code></div>
+
+            <div class="pro-tip">
+                🚀 <strong>ULTIMATE HACK:</strong> Create domain-specific models for recurring tasks:
+                <ul>
+                    <li><strong>code-reviewer:</strong> Tuned for spotting bugs</li>
+                    <li><strong>marketing-guru:</strong> Specialized in conversion copy</li>
+                    <li><strong>api-architect:</strong> Focused on API design patterns</li>
+                </ul>
+            </div>
+
+            <h3>📊 Project Planning Template</h3>
+            <div class="command-box"><code>echo "Project: [NAME]
+
+INPUTS:
+- Skills: [YOUR SKILLS]
+- Time: [HOURS/WEEK]
+- Budget: [$ AMOUNT]
+- Deadline: [TARGET DATE]
+
+REQUIREMENTS:
+[WHAT YOU WANT TO BUILD]
+
+Generate:
+1. Feasibility score (1-10)
+2. Risk assessment
+3. Week-by-week breakdown
+4. Critical dependencies
+5. Resource allocation
+6. MVP vs Full scope
+7. Go-to-market strategy outline
+8. Estimated completion date
+
+Be brutally realistic." | ollama run qwen2.5:7b > project_plan.txt</code></div>
+
+            <h3>💰 Business Automation Checklist</h3>
+            <div class="tip">
+                <strong>What to automate with Ollama:</strong>
+                <ul>
+                    <li>✅ Code reviews (save 2-3 hours/day)</li>
+                    <li>✅ Test generation (save 4-6 hours/week)</li>
+                    <li>✅ Documentation writing (save 5-10 hours/week)</li>
+                    <li>✅ Marketing copy generation (save 3-4 hours/week)</li>
+                    <li>✅ API endpoint scaffolding (save 2-3 hours/day)</li>
+                    <li>✅ Client proposal generation (save 1-2 hours per proposal)</li>
+                    <li>✅ Code refactoring suggestions (continuous)</li>
+                </ul>
+                <strong>Total savings: 20-40 hours/week = $2k-8k/month in billable time</strong>
+            </div>
+
+            <div class="checkpoint">
+                <h3>✅ Final Boss Checkpoint</h3>
+                <p>Create a custom Modelfile for your specific use case and successfully run it.</p>
+                <button onclick="completeQuest(5)">Quest Complete! (+300 XP)</button>
+            </div>
+        </div>
+
+        <!-- EASTER EGGS & SECRETS -->
+        <div class="quest-section" style="border-left-color: #ff00ff;">
+            <h2>🎮 Easter Eggs & Secret Commands</h2>
+            
+            <h3>🔓 Hidden Ollama Features</h3>
+            <div class="command-box"><code># Show model architecture details
+ollama show deepseek-coder:6.7b --modelfile
+
+# Export a model to share
+ollama push mymodel:latest
+
+# Import from file
+ollama create mymodel -f ./Modelfile
+
+# Check GPU usage (if you have CUDA)
+ollama ps
+
+# Stream output token by token (cool visual effect)
+ollama run deepseek-coder:6.7b --verbose</code></div>
+
+            <h3>🎪 Fun Hacks</h3>
+            <div class="command-box"><code># Make Ollama rap
+echo "explain recursion as a rap battle" | ollama run llama3.1:8b
+
+# Code golf challenge
+echo "write the shortest Python function to check if a string is a palindrome" | ollama run deepseek-coder:6.7b
+
+# AI code review roast session
+cat messy_code.py | ollama run deepseek-coder:6.7b "roast this code mercilessly but give actionable fixes"
+
+# Generate ASCII art diagrams
+echo "create ASCII art diagram of microservices architecture" | ollama run qwen2.5:7b</code></div>
+
+            <div class="pro-tip">
+                🎯 <strong>SPEEDRUN TACTICS:</strong>
+                <ol>
+                    <li>Pre-load models with --keep-alive before starting work</li>
+                    <li>Use aliases: <code>alias ask='ollama run deepseek-coder:6.7b'</code></li>
+                    <li>Create a prompts.txt library of your best prompts</li>
+                    <li>Chain commands: generate → review → refactor → test (all automated)</li>
+                    <li>Use watch command for continuous monitoring: <code>watch -n 60 'cat code.py | ollama run deepseek-coder:6.7b "any issues?"'</code></li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- FINAL WISDOM -->
+        <div class="quest-section" style="border-left-color: #ffd700;">
+            <h2>🏆 Grandmaster Wisdom</h2>
+            
+            <h3>The 80/20 Rule for Ollama</h3>
+            <p><strong>20% of these tactics will give you 80% of the value:</strong></p>
+            <ol>
+                <li><strong>Keep models loaded:</strong> --keep-alive 30m (eliminates startup lag)</li>
+                <li><strong>Pipe everything:</strong> cat file.py | ollama run model (automate everything)</li>
+                <li><strong>Be specific:</strong> Detailed prompts = better output (10x better results)</li>
+                <li><strong>Specialize models:</strong> One model per task type (quality over quantity)</li>
+                <li><strong>Script it:</strong> Bash scripts for repetitive workflows (compound your time savings)</li>
+            </ol>
+
+            <h3>⚡ Power User Aliases (Add to .bashrc/.zshrc)</h3>
+            <div class="command-box"><code># Add these to your shell config
+alias code-review='ollama run deepseek-coder:6.7b'
+alias market='ollama run llama3.1:8b'
+alias plan='ollama run qwen2.5:7b'
+alias quick='ollama run deepseek-coder:6.7b --temperature 0.3'
+alias creative='ollama run llama3.1:8b --temperature 0.9'
+
+# Quick functions
+code-analyze() { cat "$1" | code-review "analyze this code for improvements"; }
+generate-tests() { cat "$1" | code-review "write comprehensive tests" > "test_$1"; }
+market-copy() { echo "$1" | market "write compelling marketing copy for this: $1"; }</code></div>
+
+            <h3>🎯 Your Action Plan (Next 24 Hours)</h3>
+            <ol>
+                <li>✅ Pull 3 specialized models (coder, writer, planner)</li>
+                <li>✅ Create 1 custom Modelfile for your main use case</li>
+                <li>✅ Write 1 bash script that automates your most common task</li>
+                <li>✅ Set up aliases in your shell config</li>
+                <li>✅ Document your 5 best prompts in a prompts.txt file</li>
+            </ol>
+
+            <div class="warning">
+                <strong>Remember:</strong> The goal isn't to use AI for everything. It's to 10x your output on the things that matter by automating the tedious stuff. Focus on high-leverage activities.
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; padding: 30px; border-top: 2px solid #00ff41;">
+            <h2 style="color: #00ff41;">🎓 Graduation</h2>
+            <p style="font-size: 1.2em; margin: 20px 0;">You now have the knowledge. Go build something legendary.</p>
+            <p style="color: #888;">Save this guide. Reference it. Master it. Then teach others.</p>
+        </div>
+    </div>
+
+    <script>
+        let xp = 0;
+        let level = 1;
+        const questXP = [100, 150, 200, 250, 300];
+        
+        function completeQuest(questNum) {
+            const earned = questXP[questNum - 1];
+            xp += earned;
+            
+            // Update XP bar
+            const progress = Math.min((xp / 1000) * 100, 100);
+            document.getElementById('xpBar').style.width = progress + '%';
+            document.getElementById('xpBar').textContent = xp + ' XP / 1000 XP';
+            
+            // Level up logic
+            if (xp >= 250 && level === 1) {
+                level = 2;
+                document.getElementById('levelBadge').textContent = 'Level 2: Apprentice';
+                showAchievement('Level Up! You are now an Apprentice! 🎉');
+            } else if (xp >= 600 && level === 2) {
+                level = 3;
+                document.getElementById('levelBadge').textContent = 'Level 3: Expert';
+                showAchievement('Level Up! You are now an Expert! 🔥');
+            } else if (xp >= 1000 && level === 3) {
+                level = 4;
+                document.getElementById('levelBadge').textContent = 'Level 4: MASTER';
+                document.getElementById('levelBadge').style.background = 'gold';
+                showAchievement('🏆 MASTERY ACHIEVED! You are a Terminal Wizard! ⚡');
+            } else {
+                showAchievement('Quest Complete! +' + earned + ' XP 🎯');
+            }
+        }
+        
+        function showAchievement(text) {
+            const ach = document.getElementById('achievement');
+            ach.textContent = text;
+            ach.style.display = 'block';
+            setTimeout(() => {
+                ach.style.display = 'none';
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

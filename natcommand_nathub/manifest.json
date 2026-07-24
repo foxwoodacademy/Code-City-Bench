@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "name": "natcommand_nathub",
+    "path": "/storage/emulated/0/RootBase/natcommand_nathub",
+    "languages": {
+      "python": 6
+    },
+    "entrypoints": [
+      "nat.py"
+    ],
+    "package_json": false,
+    "requirements": 0,
+    "readme_excerpt": "",
+    "last_modified": "2026-05-20T16:54:35.672999"
+  },
+  "runbook": {
+    "commands": [
+      "python nat.py"
+    ],
+    "env": [],
+    "notes": []
+  },
+  "bard_note": "Can't tell what this does \u2014 it's a mystery wrapped in a folder. (Bardildo: harsh truth incoming)"
+}

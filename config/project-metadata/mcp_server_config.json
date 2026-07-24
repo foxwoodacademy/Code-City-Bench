@@ -1,0 +1,150 @@
+{
+  "mcp_server": {
+    "enabled": true,
+    "host": "0.0.0.0",
+    "port": 8766,
+    "max_connections": 200,
+    "timeout": 30,
+    "ssl": {
+      "enabled": false,
+      "cert_path": "",
+      "key_path": ""
+    },
+    "authentication": {
+      "required": true,
+      "api_keys": [
+        "vibe-mcp-master-key-2024",
+        "doctor-approved-access-2024",
+        "races-winner-key-2024"
+      ]
+    },
+    "load_balancing": {
+      "enabled": true,
+      "strategy": "round_robin",
+      "health_check_interval": 60
+    },
+    "performance": {
+      "max_workers": 40,
+      "cache_size": 2048,
+      "cache_ttl": 300
+    },
+    "logging": {
+      "level": "debug",
+      "file": "/storage/emulated/0/RootBase/logs/mcp_server.log",
+      "max_size": 10485760,
+      "backup_count": 5
+    }
+  },
+  "connectors": {
+    "panel_connector": {
+      "enabled": true,
+      "supported_ides": [
+        "vscode",
+        "jetbrains",
+        "sublime",
+        "atom",
+        "vim",
+        "emacs",
+        "eclipse",
+        "xcode"
+      ],
+      "max_request_size": 2097152,
+      "timeout": 120,
+      "cache_enabled": true,
+      "cache_ttl": 3600
+    },
+    "api_bridge": {
+      "enabled": true,
+      "backends": [
+        "ollama",
+        "claude",
+        "gemini",
+        "openai",
+        "openai-image-gen",
+        "stability-ai"
+      ],
+      "default_backend": "claude",
+      "fallback_order": [
+        "gemini",
+        "ollama",
+        "openai"
+      ]
+    }
+  },
+  "skills": {
+    "enabled_skills": [
+      "godmode",
+      "merge-pr",
+      "mintlify",
+      "prepare-pr",
+      "review-pr",
+      "vibe",
+      "mcporter",
+      "coding-agent",
+      "gemini",
+      "summarize",
+      "openai-image-gen",
+      "slack",
+      "github",
+      "discord"
+    ],
+    "skill_load_path": "/storage/emulated/0/RootBase/molt_bleak/MoltBleak/incorp/MoltBleak/openclaw/openclaw-main/skills"
+  },
+  "advanced_features": {
+    "real_time_collaboration": {
+      "enabled": true,
+      "max_sessions": 50,
+      "session_timeout": 1800
+    },
+    "ai_analysis": {
+      "enabled": true,
+      "max_tokens": 4096,
+      "temperature": 0.7,
+      "top_p": 0.9
+    },
+    "performance_monitoring": {
+      "enabled": true,
+      "metrics_interval": 60,
+      "alert_thresholds": {
+        "cpu": 85,
+        "memory": 90,
+        "response_time": 2000
+      }
+    }
+  },
+  "security": {
+    "rate_limiting": {
+      "enabled": true,
+      "requests_per_minute": 100,
+      "burst_capacity": 50
+    },
+    "cors": {
+      "allowed_origins": [
+        "*"
+      ],
+      "allowed_methods": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE"
+      ],
+      "allowed_headers": [
+        "*"
+      ]
+    }
+  },
+  "experimental": {
+    "self_optimization": {
+      "enabled": true,
+      "interval": 3600,
+      "metrics": [
+        "cpu_usage",
+        "memory_usage",
+        "response_time",
+        "error_rate"
+      ],
+      "auto_tuning": true,
+      "machine_learning": true
+    }
+  }
+}

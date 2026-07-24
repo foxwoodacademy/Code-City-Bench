@@ -1,0 +1,17 @@
+# CodeMentor ↔ Code City Bridge
+mentor_root: ./CodeMentor-MVP
+city_root: ./Code-City-Claude/Code-City-Claude
+city_emergent: ./Code-City-Claude/Code-City-Claude/Code_City/code_city_emergent
+
+# What to sync
+sync_targets:
+  - mentor_lib: CodeMentor-MVP/lib/ai_explain.py
+    city_consumer: Code_City/code_city_emergent/scanner.py
+  - mentor_ui: CodeMentor-MVP/CodeMentor_MVP/src/extension.ts
+    city_consumer: Code_City/code_city_emergent/frontend/src/
+
+# Personas available to both
+personas:
+  - audrey: audit/debug
+  - claib: strategy/refactor
+  - vertical: synthesis/tutor_mode

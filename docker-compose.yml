@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  implore-engine:
+    build: .
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - DB_PATH=/data/implore_data.db
+    volumes:
+      - ./data:/data
+      - ./ecosystem_bridge:/storage/emulated/0/RootBase/ecosystem_bridge
+    restart: always

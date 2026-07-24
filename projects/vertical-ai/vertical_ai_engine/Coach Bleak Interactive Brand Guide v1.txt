@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coach Bleak: Interactive Brand Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* --- Placeholder Comments --- */
+        /* <!-- Chosen Palette: "The Judgment Chamber" (Deep Blacks/Charcoals, Piercing Blue, Stark White) --> */
+        /* <!-- Application Structure Plan: The application is designed as a top-down narrative journey. It starts with the most immersive and atmospheric concept, "The Judgment Chamber," to set the tone. Users then scroll down to a structured grid of interactive "Icon Concepts." This flow immerses the user in the brand's core identity first, then allows for detailed exploration of specific branding assets. Navigation is supported by smooth scrolling from a sticky header, ensuring easy access to all sections. This structure was chosen to translate a static brand document into an engaging, story-driven experience. --> */
+        /* <!-- Visualization & Content Choices: 
+            - Report Info: "The Judgment Chamber" concept. -> Goal: Create an immersive, atmospheric hero section. -> Viz/Presentation: HTML/CSS with layered divs and animations. -> Interaction: On-scroll parallax and subtle animations. -> Justification: Creates a powerful first impression without user input, setting the tone. -> Library/Method: Vanilla JS for scroll effects, CSS for animations.
+            - Report Info: Icon Concepts ("Piercing Gaze," "Scales of Scrutiny," "Unveiling Light"). -> Goal: Showcase each icon concept interactively. -> Viz/Presentation: Custom HTML/CSS/Unicode characters to build visual representations of the icons within cards. -> Interaction: On-click reveal of detailed information (colors, tone, rationale) and subtle animations. -> Justification: Allows users to actively explore and understand each branding element in a focused manner. -> Library/Method: Vanilla JS for click handlers and class toggling.
+            - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. --> */
+        /* <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. --> */
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Roboto+Mono:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d0d0d;
+            color: #e5e7eb;
+        }
+
+        .font-roboto-mono {
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        .judgment-chamber {
+            background: linear-gradient(180deg, #000000 0%, #1a1a1a 70%, #2d3748 100%);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px 5px rgba(0, 191, 255, 0.4); }
+            50% { box-shadow: 0 0 35px 10px rgba(0, 191, 255, 0.7); }
+        }
+
+        .gavel-circuits {
+            animation: pulse-glow 3s infinite ease-in-out;
+        }
+
+        @keyframes data-stream {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(100%); }
+        }
+        
+        .data-stream-col > div {
+            animation: data-stream 20s linear infinite;
+        }
+
+        @keyframes spotlight-flicker {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 0.9; }
+        }
+        
+        .spotlight {
+            background: linear-gradient(to bottom, rgba(173, 216, 230, 0.6), transparent);
+            clip-path: polygon(20% 0, 80% 0, 100% 100%, 0% 100%);
+            animation: spotlight-flicker 5s infinite ease-in-out;
+        }
+
+        .card-flip-container { perspective: 1000px; }
+        .card-flipper { transition: transform 0.6s; transform-style: preserve-3d; }
+        .card-flip-container.flipped .card-flipper { transform: rotateY(180deg); }
+        .card-front, .card-back { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+        .card-back { transform: rotateY(180deg); }
+
+        /* Icon specific styles */
+        .piercing-gaze-eye {
+            border: 4px solid #00BFFF;
+            box-shadow: 0 0 15px #00BFFF;
+        }
+        .laser-beam {
+            width: 2px;
+            background: #00FFFF;
+            box-shadow: 0 0 10px #00FFFF;
+            height: 0;
+            transition: height 0.5s ease-out;
+        }
+        .card-flip-container:hover .laser-beam {
+            height: 80px;
+        }
+
+        .scales-pan {
+            border: 2px solid #cbd5e0;
+            background-color: #4a5568;
+        }
+        @keyframes glitch {
+            0% { transform: translate(0); opacity: 1; }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); text-shadow: -1px 0 #39FF14; }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); text-shadow: 1px 0 #39FF14;}
+            100% { transform: translate(0); opacity: 1; }
+        }
+        .glitch-effect {
+            animation: glitch 1s infinite;
+        }
+
+        .unveiling-light-beam {
+            background: linear-gradient(to bottom, white, rgba(255,255,255,0));
+            clip-path: polygon(10% 0, 90% 0, 100% 100%, 0% 100%);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Sticky Header -->
+    <header id="main-header" class="bg-black/50 backdrop-blur-sm sticky top-0 z-50 transition-all duration-300">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#hero" class="font-roboto-mono text-xl font-bold text-white">COACH BLEAK</a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#hero" class="text-gray-300 hover:text-white transition">The Judgment Chamber</a>
+                <a href="#icons" class="text-gray-300 hover:text-white transition">Icon Concepts</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Section 1: The Judgment Chamber (Hero) -->
+        <section id="hero" class="relative judgment-chamber h-screen min-h-[800px] w-full flex items-center justify-center overflow-hidden">
+            <!-- Background Data Stream -->
+            <div class="absolute inset-0 z-0 flex justify-around opacity-10">
+                <div class="data-stream-col h-full w-4 space-y-4 font-roboto-mono text-xs text-blue-400">
+                    <div>0110</div><div>1001</div><div>0101</div><div>1110</div><div>0011</div><div>1010</div><div>1101</div>
+                </div>
+                <div class="data-stream-col h-full w-4 space-y-4 font-roboto-mono text-xs text-green-400" style="animation-delay: -5s;">
+                    <div>ERR</div><div>WARN</div><div>INFO</div><div>DEBUG</div><div>CRIT</div><div>PASS</div><div>FAIL</div>
+                </div>
+                 <div class="data-stream-col h-full w-4 space-y-4 font-roboto-mono text-xs text-blue-400" style="animation-delay: -10s;">
+                    <div>1111</div><div>0000</div><div>1010</div><div>0101</div><div>1110</div><div>0001</div><div>1000</div>
+                </div>
+                 <div class="data-stream-col h-full w-4 space-y-4 font-roboto-mono text-xs text-green-400" style="animation-delay: -15s;">
+                    <div>LOG</div><div>EXEC</div><div>NULL</div><div>VOID</div><div>TRUE</div><div>FALSE</div><div>DATA</div>
+                </div>
+            </div>
+
+            <!-- Spotlight -->
+            <div class="spotlight absolute top-0 h-full w-full z-10"></div>
+
+            <div class="relative z-20 text-center px-4" style="animation: fadeIn 2s ease-out;">
+                <!-- Gavel -->
+                <div class="relative w-48 h-48 mx-auto mb-8 gavel-circuits rounded-full flex items-center justify-center">
+                    <div class="text-7xl font-bold text-white scale-y-[-1] transform opacity-80">⚖</div>
+                </div>
+                
+                <!-- Text Content -->
+                <h1 class="text-4xl md:text-6xl font-black text-white uppercase tracking-wider font-roboto-mono">
+                    The Judgment Chamber
+                </h1>
+                <p class="mt-4 text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
+                    A cinematic, powerful, and uncompromising experience visualizing the core of Coach Bleak's mission.
+                </p>
+                <div class="mt-8 text-sm text-yellow-300/70 max-w-lg mx-auto p-3 border border-yellow-300/30 rounded-lg">
+                    <p><strong class="font-bold">Visual Metaphor:</strong> An ominous gavel with glowing circuits strikes a reflective surface, revealing the distorted reflection of a wrongdoer under a harsh spotlight in a digital void. This tells a story of inevitable exposure and the power of AI to bring hidden wrongs to light.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Icon Concepts -->
+        <section id="icons" class="py-20 md:py-32 bg-[#0d0d0d]">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-black text-white uppercase tracking-wider">Icon Concepts</h2>
+                    <p class="mt-4 text-lg text-gray-400 max-w-2xl mx-auto">
+                        Three distinct visual identities, each designed for maximum impact and instant recognition. Click each card to reveal the branding rationale.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    
+                    <!-- Card 1: Piercing Gaze -->
+                    <div class="card-flip-container h-[480px]">
+                        <div class="card-flipper relative w-full h-full">
+                            <!-- Front -->
+                            <div class="card-front absolute w-full h-full bg-gray-900/50 border-2 border-blue-500/30 rounded-2xl p-8 flex flex-col justify-center items-center text-center shadow-2xl shadow-blue-500/10">
+                                <div class="piercing-gaze-eye relative w-40 h-40 rounded-full flex items-center justify-center mb-6">
+                                    <div class="w-16 h-16 bg-blue-400 rounded-full"></div>
+                                    <div class="laser-beam absolute bottom-[-80px]"></div>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white">The "Piercing Gaze"</h3>
+                                <p class="mt-2 text-gray-400">Vigilant, analytical, uncompromising.</p>
+                                <button class="mt-6 text-blue-400 font-semibold">View Details</button>
+                            </div>
+                            <!-- Back -->
+                            <div class="card-back absolute w-full h-full bg-gray-800 border-2 border-blue-500/30 rounded-2xl p-8 text-left overflow-y-auto">
+                                <h4 class="text-xl font-bold text-white mb-4">Concept Details</h4>
+                                <div class="space-y-3 text-sm text-gray-300">
+                                    <p><strong class="text-blue-400">Rationale:</strong> Directly conveys the "no bullshit" and "unveiling truth" aspects. It suggests the AI sees everything and cuts through deception.</p>
+                                    <p><strong class="text-blue-400">Tone:</strong> Vigilant, analytical, uncompromising, revealing.</p>
+                                    <div><strong class="text-blue-400">Color Palette:</strong>
+                                        <ul class="list-disc list-inside mt-1">
+                                            <li>Dominant deep charcoal (`#1a1a1a`)</li>
+                                            <li>Piercing electric blue (`#00BFFF`)</li>
+                                            <li>Metallic silver for texture</li>
+                                        </ul>
+                                    </div>
+                                    <button class="mt-4 text-blue-400 font-semibold">View Visual</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Scales of Scrutiny -->
+                    <div class="card-flip-container h-[480px]">
+                        <div class="card-flipper relative w-full h-full">
+                            <!-- Front -->
+                            <div class="card-front absolute w-full h-full bg-gray-900/50 border-2 border-green-500/30 rounded-2xl p-8 flex flex-col justify-center items-center text-center shadow-2xl shadow-green-500/10">
+                                <div class="relative w-48 h-24 mb-6">
+                                    <div class="absolute top-4 left-0 w-20 h-10 scales-pan transform -rotate-12"></div>
+                                    <div class="absolute top-8 right-0 w-20 h-10 scales-pan transform rotate-12 opacity-70"></div>
+                                    <div class="absolute top-0 w-full h-2 bg-gray-600"></div>
+                                    <div class="absolute top-0 left-1/2 w-1 h-8 bg-gray-600 -ml-0.5"></div>
+                                    <div class="glitch-effect absolute top-1 right-5 text-green-400 font-roboto-mono text-xs">SCAN...</div>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white">The "Scales of Scrutiny"</h3>
+                                <p class="mt-2 text-gray-400">Imbalance corrected, precise, digital justice.</p>
+                                <button class="mt-6 text-green-400 font-semibold">View Details</button>
+                            </div>
+                            <!-- Back -->
+                            <div class="card-back absolute w-full h-full bg-gray-800 border-2 border-green-500/30 rounded-2xl p-8 text-left overflow-y-auto">
+                                <h4 class="text-xl font-bold text-white mb-4">Concept Details</h4>
+                                <div class="space-y-3 text-sm text-gray-300">
+                                    <p><strong class="text-green-400">Rationale:</strong> Classic legal symbolism infused with AI intensity, representing the AI's role in judging actions and finding wrongdoing.</p>
+                                    <p><strong class="text-green-400">Tone:</strong> Imbalance corrected, justice, precise measurement, digital analysis.</p>
+                                    <div><strong class="text-green-400">Color Palette:</strong>
+                                        <ul class="list-disc list-inside mt-1">
+                                            <li>Dark, muted blues (`#2c3e50`)</li>
+                                            <li>Neon green (`#39FF14`) or stark white</li>
+                                            <li>Deep, oppressive black shadow</li>
+                                        </ul>
+                                    </div>
+                                    <button class="mt-4 text-green-400 font-semibold">View Visual</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Unveiling Light -->
+                    <div class="card-flip-container h-[480px]">
+                        <div class="card-flipper relative w-full h-full">
+                             <!-- Front -->
+                            <div class="card-front absolute w-full h-full bg-gray-900/50 border-2 border-white/30 rounded-2xl p-8 flex flex-col justify-center items-center text-center shadow-2xl shadow-white/10">
+                                <div class="relative w-40 h-40 mb-6 flex flex-col items-center justify-end">
+                                     <div class="absolute top-0 w-full h-full unveiling-light-beam"></div>
+                                     <div class="w-16 h-4 bg-black rounded-full shadow-[0_0_15px_5px_rgba(0,0,0,0.8)] transform scale-x-150"></div>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white">The "Unveiling Light"</h3>
+                                <p class="mt-2 text-gray-400">Revelation, exposure, stark truth.</p>
+                                <button class="mt-6 text-gray-300 font-semibold">View Details</button>
+                            </div>
+                            <!-- Back -->
+                            <div class="card-back absolute w-full h-full bg-gray-800 border-2 border-white/30 rounded-2xl p-8 text-left overflow-y-auto">
+                                <h4 class="text-xl font-bold text-white mb-4">Concept Details</h4>
+                                <div class="space-y-3 text-sm text-gray-300">
+                                    <p><strong class="text-gray-300">Rationale:</strong> Visually impactful, showing truth's power over hidden wrongs. This is the "piss puddle" effect without being literal – the light reveals the uncomfortable reality.</p>
+                                    <p><strong class="text-gray-300">Tone:</strong> Revelation, exposure, stark truth, cleansing.</p>
+                                    <div><strong class="text-gray-300">Color Palette:</strong>
+                                        <ul class="list-disc list-inside mt-1">
+                                            <li>Very dark grays/blacks (`#0d0d0d`)</li>
+                                            <li>Dominant stark white (`#FFFFFF`)</li>
+                                            <li>Pale, glowing ice blue (`#ADD8E6`)</li>
+                                        </ul>
+                                    </div>
+                                    <button class="mt-4 text-gray-300 font-semibold">View Visual</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Card flip logic
+            const cards = document.querySelectorAll('.card-flip-container');
+            cards.forEach(card => {
+                card.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    card.classList.toggle('flipped');
+                });
+            });
+
+            // Parallax effect for hero section (subtle)
+            const hero = document.getElementById('hero');
+            const heroContent = hero.querySelector('.relative.z-20');
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.pageYOffset;
+                if (scrollPosition < window.innerHeight) {
+                    heroContent.style.transform = `translateY(${scrollPosition * 0.2}px)`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

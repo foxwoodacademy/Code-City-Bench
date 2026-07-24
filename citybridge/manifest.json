@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "name": "citybridge",
+    "path": "/storage/emulated/0/RootBase/citybridge",
+    "languages": {
+      "python": 1
+    },
+    "entrypoints": [
+      "start.sh",
+      "bridge.py"
+    ],
+    "package_json": false,
+    "requirements": 0,
+    "readme_excerpt": "",
+    "last_modified": "2026-05-20T16:55:29.944999"
+  },
+  "runbook": {
+    "commands": [
+      "python bridge.py"
+    ],
+    "env": [],
+    "notes": []
+  },
+  "bard_note": "Can't tell what this does \u2014 it's a mystery wrapped in a folder. (Bardildo: harsh truth incoming)"
+}

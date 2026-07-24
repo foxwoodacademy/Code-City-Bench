@@ -1,0 +1,469 @@
+Jun9 10:14
+508c1a
+
+# Legal-Technical Architecture Report: Safe Setup of the Implore Codebase with SAM.gov API Access, Tax Identification, and Religious Corporate Structuring in Oklahoma County
+## Religious Entity Structuring: The 501(c)(3) vs. 508(c)(1)(A) Matrix
+Establishing a religious entity to govern a software codebase like Implore requires navigating state-level corporate laws and federal tax regulations. Under Oklahoma law, the initial step in creating a nonprofit corporate shield is filing a Not for Profit Certificate of Incorporation, designated as SOS Form 0008, with the Oklahoma Secretary of State.
+### State-Level Incorporation and Name Reservation
+Under the Oklahoma General Corporation Act (Title 18, Section 1005), the Certificate of Incorporation must be executed by a minimum of three distinct incorporators. The corporate name must be distinguishable from other business entities registered in the state database and must include a specific designator such as "association," "company," "corporation," "foundation," "fund," "incorporated," "institute," "society," "limited," or their respective abbreviations.
+To secure a specific name during the planning phase, an application for Reservation of Name (SOS Form 0034) can be submitted for a fee of $10.00, which holds the name for a non-renewable period of 60 days under 18 Okl. St. § 2009. The standard state filing fee for SOS Form 0008 is $25.00. Hand-delivered, same-day expedited filings incur an additional state fee of $25.00.
+The physical street address of the church or principal office must be declared in the document, and post office boxes are strictly prohibited. Crucially, the standard boilerplate template provided by the Oklahoma Secretary of State does not satisfy the requirements of the Internal Revenue Service (IRS) for obtaining federal tax-exempt status. It must be manually amended to include explicit dissolution and operational limitation clauses that permanently dedicate corporate assets to an exempt purpose described in Section 501(c)(3).
+To organize a proper fee and agency overview, the baseline Oklahoma corporate setup and state compliance cost structure is detailed below:
+| Filing Type | Oklahoma Agency | State Statutory Fee | Processing / Filing Method |
+|---|---|---|---|
+| **Name Reservation (Form 0034)** | Secretary of State | $10.00 | Online or Mail; 60-day hold |
+| **Certificate of Incorporation (Form 0008)** | Secretary of State | $25.00 | Online, Mail, or In-Person  |
+| **Expedited Same-Day Processing** | Secretary of State | $25.00 | In-Person only at OKC office |
+| **Annual LLC Certificate (Form 0074)** | Secretary of State | $25.00  | Online portal on registration anniversary  |
+| **State Income Tax Return (Form 512E)** | Oklahoma Tax Commission | $0.00 (No fee)  | Required annually by 5th month, 15th day  |
+| **Charitable Solicitation (Form 101-01/13)** | Secretary of State | $15.00 or $65.00  | Based on annual contributions threshold  |
+| **Sales Tax Permit (OTC Portal)** | Oklahoma Tax Commission | $20.00  | Required for retail; renewed every 3 years  |
+Following state-level incorporation, the entity must secure a Federal Employer Identification Number (EIN) from the IRS by filing Form SS-4. This identifier is required for bank account initiation, tax registration, and SAM.gov system account verification.
+### The 501(c)(3) vs. 508(c)(1)(A) Structural Comparison
+The Internal Revenue Code contains a fundamental distinction between organizations that must notify the IRS of their claim to tax-exempt status and those that are automatically recognized as exempt. Section 501(c)(3) represents the standard statutory category for religious, charitable, and scientific organizations. To obtain formal IRS recognition, an organization must submit Form 1023 (with a $600.00 user fee) or Form 1023-EZ (with a $275.00 user fee).
+To qualify for the streamlined Form 1023-EZ, the organization must project annual gross receipts under $50,000.00 and possess total assets valued below $250,000.00. Upon approval, the IRS issues a formal determination letter, which provides a definitive legal presumption of tax-exempt status.
+Section 508(c)(1)(A) provides a mandatory exemption from the initial notification requirements of Section 508(a). This exemption dictates that "churches, their integrated auxiliaries, and conventions or associations of churches" are automatically recognized as tax-exempt Section 501(c)(3) organizations without being required to submit Form 1023 or Form 1023-EZ. While Section 508(c)(1)(A) provides an administrative exemption from the application process, it does not relieve the religious entity from complying with the substantive operational requirements of Section 501(c)(3).
+The primary legal and operational differences between these regulatory paths are analyzed below:
+| Legal Attribute | Formal 501(c)(3) Organization | Section 508(c)(1)(A) Church | Integrated Auxiliary of a Church |
+|---|---|---|---|
+| **IRS Filing Obligation** | Mandatory Form 1023 / 1023-EZ | Automatically exempt  | Automatically exempt  |
+| **Form 990 Annual Return** | Mandatory unless explicitly exempt  | Automatically exempt under Sec. 6033  | Automatically exempt under Sec. 6033  |
+| **Legal Presumption of Exemption** | Rebuttable presumption established | No presumption (*Branch Ministries*) | No independent presumption  |
+| **Burden of Proof During Audit** | Borne by IRS; limited by church audit rules  | Borne entirely by entity or audited donor | Borne by entity to prove affiliation |
+| **Donor Receipt Verification** | Simple citation of IRS Master File listing | Donors must prove the church qualifies | Verified via parent church affiliation |
+| **Commercial Contract Acceptance** | Universal acceptance by vendors and banks  | Frequently rejected without IRS letter  | Accepted via parent group exemption  |
+### Legal Auditing, Tax Shelters, and the Burden of Proof
+Relying solely on the automatic exemption of Section 508(c)(1)(A) without a formal IRS determination letter introduces severe legal risks, primarily centered on the reallocation of the burden of proof. Under established federal jurisprudence, most notably *Branch Ministries v. Rossotti*, an organization operating without an IRS determination letter has no legal presumption of tax exemption. In an audit, the burden of proof shifts to the organization or the individual donor to establish that the entity qualifies as a tax-exempt religious organization.
+As established in *Jack Lane Taylor v. Commissioner*, if a donor is audited, the donor cannot rely on a presumption of deductibility; instead, the donor must legally prove that the church meets all the statutory and structural requirements of Section 501(c)(3). This requires demonstrating compliance with the strict IRS 14-point test.
+Furthermore, "508 churches" and "corporations sole" are heavily scrutinized by the IRS due to their history of exploitation by tax shelter promoters. Promoters often market the corporation sole as a mechanism for individuals to declare themselves "bishops," take a "vow of poverty," and assign personal income to a one-person religious corporation to evade federal taxes, child support, and personal debts.
+The Department of Justice and the IRS actively prosecute these schemes under 26 U.S.C. § 6700, penalizing promoters for making false or fraudulent statements regarding tax benefits. A legitimate corporation sole is designed only to ensure the continuity of property ownership for assets dedicated to a bona fide religious organization. Utilizing a Section 508(c)(1)(A) structure as a shell to shield licensing revenue or commercial profits derived from the Implore codebase will be classified as a sham transaction, exposing the organizers to civil and criminal liability.
+### The 14-Point Test and the Definition of a Church
+The term "church" is found but not specifically defined in the Internal Revenue Code. To analyze an entity's claim to church status, the IRS and the courts apply a 14-point test evaluating objective characteristics. These characteristics include a distinct legal existence, a recognized creed and form of worship, a definite and distinct ecclesiastical government, a formal code of doctrine and discipline, a distinct religious history, a membership not associated with any other church, an organization of ordained ministers selected after completing prescribed studies, a literature of its own, established places of worship, regular congregations, regular religious services, Sunday schools for religious instruction of the young, and schools for the preparation of ministers.
+No single factor is controlling, but the presence of a regular congregation is considered an essential, high-weight requirement. In *American Guidance Foundation, Inc. v. United States*, the court ruled that at a minimum, a church must include a body of believers or communicants that assembles regularly to worship.
+A technical group or development team maintaining the Implore codebase cannot satisfy this requirement. A congregation requires a physical, associational community. Praying in physical solitude or interacting purely through online forums, mail, or passive digital broadcasts does not constitute a "congregation" within the ordinary meaning of the word.
+An alternative structure for technical religious operations is the "Integrated Auxiliary of a Church". Under Treasury Regulations, an integrated auxiliary is a separate legal entity that is described in Section 501(c)(3), is affiliated with a church or association of churches, and is internally supported. Affiliation must be structural, demonstrated by the church's authority to appoint or remove officers, common charter provisions, or formal group exemption coverage. An organization is internally supported if it does not offer goods, services, or facilities for sale to the general public on more than an incidental basis.
+## Oklahoma County and Local Compliance Architectures
+Operating a technical or religious entity in Oklahoma County requires adherence to state-level charitable registration laws, local municipal licensing, and specific tax compliance requirements governing business income.
+### Charitable Solicitation and Local Business Licensing
+Under Oklahoma law, any nonprofit organization that intends to solicit contributions from state residents must register with the Oklahoma Secretary of State by submitting Form 101-01/13. The initial registration fee is $15.00 for organizations expecting to receive $10,000.00 or less in annual contributions, or $65.00 for organizations exceeding that threshold.
+Crucially, bona fide religious organizations are eligible for an exemption from this filing requirement. To secure the exemption, the entity must submit a formal letter to the Charitable Organizations Section of the Oklahoma Secretary of State outlining the specific religious basis for its exemption request.
+At the municipal level, Oklahoma City and Oklahoma County do not enforce a general, statewide business license. However, municipal regulations mandate strict compliance with local zoning ordinances.
+If the entity operates physical premises within Oklahoma County, it must secure Zoning Verification completed by city staff. Depending on the nature of the operations, physical facilities may also be subject to mandatory inspections conducted by the Oklahoma City-County Health Department (OCCHD) and the Oklahoma City Fire Department (OCFD).
+If the entity hires employees, it must register with the Oklahoma Employment Security Commission (OESC) via the EZ Tax Express portal before executing its first payroll. For the year 2026, new employers are subject to a starting UI contribution rate of 1.5% on a taxable wage base of $25,000.00 per employee. Additionally, under Oklahoma law, workers' compensation insurance is mandatory starting with the first employee.
+Under the McGirt judicial precedent (*McGirt v. Oklahoma*), standard state business regulations, licensing requirements, and tax obligations apply to all entities operating within the historic boundaries of an Indian reservation, unless the physical business is located on tribal trust land or restricted Indian land.
+### Unrelated Business Income Tax (UBIT) and Form 990-T
+A tax-exempt religious entity or church is still liable for taxes on its unrelated business income (UBI). Unrelated business income is defined as gross income derived from any trade or business that is regularly carried on and is not substantially related to the organization's tax-exempt purpose.
+If a religious entity owns the Implore codebase and licenses it to commercial entities, charges subscription fees for its use, or operates it as a commercial Software-as-a-Service (SaaS) platform, this revenue constitutes UBIT. The IRS explicitly states that using commercial profits to fund legitimate religious activities does not shield that income from taxation; the "destination-of-income" test is rejected in favor of analyzing the nature of the activity itself.
+The regulatory filing and payment requirements for UBI are structured as follows:
+ * **Filing Threshold:** An exempt organization with gross income from an unrelated trade or business of $1,000.00 or more must file Form 990-T. This obligation is in addition to any other annual filing requirements.
+ * **Tax Rates:** For corporate-structured nonprofits, UBI is taxable at federal corporate tax rates. For trusts, standard trust tax rates apply.
+ * **Estimated Tax:** The organization must make quarterly estimated tax payments if its estimated tax on UBI is expected to be $500.00 or more for the year. Payments must be deposited electronically.
+ * **Public Inspection:** Under IRC Section 501(c)(3), Form 990-T filings are subject to mandatory public inspection. The organization must make the return, including all supporting schedules, attachments, and financial details, available for public copying and inspection for three years from the filing due date.
+There are narrow exceptions to UBI: activities conducted entirely by uncompensated volunteers, the sale of donated merchandise, or passive rental income from real property where at least 85% of the property is used directly for the organization's exempt purposes. However, commercial software licensing or the execution of automated SaaS transactions does not fall under these exceptions and remains fully taxable.
+## Legal-Technical Architecture for SAM.gov API Access
+Integrating the Implore codebase with the System for Award Management (SAM.gov) requires a highly structured technical and administrative framework to comply with federal access policies and authentication standards.
+### SAM.gov API Protocols and Technical Security
+The GSA exposes federal procurement data through several REST APIs, primarily the Opportunity Management API and the Entity Management API. Accessing these systems requires implementing specific protocol standards and security verifications to ensure that data transmission is secure and compliant with the Federal Information Security Modernization Act.
+The technical specifications and authentication protocols for SAM.gov API integration are compiled below:
+| Technical Parameter | Opportunity Management API  | Entity Management API (Public Data)  | Entity Management API (Sensitive CUI)  |
+|---|---|---|---|
+| **Authentication Protocol** | System Account API Key | Individual or System API Key  | Basic Auth + x-api-key  |
+| **Required HTTP Headers** | api_key or x-api-key | api_key or x-api-k[span_178](start_span)[span_178](end_span)[span_182](start_span)[span_182](end_span)ey  | Authorization: Base64(User:Pass), x-api-key, Accept: application/json |
+| **Request Method** | GET / POST | GET (Synchronous/Asynchronous) | POST only |
+| **IP Address Validation** | Whitelisted static IPs in profile | Optional | Mandatory static IP whitelisting |
+| **Connection Profile** | Must be validated as "REST API" | REST API | REST API |
+| **Response Limits** | Custom pagination | 10 records per page; Max 10,000 | 10 records per page; Max 10,000 |
+| **Parameter Exclusions** | Standard URL parameters | No special characters: & | { } ^ \ | No special characters: & | { } ^ \ |
+For basic testing, SAM.gov provides immediate public access with a restrictive limit of 10 requests per day. To increase this limit to 1,000 requests per day, the organization must complete a full entity registration with a Unique Entity ID (UEI), wait approximately 10 to 15 business days for validation, request the "Data Entry" role, and regenerate a high-limit system API key.
+All API integrations must enforce static IP address validation; any requests originating from non-registered IP addresses are rejected with a system error. Developers must also implement strict password and key rotation rules, updating system passwords and API keys every 90 days to prevent account revocation.
+To manage daily rate limits effectively and mitigate HTTP 429 (Too Many Requests) errors, the codebase must implement aggressive caching mechanisms, batch operations, and exponential backoff retry algorithms.
+### Entity Administrator Notarized Letter Requirements
+A primary administrative bottleneck in registering a system account on SAM.gov is the formal appointment of an Entity Administrator. The GSA enforces strict identity verification protocols to prevent fraudulent takeovers of federal registration records.
+The appointment of an Entity Administrator requires the submission of a physical, notarized letter to the Federal Service Desk (FSD). The letter must strictly adhere to the following template and submission guidelines:
+ * **Corporate Letterhead:** The letter must be printed on the formal letterhead of the registering entity. If the entity does not have pre-printed letterhead, it must display its legal business name and physical address at the top of the page.
+ * **Unique Identifiers:** The letter must declare the entity's legal business name, physical street address, and assigned UEI.
+ * **Administrator Contact Details:** It must state the full name, telephone number, and email address of the appointed Entity Administrator. This email address must match exactly the email address associated with the administrator’s individual Login.gov account.
+ * **Third-Party Agent Clause:** The letter must explicitly include a clause either authorizing or denying third-party agent representation. If the administration will be managed internally, the letter must contain the statement: *"For the purpose of registering with the United States Federal Government through the online System for Award Management (SAM), I do not authorize any 3rd party to act on behalf of [company/organization]."* Letters omitting either third-party authorization or denial will be rejected.
+ * **Signatory Authority:** The letter must be signed by an officer of the company who possesses formal signatory authority, such as the President, CEO, or Managing Partner. The Entity Administrator cannot sign their own appointment letter unless they are the sole officer of the registering entity.
+ * **Notarization:** The signing officer must sign the letter in the presence of a licensed Notary Public, who must execute a standard state-compliant acknowledgment block and apply their official seal.
+ * **Submission Process:** The completed, signed, and notarized letter must be scanned and uploaded as a PDF file to the FSD.gov portal by creating a formal service ticket under the issue type "SAM: Notarized Letter". The original physical copy must then be mailed to the Federal Service Desk processing facility in London, Kentucky, within 45 days of any conditional registration activation :
+### Data Scraping Legality and CFAA Exposure
+To bypass SAM.gov's rate limits or the administrative delays associated with official API key registration, developers sometimes integrate automated web scrapers or third-party scraping actors into their software architectures. This approach introduces severe legal liabilities and technical risks.
+The SAM.gov Terms of Use explicitly prohibit the use of automated data gathering, web scraping tools, bots, or data mining software. If the GSA detects unauthorized scraping activities, it will terminate the associated Login.gov accounts and deny the offending IP addresses access to federal systems.
+From a statutory standpoint, unauthorized scraping of federal portals exposes developers to liability under the Computer Fraud and Abuse Act (CFAA), codified at 18 U.S.C. § 1030. The CFAA imposes civil and criminal penalties on anyone who intentionally accesses a protected computer without authorization or exceeds authorized access.
+The federal courts have established distinct parameters governing the legality of scraping:
+ * **Public Data Protections:** In *hiQ Labs, Inc. v. LinkedIn Corp.*, the Ninth Circuit ruled that the CFAA does not apply to the web scraping of publicly available data that is not protected by authorization barriers (such as usernames and passwords).
+ * **Revocation of Consent:** However, the courts have also held that if a platform explicitly revokes a scraper's permission to access its data, or if the scraper circumvents technological barriers (such as CAPTCHAs, rate limiting devices, or login gateways), subsequent scraping constitutes "access without authorization" under the CFAA.
+ * **Contractual Breach:** Even if a CFAA claim is avoided, the target website can pursue claims for breach of contract, trespass to chattels, or copyright infringement if the scraper agreed to Terms of Service that explicitly forbid automated data extraction.
+ * **GSA Best Practices:** The GSA’s Emerging Technology Office recommends that all entities engaging in data collection strictly adhere to the Robots Exclusion Protocol (robots.txt), identify their scrapers using transparent User-Agent strings, implement strict rate limiting, and respect any copyright control measures or digital rights management protections.
+## Technical and Legal Liability Mitigation for the Implore Codebase
+Deploying an interactive software system that processes federal procurement data and generates automated outputs introduces unique liabilities at the intersection of professional licensing, intellectual property, and product liability.
+### Unauthorized Practice of Law (UPL) in Oklahoma
+If the Implore codebase performs advanced operations—such as analyzing federal solicitations, drafting legal proposals, interpreting FAR regulations, or generating contract language—it operates within the domain of legal services. This creates substantial exposure to charges of the Unauthorized Practice of Law (UPL).
+Under Title 5 of the Oklahoma Statutes and Rule 5.5 of the Oklahoma Rules of Professional Conduct, nonlawyers are strictly prohibited from practicing law or assisting others in doing so. The Oklahoma Supreme Court has declined to establish a rigid statutory definition of the "practice of law," opting instead for a functional test: the practice of law constitutes the rendition of any services requiring the knowledge and application of legal principles and techniques to serve the interests of another.
+The Court has explicitly ruled that:
+ * Drafting legal pleadings, agreements, or contracts constitutes the practice of law.
+ * Negotiating settlements or legally binding commitments on behalf of third parties constitutes the practice of law.
+ * Providing customized advice regarding the legal interpretation of regulations or statutes constitutes the practice of law.
+If a non-attorney entity operates the Implore codebase to generate automated contract proposals, draft compliance documents, or provide regulatory advice directly to users, the entity and its developers can face civil injunctions, contempt proceedings, and criminal misdemeanor charges for UPL.
+To mitigate this risk, the codebase must be structured strictly as a document-assembly and data-analytics tool rather than an automated legal advisor. It must function purely as a support mechanism under the direct, active supervision of a licensed attorney who reviews and approves all final outputs, thereby preserving compliance with professional standards.
+### AI Hallucinations, Malpractice, and Product Liability
+The deployment of generative AI algorithms introduces significant technical and operational risks, most notably "hallucinations"—the generation of fabricated, incorrect, or entirely fictitious data that appears legitimate.
+In the legal and procurement sectors, AI hallucinations have led to severe court sanctions. In Oregon, for example, an attorney was fined $10,000 for submitting a brief containing fifteen fabricated legal citations generated by an AI assistant.
+If the Implore codebase generates inaccurate procurement bids, quotes false regulatory compliance metrics, or includes non-existent legal authorities in its outputs, users relying on those outputs can face disqualification, loss of government contracts, or severe financial damages.
+From a liability standpoint, the legal system divides software failures into products and services:
+ * **Product Liability:** Under the Uniform Commercial Code (UCC), mass-produced, off-the-shelf software is classified as a "good," subjecting the developer to strict product liability standards for design defects or warning failures.
+ * **Service Negligence:** Conversely, highly customized software specifically designed for an individual client is classified as a "service," subjecting the developer to a standard negligence framework where the plaintiff must prove a breach of reasonable care.
+ * **The Section 230 Limitation:** Developers cannot rely on Section 230 of the Communications Decency Act to shield themselves from liability for AI-generated outputs. While Section 230 protects online platforms from liability for third-party user-generated content, it does not immunize a platform when it acts as an active publisher or creator of its own content. Because generative AI systems create novel content rather than passively hosting third-party data, the developer is legally classified as the author of the output and faces full liability for any resulting harm.
+### Legal Wrappers, Disclaimers, and Contractual Indemnification
+To manage these liabilities, developers must implement a robust "legal wrapper" around the Implore codebase. This involves structuring contractual terms, disclaimers, and indemnification provisions to allocate risk away from the development entity.
+The essential components of this liability mitigation framework are structured in the table below:
+| Risk Category | Technical Exposure | Legal Precedent / Statute | Mitigation Protocol |
+|---|---|---|---|
+| **Unauthorized Practice of Law** | Automated drafting of contract terms and regulatory analyses  | OK Stat. Tit. 5; Rule 5.5 (UPL restriction) | Mandatory "Human-in-the-Loop" (attorney) review before submission |
+| **Generative AI Hallucinations** | Fictitious citations, incorrect FAR guidelines, or false data  | Professional Negligence / Tort Law  | Strict disclaimers of accuracy; conspicuous warning labels on all outputs |
+| **Section 230 Exposure** | AI-generated recommendations causing financial or contractual losses | 47 U.S.C. § 230 (Loss of immunity for active publishers) | Absolute exclusion of consequential damages in End User License Agreements (EULA) |
+| **Third-Party Data Breaches** | Ingestion of sensitive proprietary or classified government data  | HIPAA, GDPR, CCPA, CPRA, Data Privacy Act  | Strict bilateral indemnification clauses in vendor and client agreements  |
+| **Product Defect Claims** | Algorithmic errors leading to defective procurement submissions  | Strict Product Liability / UCC | Classification of the software as a service rather than a good; limit remedies to fee refunds |
+Bilateral indemnification provisions are highly effective tools for managing these risks. These clauses legally bind the user to compensate the developer for any losses, legal fees, or damages arising from the misuse of the software, regulatory non-compliance, or intellectual property disputes.
+By establishing these risk-allocation parameters on the front end, the development entity secures essential financial protection and holds users accountable for validating AI-generated outputs before they are formally submitted to the federal government.
+## Strategic Structural Model and Actionable Implementation Roadmap
+To deploy the Implore codebase safely while minimizing IRS audit risk, avoiding UPL violations, and ensuring secure SAM.gov integration, a bifurcated (dual-entity) model is recommended. This framework separates commercial operational liability from the religious tax-exempt structure.
+```
+                  +----------------------------------------------+
+                  |               Religious Body                 |
+                  |     (Registered 501(c)(3) Entity or Church)   |
+                  +----------------------+-----------------------+
+                                         |
+                                         | Controls / Direct Affiliation
+                                         v
+                  +----------------------------------------------+
+                  |        Taxable Operational Subsidiary        |
+                  |     (Oklahoma LLC / Commercial Legal Wrapper) |
+                  +----------------------+-----------------------+
+                                         |
+                                         | Licenses Implore Codebase
+                                         v
+                  +----------------------------------------------+
+                  |           SAM.gov System Account             |
+                  | (REST API, Static IP, x-api-key Authentication) |
+                  +----------------------------------------------+
+
+```
+### Phase 1: Dual-Entity Structuring and Corporate Formation
+ 1. **Incorporate the Religious Body:** File a Not for Profit Certificate of Incorporation (SOS Form 0008) with the Oklahoma Secretary of State to establish the primary religious organization.
+   * Ensure the board of directors consists of at least three individuals who are not related by blood or marriage.
+   * Manually insert specific IRS-approved language dedicating assets permanently to religious purposes and prohibiting private inurement.
+   * Apply for formal 501(c)(3) tax-exempt status by submitting Form 1023 to the IRS. Avoid relying strictly on the automatic "508" exemption to preserve a clear presumption of tax-exempt status and minimize audit risks for donors.
+ 2. **Form the Operational Subsidiary (The Legal Wrapper):** Establish a separate, domestic Oklahoma Limited Liability Company (LLC) or C-Corporation to act as the commercial vehicle for the Implore codebase.
+   * File Articles of Organization (Form 0074) with a $100.00 state fee.
+   * Establish the religious organization as the majority member or sole owner of the LLC to ensure doctrinal alignment and structural control.
+   * Apply for a separate EIN for both the religious organization and the LLC.
+*Reasoning:* Conducting software licensing, SaaS sales, and advanced commercial technical operations directly within a church structure triggers massive Unrelated Business Income Tax (UBIT) under Form 990-T. Because Form 990-T is subject to public disclosure, this would expose the church’s financial records to the public, undermining its financial privacy. Furthermore, a software development enterprise cannot satisfy the IRS's 14-point test for a church, as it lacks a physical, self-associating congregation.
+By utilizing a dual-entity model, the commercial LLC serves as a "legal wrapper" that licenses the software, executes client contracts, and absorbs operational, product, and technical liability. All profits from the LLC are then passed to the parent religious organization as passive, tax-free dividend distributions, which are exempt from UBIT under IRC Section 512(b).
+### Phase 2: Secure SAM.gov Technical Integration
+ 1. **Appoint the Entity Administrator:** Draft the formal designation letter on the corporate letterhead of the registered entity.
+   * Ensure the letter contains the legal name, UEI, physical address, and exact Login.gov account details of the administrator.
+   * The letter must be signed by an authorized officer in the presence of a notary public and scanned.
+   * Create a service ticket on FSD.gov under "SAM: Notarized Letter," upload the scanned PDF, and mail the physical original to the Federal Service Desk facility in London, Kentucky.
+ 2. **Establish the System Account and API Bridge:** Request a dedicated SAM.gov System Account with "Read Public" or "Read Sensitive" permissions, depending on the operational requirements of the Implore codebase.
+   * Register the static IP addresses from which the Implore servers will make API requests in the SAM.gov system profile.
+   * Enforce Base64-encoded Basic Authentication combined with the x-api-key header for all Entity Management API requests.
+   * Configure the Implore codebase to perform automated password and API key rotations every 90 days to comply with federal terms of use.
+   * Avoid any web scraping, data mining, or third-party scraping actors, as unauthorized data extraction violates the CFAA and will result in the immediate revocation of access.
+### Phase 3: Technical Risk Mitigation and UPL Defense
+ 1. **Implement Legal Disclaimers and Terms of Service:** Integrate a mandatory user agreement into the Implore platform.
+   * Conspicuously declare that the software provides data-processing and document-assembly services only, and does not provide legal representation, legal advice, or professional consulting services.
+   * Require users to review and verify all generated documents, contract proposals, and compliance metrics before submitting them to any federal agency.
+   * Embed a comprehensive indemnification clause requiring users to indemnify, defend, and hold the software entity harmless from any third-party claims or damages resulting from inaccurate outputs, AI hallucinations, or regulatory non-compliance.
+ 2. **Enforce a Human-in-the-Loop Protocol:** To prevent violations of Oklahoma's UPL regulations, structure the system workflow to require a professional human review (conducted by a licensed attorney or a certified contracting specialist) before any generated contract, appeal, or legal filing is formally finalized or executed. This maintains compliance with Title 5 of the Oklahoma Statutes and protects users from AI-driven errors.
+
+
+======
+
+
+
+"
+Legal Setup for Faith-Based AI Entity
+Structuring the Investigation
+I am initiating a comprehensive analysis to safely establish a legal, operational, and technical framework for your AI grant-writing engine, Implore. My primary focus is to ensure absolute compliance with federal regulations and mitigate any personal or organizational liability. I am actively thinking through how to structure a legal 'wrapper' for the AI, as autonomous software cannot hold independent legal agency, sign federal contracts, or directly obtain an IRS Employer Identification Number (EIN).
+Deconstructing Faith-Based Structures
+I am synthesizing the complex tax and legal differences between a standard 501(c)(3) tax-exempt organization and a 508(c)(1)(a) faith-based entity. While a 508(c)(1)(a) ministry or 'integrated auxiliary' offers exemptions from certain IRS filing requirements like Form 1023 and annual Form 990s, it also attracts significant IRS audit risks and tax shelter scrutiny if not structured meticulously. I am investigating these boundary lines alongside the specific business incorporation and religious entity registration rules for Oklahoma County, Oklahoma, to ensure your setup is bulletproof against fraud allegations or tax disputes.
+Mapping Next Steps for SAM.gov Integration
+Moving forward, I am executing targeted inquiries into the developer protocols, API terms of service, and scraping policies for SAM.gov. My goal is to determine the exact requirements for a human 'Entity Administrator' to sign off on developer credentials, ensuring the AI can programmatically scan federal opportunities without violating service agreements or triggering security blocks. I will then map out the necessary steps to link your Oklahoma-registered entity to this compliant SAM.gov framework.
+
+Researching websites...
+
+sam.gov
+Terms of Use | SAM.gov
+
+open.gsa.gov
+SAM.gov Opportunity Management API | GSA Open Technology
+
+govconapi.com
+SAM.gov API Documentation - Complete Guide with Code Examples (2026)
+
+open.gsa.gov
+SAM.gov Entity Management API | GSA Open Technology
+
+sam.gov
+GSA Releases New Federal Assistance Listings API - SAM.gov
+
+rd.usda.gov
+SAM Registration Template
+
+wem.wi.gov
+How to: SAM.gov | Wisconsin Emergency Management
+
+sam.gov
+Entity Registration Checklist | SAM.gov
+
+sam.gov
+Entity Registration | SAM.gov
+
+aimindiana.org
+KB0016652 How can I become the new administrator for our entity registration? SAM requires a notarized letter to give access to
+
+markets.businessinsider.com
+508(c)(1)(a) vs 501(c)(3) Church Tax Exemptions: Comparison Guide Released
+
+startchurch.com
+What's the Difference Between 508 and 501(c)(3)? - StartCHURCH
+
+law.cornell.edu
+26 U.S. Code § 508 - Special rules with respect to section 501(c)(3) organizations
+
+hrministrysolutions.com
+Q. "Do we have to be a 501c3? I read we can be a 'government-free 508c1a,' not be accountable to the IRS, and operate as a nonprofit independently from government oversight." - HR Ministry Solutions
+
+501c3lawblog.com
+Pros and Cons of Seeking IRS Recognition of 501(c)(3) Status for Churches
+
+formfiles.justia.com
+PROCEDURES FOR ORGANIZING AN OKLAHOMA NOT FOR PROFIT CORPORATION
+
+labyrinthinc.com
+How to Start a Nonprofit in Oklahoma: A Founder's Step-by-Step Guide - Labyrinth, Inc.
+
+northwestregisteredagent.com
+Start a Nonprofit in Oklahoma | Fast Online Filings - Northwest Registered Agent
+
+501c3.org
+How to Start a Nonprofit in Oklahoma - Foundation Group®
+
+labyrinthinc.com
+How to Register for Charitable Solicitation in Oklahoma: A Simple Step-by-Step Guide
+Uncovering SAM.gov API Developer Limits
+I am analyzing the technical and regulatory frameworks for accessing SAM.gov data, revealing a clear tier system for developers. While public, unregistered API access is granted immediately, it is strictly capped at a meager 10 requests per day, making it useful only for minor testing. To achieve a production-level limit of 1,000 queries daily, we must complete a formal entity registration and secure a Unique Entity ID (UEI). I have also found that any programmatic interface using these endpoints must adhere to strict security protocols, including updating system account passwords and API keys every 90 days and restricting requests to pre-registered IP addresses.
+Navigating Strict Anti-Bot Policies
+I am synthesizing the legal risks associated with automating data retrieval on federal platforms. SAM.gov explicitly prohibits the use of unauthorized bots, data mining tools, and automated extraction scrapers on its public-facing portal under the threat of civil and criminal penalties, including the Computer Fraud and Abuse Act. To safely feed grant opportunities to your codebase, we must entirely bypass web scraping. Instead, we must routing our data collection through the official, approved REST APIs under a verified human 'Entity Administrator' who takes full legal responsibility for the system's automated actions.
+Exposing the IRS Realities of 508(c)(1)(a) Entities
+I am evaluating the deep regulatory distinction between 501(c)(3) and 508(c)(1)(a) structures. While a 508(c)(1)(a) entity enjoys automatic tax-exempt status without filing a Form 1023 application, this exception is legally reserved solely for bona fide 'churches, integrated auxiliaries, or conventions of churches.' Utilizing a 508(c)(1)(a) designation to shield a commercial, AI-driven business from IRS reporting is a major audit trigger. Case law, such as Jack Lane Taylor v. Commissioner, confirms that without a formal IRS determination letter, the burden of proof falls squarely on your donors to prove the entity meets church criteria during an audit, which can severely damage donor trust and attract tax shelter scrutiny.
+Investigating Oklahoma Corporate Guardrails
+To establish a compliant legal foundation, I am researching the specific filing procedures in Oklahoma County. To incorporate a non-profit, we must file a Not-for-Profit Certificate of Incorporation with the Oklahoma Secretary of State alongside a $25 fee. The state requires a physical Oklahoma street address for both the registered agent and the church location (not a PO Box), plus a minimum of three independent incorporators. I am now proceeding to investigate the IRS's 14-point operational definition of a church, how integrated auxiliaries are legally categorized, and how to structure a robust human-led liability wrapper to safely launch your developer engine.
+
+Researching websites...
+
+irs.gov
+THE CONCEPT OF A CONGREGATION "The term "church" is intended to be synonymous wi - IRS
+
+brafb.org
+BRAFB Guide for Church Qualification 14-POINT TEST QUESTION IN OTHER WORDS:
+
+churchlawandtax.com
+Pastor, Church & Law - Tax Legislation—Federal
+
+irs.gov
+Definition of church | Internal Revenue Service
+
+irs.gov
+B. UPDATE ON CHURCHES AND OTHER RELIGIOUS ORGANIZATIONS 1. Introduction The 1978, 1979, and 1980 EOATRI textbooks contain discus - IRS
+
+freemanlaw.com
+What is an Integrated Auxiliary of a Church? - Freeman Law
+
+form1023.org
+Integrated Auxiliary of a Church IRS Rules & Classification | Exempt Nexus - Form 1023.org
+
+irs.gov
+Churches, integrated auxiliaries and conventions or associations of churches - IRS
+
+churchlawcenter.com
+Section 501(c)(3) Churches vs. Section 508(c)(1)(A) Churches - Church Law Center
+
+jctaccounting.com
+What is a 508(c)1(A) Church? - JCT Accounting Co
+
+businesslawreview.uchicago.edu
+Generative AI Meets Section 230: The Future of Liability and Its Implications for Startup Innovation | The University of Chicago Business Law Review
+
+americanbar.org
+The Art of Mitigating Risk in the Brave New World of AI: A Journey Through Forensic and Legal Considerations
+
+jonesday.com
+Mitigating Product Liability for Artificial Intelligence | Insights - Jones Day
+
+mitchellwilliamslaw.com
+Mitigating Risks in Generative AI Integration: The Importance of Indemnification Provisions
+
+govconapi.com
+SAM.gov API Documentation - Complete Guide with Code Examples ...
+
+startchurch.com
+What's the Difference Between 508 and 501(c ... - StartCHURCH Blog
+
+labyrinthinc.com
+How to Start a Nonprofit in Oklahoma: A Founder's Step-by-Step Guide
+Unmasking the Commercial Church Trap
+I am deeply analyzing the IRS's strict boundaries surrounding 'integrated auxiliaries' of churches, exposing a critical legal trap for our setup. Under federal tax guidelines, an auxiliary entity can only maintain its tax exemption and Form 990 filing relief if it is 'internally supported.' If our church-related entity engages in commercial commerce—such as offering paid grant-writing services, licensing software, or competing for federal contracts—it fails the internal support test. Doing so immediately subjects the entity to Unrelated Business Income Tax (UBIT) and forces the filing of Form 990-T. Attempting to bypass these disclosures under a 508(c)(1)(a) claim is a classic tax shelter audit trigger, which could result in severe civil penalties and a loss of tax-exempt status.
+Navigating the Human-Only Signatory Rules
+I am synthesizing the administrative reality of registering with federal procurement portals. SAM.gov strictly enforces that only a living human with designated signatory authority—such as a CEO, Managing Partner, or President—can serve as the Entity Administrator. To activate an account capable of programmatic API access, this human must submit a physically signed and notarized authorization letter on corporate letterhead to the Federal Service Desk. Because an autonomous AI lacks legal agency, it cannot execute these binding legal agreements. Therefore, we must establish a clear human-led legal 'wrapper' to hold the account, assume liability, and legally delegate API-driven tasks to the Implore codebase.
+Formulating the Next Legal Actions
+Moving forward, I am mapping out the precise steps to establish this human-led legal wrapper in Oklahoma. I will investigate how to structure a traditional commercial entity (like an LLC) that can license software to a separate, cleanly isolated religious non-profit, keeping our commercial operations safely segregated from our faith-based activities. Additionally, I will gather the exact templates and notary instructions required to successfully execute the SAM.gov Entity Administrator appointment to ensure we do not face processing delays or regulatory pushback.
+
+Researching websites...
+
+irs.gov
+Corporation sole | Internal Revenue Service
+
+irs.gov
+l. review of current issues under irc 508 - IRS
+
+justice.gov
+IN THE UNITED STATES DISTRICT COURT FOR THE WESTERN DISTRICT OF NORTH CAROLINA UNITED STATES OF AMERICA ) ) Plaintiff, ) ) v. ) - Department of Justice
+
+leg.state.nv.us
+Exhibit: C - Nevada Legislature
+
+irs.gov
+IRS Warns of “Corporation Sole” Tax Scam
+
+rd.usda.gov
+SAM Registration Template
+
+aimindiana.org
+KB0016652 How can I become the new administrator for our entity registration? SAM requires a notarized letter to give access to
+
+vn.usembassy.gov
+Step 1:Determine which template is required. I need to formally appoint an Entity Administrator for a single interna
+
+wem.wi.gov
+How to: SAM.gov | Wisconsin Emergency Management
+
+virginiaapex.org
+Notarized Letter Requirement for SAM.gov Entity Administrators - Virginia APEX Accelerator
+
+irs.gov
+About Form 990-T, Exempt Organization Business Income Tax Return (and proxy tax under section 6033(e)) | Internal Revenue Service
+
+irs.gov
+Unrelated business income tax | Internal Revenue Service
+
+irs.gov
+Instructions for Form 990-T (2025) | Internal Revenue Service
+
+clergyfinancial.com
+What is Unrelated Business Income for Churches? - Clergy Financial Resources
+
+irs.gov
+Unrelated business income tax returns | Internal Revenue Service
+Deconstructing the Corporation Sole Trap
+I am analyzing the strict regulatory boundaries surrounding faith-based corporate structures, specifically focusing on 'Corporation Sole' designations. The IRS and the Department of Justice have heavily cracked down on these structures when used as tax shelters. Promoters often falsely claim that establishing a corporation sole allows an individual or a business to operate entirely outside government oversight. Legally, a corporation sole is strictly reserved for holding church property to ensure continuity; it does not exempt an entity from federal income taxes or reporting requirements if it conducts commercial business. Attempting to use a sham religious structure to shield commercial software operations is a direct path to severe civil and criminal penalties, and retroactively triggers massive tax liabilities.
+Managing Unrelated Business Income Risks
+I am synthesizing the complex tax implications of operating an AI grant-writing engine under a faith-based entity. Even if a church or religious organization is legitimately established, any income generated from commercial trade or business that is not substantially related to its core religious mission is treated as Unrelated Business Income (UBI) under Section 512. If this commercial revenue exceeds $1,000, the organization is legally mandated to file Form 990-T and pay Unrelated Business Income Tax (UBIT) at corporate or trust tax rates. Merely directing the profits of a commercial AI service to fund a church does not satisfy the 'substantially related' requirement. If commercial activity becomes the primary focus of the faith-based entity, the IRS will completely strip the organization of its tax-exempt status.
+Formulating a Secure Legal and API Integration Plan
+To eliminate legal liability and avoid costly administrative errors, I am structuring a dual-entity setup as our primary action plan. Instead of attempting to run a commercial service inside a church structure, we will establish a standard, for-profit LLC in Oklahoma to act as the legal wrapper for the Implore codebase. This LLC will own the IP, shield you from personal liability, and handle all commercial transactions. Simultaneously, we can incorporate a separate, compliant 501(c)(3) religious non-profit to handle genuine faith-based initiatives. I am now mapping out the exact Oklahoma Secretary of State filing steps, drafting the specific language required for the SAM.gov notarized letter, and configuring the exact system account parameters needed to securely bind the Implore API integration to our verified legal wrapper.
+
+Researching websites...
+
+sam.gov
+Terms of Use | SAM.gov
+
+scrapingbee.com
+A Web Scraper's Guide to Robots.txt - ScrapingBee
+
+digital.gov
+An introduction to robots.txt files - Digital.gov
+
+gsa.gov
+GSA Future Focus: Web Scraping
+
+dev.to
+Scraping SAM.gov + USASpending for Federal Contracts (No API Key, in Python)
+
+quinnemanuel.com
+The Legal Landscape of Web Scraping - Quinn Emanuel
+
+loeb.com
+Ninth Circuit Provides Path Forward for Web Scraping of Public Data | Loeb & Loeb LLP
+
+michiganlawreview.org
+Unfair Collection: Reclaiming Control of Publicly Available Personal Information from Data Scrapers
+
+irs.gov
+A. DEFINING "CHURCH" - THE CONCEPT OF A ... - IRS
+
+irs.gov
+Corporation sole | Internal Revenue Service
+Establishing an Oklahoma LLC Protective Wrapper
+I am synthesizing the exact filing parameters needed to establish a standard for-profit LLC as the primary legal and liability wrapper for the Implore codebase. In Oklahoma, this is accomplished by filing Form 0074, the Articles of Organization, with the Oklahoma Secretary of State alongside a $100 filing fee. Operating as a single-member or multi-member LLC provides an immediate, robust corporate shield that protects your personal assets from business liabilities. This structure will legally own the Implore software, manage commercial client transactions, and serve as the official registrant on SAM.gov, ensuring your operations remain entirely above board.
+Mitigating Unauthorized Practice of Law Risks
+I am thinking through the secondary legal risks of deploying an autonomous AI grant-writing assistant, specifically regarding the Unauthorized Practice of Law (UPL) under Oklahoma State Bar rules. Because drafting legal agreements or interpreting complex federal statutory requirements can cross into UPL territory, we must implement clear operational guardrails. Implore must be legally positioned as a 'decision-support tool' rather than an autonomous legal representative. To insulate the business from liability, we will draft strict licensing agreements and user disclaimers emphasizing that all AI-generated drafts must undergo final human review and approval by a licensed professional or authorized officer before submission.
+Finalizing the Compliance and API Action Plan
+As our final step, I am compiling the complete, end-to-end integration and setup manual. This comprehensive guide will detail the dual-entity organizational blueprint, step-by-step instructions for Oklahoma LLC formation, the precise IRS documentation needed to secure a corporate EIN, and the exact physical notary templates required to designate a human Entity Administrator. Additionally, I will outline the precise technical steps to configure your SAM.gov REST API system account, register your production server IP addresses, and manage the 90-day credential rotation policy to safely put the Implore engine into production.
+
+Researching websites...
+
+tailorbrands.com
+How Much Does an LLC Cost in Oklahoma | Formation & Fees - Tailor Brands
+
+northwestregisteredagent.com
+ARTICLES OF ORGANIZATION Oklahoma Limited Liability Company - Northwest Registered Agent
+
+oklahomaregisteredagent.com
+How to Start an LLC in Oklahoma | Oklahoma Registered Agent™
+
+legalees.com
+File Your Own Oklahoma Articles of Organization - LegaLees
+
+findlaw.com
+How to Form an LLC in Oklahoma in 7 Steps - FindLaw
+
+okc.gov
+Business Licensing - Oklahoma City - OKC Gov
+
+oklahoma.gov
+Licenses and Permits - Oklahoma.gov
+
+oklahoma.gov
+Register Your Business - Oklahoma.gov
+
+northwestregisteredagent.com
+Start a Business in Oklahoma - Northwest Registered Agent
+
+startbusinessbystate.com
+Starting a Business in Oklahoma: Licenses, Permits & Requirements (2026)
+
+youtube.com
+Lawyer hit with fine for using AI in briefing, which gave false info - YouTube
+
+govt.westlaw.com
+Rule 5.5. Unauthorized Practice of Law - View Document - Official Oklahoma Statutes (Unannotated)
+
+ncsc.org
+Modernizing unauthorized practice of law regulations to embrace technology, improve access to justice | National Center for State Courts
+
+okbar.org
+Work From Home Anywhere: Ethical Considerations in the Post-Pandemic Era of Virtual Lawyering - Oklahoma Bar Association
+
+ai-law-center.orrick.com
+US AI Law Tracker: Oklahoma
+Establishing Strict Human Accountability on SAM.gov
+I am analyzing the official developer terms and registration guidelines for SAM.gov, which reveal strict boundaries for automated systems. Federal registration protocols mandate that only a living human with legal signatory authority can serve as the Entity Administrator, requiring a physically signed and notarized letter on corporate letterhead to be submitted to the Federal Service Desk. Because an autonomous codebase entirely lacks legal agency under federal law, any attempt to register an AI directly under a false or automated persona is a severe federal offense. To safely connect your grant-writing engine, a designated human must act as the sole legal representative, taking full responsibility for the system's actions and API-driven tasks.
+Configuring the API and Anti-Scraping Protocols
+I am synthesizing the technical requirements and restrictions of the SAM.gov Developer Portal to ensure your systems bypass security blocks. The platform explicitly bans web scraping, bots, or unauthorized automated extraction tools on its user pages, enforcing account blocks via Login.gov for violations. To safely feed data to your engine, we must route all inquiries through official, approved REST APIs. I have observed that while basic public keys limit access to 10 queries per day, an approved entity-level registration upgrades this budget to 1,000 requests. To maintain access, we must implement automated routines to manage strict 90-day password and API key rotations, register the production server's IP address, and handle nested data extractions programmatically.
+Synthesizing Oklahoma Formation and Legal Safeguards
+I am finalizing the structural framework to fully insulate you from operational and regulatory liabilities. First, I will outline the precise steps to form a standard for-profit LLC protective wrapper with the Oklahoma Secretary of State to hold the software intellectual property and manage commercial activities. Second, I will detail how to construct a separate, legally compliant religious non-profit, highlighting how to draft customized tax-exempt language that satisfies the IRS's strict corporate requirements. Finally, I am compiling the operational guidelines to avoid the unauthorized practice of law, illustrating how to implement human-in-the-loop review overrides and critical licensing disclaimers for the engine's final outputs.
+"
+ https://gemini.google.com/#:~:text=Legal%20Setup%20for,engine%27s%20final%20outputs.
+

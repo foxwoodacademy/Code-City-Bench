@@ -1,0 +1,7 @@
+Flask
+requests
+python-dotenv # For loading API keys from .env file
+# Add LLaMA's suggested dependencies here when you integrate them fully:
+# psycopg2-binary
+# spacy
+# tika

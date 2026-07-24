@@ -1,0 +1,20 @@
+{
+  "meta": {
+    "name": "lough_system",
+    "path": "/storage/emulated/0/RootBase/lough_system",
+    "languages": {
+      "python": 19
+    },
+    "entrypoints": [],
+    "package_json": false,
+    "requirements": 0,
+    "readme_excerpt": "",
+    "last_modified": "2026-05-20T16:53:25.476999"
+  },
+  "runbook": {
+    "commands": [],
+    "env": [],
+    "notes": []
+  },
+  "bard_note": "No obvious entrypoint. Bold choice. (Bardildo: harsh truth incoming)"
+}

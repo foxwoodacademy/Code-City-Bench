@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coach Bleak: The Accountability Engine</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Roboto+Mono:wght@400;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); /* Dark, serious gradient */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+            color: #e2e8f0; /* Light text */
+        }
+        .app-container {
+            background-color: #1a202c; /* Darker background for the app itself */
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            max-width: 900px;
+            width: 100%;
+            padding: 40px;
+            box-sizing: border-box;
+            border: 2px solid #334155; /* Subtle border */
+            animation: fadeInScale 1s ease-out;
+            position: relative;
+            overflow: hidden; /* For the "puddle" effect */
+        }
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.95) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .header-logo {
+            font-family: 'Roboto Mono', monospace; /* Techy font for logo */
+            color: #3b82f6; /* Bright blue */
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+        }
+
+        .exposed-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 0, 0, 0.1); /* Subtle red tint */
+            backdrop-filter: blur(2px);
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            z-index: 10;
+            pointer-events: none; /* Allow clicks to pass through */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+            font-weight: 900;
+            color: #ef4444; /* Red-500 */
+            text-shadow: 0 0 15px rgba(239, 68, 68, 0.8);
+            text-align: center;
+            line-height: 1.2;
+        }
+        .exposed-overlay.active {
+            opacity: 1;
+        }
+
+        .puddle-effect {
+            position: absolute;
+            bottom: -50px; /* Start below the screen */
+            left: 0;
+            width: 100%;
+            height: 100px; /* Height of the puddle */
+            background: radial-gradient(circle at center, rgba(255, 255, 0, 0.3) 0%, rgba(255, 165, 0, 0.1) 50%, transparent 100%); /* Yellow/orange glow */
+            border-radius: 50%;
+            filter: blur(30px);
+            opacity: 0;
+            transition: all 1s ease-out;
+            z-index: 5;
+        }
+        .puddle-effect.active {
+            bottom: -20px; /* Rise slightly */
+            opacity: 0.7;
+            animation: pulsePuddle 2s infinite alternate;
+        }
+        @keyframes pulsePuddle {
+            from { transform: scale(1); opacity: 0.7; }
+            to { transform: scale(1.05); opacity: 0.8; }
+        }
+
+        .button-glow {
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.7);
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .app-container {
+                padding: 25px;
+            }
+            .header-logo {
+                font-size: 2rem;
+            }
+            .exposed-overlay {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header class="text-center mb-10">
+            <h1 class="header-logo mb-2">
+                <span class="text-blue-500">COACH BLEAK</span><br>
+                <span class="text-gray-400 text-xl font-normal">THE ACCOUNTABILITY ENGINE</span>
+            </h1>
+            <p class="text-gray-400 text-lg max-w-xl mx-auto">
+                Unveiling Truth. Ensuring Consequences.
+            </p>
+        </header>
+
+        <section class="mb-8">
+            <label for="scenarioInput" class="block text-lg font-semibold text-gray-300 mb-3">
+                Describe the alleged wrongdoing or corrupt scenario:
+            </label>
+            <textarea
+                id="scenarioInput"
+                class="w-full p-4 bg-gray-700 text-gray-100 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out resize-y min-h-[150px] placeholder-gray-400"
+                rows="8"
+                placeholder="e.g., 'A public official awarded a contract to a company owned by a family member without proper disclosure or competitive bidding.' Or 'Evidence suggests a corporation knowingly polluted a local water source for profit, covering up test results.'"
+            ></textarea>
+        </section>
+
+        <div class="flex flex-col sm:flex-row gap-4 mb-8">
+            <button id="analyzeBtn" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-300 button-glow disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center">
+                <span id="loader" class="hidden animate-spin h-5 w-5 text-white mr-3" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </span>
+                <span>🚨 UNVEIL THE TRUTH 🚨</span>
+            </button>
+        </div>
+
+        <div id="outputArea" class="bg-gray-800 p-6 rounded-lg shadow-inner border border-gray-700 min-h-[200px] text-gray-200 leading-relaxed overflow-auto relative z-20">
+            <p class="text-gray-400 text-center">
+                <span class="text-blue-400">Coach Bleak</span> awaits your input. Describe the scenario above and click "UNVEIL THE TRUTH" to see the potential ramifications.
+            </p>
+        </div>
+
+        <div id="exposedOverlay" class="exposed-overlay">
+            <span class="animate-pulse">EXPOSED.</span>
+        </div>
+        <div id="puddleEffect" class="puddle-effect"></div>
+
+        <footer class="text-center text-gray-500 text-xs mt-10">
+            <p class="mb-2">
+                <strong class="text-red-400">DISCLAIMER:</strong> This application is a conceptual demonstration for educational and informational purposes only. It does not provide legal advice, perform actual investigations, or interact with real-world systems. Always consult with qualified legal professionals for specific legal matters.
+            </p>
+            <p>&copy; 2025 Coach Bleak Legal AI. All rights reserved. Concept by Gemini.</p>
+        </footer>
+    </div>
+
+    <script>
+        const scenarioInput = document.getElementById('scenarioInput');
+        const analyzeBtn = document.getElementById('analyzeBtn');
+        const outputArea = document.getElementById('outputArea');
+        const loader = document.getElementById('loader');
+        const exposedOverlay = document.getElementById('exposedOverlay');
+        const puddleEffect = document.getElementById('puddleEffect');
+
+        // Function to simulate AI analysis and response
+        async function simulateAnalysis() {
+            const input = scenarioInput.value.trim();
+            if (!input) {
+                outputArea.innerHTML = '<p class="text-red-400 text-center">Please describe a scenario to analyze.</p>';
+                return;
+            }
+
+            // Show loading state
+            analyzeBtn.disabled = true;
+            loader.classList.remove('hidden');
+            analyzeBtn.querySelector('span:last-child').classList.add('hidden');
+            outputArea.innerHTML = '<p class="text-blue-400 text-center animate-pulse">Analyzing patterns... Identifying vulnerabilities...</p>';
+            exposedOverlay.classList.remove('active');
+            puddleEffect.classList.remove('active');
+
+            try {
+                // Simulate network delay
+                await new Promise(resolve => setTimeout(resolve, 2000));
+
+                // --- LLM Call (Gemini API) ---
+                const prompt = `Given the following alleged wrongdoing or corrupt scenario, provide a direct, uncompromising, and legally-oriented analysis of potential ethical breaches, legal ramifications, and the concept of accountability. Focus on the impact on the wrongdoer and the system, using strong, formal language. Do not provide legal advice, but highlight the principles of justice.
+
+                Scenario: "${input}"
+
+                Coach Bleak's Analysis:`;
+
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+
+                const payload = { contents: chatHistory };
+                const apiKey = ""; // Canvas will provide this key at runtime
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(`API error: ${errorData.error.message || response.statusText}`);
+                }
+
+                const result = await response.json();
+
+                let aiResponse = '';
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    aiResponse = result.candidates[0].content.parts[0].text;
+                } else {
+                    aiResponse = "Analysis inconclusive. Further data required. The truth remains obscured for now.";
+                }
+
+                // Display analysis
+                outputArea.innerHTML = `<p class="text-gray-200">${aiResponse.replace(/\n/g, '<br>')}</p>`;
+
+                // Trigger "exposed" visuals
+                exposedOverlay.classList.add('active');
+                puddleEffect.classList.add('active');
+
+            } catch (error) {
+                console.error("Coach Bleak encountered an error:", error);
+                outputArea.innerHTML = `<p class="text-red-400">ERROR: Analysis failed. ${error.message}. Ensure valid input and network connection.</p>`;
+            } finally {
+                // Reset loading state
+                analyzeBtn.disabled = false;
+                loader.classList.add('hidden');
+                analyzeBtn.querySelector('span:last-child').classList.remove('hidden');
+            }
+        }
+
+        analyzeBtn.addEventListener('click', simulateAnalysis);
+
+        // Optional: Reset visuals when input changes
+        scenarioInput.addEventListener('input', () => {
+            exposedOverlay.classList.remove('active');
+            puddleEffect.classList.remove('active');
+            outputArea.innerHTML = '<p class="text-gray-400 text-center"><span class="text-blue-400">Coach Bleak</span> awaits your input. Describe the scenario above and click "UNVEIL THE TRUTH" to see the potential ramifications.</p>';
+        });
+    </script>
+</body>
+</html>

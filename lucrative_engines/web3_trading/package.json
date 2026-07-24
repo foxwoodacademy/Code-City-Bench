@@ -1,0 +1,10 @@
+{
+  "name": "web3-trading-engine",
+  "version": "1.0.0",
+  "description": "Web3 trading and auditing toolkit",
+  "main": "bot.js",
+  "dependencies": {
+    "ethers": "^6.13.0",
+    "dotenv": "^16.4.5"
+  }
+}

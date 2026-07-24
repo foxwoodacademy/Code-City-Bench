@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "name": "src",
+    "path": "/storage/emulated/0/RootBase/src",
+    "languages": {
+      "typescript": 11,
+      "css": 1
+    },
+    "entrypoints": [],
+    "package_json": false,
+    "requirements": 0,
+    "readme_excerpt": "",
+    "last_modified": "2026-05-20T16:55:32.264999"
+  },
+  "runbook": {
+    "commands": [],
+    "env": [],
+    "notes": []
+  },
+  "bard_note": "No obvious entrypoint. Bold choice. (Bardildo: harsh truth incoming)"
+}

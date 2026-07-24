@@ -1,0 +1,7 @@
+
+   {
+     "name": "PhoneInfoga Scanner",
+     "tagline": "Advanced phone number reconnaissance and OSINT.",
+     "description": "A modular OSINT tool that scans phone numbers, identifies carriers, and performs
+   advanced reconnaissance lookups."
+   }

@@ -1,0 +1,1891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="https://cdn.jsdelivr.net/npm/eruda"></script><script>eruda.init();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>ModMind EquiNex // v1</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=VT323&family=Courier+Prime:wght@400;700&family=Bebas+Neue&family=Creepster&display=swap');
+
+/* ============================================================
+   ROOT & RESET
+============================================================ */
+:root {
+  --bg:        #0b0e0f;
+  --panel:     #0f1518;
+  --border:    #1a2a22;
+  --teal:      #00e5c3;
+  --teal-dim:  #005a4d;
+  --amber:     #ffb300;
+  --amber-dim: #3a2a00;
+  --red:       #ff3c3c;
+  --purple:    #c084fc;
+  --green:     #39ff14;
+  --text:      #a8c4b8;
+  --text-dim:  #2a4a38;
+  --creature:  #7c4dbd;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  background: #000;
+  height: 100%;
+}
+
+body {
+  font-family: 'Courier Prime', monospace;
+  background: var(--bg);
+  color: var(--text);
+  height: 100vh;
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+}
+
+/* CRT scanlines */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(0,0,0,0.12) 3px,
+    rgba(0,0,0,0.12) 4px
+  );
+  pointer-events: none;
+  z-index: 9000;
+}
+
+/* Vignette */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.7) 100%);
+  pointer-events: none;
+  z-index: 8999;
+}
+
+/* ============================================================
+   TOP BAR
+============================================================ */
+#topbar {
+  flex-shrink: 0;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  gap: 8px;
+  position: relative;
+  z-index: 100;
+}
+
+.brand {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.05rem;
+  letter-spacing: 3px;
+  color: var(--teal);
+  text-shadow: 0 0 12px var(--teal);
+  white-space: nowrap;
+}
+
+.brand span { color: var(--amber); }
+
+.topbar-status {
+  font-size: 0.52rem;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+  text-align: right;
+  line-height: 1.5;
+}
+
+.topbar-status em { color: var(--green); font-style: normal; }
+
+.gesture-indicators {
+  display: flex;
+  gap: 4px;
+}
+
+.gest {
+  font-size: 0.5rem;
+  color: var(--teal-dim);
+  border: 1px solid var(--teal-dim);
+  padding: 2px 4px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.gest:hover, .gest.active {
+  color: var(--teal);
+  border-color: var(--teal);
+  text-shadow: 0 0 6px var(--teal);
+}
+
+/* ============================================================
+   MAIN CONTENT AREA (scrollable)
+============================================================ */
+#main {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--border);
+}
+
+#main::-webkit-scrollbar { width: 2px; }
+#main::-webkit-scrollbar-thumb { background: var(--teal-dim); }
+
+/* ============================================================
+   WHITEBOARD + VIDEO ROW
+============================================================ */
+#wb-video-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+.panel-wb, .panel-video {
+  background: var(--panel);
+  padding: 8px;
+  min-height: 120px;
+  position: relative;
+  overflow: hidden;
+}
+
+.panel-label {
+  font-size: 0.52rem;
+  letter-spacing: 3px;
+  color: var(--teal-dim);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.panel-label::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  background: var(--teal);
+  box-shadow: 0 0 6px var(--teal);
+}
+
+/* Whiteboard canvas area */
+.wb-canvas {
+  width: 100%;
+  height: 80px;
+  border: 1px dashed var(--teal-dim);
+  position: relative;
+  overflow: hidden;
+  cursor: crosshair;
+}
+
+.wb-star {
+  position: absolute;
+  font-size: 2.5rem;
+  color: var(--teal-dim);
+  top: 50%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: starfloat 4s ease-in-out infinite;
+  font-family: 'VT323', monospace;
+}
+
+@keyframes starfloat {
+  0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) rotate(0deg); }
+  50% { opacity: 0.7; transform: translate(-50%, -48%) rotate(15deg); }
+}
+
+.wb-lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Video panel */
+.video-frame {
+  width: 100%;
+  height: 80px;
+  border: 1px solid var(--teal-dim);
+  background: #080c0b;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.video-static {
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: staticshift 0.3s steps(3) infinite;
+}
+
+@keyframes staticshift {
+  0%, 100% { transform: translate(0,0); }
+  33% { transform: translate(-2px, 1px); }
+  66% { transform: translate(2px, -1px); }
+}
+
+.video-creature {
+  position: relative;
+  z-index: 2;
+  font-size: 2rem;
+  animation: vidcreature 2s ease-in-out infinite;
+}
+
+@keyframes vidcreature {
+  0%, 100% { transform: scale(1); filter: hue-rotate(0deg); }
+  50% { transform: scale(1.05); filter: hue-rotate(20deg); }
+}
+
+.video-label {
+  position: absolute;
+  bottom: 2px;
+  right: 4px;
+  font-family: 'VT323', monospace;
+  font-size: 0.7rem;
+  color: var(--teal-dim);
+}
+
+/* ============================================================
+   CREATURE PERSONA BAR
+============================================================ */
+#creature-bar {
+  background: var(--panel);
+  padding: 10px 8px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  gap: 4px;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+#creature-bar::before {
+  content: 'MODMIND EQUINEX DASHBOARD';
+  position: absolute;
+  top: 3px;
+  left: 8px;
+  font-size: 0.45rem;
+  letter-spacing: 3px;
+  color: var(--teal-dim);
+}
+
+.creature-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  position: relative;
+}
+
+.creature-node:hover { transform: translateY(-3px); }
+.creature-node.active .creature-face { filter: drop-shadow(0 0 8px var(--teal)); }
+.creature-node.speaking .creature-face { animation: speakcreature 0.5s step-end infinite; }
+
+@keyframes speakcreature {
+  0%, 100% { filter: drop-shadow(0 0 6px var(--amber)); }
+  50% { filter: drop-shadow(0 0 16px var(--amber)) brightness(1.4); }
+}
+
+.creature-face {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  position: relative;
+  transition: all 0.3s;
+  background: radial-gradient(circle at 35% 35%, #2a1a4a, #0a0510);
+  border: 1px solid var(--creature);
+}
+
+.creature-face.large {
+  width: 62px;
+  height: 62px;
+  font-size: 2.3rem;
+  border-color: var(--teal);
+  background: radial-gradient(circle at 35% 35%, #1a3a2a, #050e0a);
+}
+
+.creature-face.glitching {
+  animation: faceglitch 0.1s step-end infinite;
+}
+
+@keyframes faceglitch {
+  0% { transform: translate(0,0) scale(1); filter: hue-rotate(0deg); }
+  25% { transform: translate(-2px,1px) scale(0.98); filter: hue-rotate(120deg) saturate(3); }
+  50% { transform: translate(2px,-1px) scale(1.02); filter: hue-rotate(240deg) invert(0.3); }
+  75% { transform: translate(-1px,2px); filter: hue-rotate(60deg); }
+  100% { transform: translate(0,0); filter: none; }
+}
+
+.creature-name {
+  font-family: 'VT323', monospace;
+  font-size: 0.85rem;
+  color: var(--teal-dim);
+  letter-spacing: 1px;
+  transition: color 0.3s;
+}
+
+.creature-node.active .creature-name { color: var(--teal); }
+.creature-node.speaking .creature-name { color: var(--amber); }
+
+.creature-temp {
+  font-size: 0.45rem;
+  color: #1a3a28;
+  letter-spacing: 1px;
+}
+
+.creature-bubble {
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--panel);
+  border: 1px solid var(--teal);
+  padding: 4px 6px;
+  font-size: 0.55rem;
+  color: var(--teal);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+  z-index: 50;
+  letter-spacing: 1px;
+  max-width: 120px;
+  white-space: normal;
+  text-align: center;
+}
+
+.creature-bubble::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: var(--teal);
+}
+
+.creature-node.speaking .creature-bubble { opacity: 1; }
+
+/* ============================================================
+   REPORT / CLI PANEL
+============================================================ */
+#report-panel {
+  background: var(--panel);
+  flex-shrink: 0;
+}
+
+.report-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.report-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 3px;
+  color: var(--amber);
+  text-shadow: 0 0 10px var(--amber);
+}
+
+.report-cmd {
+  font-size: 0.5rem;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+}
+
+.report-items {
+  padding: 6px 0;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.report-items::-webkit-scrollbar { width: 2px; }
+.report-items::-webkit-scrollbar-thumb { background: var(--amber-dim); }
+
+.report-item {
+  padding: 6px 10px;
+  border-bottom: 1px solid #0a1410;
+  cursor: pointer;
+  transition: background 0.15s;
+  animation: reportappear 0.3s ease both;
+}
+
+@keyframes reportappear {
+  from { opacity: 0; transform: translateX(-8px); }
+  to { opacity: 1; transform: none; }
+}
+
+.report-item:hover { background: #111a14; }
+
+.report-item-header {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 2px;
+}
+
+.report-num {
+  font-family: 'VT323', monospace;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+.report-name {
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.report-status {
+  margin-left: auto;
+  font-size: 0.5rem;
+  color: var(--text-dim);
+}
+
+.report-status.complete { color: var(--green); }
+.report-status.running { color: var(--amber); animation: blink 1s step-end infinite; }
+.report-status.error { color: var(--red); }
+
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+.report-body {
+  font-size: 0.55rem;
+  color: #4a7a5a;
+  line-height: 1.5;
+}
+
+.report-body .highlight { color: var(--teal); }
+.report-body .roast { color: var(--purple); font-style: italic; }
+
+/* Roaster badge */
+.roaster-badge {
+  display: inline-block;
+  background: var(--purple);
+  color: #000;
+  font-size: 0.45rem;
+  padding: 1px 4px;
+  letter-spacing: 1px;
+  font-weight: 700;
+  margin-right: 4px;
+}
+
+/* ============================================================
+   MODULES / CLICK-FOR-REPORTS ROW
+============================================================ */
+#modules-row {
+  background: var(--panel);
+  padding: 8px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  flex-shrink: 0;
+  border-top: 1px solid var(--border);
+}
+
+.module-btn {
+  background: #080e0b;
+  border: 1px solid var(--border);
+  padding: 8px 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.module-btn:hover {
+  border-color: var(--teal);
+  background: #0a1410;
+}
+
+.module-btn:active { transform: scale(0.96); }
+
+.module-btn.active {
+  border-color: var(--amber);
+  background: var(--amber-dim);
+}
+
+.module-icon { font-size: 1.3rem; }
+
+.module-label {
+  font-size: 0.45rem;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.module-btn.active .module-label { color: var(--amber); }
+
+.module-indicator {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 4px var(--green);
+}
+
+/* ============================================================
+   DEVICE / SETTINGS ROW
+============================================================ */
+#device-settings-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+.device-panel, .settings-panel {
+  background: var(--panel);
+  padding: 8px;
+}
+
+.device-ctrl {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  gap: 6px;
+}
+
+.device-ctrl-label {
+  font-size: 0.5rem;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+}
+
+.device-ctrl-arrows {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.arrow-btn {
+  background: var(--border);
+  border: none;
+  color: var(--teal-dim);
+  font-size: 0.6rem;
+  padding: 2px 6px;
+  cursor: pointer;
+  font-family: monospace;
+  transition: all 0.15s;
+}
+
+.arrow-btn:hover { background: var(--teal-dim); color: var(--teal); }
+
+.settings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px 0;
+  border-bottom: 1px solid #0a1410;
+}
+
+.setting-name {
+  font-size: 0.5rem;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+}
+
+.toggle {
+  width: 24px;
+  height: 12px;
+  background: var(--border);
+  border-radius: 6px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.toggle.on { background: var(--teal-dim); }
+
+.toggle::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 8px;
+  height: 8px;
+  background: var(--text-dim);
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.toggle.on::after {
+  left: 14px;
+  background: var(--teal);
+  box-shadow: 0 0 4px var(--teal);
+}
+
+/* ============================================================
+   KEYBOARD
+============================================================ */
+#keyboard-area {
+  flex-shrink: 0;
+  background: #080c0a;
+  border-top: 1px solid var(--border);
+  padding: 6px 4px 4px;
+}
+
+.keyboard-input-row {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 6px;
+  padding: 0 2px;
+}
+
+.kb-input {
+  flex: 1;
+  background: var(--panel);
+  border: 1px solid var(--teal-dim);
+  color: var(--teal);
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.75rem;
+  padding: 5px 8px;
+  outline: none;
+  caret-color: var(--teal);
+}
+
+.kb-input::placeholder { color: var(--text-dim); }
+.kb-input:focus { border-color: var(--teal); box-shadow: 0 0 8px rgba(0,229,195,0.15); }
+
+.kb-send {
+  background: var(--teal-dim);
+  border: 1px solid var(--teal);
+  color: var(--teal);
+  font-family: 'VT323', monospace;
+  font-size: 1rem;
+  padding: 0 10px;
+  cursor: pointer;
+  letter-spacing: 2px;
+  transition: all 0.15s;
+}
+
+.kb-send:hover { background: var(--teal); color: #000; }
+
+/* Keyboard rows */
+.kb-rows { display: flex; flex-direction: column; gap: 3px; }
+
+.kb-row {
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+}
+
+.key {
+  background: #0f1a16;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.6rem;
+  min-width: 28px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.1s;
+  user-select: none;
+  position: relative;
+}
+
+.key:active, .key.pressed {
+  background: var(--teal-dim);
+  border-color: var(--teal);
+  color: var(--teal);
+  transform: translateY(1px);
+}
+
+.key.wide { min-width: 48px; }
+.key.xwide { min-width: 80px; }
+.key.space { min-width: 140px; }
+
+.key.special {
+  color: var(--amber-dim);
+  border-color: #2a1a00;
+}
+
+.key.special:active { background: var(--amber-dim); border-color: var(--amber); color: var(--amber); }
+
+/* ============================================================
+   LIVE FEED / CHAT OVERLAY
+============================================================ */
+#live-feed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-width: 480px;
+  margin: 0 auto;
+  z-index: 500;
+  background: rgba(0,0,0,0.92);
+  display: none;
+  flex-direction: column;
+}
+
+#live-feed.open { display: flex; }
+
+.feed-header {
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.feed-title {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 3px;
+  color: var(--teal);
+  font-size: 1rem;
+}
+
+.feed-close {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-family: monospace;
+  font-size: 0.7rem;
+  padding: 3px 8px;
+  cursor: pointer;
+  letter-spacing: 2px;
+}
+
+.feed-close:hover { border-color: var(--red); color: var(--red); }
+
+.feed-msgs {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.feed-msgs::-webkit-scrollbar { width: 2px; }
+.feed-msgs::-webkit-scrollbar-thumb { background: var(--teal-dim); }
+
+.feed-msg {
+  display: flex;
+  gap: 8px;
+  animation: msgpop 0.25s ease;
+}
+
+@keyframes msgpop {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+.feed-avatar {
+  font-size: 1.5rem;
+  min-width: 36px;
+  line-height: 1;
+  padding-top: 2px;
+}
+
+.feed-content { flex: 1; }
+
+.feed-who {
+  font-size: 0.55rem;
+  letter-spacing: 2px;
+  margin-bottom: 3px;
+  font-weight: 700;
+}
+
+.feed-text {
+  font-size: 0.72rem;
+  line-height: 1.6;
+  color: #7aaa94;
+}
+
+.feed-text .cursor { animation: blink 0.8s step-end infinite; }
+
+.sys-msg {
+  font-size: 0.55rem;
+  color: var(--text-dim);
+  text-align: center;
+  letter-spacing: 2px;
+  padding: 3px 0;
+  border-top: 1px solid #0a1410;
+  border-bottom: 1px solid #0a1410;
+}
+
+/* ============================================================
+   CHAOS / GLITCH OVERLAY
+============================================================ */
+#chaos-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 8000;
+  opacity: 0;
+  transition: opacity 0.05s;
+}
+
+#chaos-layer.active { opacity: 1; }
+
+#chaos-layer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255,0,60,0.04) 0px,
+    transparent 1px,
+    transparent 4px
+  );
+}
+
+/* ============================================================
+   WINK MODAL
+============================================================ */
+#wink-modal {
+  position: fixed;
+  inset: 0;
+  max-width: 480px;
+  margin: 0 auto;
+  z-index: 6000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.85);
+}
+
+#wink-modal.open { display: flex; }
+
+.wink-box {
+  background: var(--panel);
+  border: 1px solid var(--teal);
+  padding: 20px;
+  text-align: center;
+  max-width: 280px;
+  box-shadow: 0 0 40px rgba(0,229,195,0.2);
+  animation: winkappear 0.3s ease;
+}
+
+@keyframes winkappear {
+  from { transform: scale(0.8) rotate(-3deg); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+
+.wink-face {
+  font-size: 3.5rem;
+  display: block;
+  margin-bottom: 10px;
+  animation: winkbounce 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes winkbounce {
+  from { transform: scale(1); }
+  to { transform: scale(1.08) rotate(5deg); }
+}
+
+.wink-text {
+  font-family: 'Creepster', cursive;
+  font-size: 1.3rem;
+  color: var(--teal);
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+
+.wink-sub {
+  font-size: 0.6rem;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+}
+
+.wink-close {
+  background: var(--teal-dim);
+  border: 1px solid var(--teal);
+  color: var(--teal);
+  font-family: 'VT323', monospace;
+  font-size: 1rem;
+  padding: 5px 16px;
+  cursor: pointer;
+  letter-spacing: 3px;
+  transition: all 0.15s;
+}
+
+.wink-close:hover { background: var(--teal); color: #000; }
+
+/* ============================================================
+   INFO PANEL
+============================================================ */
+#info-panel {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 220px;
+  max-width: 100%;
+  z-index: 5000;
+  background: #080e0c;
+  border-left: 1px solid var(--teal);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  animation: slideinfopanel 0.25s ease;
+  transform: translateX(0);
+}
+
+@keyframes slideinfopanel {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+#info-panel.open { display: flex; }
+
+.info-panel-header {
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.info-panel-title {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 3px;
+  color: var(--amber);
+  font-size: 0.9rem;
+}
+
+.info-close {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.info-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  font-size: 0.58rem;
+  line-height: 1.7;
+  color: #4a7a5a;
+}
+
+.info-content::-webkit-scrollbar { width: 2px; }
+.info-content h4 { color: var(--teal); letter-spacing: 2px; font-size: 0.6rem; margin: 8px 0 4px; }
+.info-content .val { color: var(--amber); }
+
+/* ============================================================
+   TILT INDICATOR
+============================================================ */
+#tilt-indicator {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 7000;
+  font-family: 'VT323', monospace;
+  font-size: 2rem;
+  color: var(--teal);
+  text-shadow: 0 0 20px var(--teal);
+  opacity: 0;
+  transition: opacity 0.3s;
+  letter-spacing: 4px;
+}
+
+#tilt-indicator.show { opacity: 1; }
+
+/* LONG PRESS RIPPLE */
+.ripple {
+  position: fixed;
+  border-radius: 50%;
+  background: rgba(0,229,195,0.2);
+  pointer-events: none;
+  z-index: 7001;
+  animation: rippleout 0.6s ease-out forwards;
+}
+
+@keyframes rippleout {
+  from { transform: scale(0); opacity: 1; width: 10px; height: 10px; margin: -5px; }
+  to { transform: scale(12); opacity: 0; width: 10px; height: 10px; margin: -5px; }
+}
+</style>
+</head>
+<body>
+
+<!-- CHAOS LAYER -->
+<div id="chaos-layer"></div>
+
+<!-- TILT INDICATOR -->
+<div id="tilt-indicator">// TILT //</div>
+
+<!-- WINK MODAL -->
+<div id="wink-modal">
+  <div class="wink-box">
+    <span class="wink-face" id="wink-face">😉</span>
+    <div class="wink-text">WINK DETECTED</div>
+    <div class="wink-sub" id="wink-sub">SWITCHING PERSONA VIEW...</div>
+    <button class="wink-close" onclick="closeWink()">CONFIRM</button>
+  </div>
+</div>
+
+<!-- INFO PANEL -->
+<div id="info-panel">
+  <div class="info-panel-header">
+    <span class="info-panel-title">// INFO</span>
+    <button class="info-close" onclick="closeInfo()">✕</button>
+  </div>
+  <div class="info-content">
+    <h4>SESSION</h4>
+    VRT-2026-023 // equinex_v1<br>
+    MODEL: <span class="val">INFINITY∞</span><br>
+    LOCATION: <span class="val">/storage/emulated/0/vertical-ai/</span><br>
+    SWAP: <span class="val">ACTIVE</span><br>
+    THREADING: <span class="val">MULTI</span>
+    
+    <h4>PERSONAS ONLINE</h4>
+    BOB · WINK · FIDDLEX · FACT · YOU<br>
+    + CEO · ADVERSARY · ARCHITECT<br>
+    + CMO · THREAT · RAPGENIUS<br>
+    + PYTCH · TWOIE
+
+    <h4>GESTURE MAP</h4>
+    TILT → shift view<br>
+    LONGPRESS → reveal layer<br>
+    WINK → persona switch<br>
+    SWIPE ↑ → full screen<br>
+    TAP × 2 → focus mode
+
+    <h4>SWARM STATUS</h4>
+    SCOUT-01 → <span class="val">market scan</span><br>
+    SCOUT-02 → <span class="val">competitor intel</span><br>
+    REAPER → idle<br>
+    MOLT → disconnected
+
+    <h4>DNA STRAND</h4>
+    <span class="val" id="info-dna">AACGTRKBYMWSHVD...</span>
+
+    <h4>AUTOMATION DNA</h4>
+    Strand evolving. Last breed: +12% fitness.<br>
+    Mutation rate: <span class="val">0.03</span><br>
+    Generation: <span class="val" id="info-gen">7</span>
+
+    <h4>GOATSE INFO</h4>
+    ⚠ THIS IS A PROTOTYPE<br>
+    SAY SHI! to unlock advanced modes.<br>
+    The creature sees you. It always has.
+  </div>
+</div>
+
+<!-- LIVE FEED OVERLAY -->
+<div id="live-feed">
+  <div class="feed-header">
+    <span class="feed-title">BOARDROOM // LIVE</span>
+    <button class="feed-close" onclick="closeFeed()">CLOSE ✕</button>
+  </div>
+  <div class="feed-msgs" id="feed-msgs">
+    <div class="sys-msg">▸ SESSION ACTIVE ▸ 13 PERSONAS LOADED ▸ INFINITY MODEL ONLINE ▸</div>
+  </div>
+</div>
+
+<!-- ============================================================
+     TOP BAR
+============================================================ -->
+<div id="topbar">
+  <div class="brand">Mod<span>Mind</span> EquiNex</div>
+  <div class="gesture-indicators">
+    <div class="gest" onclick="triggerTilt()">TILT</div>
+    <div class="gest" onclick="triggerLongpress(event)">HOLD</div>
+    <div class="gest" onclick="triggerWink()">WINK</div>
+  </div>
+  <div class="topbar-status">
+    <em>ONLINE</em> // v1<br>
+    HEAT: <em id="heat-display">0°</em>
+  </div>
+</div>
+
+<!-- ============================================================
+     MAIN SCROLL AREA
+============================================================ -->
+<div id="main">
+
+  <!-- WHITEBOARD + VIDEO -->
+  <div id="wb-video-row">
+    <div class="panel-wb">
+      <div class="panel-label">whiteboard</div>
+      <div class="wb-canvas" id="wb-canvas">
+        <svg class="wb-lines" id="wb-svg" xmlns="http://www.w3.org/2000/svg"></svg>
+        <div class="wb-star">★</div>
+      </div>
+    </div>
+    <div class="panel-video">
+      <div class="panel-label">video</div>
+      <div class="video-frame">
+        <div class="video-static"></div>
+        <div class="video-creature" id="vid-creature">👽</div>
+        <div class="video-label">LIVE</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CREATURE BAR -->
+  <div id="creature-bar" id="creature-bar">
+    <!-- populated by JS -->
+  </div>
+
+  <!-- REPORT PANEL -->
+  <div id="report-panel">
+    <div class="report-header">
+      <span class="report-title">VERTICAL AI</span>
+      <span class="report-cmd">&gt; gemini-cli vertical-ai report --watch</span>
+    </div>
+    <div class="report-items" id="report-items">
+      <!-- populated by JS -->
+    </div>
+  </div>
+
+  <!-- MODULES -->
+  <div id="modules-row">
+    <div class="module-btn active" onclick="toggleModule(this,'boardroom')">
+      <div class="module-indicator"></div>
+      <div class="module-icon">🏛</div>
+      <div class="module-label">BOARDROOM</div>
+    </div>
+    <div class="module-btn" onclick="toggleModule(this,'swarm')">
+      <div class="module-icon">🐝</div>
+      <div class="module-label">SWARM</div>
+    </div>
+    <div class="module-btn" onclick="toggleModule(this,'dna')">
+      <div class="module-icon">🧬</div>
+      <div class="module-label">DNA BREED</div>
+    </div>
+    <div class="module-btn" onclick="toggleModule(this,'city')">
+      <div class="module-icon">🏙</div>
+      <div class="module-label">CODE CITY</div>
+    </div>
+  </div>
+
+  <!-- DEVICE + SETTINGS -->
+  <div id="device-settings-row">
+    <div class="device-panel">
+      <div class="panel-label">device</div>
+      <div class="device-ctrl">
+        <span class="device-ctrl-label">VOLUME</span>
+        <div class="device-ctrl-arrows">
+          <button class="arrow-btn">▲</button>
+          <button class="arrow-btn">▼</button>
+        </div>
+      </div>
+      <div class="device-ctrl">
+        <span class="device-ctrl-label">SCROLL</span>
+        <div class="device-ctrl-arrows">
+          <button class="arrow-btn" onclick="document.getElementById('main').scrollBy(0,-40)">▲</button>
+          <button class="arrow-btn" onclick="document.getElementById('main').scrollBy(0,40)">▼</button>
+        </div>
+      </div>
+      <div class="device-ctrl">
+        <span class="device-ctrl-label">INFO</span>
+        <button class="arrow-btn" style="width:100%" onclick="openInfo()">OPEN</button>
+      </div>
+    </div>
+    <div class="settings-panel">
+      <div class="panel-label">settings</div>
+      <div class="settings-list">
+        <div class="setting-row">
+          <span class="setting-name">GLITCH</span>
+          <div class="toggle on" onclick="this.classList.toggle('on')" id="tog-glitch"></div>
+        </div>
+        <div class="setting-row">
+          <span class="setting-name">TILT UI</span>
+          <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+        </div>
+        <div class="setting-row">
+          <span class="setting-name">PERSONAS</span>
+          <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+        </div>
+        <div class="setting-row">
+          <span class="setting-name">SCANLINES</span>
+          <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+        </div>
+        <div class="setting-row">
+          <span class="setting-name">SOUND</span>
+          <div class="toggle" onclick="this.classList.toggle('on')"></div>
+        </div>
+        <div class="setting-row">
+          <span class="setting-name">CHAOS MODE</span>
+          <div class="toggle" onclick="this.classList.toggle('on'); triggerChaos()"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end #main -->
+
+<!-- ============================================================
+     KEYBOARD
+============================================================ -->
+<div id="keyboard-area">
+  <div class="keyboard-input-row">
+    <input class="kb-input" id="kb-input" type="text"
+      placeholder="inject directive..." autocomplete="off" spellcheck="false"
+      onkeydown="if(event.key==='Enter') sendDirective()" />
+    <button class="kb-send" onclick="sendDirective()">GO</button>
+  </div>
+  <div class="kb-rows" id="kb-rows">
+    <!-- Keyboard populated by JS -->
+  </div>
+</div>
+
+<script>
+// ============================================================
+// CREATURES / PERSONAS
+// ============================================================
+const CREATURES = [
+  {
+    id: 'bob', name: 'BOB', emoji: '😈', color: '#c084fc',
+    bubble: 'YOU SURE ABOUT THIS?',
+    quips: [
+      "Bold. Probably wrong. Let's find out.",
+      "The numbers don't add up, champ.",
+      "I've seen this pitch. Twice. Neither worked.",
+    ]
+  },
+  {
+    id: 'wink', name: 'WINK', emoji: '😉', color: '#00e5c3',
+    bubble: 'SOMETHING SHIFTED...',
+    quips: [
+      "Did you just blink? I saw it.",
+      "The interface knows. Always watching.",
+      "Persona switch initiated. Hold on.",
+    ]
+  },
+  {
+    id: 'you', name: 'YOU', emoji: '🧠', color: '#39ff14', large: true,
+    bubble: '> INJECTING...',
+    quips: [
+      "This is YOUR idea. Own it.",
+      "The boardroom reflects back at you.",
+      "Command received. Processing.",
+    ]
+  },
+  {
+    id: 'fiddlex', name: 'FIDDLEX', emoji: '🌀', color: '#ff3c3c',
+    bubble: 'SPIRALING...',
+    quips: [
+      "Connection unstable. Rerouting.",
+      "Pattern detected: recursive loop.",
+      "The spiral IS the answer.",
+    ]
+  },
+  {
+    id: 'fact', name: 'FACT', emoji: '📊', color: '#ffb300',
+    bubble: 'DATA INCOMING',
+    quips: [
+      "TAM: $2.8B. SAM: $340M. Proceed.",
+      "Retention day-30: 61%. Above average.",
+      "Competitor count: 3. Moat: thin.",
+    ]
+  },
+];
+
+const REPORT_DATA = [
+  {
+    num: '#2', name: "INNOVATOR'S VISION", nameColor: '#ffb300',
+    body: "Formulating novel approaches for sustainable network growth. Prototyped node architecture achieving 4.2× throughput.",
+    highlight: "processing...",
+    status: 'running', statusText: '[Processing...]'
+  },
+  {
+    num: '#2', name: "MARKET LANDSCAPE", nameColor: '#00e5c3',
+    body: "Analyzing competitive landscape, identifying key opportunities in renewable market entry Q4 2027.",
+    highlight: null,
+    status: 'running', statusText: '[Scanning...]'
+  },
+  {
+    num: '#2', name: "STRATEGIST'S ANALYSIS", nameColor: '#a78bfa',
+    body: "Analyzing macro landscape. Identifying plays from global markets. Data fusion across 14 verticals. Risk assessment: Moderate.",
+    highlight: null,
+    status: 'complete', statusText: '[Complete]'
+  },
+  {
+    num: '#2', name: "VETERAN'S RISK ASSESSMENT", nameColor: '#60a5fa',
+    body: "Reviewing historical market downturns, ensuring regulatory compliance. Capital preservation strategies implemented.",
+    highlight: null,
+    status: 'complete', statusText: '[Complete]'
+  },
+  {
+    num: '#4', name: "MARKET VALIDATION REPORT", nameColor: '#34d399',
+    body: "Consumer sentiment positive (78%). Early investor interest: HIGH. ✓ Pilot program successful.",
+    highlight: null,
+    status: 'complete', statusText: '[Acquired]'
+  },
+  {
+    num: '#3', name: "ROASTER'S REVIEW 😈", nameColor: '#f472b6',
+    body: null,
+    roast: '"Looks solid, but let\'s be real — where\'s the flying car? Still room for disruption, folks."',
+    status: 'complete', statusText: '[Roasted]'
+  },
+];
+
+// ============================================================
+// STATE
+// ============================================================
+const state = {
+  temps: {bob: 20, wink: 15, you: 50, fiddlex: 10, fact: 30},
+  speaking: null,
+  glitchEnabled: true,
+  feedOpen: false,
+  gen: 7,
+  msgCount: 0,
+  glitchCount: 0,
+  dna: 'AACGTRKBYMWSHVDNZ01∅◊'
+};
+
+// ============================================================
+// INIT
+// ============================================================
+window.addEventListener('load', () => {
+  buildCreatureBar();
+  buildReports();
+  buildKeyboard();
+  startAnimLoop();
+  startTempDecay();
+  startDNAMutation();
+  startSwarmChatter();
+  initWhiteboard();
+
+  // Long-press on main body
+  let lpTimer;
+  document.body.addEventListener('pointerdown', (e) => {
+    lpTimer = setTimeout(() => {
+      spawnRipple(e.clientX, e.clientY);
+      triggerLongpress(e);
+    }, 600);
+  });
+  document.body.addEventListener('pointerup', () => clearTimeout(lpTimer));
+  document.body.addEventListener('pointermove', () => clearTimeout(lpTimer));
+
+  // Double-tap creature: focus + feed open
+  let tapTimer, tapCount = 0;
+  document.getElementById('creature-bar').addEventListener('click', () => {
+    tapCount++;
+    clearTimeout(tapTimer);
+    tapTimer = setTimeout(() => { tapCount = 0; }, 300);
+    if (tapCount >= 2) { tapCount = 0; openFeed(); }
+  });
+});
+
+// ============================================================
+// BUILD CREATURE BAR
+// ============================================================
+function buildCreatureBar() {
+  const bar = document.getElementById('creature-bar');
+  bar.innerHTML = '';
+  CREATURES.forEach(c => {
+    const node = document.createElement('div');
+    node.className = 'creature-node' + (c.id === 'you' ? ' active' : '');
+    node.id = `cnode-${c.id}`;
+    node.innerHTML = `
+      <div class="creature-bubble" id="cbubble-${c.id}">${c.bubble}</div>
+      <div class="creature-face${c.large ? ' large' : ''}" id="cface-${c.id}">${c.emoji}</div>
+      <div class="creature-name">${c.name}</div>
+      <div class="creature-temp" id="ctemp-${c.id}">0°</div>
+    `;
+    node.addEventListener('click', () => focusCreature(c));
+    bar.appendChild(node);
+  });
+}
+
+// ============================================================
+// BUILD REPORTS
+// ============================================================
+function buildReports() {
+  const container = document.getElementById('report-items');
+  container.innerHTML = '';
+  REPORT_DATA.forEach((r, i) => {
+    const item = document.createElement('div');
+    item.className = 'report-item';
+    item.style.animationDelay = `${i * 0.08}s`;
+    item.innerHTML = `
+      <div class="report-item-header">
+        <span class="report-num">${r.num}</span>
+        <span class="report-name" style="color:${r.nameColor}">${r.name}</span>
+        <span class="report-status ${r.status}">${r.statusText}</span>
+      </div>
+      <div class="report-body">
+        ${r.body ? r.body : ''}
+        ${r.roast ? `<span class="roast">${r.roast}</span>` : ''}
+      </div>
+    `;
+    item.addEventListener('click', () => {
+      openFeed();
+      setTimeout(() => addFeedMsg(null, `Pulled report: ${r.name}`, true), 400);
+    });
+    container.appendChild(item);
+  });
+}
+
+// ============================================================
+// BUILD KEYBOARD
+// ============================================================
+function buildKeyboard() {
+  const rows = [
+    ['q','w','e','r','t','y','u','i','o','p'],
+    ['a','s','d','f','g','h','j','k','l'],
+    ['⇧','z','x','c','v','b','n','m','⌫'],
+    ['🌀','SPACE','⏎'],
+  ];
+  const container = document.getElementById('kb-rows');
+  rows.forEach((row, ri) => {
+    const rowEl = document.createElement('div');
+    rowEl.className = 'kb-row';
+    row.forEach(key => {
+      const k = document.createElement('div');
+      k.className = 'key';
+      if (key === 'SPACE') k.classList.add('space');
+      else if (key === '⇧' || key === '⌫' || key === '⏎') k.classList.add('wide', 'special');
+      else if (key === '🌀') k.classList.add('special');
+      k.textContent = key;
+      k.addEventListener('pointerdown', () => {
+        k.classList.add('pressed');
+        handleKeyPress(key);
+      });
+      k.addEventListener('pointerup', () => k.classList.remove('pressed'));
+      rowEl.appendChild(k);
+    });
+    container.appendChild(rowEl);
+  });
+}
+
+function handleKeyPress(key) {
+  const input = document.getElementById('kb-input');
+  if (key === '⌫') {
+    input.value = input.value.slice(0, -1);
+  } else if (key === '⏎') {
+    sendDirective();
+  } else if (key === 'SPACE') {
+    input.value += ' ';
+  } else if (key === '⇧') {
+    // toggle caps - simplified
+  } else if (key === '🌀') {
+    triggerTilt();
+  } else {
+    input.value += key;
+  }
+  input.focus();
+}
+
+// ============================================================
+// ANIMATION LOOP
+// ============================================================
+let frameCounter = 0;
+function startAnimLoop() {
+  setInterval(() => {
+    frameCounter++;
+    const glitchOn = document.getElementById('tog-glitch').classList.contains('on');
+
+    CREATURES.forEach(c => {
+      const face = document.getElementById(`cface-${c.id}`);
+      const tempEl = document.getElementById(`ctemp-${c.id}`);
+      const node = document.getElementById(`cnode-${c.id}`);
+      const temp = state.temps[c.id];
+
+      // Temp display
+      tempEl.textContent = `${Math.floor(temp)}°`;
+
+      // Color based on temp
+      face.style.borderColor = getTempColor(temp);
+      face.style.boxShadow = `0 0 ${Math.floor(temp/8)}px ${getTempColor(temp)}`;
+
+      // Glitch chance
+      if (glitchOn && Math.random() < getGlitchChance(temp)) {
+        face.classList.add('glitching');
+        state.glitchCount++;
+        setTimeout(() => face.classList.remove('glitching'), 400);
+
+        // chaos flash
+        if (Math.random() < 0.1) flashChaos();
+      }
+    });
+
+    // Update heat display
+    const avgTemp = Object.values(state.temps).reduce((a,b)=>a+b,0) / CREATURES.length;
+    document.getElementById('heat-display').textContent = Math.floor(avgTemp) + '°';
+    document.getElementById('heat-display').style.color = getTempColor(avgTemp);
+
+    // DNA mutation UI
+    document.getElementById('info-dna').textContent = state.dna;
+
+    // Video creature cycle
+    if (frameCounter % 15 === 0) {
+      const creatures = ['👽','🤖','👾','🫠','🧟','👻'];
+      document.getElementById('vid-creature').textContent =
+        creatures[Math.floor(Math.random() * creatures.length)];
+    }
+  }, 200);
+}
+
+function getTempColor(t) {
+  if (t < 30) return '#00e5c3';
+  if (t < 60) return '#ffb300';
+  if (t < 85) return '#ff3c3c';
+  return '#f0f';
+}
+
+function getGlitchChance(t) {
+  if (t < 30) return 0.008;
+  if (t < 60) return 0.025;
+  if (t < 85) return 0.06;
+  return 0.15;
+}
+
+function startTempDecay() {
+  setInterval(() => {
+    CREATURES.forEach(c => {
+      if (state.speaking !== c.id) {
+        state.temps[c.id] = Math.max(0, state.temps[c.id] - 0.8);
+      }
+    });
+  }, 400);
+}
+
+// ============================================================
+// DNA MUTATION
+// ============================================================
+const DNA_CHARS = 'ACGTRKBYMWSHVDNZ01∅◊◈⊕⊗█▓▒░';
+function startDNAMutation() {
+  setInterval(() => {
+    const pos = Math.floor(Math.random() * state.dna.length);
+    const char = DNA_CHARS[Math.floor(Math.random() * DNA_CHARS.length)];
+    state.dna = state.dna.substring(0, pos) + char + state.dna.substring(pos + 1);
+    if (Math.floor(Math.random() * 100) === 0) state.gen++;
+    document.getElementById('info-gen').textContent = state.gen;
+  }, 500);
+}
+
+// ============================================================
+// SWARM CHATTER (report status cycling)
+// ============================================================
+const swarmPhrases = [
+  '[Scanning...]', '[Processing...]', '[Analyzing...]', '[Acquiring...]',
+  '[Fusing...]', '[Mutating...]', '[Breeding...]', '[Deploying...]',
+];
+
+function startSwarmChatter() {
+  setInterval(() => {
+    const running = document.querySelectorAll('.report-status.running');
+    running.forEach(el => {
+      el.textContent = swarmPhrases[Math.floor(Math.random() * swarmPhrases.length)];
+    });
+  }, 1800);
+}
+
+// ============================================================
+// CREATURE FOCUS
+// ============================================================
+function focusCreature(creature) {
+  // Remove active from all
+  document.querySelectorAll('.creature-node').forEach(n => {
+    n.classList.remove('active', 'speaking');
+  });
+
+  const node = document.getElementById(`cnode-${creature.id}`);
+  node.classList.add('active', 'speaking');
+  state.speaking = creature.id;
+
+  // Heat up
+  state.temps[creature.id] = Math.min(100, state.temps[creature.id] + 25);
+
+  // Open feed and show quip
+  openFeed();
+  const quip = creature.quips[Math.floor(Math.random() * creature.quips.length)];
+  setTimeout(() => addFeedMsg(creature, quip), 300);
+
+  setTimeout(() => {
+    node.classList.remove('speaking');
+    state.speaking = null;
+    state.temps[creature.id] = Math.max(0, state.temps[creature.id] - 10);
+  }, 3000);
+}
+
+// ============================================================
+// GESTURE TRIGGERS
+// ============================================================
+function triggerTilt() {
+  const indicator = document.getElementById('tilt-indicator');
+  indicator.classList.add('show');
+  flashChaos();
+  // Shift creature bar or shuffle view
+  const bar = document.getElementById('creature-bar');
+  bar.style.transition = 'transform 0.3s ease';
+  bar.style.transform = `rotate(${(Math.random()-0.5)*3}deg) translateX(${(Math.random()-0.5)*10}px)`;
+  setTimeout(() => {
+    bar.style.transform = 'none';
+    indicator.classList.remove('show');
+  }, 800);
+
+  // Heat all creatures slightly
+  CREATURES.forEach(c => { state.temps[c.id] = Math.min(100, state.temps[c.id] + 8); });
+}
+
+function triggerLongpress(e) {
+  // Show info panel
+  openInfo();
+  const gest = document.querySelectorAll('.gest');
+  gest.forEach(g => { g.classList.add('active'); setTimeout(()=>g.classList.remove('active'),600); });
+}
+
+function triggerWink() {
+  const faces = ['😉','🥸','👁️','🫣','😜'];
+  const subs = [
+    'PERSONA SWITCH INITIATED...',
+    'SHOW YOU A DIFFERENT SIDE OF YOURSELF...',
+    'INTERFACE RESPONDING TO GESTURE...',
+    'CALIBRATING EYE CONTACT...',
+    'THE CREATURE BLINKED BACK.',
+  ];
+  document.getElementById('wink-face').textContent = faces[Math.floor(Math.random()*faces.length)];
+  document.getElementById('wink-sub').textContent = subs[Math.floor(Math.random()*subs.length)];
+  document.getElementById('wink-modal').classList.add('open');
+  flashChaos();
+  CREATURES.forEach(c => { state.temps[c.id] = Math.min(100, state.temps[c.id] + 15); });
+}
+
+function closeWink() {
+  document.getElementById('wink-modal').classList.remove('open');
+}
+
+function spawnRipple(x, y) {
+  const r = document.createElement('div');
+  r.className = 'ripple';
+  r.style.left = x + 'px';
+  r.style.top = y + 'px';
+  document.body.appendChild(r);
+  setTimeout(() => r.remove(), 700);
+}
+
+// ============================================================
+// CHAOS
+// ============================================================
+function flashChaos() {
+  const chaos = document.getElementById('chaos-layer');
+  chaos.classList.add('active');
+  setTimeout(() => chaos.classList.remove('active'), 200);
+}
+
+function triggerChaos() {
+  let pulses = 0;
+  const iv = setInterval(() => {
+    flashChaos();
+    pulses++;
+    if (pulses > 8) clearInterval(iv);
+  }, 120);
+  CREATURES.forEach(c => { state.temps[c.id] = 80 + Math.random() * 20; });
+  if (state.feedOpen || true) {
+    openFeed();
+    const msgs = [
+      'CHAOS PROTOCOL ENGAGED',
+      'ALL PERSONAS HEATING',
+      'GLITCH SUBSYSTEM OVERLOADED',
+      'SPIRAL INITIATED — HOLD ON',
+    ];
+    msgs.forEach((m, i) => {
+      setTimeout(() => addFeedMsg(null, m, true), i * 300);
+    });
+  }
+}
+
+// ============================================================
+// MODULE TOGGLE
+// ============================================================
+function toggleModule(btn, id) {
+  document.querySelectorAll('.module-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  openFeed();
+  addFeedMsg(null, `MODULE ACTIVATED: ${id.toUpperCase()}`, true);
+}
+
+// ============================================================
+// FEED
+// ============================================================
+function openFeed() {
+  document.getElementById('live-feed').classList.add('open');
+  state.feedOpen = true;
+}
+
+function closeFeed() {
+  document.getElementById('live-feed').classList.remove('open');
+  state.feedOpen = false;
+}
+
+function addFeedMsg(creature, text, isSystem = false) {
+  const feed = document.getElementById('feed-msgs');
+
+  if (isSystem) {
+    const sys = document.createElement('div');
+    sys.className = 'sys-msg';
+    sys.textContent = `▸ ${text} ▸`;
+    feed.appendChild(sys);
+    feed.scrollTop = feed.scrollHeight;
+    return;
+  }
+
+  const msg = document.createElement('div');
+  msg.className = 'feed-msg';
+  const msgId = `fm-${Date.now()}`;
+
+  msg.innerHTML = `
+    <div class="feed-avatar">${creature ? creature.emoji : '⚡'}</div>
+    <div class="feed-content">
+      <div class="feed-who" style="color:${creature ? creature.color : '#39ff14'}">
+        ${creature ? creature.name : 'SYSTEM'}
+      </div>
+      <div class="feed-text" id="${msgId}">▍</div>
+    </div>
+  `;
+  feed.appendChild(msg);
+
+  // Typewriter
+  const el = document.getElementById(msgId);
+  let i = 0;
+  const iv = setInterval(() => {
+    if (i >= text.length) {
+      clearInterval(iv);
+      el.textContent = text;
+      return;
+    }
+    el.innerHTML = text.substring(0, i+1) + '<span class="cursor">▍</span>';
+    i++;
+    feed.scrollTop = feed.scrollHeight;
+  }, 28);
+
+  state.msgCount++;
+}
+
+// ============================================================
+// SEND DIRECTIVE
+// ============================================================
+function sendDirective() {
+  const input = document.getElementById('kb-input');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+
+  openFeed();
+  addFeedMsg(null, `USER: "${text}"`, true);
+
+  CREATURES.forEach(c => { state.temps[c.id] = Math.min(100, state.temps[c.id] + 12 + Math.random()*8); });
+
+  // Staggered responses
+  const shuffled = [...CREATURES].sort(() => Math.random() - 0.5).slice(0, 3);
+  shuffled.forEach((c, i) => {
+    setTimeout(() => {
+      const q = c.quips[Math.floor(Math.random() * c.quips.length)];
+      addFeedMsg(c, q);
+      state.temps[c.id] = Math.min(100, state.temps[c.id] + 20);
+    }, (i + 1) * 900);
+  });
+}
+
+// ============================================================
+// INFO PANEL
+// ============================================================
+function openInfo() {
+  document.getElementById('info-panel').classList.add('open');
+}
+
+function closeInfo() {
+  document.getElementById('info-panel').classList.remove('open');
+}
+
+// ============================================================
+// WHITEBOARD (simple draw)
+// ============================================================
+function initWhiteboard() {
+  const canvas = document.getElementById('wb-canvas');
+  const svg = document.getElementById('wb-svg');
+  let drawing = false;
+  let path = null;
+  let points = [];
+
+  canvas.addEventListener('pointerdown', e => {
+    drawing = true;
+    points = [];
+    path = document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('fill', 'none');
+    path.setAttribute('stroke', '#00e5c3');
+    path.setAttribute('stroke-width', '1.5');
+    path.setAttribute('opacity', '0.7');
+    svg.appendChild(path);
+    const r = canvas.getBoundingClientRect();
+    points.push([e.clientX - r.left, e.clientY - r.top]);
+    e.preventDefault();
+  });
+
+  canvas.addEventListener('pointermove', e => {
+    if (!drawing) return;
+    const r = canvas.getBoundingClientRect();
+    points.push([e.clientX - r.left, e.clientY - r.top]);
+    if (points.length > 1) {
+      const d = points.map((p,i) => (i===0?`M${p[0]},${p[1]}`:`L${p[0]},${p[1]}`)).join(' ');
+      path.setAttribute('d', d);
+    }
+    e.preventDefault();
+  });
+
+  canvas.addEventListener('pointerup', () => { drawing = false; path = null; });
+  canvas.addEventListener('pointerleave', () => { drawing = false; path = null; });
+}
+</script>
+</body>
+</html>

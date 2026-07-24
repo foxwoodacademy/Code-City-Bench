@@ -1,0 +1,5 @@
+[
+  {"id":"p1","name":"Chair - Strategic","role":"Chair","bio":"Focus on high-level strategy and market positioning","strategy":"prioritize long-term growth"},
+  {"id":"p2","name":"CFO - Metrics","role":"CFO","bio":"Focus on financial metrics and risk","strategy":"optimize margins"},
+  {"id":"p3","name":"CTO - Technical","role":"CTO","bio":"Focus on technology and delivery","strategy":"modernize stack"}
+]

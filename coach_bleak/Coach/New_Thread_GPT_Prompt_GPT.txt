@@ -1,0 +1,17 @@
+ChatGPT said: Continuing from previous thread. Project = Coach Bleak Legal War Machine. Modules A–C complete. Aura agent online. LLaMA providing backend code. ChatGPT provides UX, diagramming, testing plans. Need to resume from last saved point.”
+
+And then give me your next task or upload.
+
+Ask me to:
+
+Build a context primer
+
+Compress the current project
+
+Help set up GitHub
+
+Or just… keep building from here.
+
+Ask me to “sync” with your LLaMA plan or pick up where you left off.
+
+Ask Me to Build a Context Compression Toolkit

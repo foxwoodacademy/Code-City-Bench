@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JaneBot MotherBrain Dashboard</title>
+    <style>
+        :root {
+            --bg-color: #0a0a0c;
+            --panel-bg: #16161a;
+            --accent-color: #00d2ff;
+            --text-color: #e0e0e0;
+            --success: #00ff88;
+            --warning: #ffcc00;
+            --danger: #ff3366;
+            --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-main);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(90deg, #16161a 0%, #1c1c22 100%);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .logo span { color: #fff; }
+
+        .system-status {
+            display: flex;
+            gap: 20px;
+            font-size: 0.9rem;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pulse {
+            width: 10px;
+            height: 10px;
+            background-color: var(--success);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--success);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 255, 136, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 136, 0); }
+        }
+
+        main {
+            display: grid;
+            grid-template-columns: 300px 1fr 300px;
+            gap: 1rem;
+            padding: 1rem;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .panel {
+            background-color: var(--panel-bg);
+            border-radius: 8px;
+            border: 1px solid #222;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .panel-header {
+            padding: 0.8rem 1rem;
+            background-color: #1c1c22;
+            border-bottom: 1px solid #333;
+            font-weight: bold;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .panel-content {
+            padding: 1rem;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .stat-card {
+            background-color: #1e1e24;
+            padding: 1rem;
+            border-radius: 6px;
+            text-align: center;
+            border: 1px solid #2a2a32;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 4px;
+            color: var(--accent-color);
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: #888;
+        }
+
+        /* Agent List */
+        .agent-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.8rem;
+            border-bottom: 1px solid #222;
+            font-size: 0.9rem;
+        }
+
+        .agent-info { display: flex; align-items: center; gap: 10px; }
+        .agent-status { width: 8px; height: 8px; border-radius: 50%; }
+        .status-online { background-color: var(--success); }
+        .status-busy { background-color: var(--warning); }
+        .status-offline { background-color: var(--danger); }
+
+        /* Log Stream */
+        .log-entry {
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.8rem;
+            margin-bottom: 6px;
+            border-left: 2px solid transparent;
+            padding-left: 8px;
+        }
+        .log-time { color: #666; margin-right: 8px; }
+        .log-level-info { border-color: var(--accent-color); color: #fff; }
+        .log-level-success { border-color: var(--success); color: var(--success); }
+        .log-level-warn { border-color: var(--warning); color: var(--warning); }
+
+        /* Controls */
+        .btn {
+            background-color: #2a2a32;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+        .btn:hover { background-color: #3a3a45; transform: translateY(-1px); }
+        .btn-primary { background-color: var(--accent-color); color: #000; font-weight: bold; }
+        .btn-primary:hover { background-color: #00b8e6; }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #444; }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            🧠 JaneBot <span>MotherBrain</span>
+        </div>
+        <div class="system-status">
+            <div class="status-item">
+                <div class="pulse"></div>
+                <span>Swarm Active</span>
+            </div>
+            <div class="status-item" id="system-time">
+                12:00:00 PM
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Left Column: Stats & Controls -->
+        <section class="panel">
+            <div class="panel-header">Swarm Telemetry</div>
+            <div class="panel-content">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-value" id="stat-agents">12</span>
+                        <span class="stat-label">Agents</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="stat-tasks">48</span>
+                        <span class="stat-label">Tasks</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="stat-cpu">14%</span>
+                        <span class="stat-label">CPU Load</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value" id="stat-mem">2.4G</span>
+                        <span class="stat-label">Memory</span>
+                    </div>
+                </div>
+
+                <div style="margin-top: 2rem;">
+                    <div class="panel-header" style="padding-left: 0;">Global Controls</div>
+                    <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
+                        <button class="btn btn-primary">DEPLOY NEW AGENT</button>
+                        <button class="btn">REBALANCE SWARM</button>
+                        <button class="btn" style="color: var(--danger);">EMERGENCY STOP</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Center Column: Log Stream -->
+        <section class="panel">
+            <div class="panel-header">
+                Real-time Intelligence Stream
+                <span style="font-size: 0.7rem; color: #888;">LIVE FEED</span>
+            </div>
+            <div class="panel-content" id="log-container">
+                <!-- Logs injected here -->
+            </div>
+        </section>
+
+        <!-- Right Column: Agent Registry -->
+        <section class="panel">
+            <div class="panel-header">Operational Control</div>
+            <div class="panel-content">
+                <div class="control-group" style="margin-bottom: 20px;">
+                    <label style="display:block; font-size: 0.7rem; color: #888; margin-bottom: 5px;">Persona Identity</label>
+                    <select id="persona-select" class="btn" style="width: 100%; text-align: left;" onchange="updatePersona()">
+                        <option value="JaneBot">JaneBot (Risk-taker)</option>
+                        <option value="EquiLex">EquiLex (Compliance)</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label style="display:block; font-size: 0.7rem; color: #888; margin-bottom: 5px;">Cognitive Hat (Decision Mode)</label>
+                    <div class="hat-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                        <button class="btn hat-btn" style="border-bottom: 2px solid #FFF;" onclick="setMode('WHITE')">WHITE</button>
+                        <button class="btn hat-btn" style="border-bottom: 2px solid #F00;" onclick="setMode('RED')">RED</button>
+                        <button class="btn hat-btn" style="border-bottom: 2px solid #000;" onclick="setMode('BLACK')">BLACK</button>
+                        <button class="btn hat-btn" style="border-bottom: 2px solid #FF0;" onclick="setMode('YELLOW')">YELLOW</button>
+                        <button class="btn hat-btn" style="border-bottom: 2px solid #0F0;" onclick="setMode('GREEN')">GREEN</button>
+                        <button class="btn hat-btn" style="border-bottom: 2px solid #00F;" onclick="setMode('BLUE')">BLUE</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Mock Data & Simulation
+        const AGENTS = [
+            { id: 'ALPHA-01', type: 'COORDINATOR', status: 'online' },
+            { id: 'BETA-05', type: 'RESEARCHER', status: 'busy' },
+            { id: 'BETA-09', type: 'RESEARCHER', status: 'online' },
+            { id: 'GAMMA-02', type: 'EXECUTOR', status: 'online' },
+            { id: 'GAMMA-04', type: 'EXECUTOR', status: 'busy' },
+            { id: 'DELTA-01', type: 'MONITOR', status: 'online' },
+            { id: 'EPSILON-03', type: 'ARCHIVER', status: 'offline' }
+        ];
+
+        const LOG_TEMPLATES = [
+            "Agent {id} received task: {task}",
+            "Task {task} completed by {id} in {time}ms",
+            "Message broadcast from {id}: {msg}",
+            "Heartbeat received from {id}",
+            "Scaling swarm: initiating node {id}",
+            "Task queue rebalanced: {count} pending",
+            "Resource allocation shift: {id} assigned 512MB"
+        ];
+
+        function addLog(msg, level = 'info') {
+            const container = document.getElementById('log-container');
+            const entry = document.createElement('div');
+            entry.className = `log-entry log-level-${level}`;
+            
+            const time = new Date().toLocaleTimeString([], { hour12: false });
+            entry.innerHTML = `<span class="log-time">[${time}]</span> ${msg}`;
+            
+            container.prepend(entry);
+            
+            // Keep logs manageable
+            if (container.childNodes.length > 50) {
+                container.removeChild(container.lastChild);
+            }
+        }
+
+        function renderAgents() {
+            const list = document.getElementById('agent-list');
+            list.innerHTML = '';
+            AGENTS.forEach(agent => {
+                const item = document.createElement('div');
+                item.className = 'agent-item';
+                item.innerHTML = `
+                    <div class="agent-info">
+                        <div class="agent-status status-${agent.status}"></div>
+                        <div>
+                            <div style="font-weight: bold;">${agent.id}</div>
+                            <div style="font-size: 0.7rem; color: #888;">${agent.type}</div>
+                        </div>
+                    </div>
+                    <button class="btn" style="padding: 4px 8px;">PING</button>
+                `;
+                list.appendChild(item);
+            });
+        }
+
+        function updateStats() {
+            document.getElementById('stat-tasks').innerText = Math.floor(Math.random() * 20) + 30;
+            document.getElementById('stat-cpu').innerText = (Math.random() * 10 + 5).toFixed(1) + '%';
+            document.getElementById('system-time').innerText = new Date().toLocaleTimeString();
+        }
+
+        function simulateSwarm() {
+            updateStats();
+            
+            if (Math.random() > 0.7) {
+                const agent = AGENTS[Math.floor(Math.random() * AGENTS.length)];
+                const log = LOG_TEMPLATES[Math.floor(Math.random() * LOG_TEMPLATES.length)]
+                    .replace('{id}', agent.id)
+                    .replace('{task}', 'T-' + Math.floor(Math.random() * 1000))
+                    .replace('{time}', Math.floor(Math.random() * 500) + 100)
+                    .replace('{msg}', 'ACK_SUCCESS')
+                    .replace('{count}', Math.floor(Math.random() * 10));
+                
+                const level = Math.random() > 0.8 ? 'success' : 'info';
+                addLog(log, level);
+            }
+        }
+
+        // Initialize
+        renderAgents();
+        addLog("MotherBrain Core v1.0.0 Initialized", "success");
+        addLog("Swarm communication protocol established", "info");
+        addLog("Waiting for agent heartbeats...", "info");
+
+        setInterval(simulateSwarm, 2000);
+        setInterval(updateStats, 1000);
+    </script>
+</body>
+</html>

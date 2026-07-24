@@ -1,0 +1,10 @@
+==================================================
+RAW DISTRESS LEAD TELEMETRY FEED - CRM READY
+GENERATED: 2026-06-04T10:52:13.031191+00:00
+==================================================
+
+REGION TARGET: Metro Atlanta, GA
+RISK FACTOR   : Spike in pre-foreclosure listings and inventory pressure.
+LOCAL PLAYBOOK: Review acquisition and reserve plans.
+STATUS        : REVIEW
+--------------------------------------------------

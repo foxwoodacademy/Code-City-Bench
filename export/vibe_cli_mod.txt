@@ -1,0 +1,59 @@
+May24 02:46
+
+Here's the module to add to Vibe CLI:
+
+# /data/data/com.termux/files/usr/lib/python3.13/site-packages/vibe/cli/commands/godm
+
+from __future__ import annotations
+import json
+from datetime import datetime
+from pathlib import Path
+import sys
+
+def _show_godmode(app: any, **kwargs: any) -> None:
+    """
+    EASTER EGG: /godmode - Reveals full system state for debugging.
+    The programmer's wet dream: complete visibility into the AI's brain.
+    """                                                                                        from textual.app import App
+    from vibe.core.config import ConfigManager
+
+    # Collect all the juicy details
+    godmode_data = {
+        "system": {
+            "python_version": sys.version,
+            "platform": sys.platform,
+            "executable": sys.executable,
+            "path": sys.path[:3],                                                                      "timestamp": datetime.now().isoformat(),
+        },
+        "vibe": {
+            "version": app.__class__.__module__.split('.')[0],
+            "session_id": getattr(app, 'session_id', 'N/A'),
+            "current_model": getattr(app, '_current_model', 'N/A'),
+            "config": ConfigManager().model_dump() if hasattr(ConfigManager, 'model_d
+        },
+        "conversation": {
+            "message_count": len(getattr(app, 'history', [])),
+            "current_agent": getattr(app, '_current_agent', 'N/A'),
+            "tools_available": list(getattr(app, '_tool_registry', {}).keys()) if has
+        },
+        "environment": {
+            "cwd": str(Path.cwd()),
+            "vibe_home": str(getattr(app, 'vibe_home', Path.home() / '.vibe')),
+            "loaded_agents": list(getattr(app, '_agent_paths', {}).keys()) if hasattr
+        },
+        "debug": {
+            "last_error": getattr(app, '_last_error', None),
+            "performance_metrics": getattr(app, '_perf_metrics', {}),
+            "active_tools": getattr(app, '_active_tools', []),
+        }
+    }
+
+    # Pretty print to console
+    from rich import print_json
+    print_json(json.dumps(godmode_data, indent=2, default=str))
+                                                           ▊
+                                                                                          ▆
+Then add to commands.py:
+
+
+

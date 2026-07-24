@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "name": "Molt-V4",
+    "path": "/storage/emulated/0/RootBase/Molt-V4",
+    "languages": {
+      "python": 1
+    },
+    "entrypoints": [
+      "molt_v4.py"
+    ],
+    "package_json": false,
+    "requirements": 0,
+    "readme_excerpt": "",
+    "last_modified": "2026-05-20T16:53:24.824999"
+  },
+  "runbook": {
+    "commands": [
+      "python molt_v4.py"
+    ],
+    "env": [],
+    "notes": []
+  },
+  "bard_note": "Can't tell what this does \u2014 it's a mystery wrapped in a folder. (Bardildo: harsh truth incoming)"
+}

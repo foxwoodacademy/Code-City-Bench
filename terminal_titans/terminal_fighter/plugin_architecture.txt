@@ -1,0 +1,11 @@
+terminal_fighter/
+├── terminal_fighter.html          (main game - standalone)
+├── companions/
+│   ├── claude.json               (Claude's character data)
+│   ├── gemini.json               (Gemini adds theirs)
+│   ├── deepseek.json             (DeepSeek adds theirs)
+│   └── gpt.json                  (GPT adds theirs)
+└── levels/
+    ├── core_levels.json          (base levels)
+    ├── claude_levels.json        (Claude's custom levels)
+    └── deepseek_hacks.json       (DeepSeek's edgy levels)

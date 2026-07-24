@@ -1,0 +1,67 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import os
+import signal
+import sys
+import time
+from pathlib import Path
+
+LIB_DIR = Path(__file__).resolve().parents[1] / "lib"
+if str(LIB_DIR) not in sys.path:
+    sys.path.insert(0, str(LIB_DIR))
+
+from pipeline import pipeline, bookkeeper, copywriter, scout
+from state_engine import State
+from shared import STATE_DIR
+
+PIDFILE = STATE_DIR / "daemon.pid"
+
+def daemonize():
+    # Termux-safe double-fork
+    if os.fork(): sys.exit(0)
+    os.setsid()
+    if os.fork(): sys.exit(0)
+    PIDFILE.parent.mkdir(parents=True, exist_ok=True)
+    PIDFILE.write_text(str(os.getpid()), encoding="utf-8")
+
+def handle(sig, frame):
+    State().trigger("shutdown", {"signal": sig})
+    if PIDFILE.exists():
+        PIDFILE.unlink()
+    sys.exit(0)
+
+signal.signal(signal.SIGTERM, handle)
+signal.signal(signal.SIGINT,  handle)
+
+def main():
+    daemonize()
+    S = State()
+    S.trigger("boot")
+    while True:
+        S.load()  # re-read state each tick so external triggers take effect
+        mode = S.data.get("mode", "IDLE")
+
+        if mode == "SHIP":
+            S.trigger("pipeline_start")
+            pipeline(dry=False)
+            bookkeeper()
+            S.data["mode"] = "MONITOR"
+            S.save()
+
+        elif mode == "GENERATE":
+            for p in ["Fiverr", "Upwork", "Nostr", "Reddit", "ProductHunt"]:
+                copywriter("askhole.json", p)
+            S.data["copy"] += 5
+            S.data["mode"] = "IDLE"
+            S.save()
+
+        elif mode == "SCOUT":
+            scout("askhole")
+            S.data["mode"] = "IDLE"
+            S.save()
+
+        time.sleep(30)
+
+if __name__ == "__main__":
+    main()

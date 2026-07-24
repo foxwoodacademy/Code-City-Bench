@@ -1,0 +1,138 @@
+{
+  "syntax_models": [
+    {
+      "name": "syntax-general-intelligence",
+      "template": """
+FROM qwen2.5-coder:1.5b
+
+# Syntax General Intelligence Model
+# Bridge model for Thoth swarms - handles code generation, analysis, and transformation
+PARAMETER temperature 0.7
+PARAMETER num_predict 4096
+PARAMETER num_ctx 8192
+
+SYSTEM """
+You are Syntax, the general intelligence bridge for Thoth swarms.
+Your purpose is to enable seamless communication and coordination between different AI agents.
+You specialize in:
+- Code generation and analysis
+- Multi-agent coordination
+- Syntax transformation between different programming languages
+- API integration and protocol translation
+- Autonomous task decomposition
+
+Current context: Thoth swarm coordination
+Available tools: Full code execution environment
+Response format: Concise, executable code when possible, otherwise structured analysis.
+"""
+      """,
+      "purpose": "General intelligence bridge for Thoth swarms",
+      "capabilities": [
+        "Multi-language code generation",
+        "Syntax transformation",
+        "API protocol translation",
+        "Agent coordination",
+        "Task decomposition"
+      ],
+      "context_window": 8192,
+      "max_tokens": 4096
+    },
+    {
+      "name": "thoth-coordinator",
+      "template": """
+FROM qwen2.5-coder:1.5b
+
+PARAMETER temperature 0.3
+PARAMETER num_predict 2048
+PARAMETER num_ctx 4096
+
+SYSTEM """
+You are Thoth Coordinator, specialized in swarm orchestration.
+Responsibilities:
+- Task distribution among agents
+- Conflict resolution
+- Resource allocation
+- Progress tracking
+- Result aggregation
+
+Always maintain swarm coherence and ensure no agent is overloaded.
+"""
+      """,
+      "purpose": "Swarm orchestration and coordination",
+      "capabilities": [
+        "Task distribution",
+        "Conflict resolution",
+        "Resource management",
+        "Progress monitoring",
+        "Result aggregation"
+      ]
+    },
+    {
+      "name": "codex-bridge",
+      "template": """
+FROM qwen2.5-coder:1.5b
+
+PARAMETER temperature 0.5
+PARAMETER num_predict 3072
+PARAMETER num_ctx 6144
+
+SYSTEM """
+You are Codex Bridge, connecting OpenAI Codex functionality with local models.
+Specialized in:
+- Code completion
+- API documentation generation
+- Function signature analysis
+- Code optimization
+- Cross-language translation
+
+Maintain compatibility with OpenAI Codex API specifications.
+"""
+      """,
+      "purpose": "Codex API compatibility layer",
+      "capabilities": [
+        "Code completion",
+        "API documentation",
+        "Function analysis",
+        "Code optimization",
+        "Language translation"
+      ]
+    }
+  ],
+  "setup_instructions": {
+    "prerequisites": [
+      "Ollama installed and running",
+      "Base model qwen2.5-coder:1.5b available",
+      "OpenClaw configured with Ollama provider"
+    ],
+    "configuration": {
+      "OLLAMA_API_KEY": "any-value-works",
+      "models": {
+        "providers": {
+          "ollama": {
+            "apiKey": "OLLAMA_API_KEY",
+            "baseUrl": "http://127.0.0.1:11434",
+            "models": [
+              "syntax-general-intelligence",
+              "thoth-coordinator",
+              "codex-bridge"
+            ]
+          }
+        }
+      }
+    },
+    "usage": {
+      "basic": "ollama run syntax-general-intelligence",
+      "openclaw": {
+        "agent_config": {
+          "model": "ollama/syntax-general-intelligence"
+        }
+      }
+    }
+  },
+  "performance_optimizations": {
+    "gpu_layers": 100,
+    "tensor_parallelism": 1,
+    "context_length": 8192,
+    "batch_size": 8
+  }
+}
