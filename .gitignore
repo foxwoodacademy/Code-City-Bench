@@ -10,3 +10,6 @@ backup_*/
 project_bundle_*/
 MY_WHOLE_SHIT.txt
 swarm_intel*.py
+
+.vault/
+Loosies/*.mp4
